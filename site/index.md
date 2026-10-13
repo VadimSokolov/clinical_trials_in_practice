@@ -2,7 +2,9 @@
 
 By Alexandra Sokolova and Vadim Sokolov.
 
-[PDF](https://github.com/VadimSokolov/clinical_trials_in_practice/releases/download/v1.0.0/clinical_trials_in_practice.pdf), [online edition](https://vsokolov.org/clinical_trials_in_practice/), [source on GitHub](https://github.com/VadimSokolov/clinical_trials_in_practice/tree/v1.0.0), [Zenodo](https://zenodo.org/records/23330460)
+[PDF](https://github.com/VadimSokolov/clinical_trials_in_practice/releases/download/v1.0.0/clinical_trials_in_practice.pdf), [online edition](https://vsokolov.org/clinical_trials_in_practice/), [source on GitHub](https://github.com/VadimSokolov/clinical_trials_in_practice/tree/v1.0.0)
+
+[![DOI 10.5281/zenodo.23330460](https://zenodo.org/badge/DOI/10.5281/zenodo.23330460.svg)](https://doi.org/10.5281/zenodo.23330460)
 
 ## Description
 
