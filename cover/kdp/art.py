@@ -3,12 +3,13 @@
 
 The curves are the product-limit estimates of two simulated arms (the seed is below), with the Greenwood bands and the
 censoring marks of a real survival plot. There is no image model and no photograph in it: the page is drawn from code.
-Writes art.png, the size of the front panel with its bleed (7.125 x 10.25 in) at 400 ppi, without any text. The title, the
-subtitle and the authors are typeset over it as vector text by cover.tex, which also draws the spine and the back.
+Writes art.png, the size of the front panel with its bleed (7.125 x 10.25 in) at 400 ppi, without any text. The title,
+the subtitle and the authors are typeset over it as vector text by cover.tex, which also draws the spine and the back.
 
     python3 art.py [--ppi 400] [--out art.png]
 
-Needs numpy, scipy, matplotlib and Pillow; at 400 ppi it takes about a minute. The wrap is then built with pdflatex (see cover.tex).
+Needs numpy, scipy, matplotlib and Pillow; at 400 ppi it takes about a minute.
+The wrap is then built with pdflatex (see cover.tex).
 """
 import argparse
 
@@ -19,20 +20,19 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy.ndimage import gaussian_filter
 
-W_IN, H_IN = 7.125, 10.25                      # the front panel with the 0.125 in bleed on the right, the top and the bottom
-NAVY = np.array([11, 30, 58]) / 255            # the ground of the whole wrap (cover.tex uses the same color)
+W_IN, H_IN = 7.125, 10.25                      # the front panel with its 0.125 in bleed at the right, top and bottom
+NAVY = np.array([11, 30, 58]) / 255            # the ground of the whole wrap (the same in cover.tex)
 TEAL = np.array([60, 198, 181]) / 255          # the treatment arm
 AMBER = np.array([246, 178, 107]) / 255        # the control arm
-ORANGE = np.array([255, 140, 58]) / 255        # its bands, more saturated so that they do not turn gray over the navy ground
-TEAL_BAND = np.array([40, 190, 178]) / 255
+ORANGE = np.array([255, 140, 58]) / 255        # its bands: more saturated, so that they do not turn gray on navy
+TEAL_BAND = np.array([40, 190, 178]) / 255     # its bands
 MIST = np.array([196, 210, 230]) / 255         # axes and guides
-X0, X1 = 0.75, 7.95                            # time 0 and time T on the page, in inches; the curves run off the right edge
+X0, X1 = 0.75, 7.95                            # time 0 and time T on the page (inches); the curves run off the edge
 Y0, Y1 = 1.95, 6.60                            # survival 0 and 1 on the page
 T = 42.0                                       # months
 SEED = 11
-RATES = (0.022, 0.065)                          # monthly hazard of the treatment and the control arm
+RATES = (0.022, 0.065)                         # monthly hazard of the treatment and the control arm
 BAND, EDGE = 0.12, 0.45                        # opacity of the confidence bands and of their outlines
-MEDIANS = True                                 # dashed lines at the median survival of each arm
 
 
 def simulate(rng, n, rate, censor_rate):
@@ -90,18 +90,11 @@ def over(base, rgba, opacity=1.0):
 
 
 def main():
-    global BAND, EDGE, MEDIANS, AMBER
     ap = argparse.ArgumentParser()
     ap.add_argument('--ppi', type=int, default=400)
     ap.add_argument('--out', default='art.png')
-    ap.add_argument('--band', type=float, default=BAND)
-    ap.add_argument('--edge', type=float, default=EDGE)
-    ap.add_argument('--control', default='amber', help='amber, mist or coral')
-    ap.add_argument('--no-medians', action='store_true')
     a = ap.parse_args()
     ppi = a.ppi
-    BAND, EDGE, MEDIANS = a.band, a.edge, not a.no_medians
-    AMBER = {'amber': AMBER, 'mist': np.array([214, 226, 242]) / 255, 'coral': np.array([255, 128, 106]) / 255}[a.control]
     inch = ppi                                           # pixels per inch, for blur radii
     rng = np.random.default_rng(SEED)
     arms = [(TEAL, kaplan_meier(*simulate(rng, 52, RATES[0], 0.012))),
@@ -114,7 +107,7 @@ def main():
         for color, (xs, ss, lo, hi, marks) in arms:
             x, ylo = px(xs, lo)
             yhi = px(xs, hi)[1]
-            bc = ORANGE if color is AMBER else TEAL_BAND if color is TEAL else color
+            bc = ORANGE if color is AMBER else TEAL_BAND
             ax.fill_between(x, ylo, yhi, step='post', color=bc, alpha=BAND, lw=0)
             if EDGE:
                 for y in (ylo, yhi):
@@ -156,17 +149,16 @@ def main():
     # glows first, then the bands, the curves, the guides
     gl = layer(ppi, lambda ax: curves(ax, lw=0.07, marks=False))
     for sigma, op in ((0.20 * inch, 0.55), (0.06 * inch, 0.45)):
-        blur = np.stack([gaussian_filter(gl[..., i] * gl[..., 3], sigma) for i in range(3)] + [gaussian_filter(gl[..., 3], sigma)], -1)
+        premult = [gaussian_filter(gl[..., i] * gl[..., 3], sigma) for i in range(3)]
+        blur = np.stack(premult + [gaussian_filter(gl[..., 3], sigma)], -1)
         rgb = blur[..., :3] / np.maximum(blur[..., 3:4], 1e-6)
         img = screen(img, np.concatenate([rgb, blur[..., 3:4]], -1), op)
     del gl
     img = over(img, layer(ppi, bands))
     img = over(img, layer(ppi, axes_guides))
-    if MEDIANS:
-        img = over(img, layer(ppi, medians))
+    img = over(img, layer(ppi, medians))
     img = over(img, layer(ppi, curves))
-    if MEDIANS:
-        img = over(img, layer(ppi, rings))
+    img = over(img, layer(ppi, rings))
 
     # a dither of one level where the picture is not flat, so that the glows do not band and the file stays small
     flat = np.abs(img - NAVY.astype(np.float32)).max(-1) > 0
