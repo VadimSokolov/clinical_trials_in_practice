@@ -26,6 +26,7 @@
  "date_released": "2026-10-12",
  "publisher": "Independently published",
  "doi": "10.5281/zenodo.23330460",
+ "concept_doi": "10.5281/zenodo.23330459",
  "language": "en",
  "keywords": [
   "clinical trials",
@@ -64,6 +65,8 @@
   "repository": "https://github.com/VadimSokolov/clinical_trials_in_practice",
   "source": "https://github.com/VadimSokolov/clinical_trials_in_practice/tree/v1.0.0",
   "doi": "https://doi.org/10.5281/zenodo.23330460",
+  "concept_doi": "https://doi.org/10.5281/zenodo.23330459",
+  "zenodo": "https://zenodo.org/records/23330460",
   "html": "https://vsokolov.org/clinical_trials_in_practice/",
   "cover": "https://vsokolov.org/books/clinical_trials_in_practice/cover.jpg"
  },
