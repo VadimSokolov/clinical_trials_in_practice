@@ -1,0 +1,62 @@
+# Essential Documents and the Trial Master File {#sec-essential-docs}
+
+When an FDA inspector arrives at a clinical trial site, they do not re-run the study. They interview patients, who have long since completed their participation, generally only when they suspect serious problems [@fda_cp_7348_811]. They cannot observe the blood draws, the physical exams, or the conversations between investigators and participants. What they can do is examine the paper trail: the carefully maintained documentation that reconstructs how the trial was conducted.
+
+This is why documentation matters: in clinical research, the record *is* the trial. A consent form signed and dated before procedures began documents that informed consent was obtained. A delegation log with training records shows that the person drawing blood was qualified, and a temperature log that the investigational product was stored correctly. Without these documents, there is no evidence that the trial was conducted properly. Without that evidence, the data cannot be trusted.
+
+ICH E6(R2) Section 8.1 defines essential documents as those that "individually and collectively permit evaluation of the conduct of a trial and the quality of the data produced" [@ich_e6r2_2016]. They serve operational purposes during the trial and evidentiary purposes afterward, spanning a lifecycle that runs from pre-trial preparations through active data recording and safety monitoring to final reconciliation and archiving.
+
+In 2025, ICH E6(R3) restructured this material as *essential records* in Appendix C. Where E6(R2) Section 8 prescribed a minimum list, which could be supplemented or, where justified before the trial began, reduced [@ich_e6r2_2016], E6(R3) defines essential records more broadly, as the documents and data, in any format, that permit evaluation of the trial's conduct and the reliability of its results, and asks sponsors and investigators to judge on risk-proportionate grounds which records are essential for a given trial. The individual files keep their names and purposes; what changes is the emphasis, as E6(R3) ties the essential record set more explicitly to the trial's design and risks [@ich_e6r3_2025].
+
+The sponsor manages the Trial Master File (TMF), the repository of the sponsor's study-wide and site-specific essential documents, now increasingly electronic for real-time tracking and secure global access. Each clinical site keeps its own Investigator Site File (ISF) covering its conduct of the trial. Sponsors increasingly offer electronic site files (eISF) to streamline this, but the investigator remains personally responsible for the ISF's completeness and accuracy, whether digital or physical.
+
+## Critical Essential Documents
+
+@tbl-tmf-checklist lists documents that draw particular scrutiny during inspections, where each is held, and what inspectors look for.
+
+| Document | Location | Purpose | Inspection Focus |
+|----------|----------|---------|------------------|
+| **Protocol + Amendments** | TMF + ISF | Governing rules of trial | Version control; Approval dates |
+| **Investigator's Brochure (IB)** | TMF + ISF | Safety information for investigators | Current version; Receipt acknowledgment |
+| **Informed Consent Forms** | ISF | Record of ethical participation | Dates; Signatures; Correct versions |
+| **FDA Form 1572** | TMF + ISF (IND studies) | PI commitment to comply | Signature; Sites, labs, and subinvestigators listed |
+| **Delegation of Authority Log** | ISF | Staff responsibilities | Training documentation; Dated signatures |
+| **IRB/EC Approvals** | TMF + ISF | Ethics approval | Correspondence; Amendment approvals |
+| **Financial Disclosure** | TMF | Conflict of interest documentation | Completeness; Accuracy |
+| **Lab Certifications** | TMF + ISF | Lab qualifications | Currency; Scope of certification |
+| **Monitoring Reports** | TMF | Record of sponsor oversight | Timeliness; Issue follow-up |
+| **Drug Accountability** | ISF | IP receipt, dispensing, return | Reconciliation; Temperature logs |
+
+: Critical TMF/ISF Documents for Regulatory Inspection {#tbl-tmf-checklist tbl-colwidths="[25,15,25,35]"}
+
+Under 21 CFR Part 54 [@cfr21_part54], sponsors must collect and, in the marketing application, disclose (or certify the absence of) the relevant financial interests of each clinical investigator in a covered clinical study, including those of a spouse or dependent child: compensation tied to the study outcome, a proprietary interest in the tested product, significant equity (more than $50,000 in a publicly traded sponsor, or any equity in a privately held one), and other significant payments exceeding $25,000 beyond the costs of conducting the study, tracked during the trial and for one year after it ends. The requirement does not forbid such interests; it makes them visible, so that reviewers can judge whether a conflict might have biased the trial's conduct or interpretation.
+
+## The Quality Standard: ALCOA++
+
+A blood pressure reading without a signature and date is useless; an adverse event narrative without an author cannot be verified. ALCOA is the shorthand for the properties that make a clinical trial record trustworthy. @sec-data-management tabulates the base ALCOA principles in @tbl-alcoa and describes the ALCOA+ and ALCOA++ extensions.
+
+Each record must be *attributable*: it must be clear who created it, when, and under what circumstances. Records must be *legible*, readable and intelligible years later to anyone who needs to review them. They must be *contemporaneous*, created at the time the activity occurred rather than reconstructed from memory days or weeks afterward, and *original*, the first capture of the data, or a certified copy that preserves its content and context, rather than a transcription that might introduce errors [@fda_electronic_systems_2024]. And they must be *accurate*, truthfully reflecting what actually happened.
+
+ALCOA+ and then ALCOA++ added requirements aimed at electronic systems and long-term data integrity. Records must be *complete*, with no missing fields, unexplained gaps, or deleted entries; *consistent*, following the same format and logic across the trial; and *available*, retrievable for review or inspection when needed. They must also be *enduring*, readable throughout the required retention period, which is a challenge when file formats and storage media become obsolete. The second plus adds *traceable*: every value can be followed through its full lifecycle, with audit trails documenting any change.
+
+## TMF Management and Oversight
+
+A trial generates documents continuously (protocols are amended, investigators added, IRB approvals renewed, monitoring visits conducted, safety events reported), and each must reach the right file within a reasonable timeframe. Targets vary by document type and organization; a sponsor SOP might call for filing within 5-10 business days of receipt or creation, a target that is easily missed when trial teams are stretched thin.
+
+An inspector asks to see "the informed consent form for patient 101-005 at the time of their third visit" and expects an answer within minutes. A well-organized ISF can produce the signed form, and the TMF the version the ethics committee had approved by then. The *TMF Reference Model* provides a standardized taxonomy for organizing TMF documents, defining zones (such as Trial Management, Regulatory, and Site Management), sections within each zone, and specific artifact types within each section. Originally convened under the Drug Information Association, the model has been stewarded by CDISC since 2022 [@dia_reference_model].
+
+*TMF health metrics* track whether the file is complete and current: typically filing lag (average time from document creation to filing), completeness rate (percentage of expected documents actually present), and quality score (percentage of documents passing quality review without issues). Sponsors set targets, perhaps 95% completeness and 90% quality. Sites that fall behind receive additional attention, and persistent deficiencies may trigger for-cause audits.
+
+During site visits, monitors verify that the Investigator Site File holds every required document in its current version, signed and dated where required. They also reconcile the site file against the sponsor's central TMF. Deficiencies noted in a monitoring report become action items that must be resolved before the next visit.
+
+Missing essential documents can hold up database lock when the gaps bear on participant safety or the reliability of the data, a problem that can delay regulatory submissions by months when discovered late. Inspectors who find disorganized or incomplete TMFs may question the overall quality of trial conduct, and in extreme cases regulators can refuse to rely on a trial's data when the TMF cannot demonstrate that it was conducted according to GCP.
+
+## Archiving and Retention
+
+The commitment to documentation does not end when the last patient leaves or the final report is signed, and retention periods are set by regional regulation rather than by any single global rule. In the United States, FDA 21 CFR 312.57(c) requires sponsors to keep records for two years after a marketing application for the drug is approved or, if none is approved, for two years after investigational shipment and delivery stop and FDA is notified, while 312.62(c) runs an investigator's two years from approval for the indication under investigation or, failing that, from discontinuation of the investigation with FDA notified; the EU Clinical Trials Regulation (536/2014, Article 58) requires the trial master file to be archived for at least 25 years after the trial ends; and ICH E6(R3) defers to the applicable regional requirement, adding that investigators should keep their records until the sponsor says they are no longer needed, if that is later. Because a global trial must satisfy the strictest jurisdiction, sponsors commonly adopt a single retention policy sized to the longest applicable period, which for a trial with EU sites means at least 25 years [@cfr21_312; @eu_ctr_536_2014; @ema_ctr_ctis; @ich_e6r3_2025].
+
+The investigator is responsible for site record retention, the sponsor for the overall TMF. Investigators have faced regulatory action years after their trials concluded, when inspectors discovered that site files had been improperly destroyed or were incomplete.
+
+A large Phase III trial generates tens of thousands of pages across dozens of sites. Monitors spend substantial portions of their visits reviewing regulatory binders, and study coordinators give hours each week to filing, organizing, and reconciling documents. Electronic systems have improved efficiency without eliminating the burden: documents still must be created, reviewed, signed, filed, and retained.
+
+The principle underneath is simple: in clinical research, the documentation is the proof. If a procedure was performed but not documented, regulators will question whether it occurred. If consent was obtained but the form is unsigned, the enrollment is problematic. Contemporaneous, complete, and accurate documentation is the foundation on which the credibility of clinical evidence rests.

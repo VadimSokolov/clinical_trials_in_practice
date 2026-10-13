@@ -1,0 +1,166 @@
+# Phase I: Human Pharmacology {#sec-phase1}
+
+Until the first human dose, everything known about a compound comes from test tubes, cell cultures, and animal models. Phase I is where someone has to convert all of that into a number of milligrams, hand it to a person, and then find out how quickly the drug reaches the bloodstream, how long it stays there, what biological effects it produces, and at what dose the adverse ones become unacceptable.
+
+*First-in-human* strictly names only the initial study in a development program; Phase I as a category covers every study designed principally to assess safety, tolerability, and pharmacokinetics in humans [@ich_e8_r1]. That work is increasingly the domain of small companies. Emerging Biopharma (EBP) sponsors accounted for 65% of all Phase I trial starts in 2024, more than twice the share of large pharmaceutical companies (24%) [@iqvia_rd_trends_2025].
+
+The subjects are usually healthy volunteers, since exposing sick people to a drug whose behavior in humans is completely unknown would be inappropriate. Oncology is the standing exception, along with certain other therapeutic areas where the expected toxicity is too significant to put in front of a healthy person.
+
+The starting dose is calculated from preclinical data and set far below anything expected to cause toxicity; @sec-fih-risk works through that calculation and the alternative framework for high-risk biologics. Escalation follows prespecified rules: each cohort is dosed and observed for signs of toxicity before the next may go higher, and the sequence continues until the *maximum tolerated dose (MTD)* is reached or the desired pharmacological effect is achieved.
+
+::: {.callout-warning}
+## Lessons from TGN1412
+In 2006, six healthy volunteers who received TGN1412 suffered life-threatening immune reactions. The dose had been calculated by conventional methods. First-in-human design has been under heightened scrutiny ever since, and the guidance that followed pushed sponsors toward target biology and mechanism of action as the basis for dose selection, staggered dosing within cohorts, and extended observation periods before escalation.
+:::
+
+## Starting Dose Selection and Risk Mitigation {#sec-fih-risk}
+
+Two frameworks convert animal data into a first human dose, and for TGN1412 the gap between them was orders of magnitude. Which one governs depends on the compound class and on the plausible mechanisms of adverse effects.
+
+**NOAEL-based approach.** The *No Observed Adverse Effect Level (NOAEL)* in the most appropriate animal species (by default, the most sensitive) is converted to a human equivalent dose using a body-surface-area correction ($\text{HED} = \text{NOAEL} \times (\text{animal weight}/\text{human weight})^{0.33}$, with FDA's standard 60 kg human) and then divided by a safety factor (10 by default, raised or lowered with a stated rationale) to arrive at the *Maximum Recommended Starting Dose (MRSD)* [@fda_mrsd_2005]. If the human equivalent of the pharmacologically active dose falls below the MRSD, the starting dose may be lowered further. For small molecules with conventional pharmacology and a well-characterized safety profile in animals, this calculation is generally sufficient.
+
+**MABEL approach.** The *Minimal Anticipated Biological Effect Level (MABEL)* was developed for compounds whose pharmacological activity in humans begins at doses far below any observable toxicity in animals. It integrates receptor occupancy modeling, in vitro pharmacological activity data, ex vivo assays on human cells, and animal PK/PD to identify the lowest dose expected to produce any measurable biological effect. EMA's 2017 guideline on FIH trials [@ema_fih_2017] calls for MABEL to be estimated alongside the pharmacologically active dose (PAD), and recommends that the starting dose be anchored to the MABEL, the PAD, or the NOAEL according to how much uncertainty remains about the human relevance of the non-clinical findings and about the intended target. In practice the MABEL anchor is the one chosen when a compound is highly potent, acts through a cytokine-mediated mechanism, or engages a target expressed on circulating immune cells. TGN1412 failed precisely because the NOAEL-based MRSD did not capture the potent receptor-mediated cytokine cascade; a MABEL-based approach would have produced a starting dose orders of magnitude lower.
+
+In practice, sponsors calculate both estimates and select the more conservative. A large gap between the MABEL and the NOAEL-derived MRSD is itself a risk signal that calls for protocol-level mitigation.
+
+**Sentinel dosing.** To limit how many subjects are exposed to a new dose at once, FIH protocols routinely dose sentinels first: within each cohort, one subject receives the investigational drug and one receives placebo, ahead of the rest by an interval set from the compound's half-life and the plausible onset of an adverse reaction (commonly 24 to 48 hours). After that interval, the DSMB or Safety Review Committee reviews the sentinel data before the remaining members are dosed per the cohort's pre-specified active:placebo allocation, which is majority active. EMA's first-in-human guideline endorses staggered dosing within cohorts [@ema_fih_2017], and it is now both regulatory expectation and routine practice for biologics and immunologically active compounds.
+
+**Stopping rules.** FIH protocols typically prespecify stopping criteria at three levels; the criteria below are common examples, and each rule should state whether the stop is a temporary halt or a final end to dosing [@ema_fih_2017]. *Subject-level* rules discontinue one person's dosing immediately for any Grade 3 or higher adverse event, a cytokine elevation above a pre-specified threshold, or a defined change in cardiac rhythm or ECG morphology. *Cohort-level* criteria suspend enrollment pending a safety review when a sentinel subject has a DLT, when two subjects in the cohort have severe adverse reactions (in the same organ system or not), or when any laboratory finding meets a pre-specified threshold of clinical concern. *Study-level* criteria stop dosing across the trial: a potentially drug-related death, a Grade 4 cytokine release syndrome, or, in a healthy-volunteer trial, a single serious adverse reaction in any subject, expected or not.
+
+For immunologically active compounds, cytokine panels (IL-6, IFN-$\gamma$, TNF-$\alpha$) belong in the protocol as early biomarkers of immune dysregulation, checked at pre-specified timepoints before clinical symptoms develop.
+
+Every foreseeable safety event should have a pre-written response in the protocol before the first subject is dosed, because the alternative is deciding in real time under clinical pressure.
+
+## Single and Multiple Ascending Dose Studies
+
+Most Phase I programs run both a *single ascending dose (SAD)* study and a *multiple ascending dose (MAD)* study. In the SAD, small cohorts (typically 6 to 8 subjects) receive a single dose each, with placebo typically included in each cohort to help distinguish drug effects from background noise; safety and pharmacokinetics are reviewed and found acceptable before the next cohort receives a higher dose.
+
+The MAD then gives the drug repeatedly over days or weeks, and asks what a single dose cannot: whether the drug accumulates, how long it takes to reach steady state, and whether repeated exposure is still tolerated. It bridges from the artificial world of single doses to the clinical reality of chronic treatment.
+
+## Characterizing Pharmacokinetics
+
+A primary goal of Phase I is to determine how the drug moves through the body: its *pharmacokinetics (PK)* [@ich_e8_r1]. The raw material is a series of concentrations measured in blood (and sometimes other fluids) at multiple time points after dosing; @tbl-pk-parameters lists what pharmacokineticists compute from that curve.
+
+| PK Parameter | Symbol | Definition | Formula | Clinical Implication |
+|--------------|--------|------------|---------|---------------------|
+| **Maximum Concentration** | C~max~ | Peak drug concentration achieved | Observed directly from PK curve | Indicates peak exposure; related to tolerability |
+| **Time to Maximum** | T~max~ | Time to reach peak concentration | Observed directly from PK curve | Related to absorption rate; affects onset of action |
+| **Area Under Curve** | AUC | Total exposure over time | $\int_0^{\infty} C(t) \, dt$ | Proportional to amount absorbed; key PK/PD metric |
+| **Half-life** | t~1/2~ | Time for concentration to decrease by 50% | $t_{1/2} = \frac{0.693 \times V_d}{CL}$ (one-compartment) | Sets time to steady state (about 4-5 half-lives); guides dosing interval |
+| **Clearance** | CL | Volume of plasma cleared per unit time | $CL = \frac{Dose}{AUC}$ after an IV dose ($CL/F$ after an oral dose) | Efficiency of drug elimination; guides dosing |
+| **Volume of Distribution** | V~d~ | Apparent volume drug distributes into | $V_d = \frac{Dose}{C_0}$ (IV bolus, one-compartment) | Suggests tissue distribution; affects loading doses |
+| **Bioavailability** | F | Fraction of dose reaching systemic circulation | $F = \frac{AUC_{oral}/Dose_{oral}}{AUC_{IV}/Dose_{IV}}$ | Determines oral vs. IV dose equivalence |
+
+: Key Pharmacokinetic Parameters {#tbl-pk-parameters tbl-colwidths="[20,8,22,20,30]"}
+
+*Half-life* is the main guide to the dosing interval: a 4-hour half-life typically requires three or four doses daily, while a 24-hour half-life allows once-daily dosing. Caffeine's is about 5 hours, which is why morning coffee wears off by afternoon; some antidepressants exceed 100 hours, which is why missing a dose matters less and why side effects persist after discontinuation. Formulation and pharmacodynamics can override half-life: extended-release products stretch the interval, and a drug that binds its target irreversibly can act long after it has left the plasma.
+
+*Volume of distribution* reveals where the drug goes. A V~d~ close to plasma volume (about 3 liters) suggests the drug stays in the bloodstream, useful for treating blood infections but unable to reach intracellular targets. A V~d~ of hundreds of liters, far exceeding actual body volume, indicates extensive tissue binding: the drug accumulates in fat, muscle, or specific organs. Chloroquine's V~d~ exceeds 200 liters per kilogram because it concentrates in tissues, which is why it needs loading doses and why it persists for weeks after the last dose.
+
+*Clearance* sets the dose needed to hold therapeutic levels: high clearance means rapid elimination and so higher or more frequent doses, low clearance means accumulation and careful titration to avoid toxicity. Impaired kidney or liver function can reduce clearance, which is why these populations may need dose adjustments; whether they do depends on how much exposure changes and how wide the drug's therapeutic range is.
+
+*Bioavailability* explains why oral and intravenous doses differ. At 50%, an oral dose must be twice the IV dose to reach the same exposure. Some drugs fall below 10%, making oral administration impractical; others are destroyed by stomach acid or extensively metabolized by the liver before reaching circulation (the "first-pass effect").
+
+Pharmacokinetics tells us what the body does to the drug; *pharmacodynamics (PD)* tells us what the drug does to the body. Phase I studies often include pharmacodynamic endpoints: biomarkers or biological effects that indicate the drug is producing its intended action. If such a biomarker correlates with drug exposure, and if it is a reasonable predictor of clinical effect, *PK/PD modeling* can link the two and guide the choice of dose and regimen for Phase II.
+
+## Special Studies
+
+Beyond first-in-human and dose escalation, Phase I typically carries a set of specialized studies (@tbl-phase1-studies) [@ich_e8_r1; @fda_clinical_pharm]:
+
+| Study Type | Purpose | Design | Regulatory Expectation |
+|------------|---------|--------|------------------------|
+| **Bioavailability** | Determine what fraction of dose reaches circulation | Compare oral vs. IV administration (absolute) or different formulations (relative) | Required for oral formulations |
+| **Bioequivalence** | Show new formulation performs like reference product | Crossover design comparing test vs. reference; assess if 90% CI of AUC/Cmax ratio within 80-125% | Required for generics and major formulation changes; a BCS-based biowaiver can replace the in vivo study for some immediate-release oral products |
+| **Food Effect** | Assess how meals affect absorption | Crossover comparing fed vs. fasted states | Required; informs label dosing instructions |
+| **Drug-Drug Interaction (DDI)** | Evaluate interaction with other medications | Test investigational drug with probe substrates/inhibitors/inducers of CYP450 enzymes | Required for commonly co-administered drugs |
+| **Hepatic Impairment** | PK in patients with liver dysfunction | Compare normal vs. mild/moderate/severe hepatic impairment | Required if drug significantly metabolized |
+| **Renal Impairment** | PK in patients with kidney dysfunction | Compare normal vs. mild/moderate/severe renal impairment | Expected if the drug is likely to be used in patients with impaired renal function, even if not renally eliminated (a reduced design may then suffice) [@fda_renal_pk_2024] |
+| **Elderly Subjects** | PK in aged population ($\geq 65$ years) | Compare young vs. elderly PK parameters | Geriatric PK expected for drugs used in the elderly; population PK can replace a dedicated study if enough older patients are enrolled |
+| **Thorough QT** | Assess cardiac repolarization risk | High therapeutic and supratherapeutic doses; measure QTc prolongation | Required unless waived by alternative data |
+
+: Types of Phase I Special Studies {#tbl-phase1-studies tbl-colwidths="[18,22,30,30]"}
+
+Together they let a sponsor recommend a dose for everyone who might need the drug, accounting for physiological differences and potential interactions. Some of that evidence no longer requires a trial: FDA and EMA now accept physiologically-based pharmacokinetic (PBPK) modeling and model-informed drug development (MIDD) to supplement or waive some dedicated drug-drug interaction and organ-impairment studies, extrapolating exposure to untested populations from validated mechanistic models.
+
+## Phase I in Oncology: Dose Escalation Design
+
+Oncology is the exception to the healthy-volunteer rule. Anticancer drugs often cause significant toxicity, and the people who need them face serious illness with limited treatment options, so Phase I oncology studies are conducted in patients.
+
+The objective has traditionally been the MTD: the highest dose that causes unacceptable toxicity in no more than a defined fraction of patients. *Dose-limiting toxicities (DLTs)* are the pre-specified adverse events (typically Grade 3 or 4 by the CTCAE system) that draw the toxicity boundary, observed over a fixed *observation window* (commonly 21 or 28 days, matching the first treatment cycle) after each dose.
+
+### The 3+3 Design and Its Limitations
+
+The *3+3 design* has been the workhorse of oncology Phase I trials for decades. Three patients receive the starting dose; if none experiences a DLT the dose is escalated; if one does, three more are enrolled at that dose, and escalation continues only if none of them has a DLT; if two or more patients at a dose experience DLTs, the dose is declared too high and the next lower dose, usually confirmed in six patients, is the MTD. The design is simple and transparent, requiring no statistical software.
+
+Simulation studies show that the 3+3 often fails to select the correct MTD, and that it tends to err low rather than high [@letourneau2009dose]. The consequences are patients treated below the true MTD and an uncharacterized upper part of the dose-response curve. The cause is structural: the design makes each decision using only the cohort at the current dose, ignoring what the trial has already learned at every other dose, which makes it statistically inefficient [@oquigley1990crm].
+
+### Modern Dose-Escalation Designs
+
+Two families of escalation designs are the main alternatives to the 3+3 in sponsored oncology trials. Both require specifying a *target toxicity rate* (typically 20-25% in modern practice, lower than the old "highest tolerated dose" convention), and interval designs also use an *acceptable toxicity interval* around it (e.g., 15-35%).
+
+**Rule-based "interval" designs (BOIN, mTPI, i3+3).** These methods compare the observed DLT rate at the current dose to a target interval and make a simple escalate/stay/de-escalate decision without fitting a dose-toxicity curve across all doses. The *Bayesian Optimal INterval (BOIN)* design, which FDA designated fit-for-purpose for dose finding in December 2021 [@fda_fit_for_purpose_2025], is a prominent example: it derives optimal decision boundaries from the target toxicity rate and the acceptable interval through a closed-form calculation, minimizing the probability of incorrect escalation decisions [@liu_boin_2015]. BOIN and related methods (mTPI-2, i3+3) can be pre-computed into a decision table before the trial, which makes them operationally tractable. Their limitation is that each escalation decision uses only the data at the current dose; BOIN pools information across doses only at the end, when isotonic regression selects the MTD [@yuan_boin_2016].
+
+**Model-based designs (CRM, BLRM).** The *Continual Reassessment Method (CRM)* fits a simple dose-toxicity model (a one-parameter curve in O'Quigley's original formulation) after each patient with complete DLT information, updating the model and assigning the next cohort to the dose estimated to be nearest the target toxicity [@oquigley1990crm]. The *Bayesian Logistic Regression Model (BLRM)* is a two-parameter extension that provides more realistic uncertainty quantification [@neuenschwander2008blrm]. By borrowing information across all tested doses simultaneously, model-based designs use the accumulating data more efficiently than the 3+3, and their advantage over interval designs is greatest when many dose levels are studied or the true MTD lies at an extreme of the tested range. In published head-to-head simulations, BOIN's average MTD-selection accuracy is comparable to the CRM's [@liu_boin_2015]. The tradeoff is operational complexity: decisions require real-time statistical computation as each patient's DLT outcome becomes available, and the prior distribution for the dose-toxicity curve requires careful elicitation from clinical and historical data.
+
+*Escalation with Overdose Control (EWOC)* is an additional constraint applied with model-based designs: a dose is allocated only if the posterior probability that its DLT rate exceeds the upper bound (e.g., 35%) is below a threshold (e.g., 25%). Unlike the absolute exclusion rules in interval designs, EWOC exclusion is *temporary*: as the model accumulates data and revises its estimate of a dose's toxicity, a previously excluded dose can be reconsidered [@babb1998ewoc].
+
+::: {.callout-note title="Choosing a dose-escalation design"}
+There is no universally superior design. @tbl-escalation-designs summarizes the practical trade-offs.
+
+| Design | Type | Information borrowing | Operational requirements | Typical use case |
+|--------|------|-----------------------|--------------------------|-----------------|
+| **3+3** | Rule-based | None (current cohort only) | Decision table; no software | Legacy studies; regulatory familiarity |
+| **BOIN** | Interval rule-based | Escalation uses current dose only; final MTD selection pools doses (isotonic regression) | Pre-computed table; no real-time stats | Most sponsored oncology Phase I; good balance of simplicity and performance |
+| **CRM / BLRM** | Model-based | Borrows across all tested doses simultaneously | Real-time statistician or software at each decision | Programs with many dose levels; extreme-range MTD; high-potency compounds |
+
+: Dose-escalation design comparison {#tbl-escalation-designs}
+
+Beyond the operational question the table settles, two things push toward a model-based design. The first is the number of doses: with many dose levels, model-based designs gain a larger relative advantage because they can skip doses on the way up and borrow more efficiently. The second is a low target toxicity rate, since at low targets interval methods may be too conservative and model-based designs with EWOC handle the situation more gracefully. Whichever design is chosen, simulate it across a range of plausible dose-toxicity scenarios before the trial begins, assessing MTD-selection accuracy, probability of overdosing, and expected sample size.
+:::
+
+### From MTD to Optimal Dose: Project Optimus
+
+For decades the regulatory pathway rewarded finding the highest dose patients could tolerate, on the assumption that more was better. Then post hoc analyses of several approved oncology drugs showed that doses below the MTD would have produced equivalent efficacy with substantially less toxicity. FDA's Project Optimus, launched in 2021 for oncology, exists to generate that evidence prospectively [@fda_project_optimus; @fda_dose_optim_oncology_2024]: the *right* dose is the one that optimizes the balance of efficacy and tolerability, which is not always the maximum patients can survive.
+
+The FDA guidance on dosage optimization for oncology biologics and drugs, issued as a draft in January 2023 and finalized in August 2024, sets out FDA's recommendations for optimizing dosage during development, much of which falls to early-phase programs [@fda_dose_optim_oncology_2024]:
+
+*Evidence across multiple candidate doses.* Escalating to the MTD and declaring it the recommended Phase 2 dose (RP2D) is no longer enough. Sponsors are expected to characterize at least two candidate RP2Ds through expansion cohorts, seamless Phase I/II designs, or randomized dose-comparison substudies, with the criteria for selecting among those candidates written into the protocol before enrollment begins.
+
+*Pharmacodynamic and patient-reported evidence.* Dose characterization now includes efficacy biomarkers (receptor occupancy, PD markers mechanistically linked to the drug's activity) and patient-reported outcomes measuring symptom burden and quality of life, alongside the traditional clinical safety assessments. A dose that is more tolerable by PRO metrics is meaningful, even when adverse event grades are equivalent.
+
+*Randomized dose comparison.* That guidance says explicitly that sponsors should randomize where feasible, in place of uncontrolled parallel-cohort expansion. The randomization need not be powered for formal hypothesis testing: cohorts of, say, 20 to 40 patients per dose can suffice, with pre-specified endpoints covering activity and tolerability and a defined decision rule for RP2D selection. What matters is that the rule exists before the data do.
+
+*Biologically active dose.* For drugs with clear PD markers, the *biologically active dose (BAD)* has gained regulatory traction: if PK/PD modeling demonstrates that a dose below the MTD achieves full target coverage (e.g., sustained receptor occupancy above 80%), escalating further is unlikely to improve efficacy and may add toxicity; only activity and tolerability data compared across dosages can settle the question. Project Optimus gives sponsors a path to justify selecting the BAD rather than the MTD as the RP2D, provided the exposure-response relationship for the PD marker is reproducible across the tested dose range.
+
+Project Optimus was launched for oncology, but its logic is spreading. Immunology, gene therapy, and other areas where the relationship between dose and effect is non-linear and toxicity can be severe and irreversible are now having the same dose-finding discussions.
+
+::: {.callout-note title="Combination escalation: added dimensions"}
+Oncology increasingly relies on drug combinations, typically pairing a checkpoint inhibitor with a targeted or cytotoxic agent. Combination escalation then has to solve three problems that single-agent escalation never faces.
+
+**Two-dimensional dose space.** With two drugs each tested at multiple levels, the toxicity surface spans a grid, and exhaustive testing of every combination is infeasible. Escalation designs must prespecify the rules for moving through the grid, although adaptive designs pick each next combination from the accumulating data rather than following a fixed path. A BLRM with an interaction term models how the two drugs' toxicities combine, while model-free designs such as the BOIN combination design and the Product of Independent Beta Probabilities Escalation (PIPE) design estimate each combination's DLT rate directly, without a parametric dose-toxicity model [@lin_boin_combo_2017; @mander_pipe_2015]. Assuming that the two toxicities arise independently is not the same as assuming they add: two independent 20% risks give a 36% chance of at least one DLT, not 40%.
+
+**Scheduling.** The sequence and timing of combination dosing often drives tolerability independently of dose: the same total doses may be tolerated when the two drugs are given sequentially but not when they are given simultaneously. Combination protocols must specify schedule as well as dose, and treat a schedule change as a form of dose modification requiring safety review under the protocol.
+
+**Attribution.** When a toxicity occurs, determining whether it belongs to Drug A, Drug B, or the combination is frequently impossible. DLT definitions and cohort decision rules must prespecify how attribution uncertainty is handled, with the rationale stated in the protocol rather than settled at a case review meeting after the event.
+:::
+
+## The Phase I-Phase II Transition
+
+Phase I trials are small by design, and everything after them is sized from what they produce: a safety database characterizing adverse events across a range of doses, pharmacokinetic parameters to guide dosing decisions, pharmacodynamic data linking exposure to biological effects, and, most critically, a *recommended Phase II dose* that balances safety against expected efficacy and initial proof of mechanism. By identifying that dose, Phase I researchers move the drug from laboratory hypotheses into human biology.
+
+The handoff is also one of several *go/no-go decisions* that punctuate drug development. Unexpected toxicity, poor pharmacokinetics, or an absent pharmacodynamic effect can end the program here. Such early terminations, while disappointing, are far preferable to late-stage failures.
+
+The geographic footprint of this work is shifting, with China-headquartered companies accounting for 30% of global trial starts in 2024 [@iqvia_rd_trends_2025]. AI-assisted approaches to trial design and simulation, including enrollment and feasibility modeling and prognostic digital twins for covariate adjustment, are covered in @sec-ai-agents.
+
+::: {.callout-note title="Discussion Questions"}
+1. A T-cell engager for relapsed/refractory multiple myeloma has potent cytokine-release activity in ex vivo human blood assays at concentrations well below those toxic in non-human primates. The NOAEL-based MRSD is 10-fold higher than the MABEL-derived starting dose. Which starting dose framework would you recommend to the sponsor, and what protocol-level safeguards would you require to accompany that choice?
+
+2. The 3+3 design selects the correct MTD less reliably in simulation than interval and model-based designs, yet it remains in use. What institutional, regulatory, and operational factors sustain its use, and under what specific circumstances, if any, does its use remain defensible?
+
+3. FDA's dosage-optimization guidance recommends comparing multiple candidate dosages. For a drug whose primary PD marker (target receptor occupancy) is technically feasible but not validated as a predictor of clinical response, how should the sponsor operationalize the dose-selection criteria in the protocol before data are seen?
+
+4. A combination Phase I program pairs a checkpoint inhibitor (approved as monotherapy, with two dose levels under consideration for the combination) with a novel SMAC mimetic (dose-escalating). The development team proposes a simple row-by-row escalation through a dose grid, assuming additive toxicity. What are the statistical and clinical limitations of that assumption, and what design alternatives would you propose?
+
+5. A sentinel stopping rule specifies that dosing of the full cohort is suspended if a DLT occurs in a sentinel subject. A sentinel subject at dose level 3 develops Grade 3 transaminase elevation at hour 36 that resolves completely by hour 72. The medical monitor argues this is manageable and not clinically meaningful. Walk through the considerations for deciding whether to invoke the stopping rule or proceed with cohort dosing.
+:::
+

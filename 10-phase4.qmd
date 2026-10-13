@@ -1,0 +1,81 @@
+# Phase IV: Post-Marketing Studies and Surveillance {#sec-phase4}
+
+A drug is approved on evidence from trials that were never large enough or long enough to see everything. Then it meets everyone else. Patients differ from the ones who enrolled, adherence varies, and the drug is taken alongside other medications by people carrying other health conditions. Phase IV is every study run after that point, and it has two main jobs: to learn how the drug performs in the broader population it was intended for, and to keep watching for harm.
+
+## Types of Phase IV Studies
+
+What separates one kind of Phase IV study from another is purpose and, more consequentially, whether anyone can compel the sponsor to finish it (@tbl-phase4-types).
+
+| Study Type | Purpose | Examples | Regulatory Status |
+|------------|---------|----------|-------------------|
+| **Post-Marketing Safety** | Detect rare or delayed adverse events | Long-term safety studies, special population studies | May be required or voluntary |
+| **Post-Marketing Efficacy** | Evaluate real-world effectiveness | Subpopulation analyses, comparative effectiveness | Usually voluntary |
+| **Post-Marketing Requirements (PMR)** | Satisfy mandated post-approval studies | Confirmatory trials for accelerated approval | Required by statute or regulation |
+| **Label Extension** | Expand approved uses | Pediatric studies, new indication trials | Required for new indication claims |
+| **Outcomes Research** | Demonstrate value in real-world practice | Quality of life studies, health economics | Usually voluntary; payer-driven |
+
+: Types of Phase IV Studies {#tbl-phase4-types tbl-colwidths="[22,20,30,28]"}
+
+*Post-marketing safety studies* look for adverse events the premarketing program did not identify, whether because the events are rare, because they emerge only after prolonged exposure, or because they fall preferentially on populations the original trials under-enrolled. *Post-marketing efficacy studies* take up what that program had no time or breadth to answer. Does the drug move long-term outcomes? How does it compare with other treatments under real-world conditions? How does it hold up in specific subpopulations?
+
+*Post-marketing requirement (PMR) studies* are the ones a sponsor is required by statute or regulation to conduct, among them studies of safety in populations of concern and of outcomes not fully evaluated before approval. The heaviest are the trials that confirm efficacy where approval rested on a surrogate endpoint, as in accelerated approval. A *post-marketing commitment (PMC)* is the softer instrument: a study the sponsor agrees to conduct but is not legally required to complete.
+
+The Food and Drug Omnibus Reform Act (FDORA) of 2022 strengthened the FDA's hand over those confirmatory trials: the agency may now require that one be underway before it grants accelerated approval or within a period it specifies after approval, and it can withdraw approval through an expedited procedure when the trial fails to verify clinical benefit or is not conducted with due diligence [@fdora2022]. Melphalan flufenamide (Pepaxto) lost its approval on that logic, effective February 2024, after its confirmatory trial showed worse overall survival.
+
+Sponsors also run studies to support label extensions, seeking approval for new indications, new dosing regimens, or new populations. The historical "pediatric labeling gap" has made that route particularly critical for children. The FDA has tracked pediatric labeling changes made under the Best Pharmaceuticals for Children Act (BPCA), the Pediatric Research Equity Act (PREA), and the Pediatric Rule [@fda_pediatric_labeling]. Those initiatives have significantly improved pediatric labeling: more than 1,400 changes approved since 1998, carrying evidence-based dosing and safety information for pediatric populations. They have not closed the gap. The "therapeutic orphan" problem (drugs used in children without adequate pediatric studies) remains a primary driver for dedicated Phase IV pediatric programs.
+
+## Pharmacovigilance
+
+*Pharmacovigilance* is the science of detecting, assessing, and preventing adverse effects of medicines once they are in widespread use. Its first line of detection is *spontaneous reporting*: clinicians and patients voluntarily report suspected adverse reactions to systems such as the FDA Adverse Event Monitoring System (AEMS, launched in March 2026 to replace the FDA Adverse Event Reporting System, FAERS) or, through national competent authorities, the European Union's EudraVigilance, while manufacturers are legally required to forward the reports they receive (in the United States within 15 calendar days for serious, unexpected cases under 21 CFR 314.80; in the EU within 15 days for all serious cases, wherever they occur, and 90 days for non-serious cases occurring in the EU, under GVP Module VI). Spontaneous reports are invaluable for flagging rare or unexpected events that premarketing trials were too small or too short to detect. The severe liver injury that led to the 2000 US withdrawal of troglitazone (Rezulin) was flagged largely through spontaneous case reports.
+
+Passive reporting does not always get there first. The cardiovascular risk that led to the 2004 withdrawal of rofecoxib (Vioxx) was established instead by randomized trials (VIGOR in 2000 and the halted APPROVe trial in 2004), a case often cited for how slowly passive surveillance can move on its own. Spontaneous reporting's limitations are well known: underreporting, uncertain causality, no denominator data. A signal raised that way therefore often has to be confirmed elsewhere, in epidemiologic studies using healthcare databases, in registries, or in dedicated Phase IV trials.
+
+*Active surveillance* increasingly complements passive reporting: regulators run standardized queries against large networks of electronic health records and claims data on a routine schedule. The FDA's Sentinel System and the European Medicines Agency's DARWIN EU (Data Analysis and Real World Interrogation Network) apply the approach at scale; @sec-safety develops the methods of signal detection.
+
+::: {.callout-note title="The Scale of Safety Surveillance"}
+FAERS alone, the drug and biologic database that AEMS is replacing, received more than one million adverse-event reports a year and had accumulated tens of millions over decades [@fda_faers; @fda_aems_2026]. Filtering genuine signals out of that volume of noise is the central operational challenge of pharmacovigilance.
+:::
+
+## Risk Evaluation and Mitigation Strategies
+
+When significant safety concerns are identified, the FDA may require a *Risk Evaluation and Mitigation Strategy* (REMS) as a condition of approval or continued marketing [@fda_rems]. A REMS manages known or potential serious risks so that the patients who need the drug can keep getting it.
+
+| REMS Component | Description | Example Application |
+|----------------|-------------|---------------------|
+| **Medication Guide** | FDA-approved written information for patients about drug risks/benefits | Required with each dispensing; e.g., NSAIDs cardiovascular risk |
+| **Communication Plan** | Ensure healthcare providers receive important safety information | Dear Healthcare Provider letters, professional society communications |
+| **Elements to Assure Safe Use (ETASU)** | Specific requirements for prescribing, dispensing, or receiving | Prescriber certification, patient enrollment, restricted distribution |
+| **Implementation System** | Infrastructure to ensure REMS is executed | Centralized REMS programs with data collection |
+| **REMS Assessment** | Periodic evaluation of REMS effectiveness | By 18 months, 3 years, and in the 7th year after approval, unless FDA changes the timetable |
+
+: Components of Risk Evaluation and Mitigation Strategies {#tbl-rems-components tbl-colwidths="[22,38,40]"}
+
+The elements in @tbl-rems-components run from a leaflet to a lock on the supply chain. Every REMS includes a timetable for assessments of the strategy (21 U.S.C. § 355-1(d)); the FDA requires the other elements when it determines that they are needed to mitigate a serious risk. At the light end, a *Medication Guide* goes to the patient with every dispensing and a *Communication Plan* pushes safety information to healthcare providers. At the heavy end sit *Elements to Assure Safe Use* (ETASU), the specific actions required for prescribing, dispensing, or receiving the drug, such as prescriber training and certification, patient enrollment in a registry, or dispensing only through certified pharmacies.
+
+## Comparative Effectiveness Research and Real-World Data Sources
+
+Phase IV increasingly turns on *comparative effectiveness research* (CER), which asks what a placebo-controlled efficacy trial run under idealized conditions cannot: among the available treatments for a condition, which does better, and for whom? CER compares the benefits and harms of the different interventions under conditions that approximate routine practice.
+
+CER takes two main forms. Pragmatic clinical trials run in real-world settings with broad inclusion criteria and clinically relevant endpoints. Observational studies compare outcomes among patients receiving different treatments in routine clinical care, drawing on electronic health records, claims databases, or registries.
+
+*Patient registries* are organized systems that collect uniform observational data on a population defined by a particular disease, condition, or exposure, and they take their names from that focus. Disease registries follow patients with a particular condition to characterize natural history and identify prognostic factors. Product registries, often mandated for drugs with significant safety concerns or accelerated approvals, collect long-term safety and effectiveness data for specific medications. Pregnancy registries are the critical case: for assessing developmental risks they are the primary source of safety information on a population typically excluded from premarketing trials.
+
+## Real-World Evidence
+
+The 21st Century Cures Act of 2016 directed the FDA to evaluate how *real-world evidence* (RWE) could support regulatory decisions, and the agency's subsequent framework defined the terms [@fda_rwe_framework_2018]. RWE is clinical evidence about a drug's usage and its potential benefits or risks, derived from analysis of *real-world data* (RWD): data relating to patient health status or the delivery of health care, routinely collected from electronic health records, claims and billing databases, product and disease registries, and other sources.
+
+The framework and the guidance that followed it describe how RWE may support approval of new indications for already-approved drugs and satisfy post-marketing study requirements [@fda_rwe_considerations_2023]. Whether a given body of RWE carries that weight turns on the quality and relevance of the underlying data and on the rigor of the study design and analysis. @sec-rwe-external-controls develops external control arms and the other real-world evidence methods.
+
+## Health Technology Assessment (HTA) and Payer Value
+
+Regulatory approval answers whether a drug is safe and effective. It does not answer whether anyone should pay for it. That second question belongs to Health Technology Assessment (HTA) bodies and payers, and in many markets approval is only the first hurdle: market access depends on demonstrating value.
+
+Cost-effectiveness analysis asks whether the health benefit, often measured in Quality-Adjusted Life Years, justifies the price. The National Institute for Health and Care Excellence (NICE) in the UK and the Institute for Clinical and Economic Review (ICER) in the US use economic models to answer it. Germany's IQWiG asks something harder: whether the new drug offers a proven advantage over the current standard of care, a higher bar than the placebo-controlled evidence often accepted for regulatory approval.
+
+Phase IV is therefore often where a sponsor generates what payers want to see: resource utilization, comparative effectiveness against active controls, and long-term economic outcomes [@nice_methods_2022].
+
+## Lifecycle Management
+
+From the sponsor's side, all of this falls under *lifecycle management*: studies that differentiate the product from competitors, optimize dosing, or expand it into new indications and populations.
+
+Those objectives are commercial, and they have to be held against scientific integrity. The post-marketing period is a continuation of the learning process, not an epilogue to it, and its regulatory stakes have risen. Under FDORA an accelerated approval now stands or falls on whether its confirmatory trial verifies the benefit that premarketing data only suggested. It is that binding requirement, more than any voluntary commitment, that keeps Phase IV tied to the standard of evidence the earlier phases set out to meet.

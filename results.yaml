@@ -1,0 +1,30 @@
+# results.yaml: the catalog of the book's results.
+# One entry per result that is new in the book, comes from the authors' own papers, or corrects one of those papers.
+# Results of other authors go in the chapter summaries, with their authors. Guide: references/repository.md.
+#
+# Fields:
+#   id          stable name: lowercase letters, digits and underscores; never reused for another result
+#   name        a short descriptive name; agents cite it together with the printed number
+#   label       the \label of the statement (LaTeX) or the id of its div (Quarto)
+#   chapter     the chapter key, as in book.yaml
+#   origin      book, paper:KEY or corrected:KEY, with KEY from related_papers in book.yaml
+#   status      proved, conditional, open, counterexample or withdrawn
+#   conditions  for conditional: the statements the result assumes and the book does not prove
+#   erratum     for withdrawn: what was wrong, and the version that corrects it
+#   highlight   true for the 3 to 8 results that the README and the website feature
+#   summary     one sentence in plain words
+#   statement   the result as the book states it, with the same hypotheses, quantifiers, constants and rates; standard LaTeX only, no book macros
+#   supersedes  optional: the statement this one replaces, e.g. the version in a paper
+#
+# bookrepo.py inventory prints a stub for every labeled theorem, proposition, lemma, corollary, conjecture and open question.
+#
+# - id: adjoint_statistic_sufficient
+#   name: The adjoint statistic is sufficient
+#   label: m:lem:adjoint
+#   chapter: "15"
+#   origin: book
+#   status: proved
+#   highlight: true
+#   summary: For a linear forward map with Gaussian noise, the adjoint of the forward map applied to the data is a sufficient statistic.
+#   statement: >-
+#     Let $G$ be a bounded linear map ... Then $G^* Y$ is sufficient for $\theta$.

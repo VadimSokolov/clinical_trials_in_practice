@@ -1,0 +1,156 @@
+# Data Management {#sec-data-management}
+
+A nurse draws blood, a patient completes a questionnaire, a physician conducts an examination. At that moment the trial's evidence is a tube of blood, marks on paper, a clinical impression. By the time a regulator reads it, the same evidence has to be a number in a locked database, traceable back to the moment it was observed and sitting alongside the medical histories, laboratory values, imaging results, patient-reported outcomes, adverse event records, and protocol deviations that a single trial accumulates. Converting those raw observations into reliable, analyzable data is the province of clinical data management.
+
+Regulatory decisions affecting millions of patients rest on whether those numbers can be trusted, and the entire edifice of evidence-based medicine assumes they reflect what actually happened to patients. @fig-data-flow shows the pipeline that produces them.
+
+```{mermaid}
+%%| label: fig-data-flow
+%%| fig-cap: "Clinical trial data flow from point of collection through database lock"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 30, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    subgraph Row1 [ ]
+        direction LR
+        A["Clinical<br/>Observation"] --> B["Source<br/>Document"] --> C["CRF/EDC<br/>Entry"] --> D["Edit<br/>Checks"] --> E["Query<br/>Generation"]
+    end
+    subgraph Row2 [ ]
+        direction LR
+        F["Site<br/>Response"] --> G["Query<br/>Resolution"] --> H["Medical<br/>Review"] --> I["Database<br/>Lock"] --> J["Analysis<br/>Dataset"]
+    end
+    Row1 --> Row2
+```
+
+Observations are first *captured*, entered into the trial's data collection system. Historically that meant transcribing information onto paper *case report forms (CRFs)*; today, *electronic data capture (EDC)* systems are standard, with site staff entering data directly into validated computer systems.
+
+Captured data is then *cleaned*: reviewed for errors, inconsistencies, missing values, and implausibilities, with queries issued to sites until the data is judged acceptably clean. Only then is the database *locked* and the data *extracted* for statistical analysis.
+
+## Electronic Data Capture
+
+Type a systolic blood pressure of 12 where 120 belongs, or a birth date that would make the patient 200 years old, and the system flags the discrepancy immediately. That is what the *edit checks* programmed into EDC systems are for: catching errors at the point of entry. On paper, the same mistake might go undiscovered for months, which is why this *front-end validation* improves data quality.
+
+An EDC system is a validated software platform whose electronic forms mirror protocol requirements, capturing each data point as site staff enter it. That gives sponsors *real-time visibility* into trial data: they can monitor enrollment, track data completeness, and identify sites with quality issues much more rapidly than was possible with paper systems.
+
+*Audit trails* automatically log every entry and modification along with timestamps and user identities. The resulting record of how the data evolved, protected from modification, is required for demonstrating compliance with regulatory requirements, and it is what gets consulted when a question arises later.
+
+## Data Flow Beyond EDC
+
+A contemporary trial's data no longer arrives only through a site's EDC screen. Central laboratories, imaging core labs, ePRO/eCOA platforms, wearable and sensor-derived endpoints, and real-world data sources each deliver their own stream, with its own provenance, latency, and error modes [@fda_dht_guidance_2023; @fda_rwe_considerations_2023; @fda_rwd_ehr_claims_2024]. The traditional operational framing of *data flow* still helps, particularly the contrast between bolus flow (data sent from the sites to a processing site in batches) and continuous flow (data sent as they are keyed or shortly after) and the emphasis on timeliness for monitoring and trial control [@meinert_cth_2013], but it now has to describe several channels at once.
+
+Ingestion alone is not the central difficulty. The quality and regulatory problem is *traceable control* across systems: documented interfaces, controlled transformations, and auditability sufficient to support reconstruction of what was collected, when, by whom or by what system, and how it was transformed into analysis-ready datasets [@cfr21_11; @fda_electronic_systems_2024].
+
+::: {.callout-tip title="Checklist: Data Transfer Specification (DTS)"}
+
+For each external source, a defensible DTS should specify:
+
+- *Purpose and scope*: what data are transferred, at what cadence, and how they support protocol endpoints and monitoring [@fda_dht_guidance_2023].
+- *Provenance and identifiers*: subject identifiers and pseudonymization rules; site identifiers; visit/timepoint mapping; timezone conventions [@fda_rwd_ehr_claims_2024].
+- *Format and standards*: file formats, data dictionaries, controlled terminology, and mapping plans into SDTM/ADaM where applicable [@fda_rwe_considerations_2023].
+- *Validation and reconciliation*: checksums, record counts, missingness expectations, range and logic checks, and discrepancy handling, including "source of truth" rules [@fda_electronic_systems_2024].
+- *Security and access control*: encryption in transit and at rest, least-privilege access, role-based audit trails [@cfr21_11; @fda_electronic_systems_2024].
+- *Change control*: versioning of schemas and code, deprecation policies, documented impact assessment for mid-trial changes [@fda_electronic_systems_2024].
+- *Retention and inspection readiness*: how raw transfers, transformation logs, and audit trails will be retained and retrieved under inspection timelines [@cfr21_11; @fda_electronic_systems_2024].
+
+:::
+
+When an endpoint depends on a measurement from a *digital health technology (DHT)*, the data management plan should address device selection and performance, participant usability and training, data completeness monitoring, and the integrity of transmission and storage processes. These are endpoint-validity controls, not merely IT hygiene [@fda_dht_guidance_2023].
+
+When EHR or claims-derived datasets are used to support regulatory decision-making, sponsors should document data provenance, capture processes, missingness and measurement error, and the relationship between clinical care documentation and research variables. The governing question is whether the dataset is fit for the stated regulatory purpose, with traceability and transparency sufficient for review [@fda_rwd_ehr_claims_2024; @fda_rwe_considerations_2023].
+
+### Common Data Elements
+
+Meinert's handbook emphasized bespoke form design, tailored to each trial's specific requirements [@meinert_cth_2013]. Protocol-specific customization is still necessary, but the trend is toward *Common Data Elements (CDEs)*: standardized variable definitions, value sets, and collection instruments shared across studies.
+
+The NIH CDE Repository provides curated element definitions across therapeutic areas [@nih_cde_repository], so researchers can adopt a pre-validated instrument instead of reinventing a measurement. CDISC standards (CDASH for collection, SDTM for tabulation, ADaM for analysis) provide the structural framework for regulatory submissions: FDA and PMDA require the tabulation and analysis standards, while CDASH is encouraged but not required [@cdisc_standards; @fda_study_data_tcg]. The benefit extends well beyond compliance. A trial built on CDEs can feed meta-analyses, external control arms, and AI-driven signal detection, capabilities that custom-designed data structures often preclude.
+
+::: {.callout-tip title="Checklist: CDE Selection and Implementation"}
+
+- *Identify applicable repositories*: NIH CDE Repository, CDISC Therapeutic Area User Guides, disease-specific consortia standards.
+- *Map protocol endpoints to existing CDEs*: prioritize validated instruments for primary and key secondary endpoints, and document the rationale for any custom element.
+- *Specify controlled terminology*: standard dictionaries (MedDRA for adverse events, WHODrug for medications, SNOMED CT or ICD for diagnoses) with explicit version control.
+- *Plan CDISC mapping early*: define CDASH annotation during CRF design rather than retrofitting SDTM mapping at database lock.
+- *Document deviations*: where protocol requirements preclude a standard CDE, record the deviation and keep a crosswalk to related standards for future interoperability.
+
+:::
+
+## Data Quality Standards
+
+What makes data "good"? *Accuracy* is the first demand: recorded data reflects what actually happened, so a blood pressure of 140/90 was actually 140/90, not misread and not mistranscribed. *Completeness* asks that all required data be collected, though some gaps are unavoidable: a patient may miss a visit, and what matters then is that the gap is documented and explained.
+
+*Consistency* means the data makes sense internally. A subject recorded as male on one form and female on another tells you something is wrong without telling you which form is wrong. *Timeliness* means data is entered promptly, because data entered long after collection is more likely to carry the errors of memory lapse and lost source documents. *Legibility* and *traceability* close the set: for electronic data they mean clear audit trails, and for paper documents legible handwriting and proper corrections (single-line strikethrough with initials and date, not obliteration).
+
+The *ALCOA* family of principles captures these standards; @tbl-alcoa gives the base set.
+
+| Principle | Definition | Examples | Common Failures |
+|-----------|-----------|----------|----------------|
+| **A**ttributable | Who recorded it? | User ID, signature, initials | Shared login; Unsigned entries |
+| **L**egible | Can it be read? | Clear handwriting; Readable font | Illegible corrections; Truncated fields |
+| **C**ontemporaneous | Recorded when observed | Timestamp matches activity | Backdated entries; Batched data entry |
+| **O**riginal | First record of data | Source document; Certified copy | Transcribed from informal notes |
+| **A**ccurate | Truthful and correct | Matches source document | Transcription errors; Rounding |
+
+: ALCOA Data Integrity Principles {#tbl-alcoa tbl-colwidths="[20,22,28,30]"}
+
+
+Modern standards extend ALCOA to *ALCOA+*, adding *Complete* (nothing missing), *Consistent* (defined and handled the same way throughout the data life cycle), *Enduring* (readable throughout retention), and *Available* (retrievable for inspection). A further refinement, *ALCOA++*, adds *Traceable* (every value can be followed through its full lifecycle, including audit trails of any changes) [@ema_computerised_systems_2023].
+
+## Data Cleaning and Query Management
+
+Edit checks at the point of entry do not catch everything. Data management personnel run programmed checks against the whole database: cross-field validations (is the hospitalization date after the enrollment date?), range checks (is this laboratory value physiologically plausible?), and protocol logic checks (if the patient was randomized to arm A, should they have received arm B at this visit?).
+
+Anything that fails becomes a *query*: a formal request to the site naming the discrepancy and asking staff to verify or correct the value. Site staff go back to their source documents, the original medical records, and either correct the data or explain why it is correct as recorded. *Query resolution* is an iterative dialogue, some of it closing immediately and some of it requiring investigation, and the number of open queries and the time to resolution are key data management metrics.
+
+## Source Data and Verification
+
+The trial database is not the ultimate source of truth; the *source documents* are. Source documents are the original records where clinical observations first appear: medical records, laboratory printouts, imaging reports, patient diaries.
+
+That framing assumes a paper or pre-existing record stands behind every database value, and it no longer holds universally. Under *eSource* and *direct data capture (DDC)*, data are entered directly into a validated electronic system at the moment of observation, with no antecedent paper record; the electronic entry is itself the source. What defines source data is that it is the first, original record of an observation, in whatever medium. When that record is electronic, its trustworthiness rests on the same controls of attribution, contemporaneity, and audit trail that apply to any electronic record in a clinical investigation [@fda_electronic_systems_2024; @fda_esource_2013].
+
+*Source data verification (SDV)* is the monitor's side of this: comparing the trial database against source documents to ensure that transcription has been accurate. Historically, SDV was exhaustive: 100% of key variables for 100% of patients. More recently, *risk-based monitoring* approaches target SDV toward high-risk data and sites, recognizing that exhaustive verification is expensive and that some data points are more important than others.
+
+The whole effort culminates in the database lock. All queries must be resolved, programmed cleaning must be finalized, and medical reviews must confirm the accuracy of safety coding and adverse event records. Once the database is locked, it is frozen. Reopening it takes a documented, authorized unlock and relock, reserved for errors in safety or efficacy data that could change the analysis; lesser errors found afterward are documented, for example in the study report, rather than corrected in the data [@scdm_database_closure_2023]. After unblinding, ICH E6(R3) recommends limiting data changes to exceptional circumstances, each justified, authorized by the investigator, captured in the audit trail, and reported in the clinical study report [@ich_e6r3_2025]. The locked data is then transferred to biostatisticians for analysis, and that transfer must itself be validated, because the final clinical study report rests on the dataset being complete, accurate, and protected from uncontrolled change.
+
+## Data Standards and Traceability
+
+Regulatory agencies require submission data in standardized formats that enable efficient review and cross-study comparisons [@fda_study_data_tcg], which in practice means the international standards developed by the Clinical Data Interchange Standards Consortium (CDISC) [@cdisc_standards], now required for the study data in marketing applications and commercial INDs submitted to FDA and in new drug applications submitted to PMDA [@fda_study_data_standards_2021; @pmda_electronic_study_data_2024]. The Study Data Tabulation Model (SDTM) provides the foundation by organizing raw clinical data into standardized domains (such as demographics, adverse events, and laboratory results) using a uniform structure and variable naming convention, so that any reviewer can interpret a blood pressure measurement without consulting study-specific custom documentation.
+
+While SDTM tabularizes the data as collected, the Analysis Data Model (ADaM) prepares it for statistical analysis. ADaM datasets include derived variables, analysis flags, and complex calculations like time to event, providing the direct basis for the primary efficacy and safety analyses. The define.xml file is the reviewer's map: machine-readable metadata specifying the origin and derivation of every dataset and variable. Underneath all of these sits controlled terminology, which mandates standardized codes for categorical values like adverse event severity or dosing routes, so that data can be pooled and compared automatically across an entire research portfolio.
+
+### The Traceability Chain
+
+Regulators expect to trace any number in a submission back to its source [@fda_study_data_tcg]. This *traceability chain* links:
+
+1. **Source documents** (medical records, lab reports)
+2. **CRF/EDC data** (as collected)
+3. **SDTM datasets** (tabulated for submission)
+4. **ADaM datasets** (derived for analysis)
+5. **Tables, listings, and figures (TLFs)** (in the CSR)
+6. **eCTD submission** (regulatory dossier)
+
+At each step, the transformation should be documented and reproducible. A reviewer who questions an efficacy p-value should be able to walk that chain back, link by link, to the source document.
+
+The chain breaks in recognizable ways: a derivation left undocumented, so nobody can say how "baseline" was defined; mapping documentation missing, so how EDC variable X became SDTM variable Y is guesswork; corrections applied ad hoc, outside the validated systems; dataset versions drifting out of step across analysis steps.
+
+### The eCTD Submission Structure
+
+Submissions to major regulatory agencies use the *electronic Common Technical Document (eCTD)* format, which organizes the dossier into a navigable electronic structure (@tbl-ectd-modules).
+
+| Module | Content | Data Management Relevance |
+|--------|---------|---------------------------|
+| Module 1 | Regional administrative information | Country-specific forms and labels |
+| Module 2 | Summaries and overviews | Clinical summaries synthesizing data |
+| Module 3 | Quality (CMC) | Manufacturing; not directly DM |
+| Module 4 | Nonclinical | Preclinical studies; not directly DM |
+| Module 5 | Clinical | CSRs, SDTM/ADaM datasets, define.xml |
+
+: eCTD Module Structure {#tbl-ectd-modules tbl-colwidths="[15,40,45]"}
+
+Module 5 is where clinical data management work lands, and how well that work was done directly affects how efficiently reviewers can navigate and verify the submission.
+
+## Regulatory Compliance
+
+Several requirements overlap here. *21 CFR Part 11* governs electronic records and electronic signatures, addressing system validation, audit trails, access controls, and the signatures themselves [@cfr21_11]. *Computer System Validation (CSV)* is the process of validating EDC and other clinical trial systems for their intended purpose before use, with documentation that the systems function as specified. *Good Clinical Practice (GCP)* attaches to the data itself, which must be accurately recorded, attributable, contemporaneous, and available for inspection.
+
+*Records retention* requirements mandate that trial records be maintained for specified periods and be available for regulatory inspection. ICH E6(R3) (2025) [@ich_e6r3_2025] defers to applicable regional regulations rather than specifying a single retention period; in practice, FDA 21 CFR 312.57(c) requires sponsors to retain records for two years after marketing approval or, if the drug is not approved, after investigational shipment and delivery stop and FDA is notified [@cfr21_312], while the EU Clinical Trials Regulation requires the trial master file to be archived for at least 25 years after the trial ends [@eu_ctr_536_2014].
+
+AI tools for automated data cleaning, discrepancy detection, and natural language processing of source documents are covered in @sec-ai-agents.
+

@@ -1,0 +1,103 @@
+# Ethical Principles {#sec-ethics}
+
+Clinical research asks people to accept risks and inconveniences not primarily for their own benefit, but so that future patients might have better treatments. The rules governing that arrangement emerged largely in response to abuse: the Nuremberg Code and the Belmont Report arose from the failures described in @sec-history, while the Declaration of Helsinki built on the Nuremberg Code as the medical profession's own statement of principles. But the absence of abuse is not the same thing as ethical research.
+
+For many people, "ethical research" is synonymous with "informed consent." Consent is necessary in most but not all studies. It is not sufficient: a scientifically worthless study remains unethical even if every participant provides exquisitely informed consent, because it exposes people to risks without any possibility of generating knowledge that could benefit others [@emanuel2000makes].
+
+## Seven Requirements for Ethical Research
+
+Emanuel, Wendler, and Grady proposed seven requirements (@tbl-emanuel-requirements) that clinical research must satisfy to be considered ethical [@emanuel2000makes]. Satisfying six is not enough.
+
+| Requirement | Ethical Principle | Key Question | Example Application |
+|-------------|-------------------|--------------|---------------------|
+| *1. Value* | Research must have social or scientific value | Will this research improve health or increase understanding? | A study duplicating existing knowledge is unethical regardless of consent, as it exposes participants to risk without potential benefit. |
+| *2. Scientific Validity* | Research must be methodologically rigorous | Is the study designed to answer its research question? | Underpowered studies that cannot detect meaningful effects cannot justify participant risks. |
+| *3. Fair Subject Selection* | Burdens and benefits should be distributed fairly | Are subjects chosen for scientific reasons, not convenience or vulnerability? | Testing drugs only in young men while marketing to all populations violates this principle. |
+| *4. Favorable Risk-Benefit Ratio* | Risks must be justified by potential benefits | Do potential benefits outweigh risks to participants and society? | High-risk procedures require proportionately important research questions. |
+| *5. Independent Review* | Conflicts of interest must be managed through oversight | Has the research been reviewed by unaffiliated experts? | IRB approval is mandatory; investigators cannot approve their own studies. |
+| *6. Informed Consent* | Participants must voluntarily agree with understanding | Do participants understand and freely agree? | Consent forms must be readable; participants can withdraw at any time. |
+| *7. Respect for Participants* | Researchers have ongoing responsibilities | Are participants' interests protected throughout and after the study? | Privacy must be maintained; participants should be informed of new findings. |
+
+: Emanuel's Seven Requirements for Ethical Research {#tbl-emanuel-requirements tbl-colwidths="[18,22,25,35]"}
+
+## Applying Ethical Principles
+
+The seven requirements are easier to state than to apply. In practice they collide, and honoring one can mean compromising another.
+
+### Placebo Controls
+
+*Placebo controls* are contentious wherever an effective treatment already exists, and most contentious where that treatment works, but imperfectly. A placebo-controlled trial often provides the clearest evidence of efficacy. It can also mean withholding a known-effective treatment from patients who need it.
+
+The Declaration of Helsinki takes a strong position: new interventions must be tested against the best proven intervention, not against placebo. However, placebo controls may be acceptable when no proven intervention exists, or when compelling and scientifically sound methodological reasons require a placebo comparison and participants who receive placebo will not be subject to additional risks of serious or irreversible harm as a result of not receiving the best proven intervention [@helsinki_2025].
+
+Beneath the debate sits *clinical equipoise*, introduced by Benjamin Freedman in 1987 [@freedman1987equipoise]: randomizing patients between two arms is ethical only when the expert medical community is genuinely uncertain which arm is better. That uncertainty is the standard justification for assigning anyone to a control arm, placebo included. It is also perishable. As outcome data accumulate during a trial, equipoise can erode, which is precisely the situation that response-adaptive randomization exploits by shifting allocation toward the arm that appears to be performing better (@sec-rar). Judging when the accumulating evidence has disturbed equipoise enough to justify reallocating patients, or stopping the trial, is one of the central ethical decisions in adaptive design.
+
+### Vulnerable Populations
+
+Vulnerable populations are not protected by being excluded from research: they too deserve therapies developed and tested in relevant populations [@emanuel2000makes]. What their vulnerability requires is safeguards matched to it, and @tbl-vulnerable-populations pairs each recognized vulnerability with the protections it triggers under the Common Rule, whose subparts on pregnant women and prisoners apply to research that the Department of Health and Human Services conducts or supports [@cfr45_46]:
+
+| Population | Specific Vulnerability | Additional Protections Required | Ethical Consideration |
+|------------|------------------------|--------------------------------|----------------------|
+| *Children* | Cannot provide legal consent; may not understand research | Parental/guardian permission plus child assent when capable | Risks must be minimal, justified by the prospect of direct benefit, or no more than a minor increase over minimal risk in research likely to yield generalizable knowledge about the child's disorder or condition |
+| *Pregnant Women* | Risks extend to fetus | Where scientifically appropriate, preclinical and clinical data on pregnancy risks required | Research must minimize risk to fetus; consent must address fetal risks |
+| *Prisoners* | Institutional coercion may compromise voluntariness | Research limited to the categories at 45 CFR 46.306(a)(2): incarceration and criminal behavior, prisons and prisoners as subjects of study, conditions particularly affecting prisoners, and practices likely to improve the subject's own health | Payment and conditions must not be coercive |
+| *Cognitively Impaired* | Reduced capacity for informed consent | Legally authorized representative consent; subject assent when possible | Ongoing assessment of capacity; respect for objection even if representative consented |
+| *Economically Disadvantaged* | Payment may be unduly influential | Compensation must not be coercive | Payment for time/inconvenience appropriate; credit should accrue as the study progresses, with at most a small, non-coercive completion incentive |
+
+: Vulnerable Populations in Clinical Research {#tbl-vulnerable-populations tbl-colwidths="[15,25,30,30]"}
+
+### Research in Resource-Limited Settings
+
+A trial run in a resource-limited setting by a sponsor based in a wealthier country raises two questions with no universal answer. The first is what the control group gets: the best treatment available globally, or the local standard of care. The second is what happens when the trial ends, and sponsors and researchers must arrange post-trial provisions in advance for all participants who still need an intervention identified as beneficial and reasonably safe in the trial, unless a research ethics committee approves an exception [@helsinki_2025]. Both demand thoughtful engagement, and both come back to the same requirement: that the research be responsive to the health needs or priorities of the host population and create local social value, not merely exploit the community for data [@cioms_2016].
+
+## Modern Ethical Challenges
+
+Decentralized trials (DCTs) can collect patient data continuously, via wearables and smartphone apps. GPS location and sleep patterns carry re-identification risk, and they invite "function creep," where data collected for one purpose is repurposed for another. Researchers must weigh the scientific value of that high-frequency record against the participant's right to digital privacy [@who_ai_ethics_2021].
+
+### Electronic Informed Consent (eConsent)
+
+Electronic informed consent is now widely used in clinical investigations, and its multimedia tools (videos, quizzes) can improve a participant's understanding. Digitizing the signature is not what makes it ethical. The ethical standard remains comprehension and voluntariness, while the operational standard extends to reliable documentation, auditability, and appropriate protections for privacy and participant autonomy [@emanuel2000makes; @fda_econsent_2016; @fda_electronic_systems_2024].
+
+Remote consent in a decentralized or hybrid trial reduces travel burden and broadens access. It also increases the risk that participants with lower digital literacy, limited broadband access, or limited accessibility accommodations are systematically excluded. That is a *fair subject selection* concern: an operational convenience can become a structural enrollment bias unless alternative pathways are offered [@emanuel2000makes; @fda_dct_guidance_2024].
+
+::: {.callout-tip title="Checklist: eConsent Implementation (Ethics-Facing)"}
+
+- Use plain-language explanations and layered disclosure (short summary plus details), and verify comprehension (e.g., teach-back or comprehension checks). A completed "click-through" is not by itself evidence of understanding [@fda_econsent_2016].
+- Provide equivalent non-digital pathways (paper or staff-assisted workflows) to avoid excluding participants who cannot or prefer not to use digital tools [@emanuel2000makes; @fda_econsent_2016].
+- Specify identity verification, version control of consent content, and procedures for re-consent when new information emerges [@fda_econsent_2016].
+- Ensure documentation and auditability are suitable for regulated electronic records and signatures (e.g., validated systems, audit trails, access control, retention) [@cfr21_11; @fda_electronic_systems_2024].
+- Define privacy-by-design boundaries for any data collected during consent (device identifiers, contact methods, metadata) and ensure participants understand what is collected and why [@who_ai_ethics_2021].
+
+:::
+
+### AI and Automation in Clinical Research Ethics
+
+The ethical question about AI in a trial is rarely whether it is allowed. It is whether a particular *use* satisfies the same seven requirements that make any study ethical [@emanuel2000makes]. The same system that detects a safety signal earlier, assesses protocol feasibility better, or lowers site burden can also amplify bias, reduce participant understanding, and shift accountability in ways that are hard to justify.
+
+*Fair subject selection and justice.* Recruitment algorithms trained on historical site performance, claims, or EHR data can reproduce inequities by systematically under-identifying eligible participants in under-resourced health systems or under-represented groups. Bias auditing should therefore be treated as an ethical safeguard, not an optional "model improvement" step [@who_ai_ethics_2021; @aequitas_2018]. Dataset "datasheets" and model "cards" help make these limitations explicit to reviewers and users [@gebru_datasheets_2021; @mitchell_model_cards_2019].
+
+*Informed consent and understanding.* If AI influences eligibility triage, monitoring intensity, or what a coordinator asks a participant to do (e.g., app-based prompts), then "what participants are consenting to" includes the role of automated systems. There is a risk that fluent, confident outputs create an illusion of understanding (among staff and participants) without reliable grounding in the source record or the evidence base [@messeri_crockett_2024; @bender_stochastic_parrots_2021]. Transparency therefore belongs in the consent conversation: what is automated, what is reviewed by humans, and how an error gets corrected.
+
+*Respect for participants (privacy, dignity, and autonomy).* Continuous sensing and "always-on" monitoring can feel intrusive even when clinically informative. Ethical review should explicitly consider minimization (collect only what is necessary), proportionality (match intrusiveness to expected value), and participant control (pause/opt-out mechanisms) [@who_ai_ethics_2021].
+
+*Accountability and governance.* Who is answerable when an algorithm misclassifies, misses a safety signal, or increases burden for a subgroup? The World Health Organization's guidance on AI for health holds that AI should enhance human decision-making and empower clinicians rather than replace them, and that humans should remain in full control of medical decisions [@who_ai_ethics_2021]. The European Medicines Agency's reflection paper on AI states that it is the responsibility of the clinical trial sponsor, marketing authorization applicant or holder, or manufacturer to ensure that all algorithms, models, datasets, and data processing pipelines used are fit for purpose [@ema_ai_reflection_2024]. Governance can be structured with risk management concepts (intended use, hazards, controls, monitoring) rather than marketing claims, as in NIST's AI Risk Management Framework and the good machine learning practice principles written for medical devices [@nist_ai_rmf_2023; @gmlp_fda_hc_mhra_2021].
+
+## The IRB in Practice
+
+Independent review is the fifth of Emanuel's seven requirements, and the IRB is where it happens. It does not happen once. A study comes back to the committee at least once a year while it runs, and again whenever a serious or unexpected event raises the question of whether it can continue safely (@tbl-irb-review-types) [@cfr21_56]:
+
+| Review Type | Timing | Purpose | IRB Action |
+|-------------|--------|---------|------------|
+| *Initial Review* | Before research begins | Evaluate protocol for ethical compliance | Approve, require modifications, or disapprove research |
+| *Continuing Review* | At least annually during study | Verify ongoing compliance and assess new information | Reapprove, require changes, suspend, or terminate |
+| *Modification Review* | When protocol/consent changes proposed | Evaluate impact of changes on risk-benefit | Approve or disapprove modifications |
+| *Adverse Event Review* | When serious/unexpected events occur | Assess whether study can continue safely | May require protocol changes, additional monitoring, or suspension |
+| *Final Review* | At study completion | Close out study oversight | Document study completion and any findings |
+
+: Types of IRB Review {#tbl-irb-review-types tbl-colwidths="[18,22,30,30]"}
+
+::: {.callout-important}
+## IRB Authority
+The IRB's authority is not advisory: it is decisive. Research cannot proceed without IRB approval. Except for changes necessary to eliminate immediate hazards, all modifications must be approved before implementation.
+:::
+

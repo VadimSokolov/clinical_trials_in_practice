@@ -1,0 +1,78 @@
+# Protocol Design Benchmarks {#sec-protocol-benchmarks}
+
+The average Phase III protocol runs 116 pages, specifies 266 procedures, and collects more than 3.4 million datapoints across roughly 82 investigative sites in 14 countries (@tbl-phase-benchmarks). Roughly a quarter of those procedures support no primary or key secondary endpoint. Protocols have grown steadily more complex since the 1980s, and benchmarking consistently finds that the added complexity correlates with worse performance.
+
+## The Trend Toward Complexity
+
+The pursuit of blockbuster therapies in the 1980s expanded the number of assessments packed into a trial, particularly in Phase III, along with the investigators engaged and the patients enrolled. Cost containment in the 1990s then increased Phase II complexity, paradoxically, as sponsors tried to gather more information before committing to expensive Phase III programs.
+
+Globalization followed in the 2000s. Sponsors went abroad for treatment-naive populations and for experienced investigators at lower cost, and to support simultaneous international submissions, while quality by design principles and enhanced risk evaluation drove growth in safety procedures and data collection. Between 2010 and 2020 sponsors piloted novel designs (adaptive trials, master protocols), and the proportion of programs targeting rare diseases and narrowly defined patient subpopulations increased dramatically, supported by growth in biomarker and genetic data collection.
+
+Nearly all of these changes have been additive: each new requirement layers atop the ones already in place. Tufts Center for the Study of Drug Development (Tufts CSDD) benchmarking consistently finds that no design element has yet shown a downward trend [@getz_protocol_benchmarks_2023].
+
+## Current Benchmarks by Phase
+
+These benchmarks come from protocols completed just before the COVID-19 pandemic, so read them as a floor and not a ceiling: subsequent benchmarking has found complexity still climbing across the same design dimensions. Even Phase I, focused on safety and pharmacokinetics in small populations, collects more than 330,000 datapoints per protocol, and Phase II and III expand most dimensions substantially from there (see @tbl-phase-benchmarks).
+
+| Metric | Phase I | Phase II | Phase III |
+|--------|---------|----------|-----------|
+| *Endpoints* | 16 | 21 | 19 |
+| *Eligibility Criteria* | 32 | 31 | 30 |
+| *Distinct Procedures* | 29 | 34 | 35 |
+| *Total Procedures* | 169 | 260 | 266 |
+| *Protocol Pages* | 87 | 108 | 116 |
+| *Countries* | <2 | ~6 | ~14 |
+| *Investigative Sites* | ~5 | ~35 | ~82 |
+| *Datapoints Collected* | >330,000 | >2 million | >3.4 million |
+
+: Clinical Trial Protocol Benchmarks by Phase [@getz_protocol_benchmarks_2023] {#tbl-phase-benchmarks tbl-colwidths="[40,20,20,20]"}
+
+## Oncology and Rare Disease Protocols
+
+Oncology protocols run longer and impose heavier procedural burdens than non-oncology protocols while enrolling similar numbers of patients (@tbl-oncology-benchmarks).
+
+| Metric | Oncology | Non-Oncology |
+|--------|----------|--------------|
+| *Total Procedures* | 315 | 243 |
+| *Planned Visits* | 29 | 16 |
+| *Countries* | 13 | 8 |
+| *Follow-up Duration* | 331 days | 77 days |
+| *Completion Rate* | 31% | 80% |
+
+: Oncology vs. Non-Oncology Protocol Benchmarks [@getz_protocol_benchmarks_2023] {#tbl-oncology-benchmarks tbl-colwidths="[40,30,30]"}
+
+One figure stands out: across the benchmarked Phase II and III oncology protocols, the mean completion rate (completers as a share of enrolled patients, averaged across protocols) was only 31%, which the authors suggest may partly reflect disease progression leading to early discontinuation [@getz_protocol_benchmarks_2023]. Not completing the protocol is not the same as dropping out of the analysis, though. Progression or death is often the endpoint itself, and patients who stop treatment can still be followed for it, so sample size planning allows for the expected loss of outcome follow-up, not for the completion rate as such [@ich_e9_r1].
+
+For rare disease protocols the strain falls hardest on recruitment and site activation (@tbl-rare-benchmarks).
+
+| Metric | Rare Disease | Non-Rare Disease |
+|--------|--------------|------------------|
+| *Sample Size* | 224 | 425 |
+| *Sites* | 27 | 64 |
+| *Distinct Procedures* | 38 | 33 |
+| *CRF Pages* | 244 | 159 |
+| *Enrollment Duration* | 603 days | 444 days |
+| *Study Initiation* | 173 days | 141 days |
+
+: Rare vs. Non-Rare Disease Protocol Benchmarks [@getz_protocol_benchmarks_2023] {#tbl-rare-benchmarks tbl-colwidths="[40,30,30]"}
+
+Finding eligible patients takes 603 days against 444 for non-rare trials, despite much smaller target sample sizes.
+
+## The Complexity-Performance Relationship
+
+Protocols carrying relatively more endpoints, eligibility criteria, and procedures tend to perform worse across a range of operational measures: physicians refer fewer patients, sites shoulder a heavier procedure-administration burden, prospective volunteers are less willing to enroll, recruitment and retention rates fall, dose adherence declines, data volume grows, and protocol deviations and amendments become more frequent [@getz_protocol_benchmarks_2023].
+
+Those outcomes contribute to higher failure rates, longer cycle times, poorer data quality, and greater costs. Tufts CSDD found significant correlations among the design elements: the number of endpoints correlates with the number of eligibility criteria and with total datapoints collected, and protocols with more investigative sites and countries take longer to complete [@getz_protocol_benchmarks_2023].
+
+The average Phase III protocol takes 1,328 days from protocol finalization to database lock [@getz_protocol_benchmarks_2023]. Study initiation, from protocol approval to first patient first visit, averages 166 days. Enrollment, from that first visit to last patient first visit, averages 508 days. Treatment, from that same first visit to last patient last visit, averages 1,064 days. Oncology runs longer still: across Phase II and III, oncology protocols average 1,599 days from protocol finalization to database lock, about 1.5 times the 1,081-day non-oncology average (roughly 48% longer) [@getz_protocol_benchmarks_2023]. Among the component periods, the widest gap comes after enrollment closes: from last patient first visit to last patient last visit, oncology protocols average 659 days against 335, nearly twice as long, while enrollment itself runs about a third longer (575 days against 437).
+
+A **core procedure** is one tied to a primary or key secondary endpoint; **non-core** procedures support supplemental, tertiary, or exploratory objectives. Across Phase II and III protocols, nearly a quarter (24-25%) of all procedures are non-core, which suggests a substantial opportunity for simplification. Rare disease trials hold the share to 14%, reflecting a tighter focus on core assessments, while in non-rare disease protocols the figure often exceeds 25%. Every non-core procedure adds cumulative burden to sites and patients without directly supporting the primary approval decision, so each one has to justify its incremental cost and complexity.
+
+## Drivers and Implications
+
+Several interlocking forces drive the persistent trend toward higher complexity. Ambitious development programs often target more challenging diseases, which requires biomarker stratification to understand differences between patient subgroups, and regulatory demand for detailed safety data necessitates more frequent procedures and longer follow-up periods to satisfy risk evaluation and mitigation requirements. Enrollment targets then pull trials into more countries and more sites, each of which brings logistical and coordination overhead. Running underneath all of it is a competitive urge to "collect everything" that often leads sponsors to believe larger datasets will improve their regulatory and commercial positioning.
+
+The strong correlation between executional variables (the number of sites and countries) and longer trial durations suggests that efficiency gains are possible through better design. Prioritizing site quality over quantity, and questioning whether every endpoint and non-core procedure adds value, lets designers cut complexity without sacrificing the integrity or enrollment speed of the trial. That discipline is now a regulatory expectation as much as a practical one: ICH E6(R3) [@ich_e6r3_2025] directs sponsors to identify the factors critical to a trial's quality and to keep trial processes proportionate to the risks that matter, avoiding unnecessary complexity, procedures, and data collection (see @sec-regulatory).
+
+Decentralized clinical trial (DCT) elements (telemedicine, wearables, home visits, direct-to-patient shipment) may reduce enrollment duration and protocol amendments through more flexible execution. They also introduce new data sources, vendors, and operational practices that can increase short-term protocol complexity. As trials move toward wherever patients can most conveniently participate, the balance between executional flexibility and protocol simplicity remains an open question. For detailed treatment of DCT logistics and implementation, see @sec-logistics.
+

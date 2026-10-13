@@ -1,0 +1,55 @@
+% --- Clinical Trials in Practice — Krantz (CRC / Chapman & Hall) PDF preamble ---
+
+% krantz titlepage typesets \@author in paragraph mode; make \and safe there
+\renewcommand{\and}{\unskip,\space}
+
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage{etoolbox}
+
+% Wrap long lines in code/verbatim blocks (bash, yaml, json, paths)
+\usepackage{fvextra}
+\fvset{breaklines=true,breakanywhere=true}
+
+% Keep callout boxes (tcolorbox) from breaking awkwardly across a page boundary
+\usepackage{needspace}
+\BeforeBeginEnvironment{tcolorbox}{\needspace{5\baselineskip}}
+
+% Allow long unbreakable tokens (e-mail addresses, URLs) in narrow table cells
+% to break at any character instead of overflowing into the next column. Applied
+% selectively by misc/table-longtoken-wrap.lua, which wraps such tokens in
+% \seqsplit{}.
+\usepackage{seqsplit}
+
+% This book is table-heavy and the krantz trim (6x9) is narrow. Use a smaller
+% table font and tighter columns so wide tables fit the text block.
+\AtBeginEnvironment{longtable}{\small}
+\AtBeginEnvironment{tabular}{\small}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.1}
+
+% Soak up overfull boxes from long words in narrow columns / justified prose
+\setlength{\emergencystretch}{3em}
+
+% Force callout boxes onto a single page: Quarto passes `breakable` to every
+% callout tcolorbox; redefine that option to mean `unbreakable` so a box never
+% splits across a page (it floats to the next page instead). Long callouts are
+% converted to flowing prose by misc/callout-pdf.lua, so no remaining box should
+% ever exceed a page. Deferred via \AtBeginDocument because tcolorbox loads after
+% this preamble. Neutralizing `breakable` (an empty no-op) leaves each box at
+% the tcolorbox default, which is unbreakable; redefining it to `unbreakable`
+% directly triggers a macro-recursion (TeX capacity) error, so use empty code.
+\AtBeginDocument{\tcbset{breakable/.code={}}}
+
+% Unnumbered chapters (Preface, References) appeared twice in the contents and
+% in the PDF bookmarks: krantz's \chapter* (\@schapter) adds its own
+% \addcontentsline{toc}{fm}{...}, and pandoc adds \addcontentsline{toc}{chapter}{...}
+% for every {.unnumbered} chapter. Drop the class's line and keep pandoc's.
+\makeatletter
+\def\@schapter#1{\if@twocolumn
+                   \@topnewpage[\@makeschapterhead{#1}]%
+                 \else
+                   \@makeschapterhead{#1}%
+                   \markboth{#1}{#1}
+                   \@afterheading
+                 \fi}
+\makeatother

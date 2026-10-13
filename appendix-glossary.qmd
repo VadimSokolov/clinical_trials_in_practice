@@ -1,0 +1,187 @@
+# Glossary and Abbreviations {#sec-glossary}
+
+Abbreviations first (@tbl-abbreviations), then the statistical and clinical trial terms used throughout the book (@tbl-statistical-terms).
+
+## Abbreviations
+
+| Abbreviation | Full Term |
+|:-------------|:----------|
+| **ADaM** | Analysis Data Model; a CDISC standard for deriving analysis-ready datasets from SDTM tabulations |
+| **ADR** | Adverse Drug Reaction; a noxious and unintended response to a drug for which a causal relationship to the drug is at least a reasonable possibility (ICH E2A); distinguished from an adverse event, which need not be drug-related |
+| **AE** | Adverse Event; any untoward medical occurrence in a trial participant, whether or not related to the investigational product |
+| **AI** | Artificial Intelligence; computational systems that perform tasks typically requiring human intelligence, such as pattern recognition or decision support |
+| **ALCOA** | Attributable, Legible, Contemporaneous, Original, and Accurate; the five principles governing data integrity in clinical trials, extended by ALCOA+ (adding Complete, Consistent, Enduring, Available) and ALCOA++ (adding Traceable) |
+| **ANDA** | Abbreviated New Drug Application; a regulatory submission to FDA for approval of a generic drug product, referencing the innovator's safety and efficacy data |
+| **API** | Application Programming Interface; a set of protocols enabling software systems to exchange data |
+| **BIMO** | Bioresearch Monitoring; the FDA program that inspects clinical investigators, sponsors, IRBs, and contract laboratories to verify data integrity and regulatory compliance |
+| **BLA** | Biologics License Application; the regulatory submission to FDA for marketing approval of a biologic product |
+| **BTD** | Breakthrough Therapy Designation; an FDA expedited program for drugs intended to treat serious conditions where preliminary clinical evidence indicates the drug may demonstrate substantial improvement over existing therapies on one or more clinically significant endpoints |
+| **CAPA** | Corrective and Preventive Action; a systematic process for identifying, investigating, and resolving quality issues to prevent recurrence |
+| **CBER** | Center for Biologics Evaluation and Research; the FDA center responsible for regulating biological products |
+| **CDASH** | Clinical Data Acquisition Standards Harmonization; a CDISC standard defining recommended fields for CRF design |
+| **CDER** | Center for Drug Evaluation and Research; the FDA center responsible for regulating drugs |
+| **CDISC** | Clinical Data Interchange Standards Consortium; the organization that develops data standards (SDTM, ADaM, CDASH) used in regulatory submissions |
+| **CEC** | Clinical Events Committee; an independent committee that adjudicates clinical endpoints to ensure consistent classification across sites |
+| **CFR** | Code of Federal Regulations; the codification of US federal rules, including 21 CFR governing FDA-regulated activities |
+| **CHMP** | Committee for Medicinal Products for Human Use; the EMA committee responsible for scientific assessment of marketing authorization applications through the centralized procedure |
+| **CIOMS** | Council for International Organizations of Medical Sciences; an international organization that develops guidelines for safety reporting, including the CIOMS form for individual case safety reports |
+| **CMC** | Chemistry, Manufacturing, and Controls; the body of data covering a drug product's composition, manufacturing process, and quality specifications (CTD Module 3) |
+| **COU** | Context of Use; the specific role and scope for which a drug development tool or AI model is applied |
+| **CRA** | Clinical Research Associate; a monitor who conducts on-site and remote oversight of investigator sites on behalf of the sponsor |
+| **CRF** | Case Report Form; the document (paper or electronic) used to record trial data for each participant |
+| **CRL** | Complete Response Letter; an FDA communication indicating that an application cannot be approved in its current form and specifying deficiencies to address |
+| **CRO** | Contract Research Organization; a company hired by a sponsor to perform one or more trial-related functions such as monitoring, data management, or regulatory submissions |
+| **CSR** | Clinical Study Report; the comprehensive document describing the design, conduct, results, and interpretation of a completed clinical trial |
+| **CSV** | Computer System Validation; the documented process of ensuring that a computerized system performs as intended for its regulated purpose |
+| **CTA** | (1) Clinical Trial Authorization, the regulatory approval required in certain jurisdictions (e.g., EU) before a clinical trial may begin; (2) Clinical Trial Agreement, the legally binding sponsor-site contract covering budget, indemnification, intellectual property, data ownership, and publication rights (see @sec-site-selection) |
+| **CTD** | Common Technical Document; the internationally harmonized format for organizing regulatory submissions into five modules |
+| **CTIS** | Clinical Trials Information System; the EU portal for submitting and managing clinical trial applications under the Clinical Trials Regulation |
+| **CTMS** | Clinical Trial Management System; software used to manage the operational aspects of clinical trials, including site management, visit tracking, and milestone reporting |
+| **CTR** | Clinical Trials Regulation; the EU regulation (536/2014) governing clinical trial conduct in member states |
+| **DCT** | Decentralized Clinical Trial; a trial design where some or all activities occur at locations other than a traditional clinical site, such as the participant's home |
+| **DDT** | Drug Development Tool; a method, material, or measure with the potential to facilitate drug development; FDA's DDT Qualification Programs formally qualify a tool for a specified context of use |
+| **DHT** | Digital Health Technology; electronic systems that capture health-related data from participants, including wearable sensors, mobile apps, and remote monitoring devices |
+| **DLT** | Dose-Limiting Toxicity; a pre-defined adverse event in dose-escalation studies that signals the dose has reached an unacceptable level of toxicity |
+| **DMC** | Data Monitoring Committee; see DSMB |
+| **DMP** | Data Management Plan; the document specifying procedures for data collection, cleaning, coding, transfer, and quality control throughout a trial |
+| **DSMB** | Data Safety Monitoring Board; an independent group of experts who periodically review unblinded safety and efficacy data and may recommend stopping or modifying a trial |
+| **DSUR** | Development Safety Update Report; an annual safety report submitted to regulators summarizing the safety profile of an investigational product across all ongoing trials |
+| **eCOA** | Electronic Clinical Outcome Assessment; electronic systems for capturing patient-reported, clinician-reported, or observer-reported outcomes |
+| **eConsent** | Electronic Informed Consent; the use of electronic systems (multimedia, interactive tools) to present and document the informed consent process |
+| **eCRF** | Electronic Case Report Form; the electronic version of a CRF used within an EDC system to capture trial data |
+| **eCTD** | Electronic Common Technical Document; the electronic format for submitting the CTD to regulatory agencies |
+| **EDC** | Electronic Data Capture; a computerized system for collecting clinical trial data, replacing paper CRFs |
+| **EHR** | Electronic Health Record; a digital version of a patient's medical record maintained by healthcare providers |
+| **EMA** | European Medicines Agency; the EU regulatory authority responsible for evaluating and supervising medicinal products |
+| **EOP** | End-of-Phase; the FDA meeting held at the end of a phase of clinical investigation (End-of-Phase 1 or End-of-Phase 2) to agree the plan for the next phase |
+| **ePRO** | Electronic Patient-Reported Outcome; patient-reported outcome data collected via electronic devices such as smartphones, tablets, or web portals |
+| **eTMF** | Electronic Trial Master File; an electronic system for storing and managing essential trial documents required by GCP |
+| **FDA** | Food and Drug Administration; the US regulatory agency responsible for protecting public health through oversight of drugs, biologics, and medical devices |
+| **FDAAA** | Food and Drug Administration Amendments Act; 2007 US law whose Section 801 requires registration and results reporting for applicable clinical trials on ClinicalTrials.gov |
+| **FDAMA** | Food and Drug Administration Modernization Act; 1997 US law that, among other provisions, allows approval on one adequate and well-controlled trial together with confirmatory evidence |
+| **FDORA** | Food and Drug Omnibus Reform Act; 2022 US legislation that modernized FDA authorities, including provisions for decentralized trials and diversity action plans |
+| **FIH** | First-in-Human; the initial clinical study in which an investigational product is administered to human subjects |
+| **GAMP** | Good Automated Manufacturing Practice; a framework (GAMP 5) providing guidance on computer system validation in regulated industries |
+| **GCP** | Good Clinical Practice; the international ethical and scientific quality standard for designing, conducting, recording, and reporting clinical trials (ICH E6) |
+| **GDPR** | General Data Protection Regulation; the EU regulation governing the processing and protection of personal data |
+| **GLP** | Good Laboratory Practice; the quality system governing non-clinical laboratory studies intended to support regulatory submissions |
+| **GMP** | Good Manufacturing Practice; the quality system governing the manufacture of investigational and commercial pharmaceutical products |
+| **GxP** | Good Practice; a collective term for quality guidelines and regulations (e.g., GCP, GMP, GLP) in the pharmaceutical industry |
+| **HIPAA** | Health Insurance Portability and Accountability Act; US legislation that establishes standards for protecting patient health information |
+| **HTA** | Health Technology Assessment; the payer-side evaluation of a medicine's cost-effectiveness and value (e.g., by NICE) that informs reimbursement decisions, distinct from a regulator's assessment of safety and efficacy |
+| **IB** | Investigator's Brochure; the document providing investigators with clinical and non-clinical data on the investigational product relevant to the study |
+| **ICF** | Informed Consent Form; the document that participants sign to confirm they understand and voluntarily agree to participate in a clinical trial |
+| **ICH** | International Council for Harmonisation; the organization that brings together regulators and industry to develop harmonized guidelines (e.g., E6 GCP, E8, E9) for pharmaceutical development |
+| **IDMC** | Independent Data Monitoring Committee; see DSMB |
+| **IEC** | Independent Ethics Committee; a body that reviews clinical trial protocols to protect the rights, safety, and well-being of participants; the EU equivalent of an IRB |
+| **IND** | Investigational New Drug; the FDA submission that must go into effect (i.e., 30 days after FDA receives it unless FDA imposes a clinical hold, or sooner if FDA notifies the sponsor that the study may begin; 21 CFR 312.40) before an investigational product may be administered to humans in the US |
+| **IP** | Investigational Product; the drug, biologic, or device being tested in a clinical trial, including placebo or active comparator |
+| **IRB** | Institutional Review Board; a committee that reviews and approves clinical research to protect the rights and welfare of human subjects; the US equivalent of an IEC |
+| **IRT** | Interactive Response Technology; a system that manages randomization and drug supply in clinical trials via web or telephone interfaces |
+| **ISF** | Investigator Site File; the collection of essential documents maintained at each investigator site for regulatory inspection readiness |
+| **ITT** | Intent-to-Treat; an analysis population that includes all randomized subjects regardless of protocol adherence |
+| **IWRS** | Interactive Web Response System; a web-based system for managing randomization and trial supply; a specific type of IRT |
+| **J-NDA** | Japanese New Drug Application; the regulatory submission to PMDA for marketing approval of a new drug in Japan |
+| **KRI** | Key Risk Indicator; a metric used in risk-based quality management to monitor trial conduct and trigger risk mitigation actions |
+| **LLM** | Large Language Model; an AI model trained on large text corpora that can generate, summarize, and analyze text |
+| **LOA** | Likelihood of Approval; a metric estimating the probability that a drug in development will ultimately receive regulatory approval |
+| **LPLV** | Last Patient Last Visit; the final protocol-specified visit by the last enrolled participant, marking the end of data collection |
+| **MAA** | Marketing Authorization Application; the regulatory submission to EMA for marketing approval of a medicinal product in the EU |
+| **MCID** | Minimum Clinically Important Difference; the smallest change in an outcome that patients or clinicians would consider meaningful, and the usual basis for the effect a trial is sized to detect |
+| **MCP** | Model Context Protocol; a standard for connecting AI applications to external data sources and tools in a controlled, auditable manner |
+| **MedDRA** | Medical Dictionary for Regulatory Activities; the standardized medical terminology used for coding adverse events and medical history in clinical trials and pharmacovigilance |
+| **ML** | Machine Learning; a subset of AI in which algorithms learn patterns from data without being explicitly programmed for each task |
+| **MTD** | Maximum Tolerated Dose; the highest dose of an investigational product that can be administered without unacceptable toxicity |
+| **NDA** | New Drug Application; the regulatory submission to FDA for marketing approval of a new drug product |
+| **NLP** | Natural Language Processing; AI techniques for interpreting and generating human language |
+| **NMPA** | National Medical Products Administration; the regulatory authority in China responsible for drug, device, and cosmetic oversight |
+| **NOAEL** | No Observed Adverse Effect Level; the highest dose in preclinical studies at which no adverse effects are observed; used to calculate the starting dose for first-in-human trials |
+| **PD** | Pharmacodynamics; the study of what a drug does to the body, including its mechanism of action and biological effects |
+| **PDUFA** | Prescription Drug User Fee Act; US legislation authorizing FDA to collect fees from drug manufacturers to fund the drug review process |
+| **PI** | Principal Investigator; the physician or qualified individual at a trial site who is responsible for the conduct of the trial at that site |
+| **PK** | Pharmacokinetics; the study of how the body absorbs, distributes, metabolizes, and excretes a drug |
+| **PMC** | Post-Marketing Commitment; a study or clinical trial that a sponsor agrees to conduct after approval, not required by statute or regulation |
+| **PMDA** | Pharmaceuticals and Medical Devices Agency; the Japanese agency that conducts the scientific review of drug and medical device applications; formal marketing approval is granted by the Ministry of Health, Labour and Welfare (MHLW) |
+| **PMR** | Post-Marketing Requirement; a study or clinical trial that a sponsor is required by statute or regulation to conduct after approval |
+| **PRO** | Patient-Reported Outcome; a measurement of any aspect of a patient's health status that comes directly from the patient, without interpretation by a clinician |
+| **QA** | Quality Assurance; the overarching system of planned activities ensuring that trial processes comply with GCP and applicable regulations |
+| **QC** | Quality Control; the operational techniques and activities undertaken to verify that data and processes meet quality requirements |
+| **QMS** | Quality Management System; the organizational structure, processes, and resources for implementing quality management across trial activities |
+| **RAG** | Retrieval-Augmented Generation; an AI technique that grounds language model outputs by retrieving relevant documents before generating a response |
+| **RAR** | Response-Adaptive Randomization; a design in which allocation probabilities shift during the trial toward better-performing arms based on accumulating outcome data (see @sec-rar) |
+| **RBQM** | Risk-Based Quality Management; a systematic approach to trial quality that focuses oversight on the risks most likely to affect participant safety and data reliability (ICH E6 R2/R3) |
+| **RDEP** | Rare Disease Evidence Principles; regulatory principles guiding the use of innovative evidence approaches in rare disease drug development |
+| **REMS** | Risk Evaluation and Mitigation Strategy; an FDA-required safety plan for certain drugs with known or potential serious risks, designed to ensure benefits outweigh risks |
+| **RP2D** | Recommended Phase 2 Dose; the dose selected from Phase I studies for further evaluation in Phase II efficacy trials |
+| **RTF** | Refuse to File; an FDA decision that a submitted application is insufficiently complete to permit substantive review |
+| **RTOR** | Real-Time Oncology Review; an FDA Oncology Center of Excellence program in which sponsors submit key components of an oncology application before the complete application so that review can begin earlier |
+| **RTSM** | Randomization and Trial Supply Management; a system that integrates randomization with drug supply logistics, ensuring correct treatment allocation and supply forecasting |
+| **RWD** | Real-World Data; data relating to patient health status or healthcare delivery collected outside of traditional clinical trials (e.g., from EHRs, claims, registries) |
+| **RWE** | Real-World Evidence; clinical evidence derived from analysis of real-world data |
+| **SAE** | Serious Adverse Event; an adverse event that results in death, is life-threatening, requires or prolongs hospitalization, causes persistent or significant disability, is a congenital anomaly, or is another medically important event (ICH E2A) |
+| **SAP** | Statistical Analysis Plan; the document specifying the statistical methods, populations, endpoints, and handling of missing data for a clinical trial, finalized before unblinding |
+| **SDTM** | Study Data Tabulation Model; a CDISC standard for organizing and formatting clinical trial data for regulatory submission |
+| **SDV** | Source Data Verification; the process of comparing data entered in the CRF/EDC against original source documents to ensure accuracy |
+| **SIV** | Site Initiation Visit; the sponsor or CRO visit to a trial site before enrollment begins, to train staff, review the protocol, and verify site readiness |
+| **SOP** | Standard Operating Procedure; documented step-by-step instructions for carrying out routine operations in compliance with regulations and quality standards |
+| **SUSAR** | Suspected Unexpected Serious Adverse Reaction; a serious adverse event that is both suspected to be related to the investigational product and not consistent with known risk information; requires expedited reporting to regulators |
+| **TLF** | Tables, Listings, and Figures; the standard set of statistical outputs generated from clinical trial data for inclusion in the CSR and regulatory submission |
+| **TMF** | Trial Master File; the collection of essential documents that individually and collectively permit evaluation of the conduct of a trial and the quality of data produced (ICH E6) |
+| **VVUQ** | Verification, Validation, and Uncertainty Quantification; the framework for assessing whether computational models are correctly implemented and fit for their intended use |
+| **WMA** | World Medical Association; the international organization that authored the Declaration of Helsinki, establishing ethical principles for medical research involving human subjects |
+
+: Common abbreviations in clinical development {#tbl-abbreviations tbl-colwidths="[18,82]"}
+
+## Statistical Terms
+
+| Term | Definition |
+|:-----|:-----------|
+| **Active control** | The current standard-of-care treatment used as a comparator |
+| **Adaptive design** | A trial that modifies itself based on accumulating data according to pre-specified rules |
+| **Alpha ($\alpha$)** | The maximum acceptable probability of Type I error; typically 2.5% or 5% |
+| **Basket trial** | A master protocol that tests one therapy across multiple diseases (e.g., tumor types) sharing a common biomarker |
+| **Bayesian** | Statistical approach that directly estimates the probability a treatment works, given observed data; naturally updates as evidence accumulates |
+| **Bias (systematic error)** | A flaw causing treatment groups to differ in ways unrelated to treatment, distorting results |
+| **Biomarker** | A measurable biological indicator (e.g., genetic mutation, protein level) that can predict treatment response |
+| **Confidence interval** | A range of values, computed from the data, that would contain the true treatment effect in a stated percentage (e.g., 95%) of repeated trials; narrower intervals indicate more precise estimates. It describes the reliability of the procedure, not the probability that one particular interval contains the true value |
+| **Control arm** | The comparison group receiving placebo or standard of care |
+| **Effectiveness** | How well a treatment works in routine clinical practice |
+| **Efficacy** | The treatment's ability to produce beneficial effects under controlled trial conditions |
+| **Endpoint** | The outcome measured to determine treatment effect (e.g., survival, tumor response, symptom improvement) |
+| **Estimand** | A precise definition of the treatment effect being estimated, including how to handle intercurrent events |
+| **External control arm (ECA)** | A comparator group built from data outside the trial (historical trials, registries, EHRs, or claims) in place of a concurrent randomized control, used when randomization is infeasible or unethical |
+| **External validity (generalizability)** | Whether conclusions apply to broader patient populations |
+| **Fixed design** | A traditional trial where sample size is set before the trial begins and cannot change |
+| **Frequentist** | Statistical approach that interprets probability as the frequency of outcomes over many repeated trials; focuses on controlling error rates |
+| **Hazard ratio** | The ratio of event rates between treatment and control groups in a time-to-event analysis; a hazard ratio of 0.75 means the treatment group experiences events at 75% the rate of the control group |
+| **Intent-to-Treat (ITT)** | Analyzing all patients according to their original randomization, regardless of protocol adherence |
+| **Intercurrent events** | Events occurring after treatment initiation that affect the interpretation or the existence of the endpoint measurement (e.g., discontinuation, rescue medication) |
+| **Interim analysis** | An analysis conducted partway through a trial, before all patients have completed |
+| **Internal validity** | Whether the trial's conclusions are correct for the patients actually studied |
+| **Investigational arm** | The group receiving the new therapy being tested |
+| **Master protocol** | A single design that evaluates multiple therapies, disease subtypes, or both under shared infrastructure; basket, umbrella, and platform trials are its principal forms |
+| **Minimum clinically important difference (MCID)** | The smallest change in an outcome that patients or clinicians would consider meaningful, and the usual basis for the effect a trial is sized to detect |
+| **Null hypothesis** | The default assumption that there is no treatment difference |
+| **p-value** | The probability of observing results as extreme as those seen, assuming the null hypothesis is true |
+| **Placebo** | An inactive substance given to the control group |
+| **Platform trial** | A master protocol in which treatment arms enter and exit over time against a shared control arm, enabling continuous evaluation of multiple therapies |
+| **Population** | The entire universe of patients with the condition of interest who might receive the drug if approved |
+| **Power** | The probability of correctly detecting a true treatment effect; typically set at 80% or 90% |
+| **Precision** | The degree of certainty in an estimate; higher precision means smaller standard error |
+| **Precision medicine** | Treatments targeted to patients with specific biological characteristics |
+| **Prior and posterior probability** | In Bayesian analysis, the prior is the probability of a hypothesis or parameter before observing the current data; the posterior is the updated probability after combining the prior with the observed data via Bayes' theorem |
+| **Probability** | A number between 0 and 1 (or 0%-100%) quantifying how likely something is to occur; 0 = impossible, 1 = certain |
+| **Random error** | Natural fluctuation in results due to studying a sample rather than the entire population |
+| **Randomization** | Using a chance mechanism to assign patients to treatment arms, eliminating systematic differences |
+| **Sample** | The subset of patients actually enrolled in the trial |
+| **Sample size** | The number of patients enrolled; balances Type I error, power, and detectable effect size |
+| **Standard error** | A measure of the expected magnitude of random error in an estimate |
+| **Statistical significance** | A result is "significant" when the p-value falls below the $\alpha$ threshold, suggesting the effect is unlikely due to chance |
+| **Treatment arms** | The groups being compared in a trial |
+| **Treatment effect** | The true difference in outcomes between investigational and control treatments |
+| **Type I error (false positive)** | Concluding an ineffective drug works; regulators limit this to $\leq 2.5\%$ (one-sided) or $\leq 5\%$ (two-sided) |
+| **Type II error (false negative)** | Failing to detect that an effective drug works |
+| **Umbrella trial** | A master protocol that tests multiple therapies within a single disease (e.g., one tumor type), assigning patients to arms by biomarker |
+| **Underpowered trial** | A trial with too few patients to reliably detect a true treatment effect |
+
+: Key statistical terms for clinical trials {#tbl-statistical-terms tbl-colwidths="[25,75]"}

@@ -1,0 +1,158 @@
+# Regulatory Submission {#sec-regulatory-submission}
+
+Years of research, billions of dollars in investment (see @sec-economics), and thousands of patients' participation arrive at FDA as a dossier, and the agency's first decision about it is not yet about whether the drug works. For 60 days it asks only whether the application is *complete*, whether it contains enough to permit substantive review at all. One deemed incomplete may be refused to file and returned without review. What must clear that threshold is the sponsor's case: the accumulated evidence from preclinical studies and clinical trials that, they hope, demonstrates the product is safe and effective.
+
+Different products and circumstances call for different applications. The *New Drug Application (NDA)* is the primary vehicle for small-molecule drugs in the United States, carrying complete data on chemistry, manufacturing, preclinical studies, and clinical trials; the *Biologics License Application (BLA)* follows a similar structure for biological products such as proteins, vaccines, and cellular therapies, with additional manufacturing detail specific to biologics. The European Union equivalent is the *Marketing Authorization Application (MAA)*, submitted centrally or through national procedures. Three further routes rest on work already done: the *Abbreviated New Drug Application (ANDA)* for generics, which relies on the reference product; biosimilar applications, which demonstrate similarity to an approved reference biologic; and supplements and variations, which modify an existing approval for a new indication or a manufacturing change.
+
+Harmonization gave them all a common container: the Common Technical Document (CTD), which organizes a submission into the five modules of @tbl-ctd-modules.
+
+| Module | Name | Content Description |
+|--------|------|---------------------|
+| **1** | Regional Administrative | Forms, labeling, and jurisdiction-specific materials |
+| **2** | Summaries & Overviews | Integrated quality, nonclinical, and clinical summaries |
+| **3** | Quality (CMC) | Chemistry, Manufacturing, and Controls documentation |
+| **4** | Nonclinical | Reports from toxicology and pharmacology studies |
+| **5** | Clinical | Clinical study reports and related data materials |
+
+: Common Technical Document (CTD) Structure {#tbl-ctd-modules tbl-colwidths="[10,35,55]"}
+
+Modules 2 through 5 form a single "core dossier" that can go to regulatory agencies around the world simultaneously; Module 1 carries each region's own material, and the core modules have only a few regional slots, such as section 3.2.R (Regional Information) in Module 3. That is what makes it practical to bring a new therapy to several markets at once.
+
+## Building the Submission
+
+A major application is assembled by several specialized functions at once. Regulatory affairs leads, owning the submission strategy and the direct communication with agencies that keeps every legal and technical requirement in view. Clinical development compiles and interprets the clinical data; CMC specialists document the manufacturing and quality controls that guarantee product stability; nonclinical researchers supply the foundational toxicology. Medical writers turn those separate streams into summaries clear enough for a reviewer facing thousands of pages. The finished package is transmitted securely to authorities worldwide as an electronic CTD (eCTD).
+
+## Pre-Submission Interactions
+
+Discovering a major issue *before* submission is far better than discovering it during review. That asymmetry is why sponsors engage with regulatory agencies throughout development, and heavily in the run-up to a major filing.
+
+Pre-IND meetings, held before first-in-human studies, clarify the data needed to support clinical development. The end-of-Phase 2 meeting is a key checkpoint: the sponsor puts its Phase III design and evidentiary standards in front of the agency for feedback. Pre-NDA/BLA meetings (Pre-MAA in Europe) come last, confirming that the dossier is complete and free of critical unresolved issues. The exchanges are formal, in writing or in person, and each type carries its own timeline and objective (@tbl-fda-meetings).
+
+## Expedited Regulatory Pathways
+
+The pathways regulatory agencies built for serious conditions are designed to accelerate development and review. They do not lower the evidentiary standard for safety or efficacy. What they change is the intensity of the interaction between sponsor and regulator, and in some cases they let a surrogate endpoint reasonably likely to predict clinical benefit carry the case.
+
+Fast Track designation, for drugs that treat serious conditions and fill an unmet medical need, buys more frequent meetings with the FDA and the possibility of rolling review, where completed sections of the application go in before the entire dossier is finalized. Breakthrough Therapy is more intensive, reserved for drugs whose preliminary clinical evidence indicates they may demonstrate substantial improvement over available therapy on a clinically significant endpoint. Accelerated Approval rests on a surrogate or intermediate clinical endpoint reasonably likely to predict clinical benefit, and the Food and Drug Omnibus Reform Act of 2022 (FDORA) tightened it: FDA may now require that a confirmatory trial be underway before accelerated approval is granted or within a period it specifies after approval, and it can use expedited procedures to withdraw an approval when the confirmatory trial fails to verify benefit or is not conducted with due diligence [@fdora2022]. Priority Review commits the FDA to complete review within six months of filing (about eight months from submission for new molecular entities and original biologics) for drugs offering significant improvements in safety or effectiveness [@fda_pdufa7_goals].
+
+A single drug program may hold several of these at once: a Breakthrough Therapy can also receive Accelerated Approval and Priority Review. @tbl-expedited-pathways contrasts the mechanisms.
+
+| Designation | Criteria | Key Benefit |
+| :--- | :--- | :--- |
+| **Fast Track** | Serious condition + unmet need | Rolling review, frequent communication |
+| **Breakthrough** | Serious condition + substantial improvement | Intensive guidance, organizational commitment |
+| **Accelerated Approval** | Serious condition + surrogate endpoint | Approval based on surrogate (requires confirmation) |
+| **Priority Review** | Significant improvement | 6-month review clock (vs 10 months) |
+
+: FDA Expedited Programs for Serious Conditions [@fda_expedited_2014] {#tbl-expedited-pathways}
+
+| Meeting Type | Purpose | Examples | FDA Scheduling Goal |
+|--------------|---------|----------|-------------------|
+| *INTERACT* | Early advice, before pre-IND | Novel technology or complex manufacturing questions | 75 days |
+| *Type A* | Critical path issues; stalled development | Dispute resolution; clinical hold discussion | 30 days |
+| *Type B* | Key development milestones | Pre-IND, Pre-NDA/BLA | 60 days |
+| *Type B (EOP)* | End-of-phase milestones | End-of-Phase 1, End-of-Phase 2 | 70 days |
+| *Type C* | General guidance | Protocol design review; new indication discussion | 75 days |
+| *Type D* | Narrow, focused issues | Follow-up on one or two tightly related topics | 50 days |
+
+: FDA Meeting Types and Timelines [@fda_pdufa7_goals] {#tbl-fda-meetings tbl-colwidths="[15,20,35,30]"}
+
+## The Review Process
+
+@fig-nda-review-cycle traces the path from submission to action letter.
+
+```{mermaid}
+%%| label: fig-nda-review-cycle
+%%| fig-cap: "The NDA/BLA Regulatory Review Cycle"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 30, 'padding': 8, 'diagramPadding': 40, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TD
+    Sub["NDA/BLA Submission"] --> Admit{"Filing Review<br/>(60 days)"}
+    Admit -->|RTF| Refuse["Refuse to File (RTF)"]
+    Admit -->|Accepted| Review["Technical Review<br/>(Medical, Stat, CMC, etc.)"]
+    
+    Review --> Inspect["BIMO Inspections"]
+    Review --> IR["Information Requests<br/>(IRs)"]
+    IR -.-> Review
+    
+    Review -->|"If convened"| AdCom["Advisory Committee"]
+    Review -->|"Otherwise"| Final["Final Review & Labeling"]
+    AdCom --> Final
+    Inspect --> Final
+    
+    Final --> Decision{"Action Letter"}
+    Decision -->|Approval| Market["Marketing Approval"]
+    Decision -->|CRL| Response["Complete Response<br/>Letter (CRL)"]
+    
+    Response --> Resub["Class 1/2 Resubmission"]
+    Resub --> Review
+    
+    Market --> Post["Post-Marketing Data<br/>(Phase IV / REMS)"]
+    
+    style Market fill:#e8f5e9,stroke:#1b5e20
+    style Response fill:#ffebee,stroke:#c62828
+    style Refuse fill:#ffebee,stroke:#c62828
+```
+
+An application that survives filing enters a review queue governed by *user fee goals*, performance targets established under the Prescription Drug User Fee Act (PDUFA). For new molecular entities and original biologics, standard review targets 10 months from the 60-day filing date, about 12 months from the original submission, and priority review targets 6 months from filing; for other original NDAs the clock starts at receipt [@fda_expedited_2014; @fda_pdufa7_goals]. Review is multidisciplinary: medical officers evaluate clinical efficacy and safety; pharmacologists assess pharmacokinetics; chemists review manufacturing; statisticians verify the analyses; toxicologists examine nonclinical safety.
+
+Reviewers may issue *information requests*, which require the sponsor to clarify or supplement the submission, and a sponsor that responds slowly delays its own review.
+
+For novel or complex applications, FDA may convene an *Advisory Committee*, a panel of outside experts who discuss the application in a public meeting and vote on approval recommendations. The vote is not binding. FDA usually follows it.
+
+## Bioresearch Monitoring (BIMO) Inspections
+
+Positive data are worthless if the agency cannot trust that they were collected accurately and ethically. In parallel with the scientific review, therefore, the FDA conducts on-site inspections through its Bioresearch Monitoring (BIMO) program, verifying data integrity and compliance with regulations.
+
+At a clinical site, inspectors compare source documents against the data submitted in the case report forms, looking for discrepancies or evidence of fraud. An inspection of the sponsor examines oversight instead: monitoring reports, data management systems, safety reporting processes. Where the Institutional Review Boards involved are inspected, the question is whether ethical oversight was maintained appropriately throughout the study.
+
+Significant findings during a BIMO inspection can result in a Form 483 (listing observations) or a Warning Letter. In severe cases, the FDA may invoke the "Application Integrity Policy," pausing the review until the data's reliability can be re-established. Inspection readiness is therefore continuous work for clinical operations teams.
+
+## The Decision
+
+At the conclusion of review, FDA issues an action letter. An *approval letter* authorizes marketing: the product may now be sold, usually with specific labeling, potentially with post-marketing requirements or commitments, and subject to ongoing safety monitoring.
+
+A *complete response letter (CRL)* indicates that the application cannot be approved in its current form and specifies the deficiencies that must be addressed. The sponsor may respond, addressing each one, and multiple review cycles may be needed before approval. Or the sponsor may ultimately abandon the product.
+
+## Single-Trial Substantial Evidence {#sec-one-trial}
+
+The traditional interpretation of "substantial evidence" (introduced at @sec-phase3) requires replication across at least two adequate and well-controlled trials. But the statistical basis for the two-trial rule is less absolute than it appears, and in practice FDA has regularly approved drugs on a single trial.
+
+### The Statistical Argument
+
+If two independent trials each require a one-sided p-value below 0.025 to succeed, a drug with no effect clears both with probability $0.025^2 = 0.000625$. That is the false-positive standard the two-trial rule actually imposes on a sponsor who runs two trials, each tested at $p < 0.025$. A sponsor who designs a single trial to achieve $p < 0.000625$ matches the combined false-positive probability of a two-trial program, at potentially lower overall sample size.
+
+The efficiency follows. Two trials each powered at 90% give the development program $0.90 \times 0.90 = 81\%$ power; a single trial designed to the combined threshold can achieve equivalent program power with approximately 80% of the total sample size of the two-trial program (assuming normally distributed test statistics and the same true effect and variance in every trial), because the experiment is unified instead of split.
+
+The two-trial rule also creates a classification problem. A program where trial 1 achieves $p = 0.001$ and trial 2 achieves $p = 0.026$ technically "wins one and loses one," while two trials that each achieve $p = 0.024$ both win. Yet the first program carries the stronger evidence. Fisher's method, a standard way to combine independent p-values (a raw product of p-values is not itself a p-value), puts the first program at about $0.0003$ and the second at about $0.005$; held to the two-trial rule's false-positive rate of $0.000625$, the first would pass and the second would not. Pool the evidence instead of scoring each trial pass or fail, and the ordering reverses.
+
+### When FDA Accepts a Single Trial
+
+The single-trial exception is codified in statute (the Food and Drug Administration Modernization Act (FDAMA) of 1997, 21 U.S.C. § 355(d) [@fdama1997]) and elaborated in FDA draft guidance [@fda_substantial_evidence_2019]. Many recent approvals have been based on a single trial together with confirmatory evidence in place of two fully independent replications.
+
+Five features support such a submission. The strongest case has a hard endpoint: survival, cardiovascular death, or another endpoint whose biological connection to patient outcome is unambiguous, since surrogate endpoints carry more risk of false-positive results that would not replicate. The result should be statistically very persuasive, but there is no universal p-value threshold: the $0.000625$ derived above is one benchmark, and the June 2026 revised draft discussed below ties the appropriate significance level to how likely the drug was to be effective before the trial, so the level should be agreed with FDA in advance [@fda_single_trial_2026]. Enrollment is large and multicenter, which demonstrates generalizability and reduces the risk that results are site-specific. Pre-specified subgroup analyses should show that the overall result is not driven by one atypical subgroup, supplying within one trial the replication two trials provided across trials. Confirmatory mechanistic or surrogate evidence, biological plausibility plus supportive Phase II data, strengthens the case further.
+
+As this book goes to press, the regulatory ground beneath this section is shifting. In June 2026 FDA issued a revised draft of its substantial-evidence guidance [@fda_single_trial_2026] that repositions a single adequate and well-controlled trial plus confirmatory evidence from a bounded exception toward a default, presented as applicable across disease areas instead of reserved for special cases. The draft itself does not use the word "default"; the framing comes from FDA's leadership, Vinay Prasad and Martin Makary, who wrote in February 2026 that "a one-trial requirement will be the FDA's new default standard" [@prasad_makary_2026]. The revision is one piece of a broader HHS initiative (Operation TrialBlazer) aimed at accelerating U.S. drug development. The draft also steps back from framing a single trial as the formal equivalent of two, emphasizing instead the strength and quantity of the confirmatory evidence a program can marshal.
+
+At the time of writing (September 2026) it remains a draft; the public comment period closed on September 22, 2026, and until FDA finalizes it, the earlier guidance remains the reference point. But the direction of travel is clear, and sponsors designing pivotal programs now should track where it lands.
+
+### The Breadth Tradeoff
+
+The genuine statistical cost of the one-trial approach is breadth. When sponsors run two trials in different but related patient populations, approval covers both, and labeling reflects evidence in each. A single trial in one population generally supports a label only for that population, with off-label use carrying no safety or efficacy guarantee.
+
+That argues for enrolling a broader population within the single trial and pre-specifying subgroup analyses that function like a basket, showing the effect is consistent across the range of patients who will use the drug in practice. When a single pivotal trial supports the first approval, the initial label may be narrow, with expansion trials to follow after approval. The breadth question bears directly on labeling negotiations with FDA at the pre-BLA meeting, so population scope should be settled before the pivotal trial is designed.
+
+## International Regulatory Pathways {#sec-international-pathways}
+
+The U.S. NDA/BLA process is one system among several. A sponsor pursuing global registration runs parallel pathways in the other major markets, each with its own clock and its own expectations about local data.
+
+**European Medicines Agency (EMA).** The *centralized procedure* turns a single Marketing Authorization Application (MAA) into a marketing authorization valid in all EU/EEA member states. It is mandatory for certain product categories (biotechnology-derived products, orphan medicines, advanced therapy medicinal products) and optional for other innovative therapies. The Committee for Medicinal Products for Human Use (CHMP) conducts the scientific assessment, with a standard timeline of 210 active review days [@ec_726_2004]. Sponsors may also use decentralized or mutual-recognition procedures for products not requiring centralized authorization. Europe's decision instruments are the marketing authorization itself and the request for supplementary information.
+
+**Pharmaceuticals and Medical Devices Agency (PMDA, Japan).** Japan's pathway runs through the *J-NDA* (new drug application), submitted to PMDA, which conducts both the scientific review and GMP inspections. Japan historically required local clinical data, and *bridging studies* under ICH E5 [@ich_e5] remain common to demonstrate that foreign data apply to the Japanese population. Japan's participation in ICH and acceptance of multi-regional clinical trial data under ICH E17 has increasingly enabled global submissions.
+
+**National Medical Products Administration (NMPA, China).** China's regulatory framework has undergone substantial reform since 2017, including acceptance of international multi-center clinical trial data for registration, removal of the requirement that an imported drug be approved or already under study overseas before Chinese trials could begin, and alignment with ICH guidelines (China became an ICH member in 2017). These reforms have contributed to China's emergence as a major clinical trial market (see @sec-economics). The NMPA still generally requires Chinese patients in pivotal trials, and local regulatory expertise remains essential as requirements evolve.
+
+**ICH harmonization and multi-regional submissions.** The core dossier is portable across ICH member regions because ICH maintains the CTD format itself, under M4, and its electronic version, the eCTD, under M8. ICH E17 supplies the companion piece: the scientific framework for designing multi-regional clinical trials that can simultaneously support regulatory decisions in multiple jurisdictions, reducing duplicative regional studies while preserving the ability to assess consistency of treatment effects across populations [@ich_e17; @ich_m4; @ich_m8].
+
+**Concurrent oncology review.** Two FDA Oncology Center of Excellence programs compress cancer timelines. Real-Time Oncology Review (RTOR), piloted in 2018, lets sponsors submit key data components before the complete application, so reviewers can begin their analysis earlier [@fda_rtor]. Project Orbis, launched in 2019, frames concurrent submission and review of oncology products among international partner regulators, so that a single dossier can support near-simultaneous decisions in several countries [@fda_project_orbis].
+
+Approval ends the submission, not the obligations. Sponsors are often required to conduct post-marketing requirements (PMRs) or agree to post-marketing commitments (PMCs), which can involve additional safety studies or trials in specialized populations. For therapies with significant identified risks, a Risk Evaluation and Mitigation Strategy (REMS) may be mandated to ensure safe use through communication plans or restricted distribution [@fda_rems]. Throughout the marketed life of the product, sponsors must also monitor safety and submit periodic reports to regulators confirming that the benefit-risk balance remains favorable as real-world experience accumulates.
+

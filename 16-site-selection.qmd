@@ -1,0 +1,205 @@
+# Site Selection and Feasibility {#sec-site-selection}
+
+A clinical trial exists only on paper until it enrolls patients, and patients are enrolled at clinical sites: hospitals, academic medical centers, private practices, or specialty clinics where investigators conduct the research. Industry surveys consistently show that patient recruitment is among the most common reasons for trial delays, and the wrong sites are where slow enrollment and poor data quality can begin. Historically, a Tufts CSDD benchmark of more than 150 trials run between 2008 and 2010 found that roughly 11% of investigative sites fail to enroll a single patient, with an additional 37% under-enrolling relative to their targets [@tufts_impact_enrollment_2013; @getz_enrollment_facts_2012]. For a significant portion of activated sites, the substantial investment in startup and training yields little to no scientific data. More recent Tufts CSDD benchmarking is somewhat more encouraging: comparing site-activation and enrollment metrics across 2012, 2019, and 2023, Lamberti and colleagues found that actual enrollment exceeded planned enrollment for a majority of studies and that timelines were often shorter than expected, though achievement varied by region and site type [@lamberti_enrollment_2024].
+
+For a Phase III trial requiring 1,000 patients, a sponsor might need 100 or more sites across multiple countries, each capable of identifying eligible patients, conducting the study procedures competently, maintaining regulatory compliance, and producing high-quality data. Finding sites that meet all these criteria, and that are genuinely committed to the trial, is harder than it might appear.
+
+## Site Identification
+
+The search for sites begins with investigators who have access to the target patient population. A rheumatoid arthritis trial needs rheumatologists. An advanced lung cancer trial needs oncologists at centers that see late-stage disease. A rare disease trial may need the handful of specialists worldwide who see enough patients to contribute meaningfully.
+
+*Access to patients* matters most: a distinguished investigator who rarely sees the target population will not enroll patients. *Geographic distribution* matters for global trials, where regulatory authorities may require data from relevant populations and where sponsors want to understand drug effects across regions, and *prior experience* with the sponsor, the therapeutic area, or clinical research generally can indicate capability.
+
+Databases of investigators, clinical trial registries, publication records, and prior trial performance all inform site identification, as do sponsor relationships with key opinion leaders and clinical networks. What those sources turn up ranges from large academic medical centers (AMCs) and integrated health systems to small, independent physician practices and site networks (see [@fig-wcg-site-types]).
+
+``` {r}
+#| label: fig-wcg-site-types
+#| fig-cap: "Distribution of Clinical Research Site Types (2024). Data from @wcg_site_challenges_2024."
+#| echo: false
+
+# Reproduced from WCG (2024) Clinical Research Site Challenges Report, Introduction/Demographics
+library(ggplot2)
+
+data <- data.frame(
+  type = c('Academic Medical Center', 'Integrated Health Care Delivery System', 'Community Hospital',
+           'Site Network', 'Physician Practice', 'Independent Research Site', 'Other'),
+  percentage = c(34, 6, 15, 5, 16, 19, 5)
+)
+
+# Largest share first, "Other" last; the factor levels run bottom to top
+data$type <- factor(data$type, levels = rev(c('Academic Medical Center', 'Independent Research Site', 'Physician Practice',
+                                              'Community Hospital', 'Integrated Health Care Delivery System',
+                                              'Site Network', 'Other')))
+
+ggplot(data, aes(x = percentage, y = type)) +
+  geom_col(fill = "steelblue", width = 0.7) +
+  geom_text(aes(label = paste0(percentage, "%")), hjust = -0.2, size = 3) +
+  scale_x_continuous(limits = c(0, 40), expand = c(0, 0)) +
+  scale_y_discrete(labels = scales::label_wrap(24)) +
+  labs(title = "Clinical Research Site Distribution (2024)", x = "Share of sites (%)", y = NULL) +
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "white", color = NA))
+```
+
+The pool of available investigators is shrinking. A 2004 survey found that about 13% of physicians actively served as clinical investigators [@harris2004poll]; the 2024 WCG Clinical Research Site Challenges Report documents the number of unique U.S. investigators falling roughly 78%, from a pandemic-inflated peak of over 28,000 in 2020 to approximately 6,200 in 2024, alongside a 57% decrease in U.S. trial starts over the same period [@wcg_site_challenges_2024]. That headline overstates the structural trend: measured from the pre-pandemic level of about 23,000 investigators, the decline is closer to 73%, still a steep erosion of the base. The 2024 investigator and trial-start counts are also preliminary, drawn from a partial-year ClinSphere snapshot that exaggerates the single-year drop from 2023; WCG's more recent site-challenges reporting has continued to show the same downward direction of travel.
+
+The two trends in @fig-wcg-investigators are distinct. The investigator pool surged with the pandemic in 2020 and then crashed, while new trial starts held relatively stable, peaking near 2,000 in 2021, before falling to fewer than 800 in 2024. Several forces drive that decline. COVID-19-related clinical activity, which peaked in 2021, has dropped substantially. Biopharma funding slowed sharply in 2022 and only partially rebounded in 2023, remaining well below its 2020-21 pandemic peak and constraining emerging-biopharma companies [@iqvia_success_2024]. With the cost of bringing a single novel asset to launch, failures included, now estimated at $2.6-2.7 billion [@deloitte_rd_return_2026; @tufts_cost_2016], sponsors have grown risk-averse, concentrating capital on existing late-stage pipelines instead of new early-phase starts. Mounting regulatory hurdles and administrative burdens, meanwhile, have pushed study start-up past 60 days at most sites, discouraging new starts during periods of economic uncertainty [@wcg_site_challenges_2024].
+
+Other pressures are structural. Increasing clinical demands leave physicians with limited bandwidth for research, while research team staffing shortages further strain site capacity. This has exacerbated the **"one and done" phenomenon**, where approximately 66% of physicians who participate in a clinical trial do so only once before exiting the research ecosystem [@wcg_site_challenges_2024]. The consequences of this investigator attrition for recruitment and retention are discussed further in @sec-recruitment.
+
+``` {r}
+#| label: fig-wcg-investigators
+#| fig-cap: "U.S. Investigators Participating in Clinical Trials Compared to New Trial Starts (2018-2024). Data from @wcg_site_challenges_2024."
+#| echo: false
+
+# Reproduced from WCG (2024) Clinical Research Site Challenges Report, Section 5
+library(ggplot2)
+library(tidyr)
+
+data <- data.frame(
+  year = c(2018, 2019, 2020, 2021, 2022, 2023, 2024),
+  unique_investigators = c(23408, 23469, 28339, 24978, 20080, 16029, 6197),
+  new_trial_starts = c(1866, 1780, 1814, 1980, 1703, 1477, 788)
+)
+
+# Convert to long format for ggplot
+data_long <- pivot_longer(data, cols = c(unique_investigators, new_trial_starts), 
+                          names_to = "type", values_to = "count")
+
+data_long$type <- factor(data_long$type, 
+                        levels = c("unique_investigators", "new_trial_starts"),
+                        labels = c("Unique Investigators", "New Trial Starts"))
+
+ggplot(data_long, aes(x = factor(year), y = count, fill = type)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  geom_text(aes(label = format(count, big.mark = ",")), 
+            position = position_dodge(width = 0.8), vjust = -0.5, size = 2.5, fontface = "bold") +
+  scale_fill_manual(values = c("Unique Investigators" = "#4d4dff", "New Trial Starts" = "#00c49f")) +
+  labs(title = "U.S. Investigators vs. New Trial Starts Since 2018",
+       y = "Count",
+       x = NULL,
+       fill = NULL) +
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "white", color = NA),
+        legend.position = "bottom") +
+  expand_limits(y = 32000)
+```
+
+In that same 2004 survey, among physicians not involved in clinical trials, 38% cited lack of opportunity as the main reason for not serving as a Principal or Sub-Investigator, while 32% indicated that the time commitment is prohibitive [@harris2004poll]. Those constraints, compounded by the current exit of experienced investigators, make site identification a search for a rare combination: expertise, patient access, and operational bandwidth.
+
+Historically, clinical trials have often failed to represent the diverse populations that will ultimately use the investigated therapies, which compromises the external validity of the results and can obscure important differences in safety or efficacy across demographic groups. The Food and Drug Omnibus Reform Act of 2022 (FDORA) requires sponsors to submit Diversity Action Plans for Phase III trials (and certain other pivotal studies) to the FDA, but only for studies that begin enrolling more than 180 days after FDA publishes final guidance on the plans [@fdora2022]. That statutory requirement stands, but its implementing guidance has been in flux: FDA's June 2024 draft Diversity Action Plans guidance was withdrawn following a January 2025 executive order on diversity, equity, and inclusion, then restored under court order weeks later, and its final version was not issued by the statutory deadline of June 26, 2025 [@fda_dap_status_2025; @fda_diversity_action_plans_2024]. A separate December 2025 final guidance, *Enhancing Participation in Clinical Trials*, kept the emphasis on representative enrollment while dropping the "diversity" framing [@fda_eligibility_2025]. Until the final Diversity Action Plans guidance appears, the submission requirement has not taken effect, so sponsors should confirm the current posture rather than treat the mandate as settled.
+
+Site selection is the primary operational lever for achieving diversity goals, which means engaging sites embedded in underrepresented communities: community hospitals, federally qualified health centers (FQHCs), or practices in geographic areas with high demographic density of the target populations. Those sites may lack the dedicated research infrastructure (study coordinators, -80°C freezers, secure storage) found in major academic centers, so the assessment must weigh a site's potential capability with appropriate support alongside its current capability. The goal is a site network that geographically and demographically mirrors the epidemiology of the disease.
+
+## Feasibility Assessment
+
+Once potential sites are identified, a *feasibility assessment* evaluates whether each site can realistically conduct the study. It typically involves questionnaires completed by site staff and may be supplemented by in-person or virtual visits. @tbl-site-evaluation summarizes the questions it asks and the answers that count as red flags.
+
+| Category | Key Questions | Red Flags |
+|----------|--------------|----------|
+| *Patient Access* | How many target patients per year? Competing trials? | <10 eligible patients/year; Multiple competing studies |
+| *Investigator* | Prior trial experience? Enrollment track record? | No research experience; History of poor enrollment |
+| *Infrastructure* | Dedicated research staff? Equipment? Data systems? | No study coordinator; Inadequate facilities |
+| *Regulatory* | IRB timeline? Institutional requirements? | IRB backlog >3 months; Complex approval layers |
+| *Commitment* | PI availability? Staff turnover? | Part-time PI; High coordinator turnover |
+
+: Site Feasibility Evaluation Criteria {#tbl-site-evaluation tbl-colwidths="[18,40,42]"}
+
+Each row calls for judgment. A site's count of eligible patients has to be checked against the trials it is already running; investigator review covers licensure as well as enrollment track record; infrastructure means space for study procedures and laboratory capabilities along with dedicated research staff; and regulatory readiness turns on the efficiency of the local IRB and on any institutional requirements that could delay startup. Commitment is gauged from PI availability and coordinator turnover history, since a part-time PI or high turnover can undermine execution even at an otherwise well-resourced site.
+
+## The Enrollment Prediction Problem
+
+Sites are notoriously over-optimistic about how many patients they will enroll. An investigator who claims to see 50 eligible patients per month and predicts enrolling 30 may ultimately enroll 3.
+
+The gap has several sources. Investigators may not accurately know how many of their patients meet eligibility criteria: the criteria are often more restrictive than general clinical practice. Patients who appear eligible on paper may decline participation or prove ineligible upon screening, competing trials may draw away others, and staff turnover or other operational issues may limit enrollment capacity.
+
+Experienced sponsors treat site predictions with skepticism and routinely discount them, often steeply [@getz_feasibility_2008]. Historical performance in prior trials is a more reliable guide than investigator optimism.
+
+## Financial and Contractual Negotiations
+
+Between a qualified site and an activated one lies the negotiation of the Clinical Trial Agreement (CTA) and the site budget, and it is a consistent bottleneck: industry benchmarks show that the cycle time from site selection to site initiation is driven more often by contract execution than by regulatory approval [@wcg_site_challenges_2024].
+
+The CTA is a legally binding contract governing the relationship between sponsor and institution, addressing liability, indemnification, intellectual property rights, data ownership, and publication policy. Negotiations can be protracted, particularly with large academic medical centers that adhere to rigid institutional policies regarding indemnification and subject injury. For global trials, these agreements must also align with local laws regarding data privacy and anti-bribery regulations.
+
+The site budget requires a granular accounting of both per-patient costs and overhead fees. A well-constructed one covers per-subject costs for clinical procedures, investigator time, and pharmacy services; startup fees for the administrative effort of regulatory submission and staff training; pass-through costs for variable expenses such as IRB fees and participant travel; and an institutional overhead surcharge applied to direct costs.
+
+A related exercise, especially for U.S. sites, is the *coverage analysis*. Before a trial opens, the site reviews each protocol-required procedure to determine which costs may be billed to a participant's insurance as routine clinical care and which must be paid by the sponsor as research costs. In the United States this determination rests on the Medicare Clinical Trial Policy (National Coverage Determination 310.1, "Routine Costs in Clinical Trials") and, for commercial plans, the Affordable Care Act's requirement that the routine patient costs of qualifying clinical trials be covered. Getting it wrong exposes the institution to double-billing and false-claims liability, so it demands specialized revenue-cycle expertise. Coverage analysis is one component of the study start-up work (alongside budgets and contracts) that sites most often identify as their leading source of start-up delay [@wcg_site_challenges_2024].
+
+### Operational Bottlenecks by Site Type
+
+The administrative burden of study start-up falls unevenly across the research ecosystem. According to the 2024 WCG Clinical Research Site Challenges Report, "Study Start-up" remains the single largest operational obstacle for larger institutions (academic medical centers, health systems, and community hospitals), with 43% of these sites identifying it as a primary challenge [@wcg_site_challenges_2024]. In contrast, smaller independent sites, physician practices, and site networks report start-up as a top challenge only 24% of the time, focusing instead on recruitment and retention as their primary burden (39%).
+
+The timelines diverge accordingly. Approximately 60% of independent sites and physician practices report being able to initiate studies in under 60 days; 77% of academic medical centers, health systems, and community hospitals report start-up timelines exceeding 60 days, often because of the complexity of managing multiple internal stakeholders, the lack of centralized research administration, and bureaucratic regulatory layers [@wcg_site_challenges_2024]. Across all site types in the United States, "Budgets and Contracts" remain the single largest bottleneck, cited by 77% of sites as the primary contributor to start-up delays (see [@fig-wcg-ssu-contributors]).
+
+``` {r}
+#| label: fig-wcg-ssu-contributors
+#| fig-cap: "Largest Contributors to Study Start-Up Timelines in the U.S. (2024). Data from @wcg_site_challenges_2024."
+#| echo: false
+
+# Reproduced from WCG (2024) Clinical Research Site Challenges Report, Section 7
+library(ggplot2)
+
+data <- data.frame(
+  contributor = factor(c("Budgets & Contracts", "Complexity of Trials", 
+                         "Sponsor Engagement", "Ethical/Regulatory", 
+                         "Site Staffing"),
+                       levels = rev(c("Budgets & Contracts", "Complexity of Trials", 
+                                      "Sponsor Engagement", "Ethical/Regulatory", 
+                                      "Site Staffing"))),
+  percentage = c(77, 33, 25, 21, 21)
+)
+
+ggplot(data, aes(x = percentage, y = contributor)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  geom_text(aes(label = paste0(percentage, "%")), hjust = -0.2, fontface = "bold") +
+  labs(title = "Study Start-Up Bottlenecks (U.S. Data)",
+       x = "Percentage of U.S. Sites Citing as Bottleneck (%)",
+       y = NULL) +
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "white", color = NA)) +
+  expand_limits(x = 100)
+```
+
+Sponsors design their selection and activation strategy around these profiles, often favoring independent networks for rapid enrollment and academic centers for complex therapeutic areas or highly specialized patient populations.
+
+Budget negotiation requires balancing fiscal discipline with the reality that sites must cover their costs to remain viable. Underfunding a site invariably shows up later as slow data entry and as deprioritization against better-funded trials.
+
+## Site Initiation
+
+Once a site is selected and regulatory approvals are obtained, it must be *initiated*: prepared to enroll patients and conduct the study. @fig-site-lifecycle shows the full site lifecycle from identification through closeout.
+
+```{mermaid}
+%%| label: fig-site-lifecycle
+%%| fig-cap: "Clinical trial site lifecycle from identification through study closeout (monitoring visits recur throughout active conduct)"
+%%{init: {'flowchart': {'nodeSpacing': 25, 'rankSpacing': 35, 'padding': 8, 'diagramPadding': 30, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    subgraph row1[" "]
+        direction LR
+        A["Site<br/>Identification"] --> B["Feasibility<br/>Assessment"] --> C["Site<br/>Selection"] --> D["Contracts<br/>& Budget"]
+    end
+
+    subgraph row2[" "]
+        direction LR
+        E["IRB/EC<br/>Approval"] --> F["Site Initiation<br/>Visit"] --> F2["Screening &<br/>Enrollment"] --> G["Treatment &<br/>Follow-up"]
+    end
+
+    subgraph row3[" "]
+        direction LR
+        I["Last Patient<br/>Visit"] --> J["Site Close-Out<br/>Visit"] --> K["Archiving"]
+    end
+
+    M["Monitoring Visits<br/>(recurring throughout<br/>conduct)"]
+
+    row1 --> row2 --> row3
+    row2 -. ongoing .- M
+```
+
+The *Site Initiation Visit (SIV)* formalizes training. During the SIV, study personnel review the protocol in detail, walk through study procedures, demonstrate equipment, set up data systems, and ensure that essential supplies are in place. The investigator and key site staff must participate; their engagement (or lack thereof) often signals future performance.
+
+Following the SIV, the site is authorized to begin screening and enrolling patients. The time from site selection to the point at which a site is cleared to enroll (the *site activation time*), and from there to the first patient enrolled, can range from weeks to months depending on regulatory complexity, contract negotiations, and site responsiveness.
+
+A global network needs training delivered consistently across languages and time zones, usually through a combination of e-learning platforms and regional investigator meetings. Communication has to strike a balance: enough information to keep sites aligned, without overwhelming staff with unnecessary updates. Performance management systems track real-time metrics (enrollment rates, data quality, query resolution times) to identify the sites that need additional support or, in extreme cases, closure. Sponsors treat high-performing sites as long-term partners, and investment in those relationships through transparent communication and professional support improves enrollment, data quality, and site retention across the drug development program.
+
+Global trials add complications of their own. Regulatory requirements differ by country, and language barriers affect training and documentation. Cultural factors influence patient willingness to participate in research, expectations about investigator relationships, and approaches to adverse event reporting. Standard of care may differ across regions, affecting choice of comparator and interpretation of results, while patient populations may differ in disease characteristics, comorbidities, and concomitant medications. Some regions may have limited research infrastructure requiring more intensive support, while others may have mature research environments but intense competition for investigators and patients. All of it feeds back into trial design and analysis.
+
+

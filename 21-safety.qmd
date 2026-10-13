@@ -1,0 +1,146 @@
+# Safety Monitoring and Reporting {#sec-safety}
+
+A patient in a trial has a heart attack. From the moment the investigator learns of it a clock runs: the report must reach the sponsor immediately (most protocols write that as within 24 hours), and if it turns out to be a life-threatening reaction nobody expected, the sponsor then has 7 calendar days to reach regulators in every country where the study is running. However thoroughly a drug has been studied in laboratories and animal models, the first patients to receive it are pioneers, and pioneers face risks. Safety reporting is how the rest of the trial finds out in time to act.
+
+Each category below carries its own reporting obligation (@tbl-ae-classification).
+
+| Category | Definition | Examples | Reporting Timeline |
+|----------|-----------|----------|--------------------|
+| **Adverse Event (AE)** | Any untoward medical occurrence | Cold, headache, unrelated hospitalization | Recorded in the CRF per protocol; generally not expedited to regulators |
+| **Serious AE (SAE)** | Death, life-threatening, hospitalization, disability, congenital anomaly, or medically important | Heart attack, stroke, cancer diagnosis | Immediately to sponsor (protocols typically specify 24 hours) |
+| **Adverse Drug Reaction (ADR)** | AE judged to be drug-related | Rash after drug administration | Per protocol |
+| **SUSAR** | Serious, unexpected ADR | Novel reaction not in Investigator's Brochure | 7 days (fatal/life-threat); 15 days (other) |
+
+: Adverse Event Classification Hierarchy {#tbl-ae-classification tbl-colwidths="[15,25,30,30]"}
+
+An *adverse event (AE)* is any untoward medical occurrence in a trial participant, caused by the investigational drug or not. A patient who develops a cold during a trial has experienced an adverse event. So has a patient hospitalized for a condition entirely unrelated to the study drug. The net is cast this wide to keep a potential safety signal from being missed, though rare or delayed ones may surface only after the drug reaches a larger, more diverse population (@sec-phase4).
+
+A *serious adverse event (SAE)* meets one of six criteria: it results in death, is life-threatening, requires hospitalization (or prolongs existing hospitalization), causes persistent or significant disability, is a congenital anomaly, or is otherwise medically important. Seriousness says nothing about causality (an SAE may have nothing to do with the study drug), but it triggers expedited reporting and heightened scrutiny.
+
+Seriousness is a regulatory classification driven by an event's outcome (the six criteria above). *Severity* describes intensity, most often graded on the Common Terminology Criteria for Adverse Events (CTCAE) scale that runs from Grade 1 (mild) through Grade 2 (moderate), Grade 3 (severe), and Grade 4 (life-threatening) to Grade 5 (death). The two move independently. A high-grade but asymptomatic laboratory abnormality that meets no seriousness criterion is severe without being serious; a mild event that lands the patient in hospital is serious whatever its grade.
+
+*Adverse drug reactions (ADRs)* are adverse events thought to be caused by the investigational product, and deciding which events qualify is one of the most consequential clinical judgments in a trial. The evidence is circumstantial: timing, biological plausibility, and whether anything else explains the event. Investigators and sponsors both grade their certainty, though many scales are in use and none is an international standard [@ich_e2a]. On one common five-level scale, "Definite" requires a clear temporal link, a positive response when the drug is withdrawn or reintroduced, and no alternative explanation. As the evidence weakens, events fall to "Probable" or "Possible," depending on the strength of the temporal link and the plausibility of other causes. "Unlikely" and "Unrelated" sit at the far end, where the timing is improbable or an extraneous cause (a pre-existing condition, a traumatic accident) supplies a clear alternative.
+
+*Suspected unexpected serious adverse reactions (SUSARs)* are serious adverse reactions whose nature or severity is not consistent with the drug's reference safety information, the list of expected reactions in the Investigator's Brochure or an alternative document such as an approved drug's label [@ich_e2a; @ich_e2f; @ich_e6r3_2025]. They trigger the most expedited reporting, because they are new safety information that may change how the drug is viewed. A reaction the brochure mentions only as a class effect, or a listed one in a more specific or more severe form (hepatic necrosis where only hepatitis is listed), still counts as unexpected [@cfr21_312_32].
+
+Cutting across this hierarchy is the *adverse event of special interest (AESI)*: an event, serious or non-serious, that the protocol or safety plan singles out for heightened, often accelerated monitoring because of a specific concern about the drug or its class. An AESI is tracked and reported on a protocol-specified timeline regardless of where it otherwise falls among the categories above. Drug-induced liver injury, suicidal ideation, and, for immunomodulatory therapies, cytokine release syndrome are common examples.
+
+## Investigator Responsibilities
+
+Immediate SAE reporting, and everything upstream of it, is a site obligation: investigators bear primary responsibility for protecting the participants in front of them. The duty begins with recognizing an adverse event as one. From there it must be documented thoroughly and reported on the timelines the protocol and the regulations set (serious events that are themselves study endpoints, such as deaths in a mortality trial, may follow the protocol's schedule unless there is evidence suggesting the drug caused them); the SAE window is tight so that the sponsor can assess a potential signal promptly and act if warranted.
+
+The participant still has to be treated. A drug may need to be interrupted, a dose adjusted, a concomitant medication prescribed. Clinical judgment guides those decisions, though protocols typically provide guidance on dose modification and stopping rules.
+
+## Sponsor Responsibilities
+
+A sponsor sees what no single site can: safety information from every site and every participant lands in one place. @fig-ae-reporting traces the path from an event at the site to a report at the regulator.
+
+::: {#fig-ae-reporting layout-nrow=2}
+```{mermaid}
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 25, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart LR
+    A["AE Occurs"] --> B{"Serious?"}
+    B -->|No| C["Document"]
+    B -->|Yes| D["SAE to Sponsor<br/>per protocol<br/>(often ≤24h)"]
+    D --> E{"Drug-<br/>Related?"}
+    E -->|No| F["Track"]
+    E -->|Yes| G{"Expected?"}
+    G -->|Yes| H["ADR Doc"]
+    G -->|No| I["SUSAR"]
+
+    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    classDef action fill:#e3f2fd,stroke:#1976d2,stroke-width:1px,color:#000
+    classDef urgent fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+
+    class B,E,G decision
+    class A,C,D,F,H,I action
+```
+
+```{mermaid}
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 25, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart LR
+    I["SUSAR"] --> J{"Fatal or<br/>life-threatening?"}
+    J -->|Yes| K["Expedited report<br/>≤7d"]
+    J -->|No| L["Expedited report<br/>≤15d"]
+    K --> N["Regulatory Authorities<br/>(all trial countries)"]
+    L --> N
+    I --> M["Notify<br/>Investigators"]
+
+    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    classDef action fill:#e3f2fd,stroke:#1976d2,stroke-width:1px,color:#000
+    classDef urgent fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+
+    class J decision
+    class I,M,N action
+    class K,L urgent
+```
+
+Adverse event reporting workflow from site identification through regulatory notification. The lower panel continues from the SUSAR node of the upper panel.
+:::
+
+The sponsor must decide whether an incoming SAE report triggers expedited reporting. Fatal or life-threatening SUSARs must be reported within 7 calendar days, with as complete a report as possible following within a further 8 days (15 days in total); other SUSARs must be reported within 15 calendar days [@ich_e2a]. They go to regulatory authorities in every country where the study is being conducted.
+
+Information also has to travel back down. A newly identified risk, a pattern of adverse events, or a change in the benefit-risk assessment prompts a *safety report* that goes to every investigator on the study.
+
+Once a year the aggregate picture is compiled into a *Development Safety Update Report (DSUR)* and submitted to regulatory authorities [@ich_e2f], covering the drug's safety profile across all ongoing studies.
+
+## Safety Data Management and Analysis
+
+Every SAE lives in two places: the clinical database, which holds all trial data, and the safety database, which holds distinct pharmacovigilance records for SAEs. Reconciling the two is a critical quality control step, and @fig-safety-reconciliation shows how it runs.
+
+```{mermaid}
+%%| label: fig-safety-reconciliation
+%%| fig-cap: "Reconciliation Process between Clinical and Safety Databases"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 25, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart LR
+    Plan[Recon Plan] --> GenSafety[Safety DB<br/>SAE Report]
+    Plan --> GenClinical[Clinical DB<br/>AE Listing]
+    
+    GenSafety --> Compare{Compare}
+    GenClinical --> Compare
+    
+    Compare -->|Discrepancies| Query[Query]
+    Compare -->|Reconciled| Done["Reconciled;<br/>document & close"]
+    Query --> Site[Site<br/>Resolution]
+
+    Site --> UpdateSafety[Update<br/>Safety]
+    Site --> UpdateClinical[Update<br/>Clinical]
+
+    UpdateSafety --> Compare
+    UpdateClinical --> Compare
+
+    classDef process fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+    classDef decision fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+    class Plan,GenSafety,GenClinical,Query,Site,UpdateSafety,UpdateClinical,Done process
+    class Compare decision
+```
+
+### Analyzing Laboratory Safety Data
+
+A laboratory adverse event is often just a number moving, with no symptom to announce it. The analysis has to go looking. *Treatment-Emergent Abnormal Values (TEAVs)* pick out patients who moved from a normal baseline to an abnormal post-treatment state. *Shift tables* (typically 3x3 matrices of patient status, e.g., Low, Normal, High, before versus after treatment) show where a population moved as a whole. *Clinically significant changes* flag values past a defined threshold, such as >3x Upper Limit of Normal for liver enzymes, where the concern is organ toxicity.
+
+## Signal Detection
+
+A safety signal is a potential drug-safety risk that warrants further investigation. The simplest way to find one is to count: if headache occurs in 30% of patients on drug and 10% on placebo, this suggests a drug effect. But many adverse events are tracked at once, so some of those gaps open by chance: *frequency-based methods* treat an unadjusted difference as a flag for closer review rather than proof of harm, and while adjusting for multiple comparisons limits false alarms, the greater concern in safety analysis is usually missing a real signal [@ich_e9].
+
+Counting alone misses a good deal. *Pattern recognition* looks past raw frequencies at the shape of the data: a cluster of similar events, events concentrated at a particular dose, or events emerging only after prolonged treatment may suggest a drug effect when no individual rate is statistically significant. *Disproportionality analysis*, run on databases of spontaneous reports, asks whether an event makes up a larger share of one drug's reports than of the reports for all other drugs: if liver injury is reported disproportionately often for a drug, that warrants attention, though a reporting ratio is not an incidence rate [@ema_gvp_ix_add1_2017]. A single case can also carry the argument: a rare event occurring shortly after drug administration in an otherwise healthy patient may be drug-related on its own, which is what *individual case assessment* is for.
+
+Modern pharmacovigilance increasingly applies data mining and machine learning to large databases, though human judgment remains essential for assessing clinical significance.
+
+For trials involving serious conditions, significant risks, or large participant populations, an independent *Data Safety Monitoring Board (DSMB)* reviews unblinded accumulating data at predetermined intervals and may recommend stopping a trial early for safety, futility, or overwhelming efficacy. Its composition, charter, and operating procedure are covered in @sec-phase3-dsmb and @sec-monitoring.
+
+## Regulatory Reporting Requirements
+
+The obligations are largely harmonized across major markets, but each jurisdiction has its own legal instrument and reporting channel. In the United States, expedited IND safety reports are governed by 21 CFR 312.32 [@cfr21_312_32]: sponsors must send an IND safety report to the FDA and all participating investigators as soon as possible and no later than 15 calendar days after determining that the information qualifies, which covers SUSARs but also findings from other studies or from animal or in vitro testing that suggest a significant risk, and any clinically important increase in the rate of a serious suspected adverse reaction. An unexpected fatal or life-threatening suspected adverse reaction must also reach the FDA within 7 calendar days of the sponsor's initial receipt of the information, and relevant follow-up information is submitted as soon as it is available. The European Union imposes parallel obligations through the Clinical Trials Regulation and its associated guidelines [@ema_ctr_ctis], with the EudraVigilance database centralizing safety reporting across member states. Beneath both regimes sit the ICH E2A and E2B guidelines [@ich_e2a; @ich_e2b], which supply the harmonized safety definitions and the electronic transmission standards that let a single report move between systems.
+
+Inadequate or late safety reporting can trigger clinical holds and warning letters, and, for egregious violations, criminal penalties.
+
+## The Benefit-Risk Calculation
+
+A drug for a minor condition that causes serious adverse events may be unacceptable. The same drug for a life-threatening condition with no alternatives may be essential. The benefit-risk calculation interprets safety data in the context of the disease being treated and the benefits on offer, a considered judgment made by regulators but also by individual patients and their physicians.
+
+Under its Prescription Drug User Fee Act (PDUFA) V commitments the FDA adopted a structured *Benefit-Risk Framework*, now used to organize the review of every new drug and biologic across four dimensions: Analysis of Condition, Current Treatment Options, Benefit, and Risk and Risk Management [@fda_benefit_risk_2023]. The framework does not reduce the decision to a score; it disciplines the reasoning, making explicit what is known, what is uncertain, and how identified risks will be managed. The European Medicines Agency pursues the same end through its PrOACT-URL approach (Problem, Objectives, Alternatives, Consequences, Trade-offs, Uncertainty, Risk attitude, Linked decisions) and an effects table that lays favorable and unfavorable effects side by side.
+
+The calculation is never final. As more patients receive a drug and follow-up lengthens, a risk that seemed acceptable early in development may prove unacceptable once the magnitude or nature of the harm is better understood. AI approaches to adverse event case processing and signal detection are covered in @sec-ai-agents.
+

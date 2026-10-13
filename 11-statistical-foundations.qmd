@@ -1,0 +1,196 @@
+# Statistical Methods for Clinical Trials {#sec-statistical-methods}
+
+D.R. Cox, in his foundational *Planning of Experiments* [@cox1958planning], describes clinical trials as operating in the domain of "large uncontrolled variations." In physics, once the apparatus is working correctly, closely reproducible results emerge: uncontrolled variation is small relative to the effect being measured. Clinical trials face a different reality. Any given patient's outcome swings with the natural history of disease, environmental factors, the psychological response to treatment, and the supportive care received. The effect of a new drug, often only a modest improvement over existing therapy, has to be distinguished from that underlying variation.
+
+This chapter covers the frequentist core of the toolkit built for that job: hypothesis testing and error control, survival analysis, repeated-measures models, missing data, and group-sequential designs. Two modern extensions whose methods cut across inferential frameworks follow: dynamic treatment regimes (SMART designs) and causal inference for observational and hybrid evidence. Bayesian and adaptive methods are in @sec-adaptive-bayesian.
+
+## Hypothesis Testing and Error Control
+
+A five-year survival rate of 40% tells us little on its own; everything depends on what would have happened without the treatment. Clinical trials are built for *comparison*, not absolute measurement, and the quantity they estimate and test is the *treatment effect*: the difference in outcomes between the investigational arm and the control arm.
+
+The frequentist framework structures this comparison around two hypotheses: the *null hypothesis* ($H_0$), the default assumption of no treatment difference, and the *alternative hypothesis* ($H_1$), the claim that a difference exists. The analysis produces a *p-value*: the probability of observing results at least as extreme as those seen, assuming $H_0$ is true. If the p-value falls below a pre-specified threshold $\alpha$, we reject $H_0$ and conclude the treatment has an effect.
+
+Two kinds of decision error follow. *Type I error* (false positive) means concluding the drug works when it does not. For confirmatory trials, regulators typically expect this probability to be held at or below $\alpha = 0.025$ one-sided (or 0.05 two-sided): on average, no more than 2.5 false-positive results per 100 trials of ineffective agents.
+
+*Type II error* (false negative) means failing to detect a drug that genuinely works. The probability of *avoiding* it is *power*, and trials are typically designed for 80% or 90%.
+
+*Sample size* is determined by four inputs: the minimum clinically important difference (MCID, the smallest effect worth detecting), the variability of the outcome (its standard deviation for a continuous endpoint, or the control-arm event rate for a binary or time-to-event endpoint), the desired power, and the tolerated Type I error. Precision improves only with the square root of sample size: to halve the standard error (and so double the precision), sample size must quadruple. This is why large Phase III trials are expensive and why design efficiency (reducing variability through stratification, using continuous rather than binary endpoints, or fitting a covariate-adjustment model) can meaningfully reduce required enrollment.
+
+::: {.callout-note title="What a p-value does and does not say"}
+A p-value of 0.01 does not mean there is a 99% chance the drug works. It means that if the drug truly had no effect, we would see results this extreme only 1% of the time by chance. The framework controls error rates over many hypothetical repetitions; it does not directly state the probability that *this particular drug* is effective. Surveys consistently show that even experienced researchers misinterpret p-values [@wasserstein2016asa_pvalue; @goodman2008dirty_dozen]. Bayesian methods (@sec-adaptive-bayesian) address this by directly computing posterior probabilities.
+:::
+
+### The ITT Principle and the Estimands Framework
+
+For decades, the *Intent-to-Treat* (ITT) principle governed trial analysis: analyze every patient according to their randomization assignment, regardless of whether they actually received the treatment or completed the study. A patient randomized to the drug arm who never took a single dose is still counted in the drug arm. Because non-adherence usually pulls the ITT difference toward zero, ITT tends to be conservative in superiority trials but is generally not conservative in non-inferiority or equivalence trials, where arms that look more alike make those conclusions easier to reach [@ich_e9]. Either way, it preserves the benefits of randomization and blocks manipulation of results by selective exclusion.
+
+ITT does not always answer the clinical question of greatest interest. The ICH E9(R1) addendum introduced the *estimands framework* [@ich_e9_r1], which requires sponsors to explicitly specify five elements of the treatment comparison: the population, the treatment and control, the endpoint variable, how *intercurrent events* will be handled, and the population-level summary measure. Intercurrent events are the things that happen after randomization and affect interpretation: treatment discontinuation, rescue medication use, crossover. They cannot be handled silently, because different strategies for handling them answer different clinical questions:
+
+- **Treatment policy strategy** (closest to ITT): measure the outcome regardless of intercurrent events. This estimates the effect of the treatment *policy* ("start on Drug X"), not necessarily of the drug itself.
+- **Hypothetical strategy**: estimate what would have happened had the intercurrent event not occurred, which requires modeling assumptions about unobserved outcomes.
+- **Principal stratum strategy**: estimate the effect within the subpopulation defined by how patients would respond to the intercurrent event (those who would remain adherent in either arm, for example). The stratum is a well-defined causal subgroup, but membership is not directly observed, so estimation usually requires strong assumptions; some methods infer membership from baseline characteristics.
+- **Composite variable strategy**: fold the intercurrent event into the endpoint, so that experiencing it (treatment discontinuation or death, say) counts as a specified, usually unfavorable, outcome. Common when the event is itself a marker of treatment failure.
+- **While-on-treatment strategy**: use the outcome only up to the intercurrent event (for death, E9(R1) calls this *while alive*). When the event is stopping treatment, this answers "what is the effect while the patient is actually taking the drug?"
+
+The framework forces that choice before data collection: you cannot retrospectively pick the strategy that makes results look better. It also ties the analysis to the regulatory claim being sought, since different strategies support different label language. @sec-endpoints covers the interaction between estimands and endpoint choice.
+
+## Survival Analysis
+
+Time-to-event endpoints are the workhorses of Phase III oncology, cardiovascular, and infectious disease trials. Survival analysis models the time until an event of interest: death, disease progression, hospitalization, or relapse. A binary endpoint records only whether that event had occurred by a fixed date, throwing the timing away.
+
+*Censoring* is the key technical challenge. A patient still alive at the end of the trial, or lost to follow-up, has not experienced the event, but we know they survived *at least* until their last observation. That partial information has to be used, not discarded.
+
+### Kaplan-Meier Estimator
+
+The Kaplan-Meier (KM) estimator [@kaplan1958nonparametric] describes an arm's survival experience by estimating the probability of surviving beyond each observed event time, accounting for censoring. Its curves are the visual signature of most Phase III oncology and cardiovascular publications.
+
+A KM curve drops only at times when events actually occur, so a censored observation produces a tick mark but no step. Its reliability deteriorates toward the right, where fewer patients remain at risk and the confidence band widens: when only a few patients have been followed for five years, a 5-year survival estimate is much less precise than a 1-year estimate. And comparing two curves by eye can mislead when they cross, because a single summary statistic (the hazard ratio) may hide clinically important early benefit and late harm, or the reverse.
+
+### Log-Rank Test
+
+The log-rank test is the standard significance test for comparing two survival curves: did the two groups experience events at the same rate over time? It is distribution-free (no parametric assumptions about survival times) and maximally sensitive when the proportional hazards assumption holds.
+
+When curves cross or diverge late, the log-rank test can be insensitive. *Weighted log-rank tests* (Fleming-Harrington family) place more or less weight on early versus late events, targeting the test toward the timing of expected benefit. For immunotherapy trials, where effects often emerge slowly, up-weighting late events (equivalently, down-weighting early ones) can improve power.
+
+### Cox Proportional Hazards Model
+
+The Cox model [@cox1972regression], the most widely used regression model for survival data, estimates the effect of treatment and covariates on the *hazard*: the instantaneous rate of experiencing the event at each point in time, among those who have survived to that point. It produces a *hazard ratio* (HR), the ratio of the hazard in the treatment arm to the hazard in the control arm: an HR of 0.75 means patients on treatment experience the event at 75% of the rate of controls at any given moment.
+
+The *proportional hazards (PH) assumption* states that the HR is constant over time, and it should be checked (Schoenfeld residuals, scaled Schoenfeld plots). When it is violated, the HR is still estimable but represents an average over time rather than a stable effect size. Alternatives for non-proportional hazards include restricted mean survival time (RMST), which compares average time alive up to a horizon $t^*$ without requiring the PH assumption.
+
+Covariate adjustment via the Cox model is standard: pre-specified prognostic variables (age, disease stage, performance status, prior therapy) sharpen the treatment comparison at fixed sample size. The route differs from the linear-model case. Because the hazard ratio is non-collapsible, adjustment shifts the estimand from a marginal to a conditional hazard ratio and can widen the standard error of the log hazard ratio even as it increases power.
+
+### Competing Risks
+
+A patient in an oncology trial who dies in a car accident is censored in the standard disease-specific survival analysis, and can never experience the event of interest afterward. That censoring is non-informative only if death from other causes is independent of disease progression, an assumption that may not hold in older or sicker populations, and even when it holds, one minus the Kaplan-Meier curve describes a hypothetical world without competing deaths and overstates the proportion of patients who actually experience the event. *Competing risks* analysis (Fine-Gray subdistribution hazards [@fine1999proportional]) models the *cumulative incidence* of each event type explicitly, and for trials with substantial competing events (hematologic cancers, COVID-19, elderly populations) it should be pre-specified as at least a sensitivity analysis.
+
+## Repeated Measures and Longitudinal Data
+
+Trials often measure outcomes repeatedly: pain scores every two weeks, cognitive assessments every three months, quality-of-life questionnaires at each visit. The primary question may be the effect of treatment at a specific timepoint (e.g., change from baseline at week 52), but the repeated measurements contain information that a single-timepoint analysis discards.
+
+### ANCOVA for Single-Timepoint Outcomes
+
+Analysis of covariance (ANCOVA) is the standard model when the primary endpoint is a continuous outcome measured at one post-baseline timepoint, with baseline value as a covariate. Its residual variance is always at most as large as the variance of the raw change score, and often substantially smaller. Both the EMA and the FDA endorse adjusting for pre-specified prognostic baseline covariates, including the baseline value of the outcome, because adjustment generally improves efficiency and guards against chance baseline imbalance; FDA's 2023 guidance presents adjustment as an accepted option rather than a requirement, noting that an unadjusted analysis is also acceptable for the primary analysis [@fda_covariate_2023].
+
+### Mixed Model for Repeated Measures (MMRM)
+
+The *Mixed Model for Repeated Measures* (MMRM) has become the de facto standard for longitudinal continuous endpoints in confirmatory trials, particularly in neurology, psychiatry, and metabolic disease. It models all post-baseline measurements simultaneously, with treatment, visit, and treatment-by-visit interaction as fixed effects and an unstructured correlation matrix across visits.
+
+MMRM's advantage over the older *Last Observation Carried Forward* (LOCF) method is in missing data handling. LOCF imputes missing later observations with the last observed value, so a patient who dropped out because they were doing poorly is carried as though they continued at that level indefinitely. MMRM instead uses a likelihood-based approach that is valid under the *Missing at Random* (MAR) assumption: it uses all available data from each patient without imputation, as long as missingness depends only on observed (not unobserved) outcomes. FDA and EMA have increasingly pushed sponsors toward MMRM and away from LOCF for this reason.
+
+The unstructured covariance matrix makes no assumption about the shape of within-patient correlation over time, which suits irregularly spaced visits or an unknown correlation pattern. For trials with many timepoints or complex longitudinal patterns, random-effects models (with random slopes and intercepts) are an alternative that borrows strength across patients.
+
+## Missing Data
+
+Missing data is a design problem that belongs in the protocol and the statistical analysis plan, before enrollment begins.
+
+### The MCAR/MAR/MNAR Taxonomy
+
+The inferential consequences of missing data depend on *why* data are missing:
+
+- **Missing Completely at Random (MCAR):** missingness is unrelated to any observed or unobserved data. Rare in practice; a lab machine failure that randomly affects 2% of samples might qualify.
+- **Missing at Random (MAR):** missingness depends on observed data but not on the unobserved outcome itself. A patient with worse observed prior scores is more likely to drop out, but conditional on those scores, dropping out does not depend on what the unmeasured future score would have been. MAR is the working assumption for MMRM and multiple imputation.
+- **Missing Not at Random (MNAR):** missingness depends on the unobserved outcome itself. A patient stops reporting because they are feeling worse than what their last observed score reflects. This is the problematic case: no analysis fully corrects for MNAR without additional assumptions.
+
+### Multiple Imputation
+
+Multiple imputation (MI) creates several (typically 20-100) complete datasets by drawing from the predictive distribution of missing values given observed data, analyzes each complete dataset separately, and combines results using Rubin's rules [@rubin1987multiple]. Under MAR, MI produces valid estimates. Under MNAR, MI under MAR can be biased in either direction (it overstates the benefit if treated patients who drop out fare worse than similar treated patients who stay, and understates it if placebo patients who drop out do), which is why MNAR sensitivity analyses are required.
+
+### Sensitivity Analyses
+
+Regulators expect primary analyses that assume MAR to be accompanied by sensitivity analyses that explore MNAR scenarios. A *tipping point analysis* asks how extreme the unobserved outcomes would have to be before the treatment effect stops being significant; if the answer is unrealistically bad outcomes for dropouts in the treatment arm, the MAR result is robust. *Pattern mixture models* specify different outcome distributions for different dropout patterns (dropouts for adverse events versus dropouts for lack of efficacy, say) and check sensitivity to plausible MNAR assumptions. *Reference-based imputation* imputes missing treatment-arm outcomes using the control arm distribution (the conservative "jump-to-reference" assumption for withdrawals), directly encoding the estimand strategy for treatment discontinuation.
+
+## Group-Sequential Designs and Alpha Allocation {#sec-alpha-spending}
+
+Take a fixed 400-patient trial and add planned interim looks at 200 and 300 patients before the final analysis. You now have three opportunities to declare superiority (or to stop for futility) instead of one, and three opportunities for a false positive: applying the same $\alpha$ threshold (0.025) at each of the three looks raises the experiment-wide false-positive rate above 2.5%. Group-sequential testing [@jennison_turnbull_2000], the oldest and most widely adopted form of interim flexibility in confirmatory trials, answers this by *allocating* alpha across the looks so the total remains 2.5%. Two boundary families dominate practice:
+
+**O'Brien-Fleming boundaries** [@obrien1979multiple] spend very little alpha early, requiring an extremely stringent threshold at interim looks (roughly $p < 0.003$ at the halfway point) while preserving a final threshold close to the unadjusted 0.025. The intuition: a finding that clears a very high early bar is convincing; a finding that merely clears the standard bar at the end requires no sacrifice. That familiar final threshold is why they are common in Phase III trials.
+
+**Pocock boundaries** [@pocock1977group] distribute alpha more evenly across looks, making early stopping considerably easier but depressing the final threshold. The same nominal threshold applies at every look: crossing it at an interim analysis justifies stopping early for efficacy, and a trial that runs to the end must clear the same stricter threshold, so a final result that would have sufficed in a fixed-sample trial can fall short.
+
+The **Lan-DeMets alpha-spending function** [@lan1983discrete] generalizes both into a single flexible framework: alpha is allocated as a smooth function of the information fraction (the proportion of patients enrolled or events observed), with neither the number nor the timing of interim analyses fixed in advance, provided the timing is not chosen in response to the comparative results. That is why it is now the workhorse of Phase III interim planning. Real interim dates depend on enrollment rate and event accumulation, not on a calendar set at protocol writing.
+
+::: {.callout-tip title="Alpha is distributed, not consumed"}
+Interim looks are widely believed to "cost alpha" or impose a "penalty." They do not. Alpha is *distributed* across analyses, not spent irrecoverably: you still have 2.5% experiment-wide Type I error, allocated to different timepoints. A final nominal threshold of 0.021 instead of 0.025 records where the rest of it went.
+
+What requires adjustment is the *action* taken in response to the interim data. Stopping early for superiority spends alpha for that possibility. Stopping early for futility does not: it *deflates* rather than inflates Type I error. A DSMB monitoring a trial for safety without unblinding the sponsor does not touch alpha at all.
+:::
+
+**Futility rules** are pre-specified stopping criteria that end a trial when interim evidence is sufficiently discouraging. Well-designed rules are based on predictive probability (see @sec-predictive-prob): given the data so far, what is the probability that continuing to the planned sample size would succeed? If that probability falls below a threshold (typically 10-20%), continuing may be difficult to justify. The threshold cuts both ways: an aggressive one may prematurely terminate a trial that would ultimately have succeeded; a conservative one may waste resources. Calibration comes from simulation across plausible effect-size scenarios.
+
+A recurring design trap: a trial reaches an interim with borderline results, and the sponsor considers extending enrollment to "wash out" an unfavorable trend. Without pre-specification, that inflates Type I error. The *promising zone* design [@mehtapocock2011promzone] is a pre-specified version of that extension: it allows sample-size expansion when interim conditional power falls within a defined range, with no additional alpha adjustment. Comparative simulations [@jennison_turnbull_2015] suggest that a well-built group-sequential design with futility rules can match or exceed the standard promising-zone design's efficiency (higher power at lower average sample size) under many assumptions, though an optimally tuned promising-zone design can narrow the gap. Either way, the flexibility has to be in the design before the interim arrives.
+
+@sec-phase3-interims introduces these concepts in the setting of Phase III planning, and @sec-adaptive-bayesian covers their Bayesian analogs.
+
+## SMART Designs and Dynamic Treatment Regimes
+
+Depression, substance use disorders, cancer, HIV, and chronic pain are not cured by a single fixed treatment. Each requires a *sequence*: what to start with, whether to switch if the initial treatment fails, and what to switch to. A standard RCT comparing Treatment A versus Treatment B answers which starting treatment is better on average. It does not tell you what to do next for the patients who do not respond.
+
+A *Dynamic Treatment Regime* (DTR) is a sequence of decision rules, each mapping a patient's current status (clinical state, response to prior treatment, biomarkers) to a treatment action. DTRs are the formal statistical representation of how clinicians actually practice: "start with drug A; if patient has not responded at week 8, augment with drug B or switch to drug C."
+
+### The SMART Design
+
+A *Sequential Multiple Assignment Randomized Trial* (SMART) produces the data for comparing embedded DTRs, with clean randomization at each decision stage [@murphy2005smart; @lavori2000dynamic]. In a common two-stage SMART, patients are first randomized to one of two (or more) initial treatments. After an assessment of response (typically at a clinically meaningful timepoint), patients who responded continue; non-responders are *re-randomized* to one of two (or more) salvage or augmentation options. The result is a tree of sequences: A then augmentation X for non-responders, A then a switch to Y, B then X, and so forth. Each branch defines an *embedded DTR*.
+
+The advantage over a factorial or crossover design is clinical realism: stage-two randomization depends on response status, so each patient is randomized only among options that make clinical sense for them. Non-responders are re-randomized among salvage or augmentation options; responders continue their initial treatment or, when the best maintenance approach is uncertain, are re-randomized among maintenance options, as in the ExTENd trial described below.
+
+Comparing embedded DTRs requires weighted analysis: responders are consistent with more than one embedded regime, because in the design above they are not re-randomized, while each re-randomized non-responder is consistent with only one, so patients follow a given regime with unequal probability (one half for responders, one quarter for non-responders in a prototypical two-stage SMART). Inverse probability weighting (IPW) or doubly-robust estimators correctly account for this. The estimand is the *mean outcome under the DTR if applied to all patients in the target population*, a well-defined causal quantity.
+
+Sample size for a SMART depends on which comparison is primary, as well as on the effect size and the correlation between stages. A comparison of the initial treatments uses every patient and needs the same enrollment as a standard two-arm RCT, while a comparison of stage-two options uses only the non-responders (in the design above, the only patients re-randomized), so the two-arm enrollment must be divided by the non-response rate [@almirall_smart_2014]. A comparison of embedded DTRs needs more patients than a two-arm trial with the same effect size, because each re-randomized non-responder follows only one of the regimes that start with their initial treatment. Murphy (2005) provides the foundational sample size framework for SMART designs [@murphy2005smart].
+
+### Key Applications
+
+In the ADHD SMART of Pelham et al. (2016), children were randomized to begin with low-dose medication or behavioral intervention, and non-responders were re-randomized to intensify that modality or add the other [@pelham2016adhd]. The trial found that starting with behavioral intervention and augmenting with medication for non-responders produced better outcomes than starting with medication, and did so with less overall medication exposure: a clinically actionable DTR comparison.
+
+The Sequenced Treatment Alternatives to Relieve Depression trial (STAR*D; Rush et al., 2004) was a multi-stage "real-world" depression study in which patients who did not achieve remission at each stage were offered progressively different treatment options [@rush2004star_d]. Sequential randomization was optional at each stage, so it was not a formally pre-specified SMART, but it provided the foundational data motivating the SMART framework in psychiatry and generated the hypothesis that most patients who will ultimately achieve remission do so within two or three medication steps [@rush2006stard].
+
+ExTENd (Oslin et al.), the Extending Treatment Effectiveness of Naltrexone study, is a SMART for alcohol use disorder in which all participants began naltrexone and were randomized to a stringent or a lenient definition of early non-response, with non-responders then re-randomized between combined behavioral intervention alone and combined behavioral intervention plus naltrexone, and responders re-randomized between naltrexone alone and naltrexone plus telephone disease management. It demonstrated that the DTR comparison could be operationalized in outpatient substance use settings [@nahumshani2017smart].
+
+### When SMART Designs Are Appropriate
+
+A SMART earns its complexity on four conditions: the clinical uncertainty is about sequencing, not only about which treatment to start with; the re-randomization timepoint corresponds to a meaningful clinical decision window; non-response to the initial treatment is common enough to power stage-two comparisons; and the scientific questions concern how to build a DTR, whether the primary aim compares initial treatments, stage-two options, or whole embedded DTRs. Where most patients respond to the initial treatment and sequencing rarely arises, a standard RCT is more efficient and the SMART's operational complexity (tracking response status, executing stage-two randomization in real time) buys nothing.
+
+## Causal Inference: From Trials to Real-World Evidence
+
+Randomization balances confounders, measured and unmeasured, in expectation (any imbalance in a particular trial arises by chance, not from how patients were assigned), which is why the randomized trial is the gold standard for causal treatment effects. Where randomization is not possible (rare diseases, historical comparisons, post-marketing effectiveness), causal inference methods attempt to recover valid treatment comparisons from observational data. The vocabulary follows; @sec-rwe-external-controls has the full regulatory and design framework for using real-world evidence in drug development.
+
+### The Potential Outcomes Framework
+
+The potential outcomes (Rubin causal model) framework [@rubin1974estimating] defines the causal effect of treatment at the individual level as the difference between what would have happened to a patient under treatment and what would have happened under control: two *potential outcomes*, only one of which is ever observed (the *fundamental problem of causal inference*). The average treatment effect (ATE) averages those individual-level differences across the population.
+
+ITT analysis in a randomized trial estimates the ATE under the treatment-policy estimand: it compares what happened to patients *assigned* to treatment with what happened to patients *assigned* to control, averaged over the entire population including non-compliers. When compliance is high, the ITT effect closely approximates the effect of treatment actually received. When non-compliance is substantial, the *complier average causal effect* (CACE, or local average treatment effect, LATE) can be estimated via instrumental variables (IV), using randomization as the instrument.
+
+### Propensity Score Methods
+
+In observational data, treatment assignment is not random. *Propensity score* methods [@rosenbaum1983propensity] use the estimated probability of receiving treatment given observed covariates to balance groups, and they come in three forms. *Matching* pairs each treated patient with one or more controls of similar propensity score: balance is verifiable, but the analysis shrinks to the matched pairs and many patients can be discarded. *Inverse probability weighting* (IPW) weights each patient by the inverse of their probability of receiving the treatment they actually received, creating a pseudo-population where treatment is independent of covariates; it retains all patients but is sensitive to extreme weights when propensity scores are near 0 or 1. *Stratification*, or subclassification, estimates treatment effects within strata defined by propensity score quintile, a rougher approach with less bias reduction than matching or IPW.
+
+All three balance only on *observed* covariates. Unmeasured confounding, the persistent concern in any observational analysis, survives propensity scoring untouched, which is why a sensitivity analysis for it (E-values [@vanderweele2017sensitivity], for instance) should accompany any causal claim from a propensity-based analysis. The E-value is the minimum strength of association, on the risk ratio scale, that an unmeasured confounder would need to have with both treatment and outcome to explain away the observed association.
+
+### Target Trial Emulation
+
+*Target trial emulation* [@hernan2016using] designs an observational analysis to explicitly mimic a hypothetical randomized trial. The analyst specifies the target trial's eligibility criteria, treatment strategies, assignment mechanism, outcomes, follow-up, and estimand, then checks whether these elements can be credibly emulated with the available observational data. That discipline forces analytic decisions (e.g., the time zero for follow-up, which patients qualify as eligible, how to handle time-varying treatment) that are often made implicitly and inconsistently in ad hoc observational analyses. Common biases (immortal time bias, selection bias at time zero, depletion of susceptibles) become visible and correctable when mapped against the target trial template.
+
+It is increasingly used for post-marketing effectiveness studies comparing two approved drugs where no RCT exists, for historical comparisons in rare disease programs, and to inform the design of prospective trials by estimating likely effect sizes and population characteristics from existing registries.
+
+### Marginal Structural Models
+
+When treatment is time-varying and affected by prior outcomes (e.g., a patient's dose is adjusted based on their response), standard regression confounds the treatment effect with the confounding pathway that runs through time-varying covariates. *Marginal structural models* (MSMs) [@robins2000marginal], fit using IPW with time-varying weights, handle this correctly by modeling the *marginal* (population-averaged) treatment effect in a population where, by weighting, all patients had equal probability of being on each treatment at each time.
+
+MSMs answer questions like "What would have happened to this patient population if everyone had maintained continuous antiretroviral therapy, compared to a policy of interrupting therapy when CD4 counts exceeded a threshold?" (a question that standard adjusted regression cannot answer because CD4 count is simultaneously a confounder and a mediator).
+
+---
+
+Every method here serves one goal: valid inference about treatment effects under uncertainty, whether the data come from a randomized trial with missing data, an adaptive trial with pre-specified interim rules, or an observational database where nobody was randomized. @sec-adaptive-bayesian extends the toolkit with Bayesian methods, which update probability estimates as evidence accumulates and can carry prior information about treatment effects.
+
+::: {.callout-note title="Discussion Questions"}
+1. A Phase III trial for a novel PD-L1 inhibitor in second-line hepatocellular carcinoma uses overall survival as its primary endpoint and pre-specifies the log-rank test. At the time of analysis, the Kaplan-Meier curves separate at month 6, converge at month 12, and then diverge again in favor of the experimental arm. The log-rank test is not significant (p = 0.08). What does this tell you about the proportional hazards assumption, and what alternative analysis approaches (restricted mean survival time, weighted log-rank, landmark analysis) could be pre-specified to handle this pattern without inflating Type I error?
+
+2. A sponsor is designing a 52-week antidepressant trial in treatment-resistant depression with an expected 40% dropout rate. The ICH E9(R1) estimands framework requires explicit handling of treatment discontinuation. Compare the treatment policy strategy and the hypothetical strategy as the primary estimand: what different clinical questions do they answer, what are their respective data requirements, and how does your choice affect the labeling claim you can support?
+
+3. A tipping-point sensitivity analysis for a chronic pain trial shows that the primary MMRM result (p = 0.03) would flip to non-significance only if the mean of unobserved outcomes in the treatment arm were 2.8 standard deviations worse than the observed completer mean. How should a clinical reviewer interpret this threshold, and under what circumstances would you consider this result robust versus still uncertain?
+
+4. A SMART design for an anxiety disorder population estimates that 35% of patients will be classified as non-responders at the stage-one re-randomization. The target effect size for the DTR comparison is a 0.35-unit difference on a validated symptom scale, with a standard deviation of 1.2. Why does the non-responder proportion directly determine required enrollment rather than only the stage-two sample size, and what is the role of inverse probability weighting in ensuring a valid DTR comparison?
+
+5. A propensity-score-matched observational study reports that patients who received Drug A had a 22% lower rate of major cardiovascular events than those who received Drug B (HR 0.78, 95% CI 0.67-0.91). The authors report an E-value of 1.9, computed by treating the hazard ratio as a risk ratio. A reviewer argues this is insufficient to rule out unmeasured confounding. Construct the strongest possible argument that the result is robust and the strongest possible argument that it is not, using the E-value and the study design features.
+:::
+

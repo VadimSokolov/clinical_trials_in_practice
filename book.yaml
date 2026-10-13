@@ -1,0 +1,167 @@
+# book.yaml: the facts about the book, kept in one place.
+# bookrepo.py generates RESULTS.md, CITATION.cff, the README block and the summary blocks from this file and results.yaml.
+# The books website reads it too. Guide: references/repository.md of the book-writing skill.
+
+slug: clinical_trials_in_practice                     # lowercase letters, digits and underscores; also the name of the book's page on the site (provisional: see misc/catalog/QUESTIONS.md, Q2)
+title: "Clinical Trials in Practice"
+subtitle: "From Foundations to AI Agents"
+authors:
+  - given: "Alexandra"
+    family: "Sokolova"
+    orcid: ""                    # 0000-0000-0000-0000
+    affiliation: "Oregon Health and Science University"
+  - given: "Vadim"
+    family: "Sokolov"
+    orcid: ""                    # 0000-0000-0000-0000
+    affiliation: "George Mason University"
+credit_names: "Sokolova and Sokolov"                 # how a citation names the authors, e.g. "Polson and Sokolov"; empty: built from the family names
+year: 2026
+edition: "1"
+version: "1.0.0"                 # the release tag is v<version>
+date_released: "2026-10-12"     # YYYY-MM-DD, set at release
+publisher: "Independently published"   # the imprint KDP shows for its free ISBN
+# no isbn: a free KDP ISBN may be used only on KDP, so it goes on the ISBN line of kdp.md (private) and is printed
+# only in the print edition (kdp.py interior); this file is published (references/publishing.md)
+doi: "10.5281/zenodo.23330460" # this edition's DOI; zenodo.py reserve writes it before the final build
+license_text: CC-BY-4.0          # text, figures and PDF
+license_code: MIT
+repository: https://github.com/VadimSokolov/clinical_trials_in_practice   # the public repository; its name is the slug
+site_page: https://vsokolov.org/books/clinical_trials_in_practice/    # the book page on the website; the PDF is served next to it
+html_url: https://vsokolov.org/clinical_trials_in_practice/    # the HTML edition, served by GitHub Pages of the book's own repository (the authors, 12 Oct 2026); follows the repository name
+language: en
+print_url: ""                    # where to buy the printed book (optional)
+cover_image: pdf/cover.jpg               # front cover image (PNG or JPEG, about 1600 px tall) in the repository, e.g. pdf/cover.png
+pdf: pdf/clinical_trials_in_practice.pdf              # the released PDF; bookrepo.py pdf copies the build here
+keywords:
+  - clinical trials
+  - Phase III trials
+  - clinical trial operations
+  - adaptive trial design
+  - Bayesian clinical trials
+  - Good Clinical Practice
+  - regulatory submission
+  - trial master file
+  - clinical data management
+  - drug development
+  - real world evidence
+  - AI agents in clinical research
+short_description: "A practical guide to clinical trials as science and as regulated operations: the phases, statistics and design, the daily work of a Phase III study, regulatory submission, and where AI agents belong in clinical development."
+description: |
+  Clinical trials are how medicine finds out what works, and they are slow, expensive, and tightly regulated. A well run trial can show that a treatment extends life or eases suffering. A poorly designed one can hide a real benefit, miss a serious harm, or spend years and produce nothing usable.
+
+  This book treats clinical trials as science and as regulated operations, and it gives Phase III the most room, because that is where approval is won or lost. It starts with how clinical research took its present shape, the drug development lifecycle, the regulatory frame, and the ethics of research with human subjects. It then follows a compound through the economics of development and Phases I to IV. The core of the book is the confirmatory trial: statistical foundations, adaptive and Bayesian designs, study design, real world evidence, randomization, endpoints, site selection, recruitment, logistics, data management, monitoring, safety reporting, essential documents, and the systems underneath. The closing chapters cover trial closeout, the clinical study report, and regulatory submission.
+
+  Methodology, operations, and technology are treated together. Where the book turns to automation and AI agents, one test applies: the tool must stand up in an inspection, with validation, governance, and a named person accountable for each decision.
+
+  It is written for medical directors, study managers, investigators and site staff, and for students and managers deciding whether AI has a place in regulated research.
+source:
+  format: quarto
+  dir: .
+  main: index.qmd
+  aux: index.aux       # kept by the PDF build when _quarto.yml sets latex-clean: false
+  toc: index.toc
+  pdf: _book-kdp/Clinical-Trials-in-Practice.pdf  # the 7 x 10 in build (QUARTO_PROFILE=kdp, _quarto-kdp.yml); bookrepo.py pdf copies it to pdf above
+  meta: bookmeta.yml   # generated: book-doi, book-version ...; list it under metadata-files in _quarto.yml
+macros: ""                       # the file that defines the book's macros, e.g. source/main.tex
+code_dir: ""                     # the book has no code of its own
+environments: {}                 # printed names that \newtheorem does not declare, e.g. {thm: Theorem}
+related_papers: []               # the authors' own papers that results come from; KEY is used in results.yaml origin
+#  - key: smith2026x
+#    citation: "Smith and Jones (2026), Title of the paper, arXiv:2601.00001"
+#    url: https://arxiv.org/abs/2601.00001
+# bookrepo.py scan prints this list from the build; a key of capital letters is an appendix (appendix: true or false overrides)
+chapters:
+  - key: "1"
+    title: "Historical Context and Evolution"
+    stem: 01_historical_context_and_evolution
+  - key: "2"
+    title: "Lifecycle of a Clinical Trial"
+    stem: 02_lifecycle_of_a_clinical_trial
+  - key: "3"
+    title: "Regulatory Framework"
+    stem: 03_regulatory_framework
+  - key: "4"
+    title: "Ethical Principles"
+    stem: 04_ethical_principles
+  - key: "5"
+    title: "Overview of Drug Development"
+    stem: 05_overview_of_drug_development
+  - key: "6"
+    title: "Economics of a Trial"
+    stem: 06_economics_of_a_trial
+  - key: "7"
+    title: "Phase I: Human Pharmacology"
+    stem: 07_phase_i_human_pharmacology
+  - key: "8"
+    title: "Phase II: Exploratory"
+    stem: 08_phase_ii_exploratory
+  - key: "9"
+    title: "Phase III: Confirmatory"
+    stem: 09_phase_iii_confirmatory
+  - key: "10"
+    title: "Phase IV: Post-Marketing Studies and Surveillance"
+    stem: 10_phase_iv_post_marketing_studies_and_surveillance
+  - key: "11"
+    title: "Statistical Methods for Clinical Trials"
+    stem: 11_statistical_methods_for_clinical_trials
+  - key: "12"
+    title: "Adaptive and Bayesian Trial Design"
+    stem: 12_adaptive_and_bayesian_trial_design
+  - key: "13"
+    title: "Study Design"
+    stem: 13_study_design
+  - key: "14"
+    title: "Real-World Evidence and Evidence Integration"
+    stem: 14_real_world_evidence_and_evidence_integration
+  - key: "15"
+    title: "Protocol Design Benchmarks"
+    stem: 15_protocol_design_benchmarks
+  - key: "16"
+    title: "Randomization and Blinding"
+    stem: 16_randomization_and_blinding
+  - key: "17"
+    title: "Endpoints and Outcomes"
+    stem: 17_endpoints_and_outcomes
+  - key: "18"
+    title: "Site Selection and Feasibility"
+    stem: 18_site_selection_and_feasibility
+  - key: "19"
+    title: "Patient Recruitment and Retention"
+    stem: 19_patient_recruitment_and_retention
+  - key: "20"
+    title: "Logistics and Project Management"
+    stem: 20_logistics_and_project_management
+  - key: "21"
+    title: "Data Management"
+    stem: 21_data_management
+  - key: "22"
+    title: "Clinical Monitoring"
+    stem: 22_clinical_monitoring
+  - key: "23"
+    title: "Safety Monitoring and Reporting"
+    stem: 23_safety_monitoring_and_reporting
+  - key: "24"
+    title: "Essential Documents and the Trial Master File"
+    stem: 24_essential_documents_and_the_trial_master_file
+  - key: "25"
+    title: "Clinical Trial IT Infrastructure"
+    stem: 25_clinical_trial_it_infrastructure
+  - key: "26"
+    title: "AI Agents in Clinical Development"
+    stem: 26_ai_agents_in_clinical_development
+  - key: "27"
+    title: "Trial Closeout and Analysis"
+    stem: 27_trial_closeout_and_analysis
+  - key: "28"
+    title: "The Clinical Study Report"
+    stem: 28_the_clinical_study_report
+  - key: "29"
+    title: "Regulatory Submission"
+    stem: 29_regulatory_submission
+  - key: "30"
+    title: "Glossary and Abbreviations"
+    stem: 30_glossary_and_abbreviations
+style:
+  forbid: ["—", "–"]             # characters that may not appear in published text
+  no_hyphenated_words: true
+  allow_hyphenated: ["Post-Marketing", "Real-World", "Real-Time", "Brien-Fleming", "CONSORT-AI", "E-value", "E-values", "I-SPY", "James-Stein", "Kaplan-Meier", "Kefauver-Harris", "Lan-DeMets", "log-rank", "MCP-Mod", "p-value", "REMAP-CAP", "SPIRIT-AI", "VALIDATE-SWEDEHEART"]   # words that keep their hyphen: names, fixed terms and the chapter titles that carry one

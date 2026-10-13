@@ -1,0 +1,37 @@
+# Preface {.unnumbered}
+
+A compound that looked decisive on the bench can still turn out inert, unsafe, or no better than placebo in real people. Laboratory results do not settle what helps patients. The clinical studies that do are large, slow, expensive, and tightly regulated. There is no substitute for them.
+
+A well-run trial can show that a treatment extends life or eases suffering. A poorly designed one can hide a real benefit, miss a serious harm, or burn years and produce nothing usable. When you account for failed programs and the decade of capital tied up along the way, bringing a drug to market costs billions of dollars [@tufts_cost_2016].
+
+The work is also getting harder. Trials enroll fewer patients, with tighter entry criteria, because the diseases are rarer or the treatments more selective, while the protocols grow denser: biomarkers, multiple arms, sites across many countries. Adaptive designs, Bayesian methods, and master protocols exist to meet that pressure. They work only when the planning and oversight are as serious as the mathematics.
+
+This book treats clinical trials as science and as regulated operations, and it gives Phase III the most room, because that is where approval is won or lost. Methodology, operations, and technology are treated together, not as separate subjects. Where it turns to automation and AI, one test applies: the tool must stand up in an inspection. Without validation, governance, and a named person accountable for the decision, it does not belong.
+
+## Who This Book Is For
+
+Medical directors, study managers, and others in clinical development who need design, execution, and technology in one place. Investigators and site staff who want to understand what sponsors mean by quality. Students and managers deciding whether AI has a place in regulated research.
+
+## Organization
+
+**Part I: Foundations** covers how clinical research took its present shape, where a trial sits in drug development, the regulatory frame, and the ethics of research with human subjects.
+
+**Part II: Clinical Trial Phases** takes up development economics and the aims, designs, and decision points from Phase I through Phase IV.
+
+**Part III: Phase III Deep Dive** is the core of the book: confirmatory methods and the daily work of a study, from design and endpoints through sites, data, monitoring, safety, and documents, then the systems and automation underneath that work.
+
+**Part IV: Trial Completion and Beyond** ends with closeout, the clinical study report, and submission: the last steps that decide whether years of clinical work become an approved medicine.
+
+---
+
+Copyright © {{< meta book-year >}} Alexandra Sokolova and Vadim Sokolov. First edition, {{< meta book-year >}}.
+
+::: {.content-visible when-meta="book-has-isbn"}
+Paperback ISBN: {{< meta book-isbn >}}
+:::
+
+::: {.content-visible when-meta="book-has-doi"}
+Digital Object Identifier (DOI): [{{< meta book-doi >}}](https://doi.org/{{< meta book-doi >}})
+:::
+
+License: distributed under the Creative Commons Attribution 4.0 International License (CC BY 4.0), <https://creativecommons.org/licenses/by/4.0/>: you may copy, share and adapt this book for any purpose, provided you credit the authors. The code is released under the MIT License.

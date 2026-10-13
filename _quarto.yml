@@ -1,0 +1,107 @@
+project:
+  type: book
+  output-dir: _book
+# execute:
+#   cache: true
+#   freeze: auto
+book:
+  title: "Clinical Trials in Practice"
+  subtitle: "From Foundations to AI Agents"
+  description: "A practical introduction to clinical trial methodology, from foundations through Phase III operations, with a modern view on AI agents in clinical development."
+  site-url: https://vsokolov.org/clinical_trials_in_practice/
+  cover-image: cover/cover.png
+  cover-image-alt: "Cover for Clinical Trials in Practice: From Foundations to AI Agents"
+  open-graph: true
+  twitter-card: true
+  author:
+    - name: Alexandra Sokolova
+      affiliation: Oregon Health and Science University
+    - name: Vadim Sokolov
+      affiliation: George Mason University
+  date: today
+  chapters:
+    - index.qmd
+    - part: "Part I: Foundations of Clinical Trials"
+      chapters:
+        - 01-history.qmd
+        - 02-lifecycle.qmd
+        - 03-regulatory.qmd
+        - 04-ethics.qmd
+    - part: "Part II: Clinical Trial Phases"
+      chapters:
+        - 05-drug-development.qmd
+        - 06-economics.qmd
+        - 07-phase1.qmd
+        - 08-phase2.qmd
+        - 09-phase3-overview.qmd
+        - 10-phase4.qmd
+    - part: "Part III: Phase III Deep Dive"
+      chapters:
+        - 11-statistical-foundations.qmd
+        - 11-statistical-methods.qmd
+        - 12-study-design.qmd
+        - 12b-rwe-external-controls.qmd
+        - 13-protocol-benchmarks.qmd
+        - 14-randomization.qmd
+        - 15-endpoints.qmd
+        - 16-site-selection.qmd
+        - 17-recruitment.qmd
+        - 18-logistics.qmd
+        - 19-data-management.qmd
+        - 20-monitoring.qmd
+        - 21-safety.qmd
+        - 22-essential-docs.qmd
+        - 23-clinical-it.qmd
+        - 24-ai-agents.qmd
+    - part: "Part IV: Trial Completion and Beyond"
+      chapters:
+        - 25-closeout.qmd
+        - 26-csr.qmd
+        - 27-regulatory-submission.qmd
+
+    - part: "Appendices"
+      chapters:
+        - appendix-glossary.qmd
+
+    - references.qmd
+
+bibliography: references.bib
+
+metadata-files:
+  - bookmeta.yml
+
+filters:
+  - misc/mermaid-width.lua
+  - misc/callout-pdf.lua
+  - misc/table-longtoken-wrap.lua
+
+format:
+  html:
+    theme: cosmo
+    mainfont: 'Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua, Georgia, serif'
+    code-fold: true
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    number-sections: true
+    number-depth: 2
+    crossref:
+      chapters: true
+  pdf:
+    documentclass: krantz
+    classoption: [krantz2]
+    fontsize: 11pt
+    fig-width: 5.5
+    fig-height: 3
+    number-sections: true
+    number-depth: 2
+    keep-tex: true
+    latex-clean: false
+    pdf-engine: xelatex
+    code-overflow: wrap
+    include-in-header:
+      - file: misc/preamble.tex
+
+# Global mermaid configuration (neutral = white/gray, no colored fills)
+mermaid:
+  theme: neutral 

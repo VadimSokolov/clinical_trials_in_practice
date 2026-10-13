@@ -1,0 +1,117 @@
+# Historical Context and Evolution {#sec-history}
+
+The rules that govern clinical trials were not written in the abstract. They were written after people were harmed. A liquid antibacterial mixed with a toxic solvent killed more than a hundred patients in 1937, many of them children. Nazi physicians ran experiments on concentration camp prisoners without consent. In Tuskegee, researchers watched syphilis progress in Black men for forty years and, once penicillin was the cure, kept it from them. Thalidomide left thousands of infants with ruined limbs after their mothers took it for morning sickness. Each failure forced a new protection into law or ethics: safety testing before marketing, voluntary consent, independent review, proof of efficacy. The protocols, monitors, and oversight committees of the modern trial are scar tissue from wounds inflicted on subjects who had no voice.
+
+## The Elixir Sulfanilamide Disaster (1937)
+
+Sulfanilamide worked. To reach patients who had difficulty swallowing tablets, the S.E. Massengill Company dissolved the antibacterial in diethylene glycol, a sweet-tasting but toxic industrial solvent related to the ethylene glycol used in antifreeze. What followed was the first disaster to show that commercial drug manufacturing without safety testing could kill on a large scale [@elixir1937].
+
+The Secretary of Agriculture's report to Congress traced the deaths to a gap in the law [@elixir1937]:
+
+> "Before the 'elixir' was put on the market, it was tested for flavor but not for its effect on human life. The existing Federal Food and Drugs Act does not require that new drugs be tested before they are placed on sale."
+
+The chief chemist testified that *no tests were made to determine the toxicity* of either the separate ingredients or of the finished product [@elixir1937]. The "control laboratory" checked the elixir for *appearance, flavor, and fragrance*, not for safety. The formula used (see @tbl-elixir-formula) was:
+
+| Ingredient | Amount |
+|------------|--------|
+| Sulfanilamide | 58.5 pounds |
+| Diethylene Glycol | 60 gallons |
+| Elixir Flavor | 1 gallon |
+| Raspberry Extract | 1 pint |
+| Saccharin Soluble | 1 pound |
+| Amaranth Solution 1-16 | 1.5 pints |
+| Caramel | 2 fluidounces |
+| Water | to make 80 gallons total |
+
+: Elixir Sulfanilamide Formula (1937) {#tbl-elixir-formula tbl-colwidths="[50,50]"}
+
+The product was labeled simply as "Elixir Sulfanilamide," with no disclosure of diethylene glycol and no warning of danger, and most of it was administered on physicians' prescriptions [@elixir1937]. Of the 240 gallons manufactured and distributed, all but about 6 gallons were recovered before they could be consumed; that small quantity was enough to kill, and the report to Congress counted 93 deaths in fifteen states as it was written in late 1937 [@elixir1937]. The final toll is generally put at more than 100 people, many of them children [@fda_sulfanilamide_history].
+
+Seizure had to rest on a technicality: the word "elixir" implies an alcoholic solution, but this product was a diethylene glycol solution. Had it been called a "solution," no charge could have been brought.
+
+Congress responded with the *Federal Food, Drug, and Cosmetic Act of 1938*, which for the first time required manufacturers to demonstrate the safety of new drugs before marketing them. The 1938 Act left the boundary between physician-prescribed and self-medication drugs unsettled; the *Durham-Humphrey Amendment of 1951* fixed that line in statute, defining which drugs require a practitioner's supervision and may be dispensed only on prescription [@durham_humphrey_1951].
+
+## The Nuremberg Code (1947)
+
+After the war, a U.S. military tribunal put 23 German physicians and administrators in the dock for war crimes and crimes against humanity, among them experiments on concentration camp prisoners, without consent, that caused suffering and death under the banner of medical science. Before naming who was guilty, the judges set down what lawful human research requires. That statement became the *Nuremberg Code*: ten principles forged in a criminal judgment [@nuremberg1949; @nuremberg_unc]. The first principle is still the one that matters most: no one may be enrolled without free, informed consent. The rest follow from it. The study must be worth doing, the risks must not outrun the possible gain, the investigators must be competent, and the subject must be free to walk away. If the experiment turns harmful, the physician in charge must stop it.
+
+## The Thalidomide Tragedy (1961-1962)
+
+FDA medical officer Dr. Frances Kelsey refused to approve thalidomide for marketing, citing insufficient safety data. The drug was already selling in Europe as a sedative for sleep and nausea, including morning sickness, and it caused severe birth defects, primarily phocomelia (limb malformations), in an estimated 10,000 infants worldwide. Kelsey's refusal kept it off the U.S. market; about 17 birth-defect cases were still reported from investigational use.
+
+The episode showed that proof of safety alone was not enough: drugs needed demonstrated *efficacy*, and there were still no systematic rules for studying drugs in pregnancy or for reporting adverse events. The *Kefauver-Harris Drug Amendments of 1962* followed directly (see @fig-regulatory-timeline). Manufacturers now had to prove efficacy as well as safety before marketing, and proof of efficacy had to rest on *substantial evidence* from *adequate and well-controlled* investigations: the statutory phrase that still anchors modern Phase III practice (@sec-phase3). Clinical pharmacologist Louis Lasagna was among those who pressed Congress for that standard, testifying that adequately controlled drug comparisons were almost impossible to find under the old regime [@junod_fda_trials_history]. The Amendments also established the formal Investigational New Drug (IND) application. Clinical work had to be grounded in prior animal studies, adverse reactions had to be reported, and research subjects had to give informed consent.
+
+```{mermaid}
+%%| label: fig-regulatory-timeline
+%%| fig-cap: "Timeline of Major Regulatory Milestones in Clinical Research"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 20, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 0, 'bottom': 0}}}}%%
+flowchart TB
+    subgraph r1[" "]
+        direction LR
+        Y1["<b>1937</b><br/>Elixir Sulfanilamide<br/>100+ deaths<br/>FD&C Act of 1938"] --> Y2["<b>1947</b><br/>Nuremberg Code<br/>ten principles<br/>established"] --> Y3["<b>1951</b><br/>Durham-Humphrey<br/>Amendment<br/>prescription vs OTC"] --> Y4["<b>1961-62</b><br/>Thalidomide tragedy<br/>An estimated 10,000<br/>birth defects<br/>Kefauver-Harris<br/>Amendments"]
+    end
+
+    subgraph r2[" "]
+        direction LR
+        Y5["<b>1964</b><br/>Declaration of<br/>Helsinki<br/>WMA guidelines"] --> Y6["<b>1974</b><br/>National Research<br/>Act<br/>National Commission<br/>created"] --> Y7["<b>1979</b><br/>Belmont Report<br/>three ethical<br/>principles"] --> Y8["<b>1991</b><br/>Common Rule<br/>Federal policy<br/>unified"]
+    end
+
+    subgraph r3[" "]
+        direction LR
+        Y9["<b>1996</b><br/>ICH E6 GCP<br/>Global<br/>harmonization"] --> Y10["<b>2022-25</b><br/>CTIS<br/>EU single<br/>submission system"] --> Y11["<b>2024</b><br/>FDA DCT<br/>guidance"] --> Y12["<b>2025</b><br/>ICH E6(R3)"]
+    end
+
+    r1 ~~~ r2
+    r2 ~~~ r3
+    style r1 fill:none,stroke:none
+    style r2 fill:none,stroke:none
+    style r3 fill:none,stroke:none
+```
+
+## The Declaration of Helsinki (1964)
+
+The Nuremberg Code came out of a criminal judgment. The Declaration of Helsinki came from the medical profession itself: the *World Medical Association (WMA)* adopted it in 1964 as detailed ethical guidance for physicians conducting medical research [@helsinki2013]. The 1964 text distinguished therapeutic from non-therapeutic research, required that studies rest on adequately performed laboratory and animal work and be conducted by scientifically qualified persons, and sharpened Nuremberg's vague proportionality principle into a more operationalized standard: research risk must be outweighed by the scientific importance of the objective.
+
+Several protections now regarded as central to the Declaration came later. Independent committee review of protocols before enrollment entered with the 1975 Tokyo revision, the conceptual ancestor of today's ethics committees and IRBs; explicit obligations around trial registration and the publication of results, including negative findings, were strengthened in the revisions of the 2000s. Revision has continued, most recently in 2024 [@helsinki_2025].
+
+## The Tuskegee Syphilis Study (1932-1972)
+
+Between 1932 and 1972, the U.S. Public Health Service conducted the Tuskegee Syphilis Study on approximately 600 low-income African-American men in rural Alabama (399 with syphilis and 201 controls without) to observe the natural progression of untreated syphilis. Participants were misled into believing they were being treated for "bad blood," a local catch-all that obscured syphilis. After penicillin became standard therapy in the mid-1940s, researchers both withheld it and blocked men from getting treatment elsewhere. The study ran until it was exposed in 1972.
+
+## The Belmont Report (1979)
+
+In response to Tuskegee and other ethical violations, the National Commission for the Protection of Human Subjects of Biomedical and Behavioral Research produced the *Belmont Report* in 1979 [@belmont1979]. Its three principles (@tbl-belmont-principles) still guide clinical research:
+
+| Principle | Core Requirement | Application to Research |
+|-----------|------------------|-------------------------|
+| *Respect for Persons* | Individuals should be treated as autonomous agents; persons with diminished autonomy are entitled to protection | *Informed consent*: Subjects must voluntarily agree to participate with full understanding of risks, benefits, and alternatives. Vulnerable populations require additional protections. |
+| *Beneficence* | Do not harm; maximize possible benefits and minimize possible harms | *Risk-benefit assessment*: Research risks must be reasonable in relation to anticipated benefits. Study design must maximize benefits and minimize risks. |
+| *Justice* | Fair distribution of research burdens and benefits | *Equitable subject selection*: The selection of research subjects must be fair. Those who bear the burdens should potentially benefit. Vulnerable groups should not be exploited. |
+
+: The Three Principles of the Belmont Report {#tbl-belmont-principles tbl-colwidths="[20,40,40]"}
+
+In the United States they became binding federal rules through the *Federal Policy for the Protection of Human Subjects*, the Common Rule, adopted in 1991 and codified for HHS [@cfr45_46]. It requires prior IRB review and approval, documented informed consent, and additional protections for pregnant women, prisoners, and children; at adoption it aligned those requirements across fifteen federal departments and agencies. For clinical investigations of drugs and devices, FDA imposes parallel obligations for informed consent and IRB review [@cfr21_50; @cfr21_56]. The 2018 revision, among other changes, generally requires a single IRB for U.S. multi-site research funded by Common Rule agencies and a concise "key information" section at the start of consent forms. How IRBs exercise that authority is taken up in @sec-ethics. Internationally, the Declaration of Helsinki and the CIOMS guidelines fill the corresponding ethical role.
+
+## ICH and Global Harmonization (1990s-Present)
+
+Pharmaceutical development had gone global; its standards had not. The *International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH)* was established in 1990 to bring together regulatory authorities and pharmaceutical industries from Europe, Japan, and the United States.
+
+### ICH E6 GCP
+
+The ICH *Guideline for Good Clinical Practice (E6)* was first adopted in 1996 as an international ethical and scientific quality standard for designing, conducting, recording, and reporting clinical trials [@ich_e6]. It rests on the Declaration of Helsinki, and it starts where this chapter started: subject welfare takes priority over scientific objectives. Risks must be justified by expected benefits; trials need clear protocols, qualified investigators, and documented consent. E6(R2) in 2016 added risk-based monitoring and quality management [@ich_e6r2_2016]. E6(R3) restructured GCP into Principles plus Annexes (*Quality by Design*, risk-proportionate oversight, decentralized trials, technology-neutral data standards); Principles and Annex 1 became effective in the EU on July 23, 2025, while Annex 2 (decentralized, pragmatic, and other non-traditional interventional trials) reached Step 4 in June 2026 and takes effect in the EU on January 15, 2027 [@ich_e6r3_2025; @ema_iche6r3_2024].
+
+## Recent Developments (2020s)
+
+COVID-19 forced sponsors and sites to improvise continuity (remote visits, local labs and care, shipment logistics, documented deviations), and FDA captured much of that practice in its public-health-emergency trial-conduct guidance [@fda_covid_conduct_2021]. What began as contingency stuck. FDA finalized *digital health technology* guidance for remote data acquisition in 2023 [@fda_dht_remote_2023], then in 2024 a framework for *decentralized elements* (telehealth, in-home visits, local healthcare providers, direct-to-participant investigational product, electronic consent) that treats decentralization as design choices, not a separate trial species [@fda_dct_guidance_2024].
+
+Method and evidence rules moved with the operations. Adaptive designs, already framed by FDA's 2019 guidance on pre-specified adaptations, integrity protections, and simulation of operating characteristics [@fda2019adaptive], gained a draft international counterpart in ICH E20 (Step 2b, June 2025) [@ich_e20]. Building on its 2010 device guidance [@fda_bayesian_devices_2010], FDA's January 2026 draft for drugs and biologics treats Bayesian primary inference, including borrowing from external information, as acceptable when sponsors pre-specify success criteria, justify priors, evaluate operating characteristics by simulation, plan sensitivity analyses for prior-data conflict, and document the work for review [@fda_bayesian_2026].
+
+Real-world data followed the same arc from permission to proof: 2023 guidance on using RWD/RWE for regulatory decisions [@fda_rwe_considerations_2023], then 2024 expectations for EHR and claims sources that demand provenance, completeness, linkage quality, and outcome ascertainment [@fda_rwd_ehr_claims_2024]. Master protocols and platforms, accelerated in the pandemic, drew their own FDA guidance on governance and multiplicity, issued as a draft in December 2023 and revised in June 2026 [@fda_master_protocols_2026].
+
+Who gets into trials became a statutory fight. FDORA (2022) required *Diversity Action Plans* for trials that start enrolling more than 180 days after FDA finalizes its guidance on them; FDA's 2024 draft said when and how [@fda_diversity_action_plans_2024]. After the January 2025 executive order on diversity programs, FDA pulled that draft from its website and restored it weeks later under court order [@fda_dap_status_2025]. The statutory deadline for the final guidance, June 26, 2025, passed with the draft still in place, so the requirement has yet to take effect [@fda_dap_status_2025; @fda_diversity_action_plans_2024]. A December 2025 final guidance on trial participation, revising older eligibility-criteria advice under a different mandate, kept the demand for representative enrollment while dropping the "diversity" label [@fda_eligibility_2025].
+
+Oversight got more analytical. Risk-based quality management and centralized monitoring now lean on statistical signals and machine learning to prioritize sites and source review [@acro_rbqm_2025]. The same stack is used for protocol drafting, feasibility, safety triage, and TMF work, and whatever it produces still has to be validated, attributable, and inspectable [@nist_ai_rmf_2023].
+
+In Europe, the 2020s turned the *Clinical Trials Regulation* (2014) into working infrastructure. The *Clinical Trials Information System (CTIS)* became the single submission and coordinated-assessment channel for multinational trials; it went live on January 31, 2022, became mandatory for new applications on January 31, 2023, and finished transitioning legacy trials by January 31, 2025 [@ema_ctr_ctis].
+
+Remote visits, CTIS portals, and model-assisted monitoring change how trials run. They do not change what the history in this chapter was for: keeping subjects from being harmed so that someone else can finish a study.

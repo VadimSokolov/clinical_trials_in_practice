@@ -1,0 +1,229 @@
+# Patient Recruitment and Retention {#sec-recruitment}
+
+A trial cannot succeed without patients. Getting enough of them, quickly enough, is one of the most persistent problems in clinical research. Enrollment periods projected to take months stretch into years. Sites expected to contribute dozens of patients contribute single digits. Some trials are abandoned altogether when enrollment proves impossible.
+
+The Forum on Drug Discovery, Development, and Translation identifies participant recruitment as one of the most "onerous" and high-risk steps in the entire development process, characterized by significant cost, time, and likelihood of failure [@wagner_4dm_2018]. Industry surveys have historically identified recruitment and staffing as the primary bottlenecks, but by 2024 the "Complexity of Clinical Trials" (38%) had overtaken recruitment and retention (36%), study start-up (35%), and site staffing (31%) as the top challenge facing research sites (@fig-wcg-challenges) [@wcg_site_challenges_2024]. Nearly half (47%) of all sites (and 50% of U.S. sites) reported that these operational challenges forced them to reduce the number of studies they agreed to participate in during the preceding year [@wcg_site_challenges_2024].
+
+Sites respond by adding capacity and by shedding work. Hiring additional staff (42%) and prioritizing training (36%) are the common answers, but many sites also elect to participate in fewer studies (27%) or to select trials with less complex designs (21%) to stay operationally viable [@fig-wcg-solutions].
+
+``` {r}
+#| label: fig-wcg-challenges
+#| fig-cap: "Top issues facing clinical research sites in 2024. Data from @wcg_site_challenges_2024."
+#| echo: false
+
+# Reproduced from WCG (2024) Clinical Research Site Challenges Report, Section 2
+library(ggplot2)
+
+data <- data.frame(
+  issue = factor(c("Complexity of Trials", "Recruitment & Retention", 
+                   "Study Start-up", "Site Staffing", 
+                   "Long Initiation Timelines", "Sponsor-provided Tech", 
+                   "Financial Mgmt & Payments"),
+                 levels = rev(c("Complexity of Trials", "Recruitment & Retention", 
+                                "Study Start-up", "Site Staffing", 
+                                "Long Initiation Timelines", "Sponsor-provided Tech", 
+                                "Financial Mgmt & Payments"))),
+  percentage = c(38, 36, 35, 31, 22, 19, 19)
+)
+
+ggplot(data, aes(x = percentage, y = issue, fill = percentage)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = paste0(percentage, "%")), hjust = -0.1, fontface = "bold", size = 3.5) +
+  scale_fill_gradient(low = "#00CED1", high = "#6B5B95", guide = "none") +
+  labs(x = "Percentage of Sites (%)", y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.y = element_text(hjust = 1, size = 10)
+  ) +
+  expand_limits(x = 45)
+```
+
+``` {r}
+#| label: fig-wcg-solutions
+#| fig-cap: "Solutions implemented by clinical research sites to combat operational challenges (2024). Data from @wcg_site_challenges_2024."
+#| echo: false
+
+# Reproduced from WCG (2024) Clinical Research Site Challenges Report, Section 8
+library(ggplot2)
+
+data <- data.frame(
+  solution = factor(c("Hiring additional staff", "Staff/PI training", 
+                      "Participating in fewer studies", "Implementing tech solutions", 
+                      "Selecting less complex designs", "Limiting therapeutic areas", 
+                      "Partnering with clinical services"),
+                    levels = rev(c("Hiring additional staff", "Staff/PI training", 
+                                   "Participating in fewer studies", "Implementing tech solutions", 
+                                   "Selecting less complex designs", "Limiting therapeutic areas", 
+                                   "Partnering with clinical services"))),
+  percentage = c(42, 36, 27, 22, 21, 18, 14)
+)
+
+ggplot(data, aes(x = percentage, y = solution)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  geom_text(aes(label = paste0(percentage, "%")), hjust = -0.2, fontface = "bold") +
+  labs(title = "Site Solutions to Operational Challenges (2024)",
+       x = "Percentage of Sites Implementing (%)",
+       y = NULL) +
+  theme_minimal() +
+  theme(plot.title.position = "plot") +
+  expand_limits(x = 50)
+```
+
+The pressure has been building for a long time. Trials have grown larger, target populations more specialized, and competition for the same subjects more intense; decades of Tufts CSDD benchmarking document steadily rising protocol complexity and enrollment targets, with more procedures and stricter eligibility criteria per study [@getz_protocol_benchmarks_2023; @tufts_csdd_2021]. Yet only a small fraction of eligible patients ultimately enroll, even though public-perception surveys consistently find that most people say they would be willing to consider a trial if asked. That gap between stated willingness and actual enrollment is what recruitment strategy exists to close.
+
+Slow recruitment has cascading consequences. Patients wait longer for therapies that might help them, sites stay open and under oversight while the budget runs, and every month of delay shortens the effective patent life of a drug that works. A prolonged enrollment period may also compromise scientific validity by introducing population heterogeneity.
+
+Start with the calculus each prospective participant faces, weighing perceived risks against potential benefits. Patients with serious illness may see a trial as their most promising treatment option; patients whose condition is already well managed weigh uncertain medical risks against the practical burden of frequent visits and travel. Altruism enters the calculation, and so does the patient's trust in the healthcare system, a trust that a community's historical experience with clinical research can shape.
+
+## Strategies for Recruitment
+
+Recruitment is an attrition problem. @fig-recruitment-funnel shows the shape: between the target population and the patients who actually enroll, a different barrier removes people at every stage. Reaching enough of them means working several channels at once (@tbl-recruitment-strategies).
+
+```{mermaid}
+%%| label: fig-recruitment-funnel
+%%| fig-cap: "Illustrative patient recruitment funnel (order-of-magnitude ranges; varies by indication and protocol)"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 35, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    subgraph row1[" "]
+        direction LR
+        A["Target Population<br/><i>100%</i>"] --> B["Aware of Trial<br/><i>≈10-20%</i>"] --> C["Express Interest<br/><i>≈5-10%</i>"] --> D["Pre-Screened<br/><i>≈3-7%</i>"]
+    end
+    
+    subgraph row2[" "]
+        direction LR
+        E["Full Screening<br/><i>≈2-5%</i>"] --> F["Eligible<br/><i>≈1-3%</i>"] --> G["Enrolled<br/><i>≈0.5-2%</i>"] --> H["Completed Trial<br/><i>≈0.4-1.5%</i>"]
+    end
+    
+    row1 --> row2
+```
+
+| Strategy | Description | Best For | Typical Cost |
+|----------|-------------|----------|--------------|
+| *Provider Referral* | Physicians identify/refer eligible patients | Specialty conditions; Established relationships | Low-Medium |
+| *Community Outreach* | Patient groups, advocacy organizations, support groups | Rare diseases; Close-knit patient communities | Low-Medium |
+| *Direct Advertising* | TV, radio, print, digital media | Large trials; Common conditions | High |
+| *Social Media* | Targeted campaigns on Facebook, Instagram, patient forums | Younger populations; Specific demographics | Medium |
+| *Registry Databases* | Pre-screened patient lists from research networks | Rare diseases; Longitudinal studies | Medium |
+| *Decentralized Elements* | Remote consent, telemedicine, home visits | Geographic barriers; Mobility-limited patients | Medium-High |
+
+: Recruitment Strategies Comparison {#tbl-recruitment-strategies tbl-colwidths="[25,35,25,15]"}
+
+*Provider referral* depends on a physician or other clinician spotting an eligible patient and raising the option. Because most patients are not actively seeking trials, provider engagement is a primary driver of enrollment; because busy clinicians may not think to mention a trial to an appropriate patient, education and reminders are part of the work. *Direct-to-patient advertising* goes around the clinic, using television and radio advertisements, online banner ads, social media campaigns, and search engine marketing, all of it subject to regulations governing what claims such advertising can make. *Decentralized trial elements* work on burden instead of awareness, bringing the trial to patients who cannot easily travel to a traditional research site.
+
+## AI/ML-Enabled Recruitment and Patient Engagement
+
+AI and machine learning can help recruitment along two routes: making eligibility and outreach *computable*, so that organizations can find potentially eligible participants in real-world data with less manual effort, and supporting scalable, consistent communication that reduces friction and helps sustain retention. Both are socio-technical systems whose value depends on data quality, workflow design, and human oversight, and both can introduce new risks if deployed without governance.
+
+### Making eligibility computable: feasibility and EHR-based identification
+
+Before outreach begins, sponsors and sites have to decide whether the protocol is operationally plausible at all: how many patients are likely to qualify at a site or network, and which criteria will drive the screen failures. Data-driven feasibility answers those questions from historical EHR and claims data, estimating cohort size and anticipating operational constraints such as visit cadence, laboratory requirements, and competing studies. That shifts planning from informal judgment toward testable assumptions, though the validity of any estimate depends on how well eligibility criteria can be represented in data and how representative those data are of the intended trial population [@fda_rwd_ehr_claims_2024; @hripcsak_albers_2013].
+
+Automated identification from EHRs is a pipeline: translate protocol criteria into a computable phenotype, execute it against clinical data, then put the candidate list in front of a clinician or coordinator before anyone is contacted or screened. Many criteria map cleanly to *structured* elements (diagnosis codes, medications, laboratory values, procedures, and timestamps); others reside in *unstructured* notes (symptom narratives, imaging interpretations, nuanced exclusions), which is why natural language processing complements rules and statistical models when candidate lists are assembled [@hripcsak_albers_2013].
+
+Standardization through common data models and cohort tooling, exemplified by OHDSI and the OMOP Common Data Model, lets a cohort definition execute consistently across sites in a federated manner [@ohdsi_hripcsak_2015; @omop_cdm_overhage_2012]. Standards-based interoperability supports the same workflows through APIs: SMART on FHIR supports substitutable applications that retrieve patient-level data, and the FHIR Bulk Data Access specification supports population-level exports for governed research workflows [@smart_on_fhir_mandel_2016; @hl7_fhir_bulkdata]. Because EHR data were not originally collected for research, the practical constraints are often provenance, missingness, and fitness-for-purpose, not model choice alone; sponsors should align their use of EHR data with regulatory expectations for documentation, traceability, and data integrity in clinical investigations [@fda_ehr_data_2018].
+
+### Engagement, retention, and equity in AI-mediated workflows
+
+Communication technologies can answer common questions, deliver consistent study education, collect structured pre-screening information, send scheduling reminders, and route complex concerns to a human. The design challenge is to reduce coordinator load and participant burden without creating misleading medical advice or undue influence, which puts human-AI interaction design and clear escalation paths at the center [@amershi_hai_guidelines_2019]. The evidence base for conversational agents in health remains mixed and context-dependent, with systematic reviews noting that many evaluations are early-stage and heterogeneous, and often lack robust safety assessment even when user satisfaction is high [@laranjo_chatbots_2018]. In trials, electronic informed consent and remote communication can reduce friction, but they must preserve comprehension, voluntariness, and proper documentation [@fda_econsent_2016].
+
+A model that prioritizes outreach or determines who is contacted first is deciding who gets access to research, which amplifies privacy, bias, and accountability risks; reliance on proxies such as cost or utilization can encode structural inequities even when overall accuracy appears high [@obermeyer2019bias]. A defensible approach therefore includes explicit inclusion goals, audit trails for cohort logic and model versions, subgroup performance checks, and clear procedures for human review and overrides [@nist_ai_rmf_2023; @who_ai_ethics_2021; @fda_diversity_action_plans_2024; @fda_eligibility_2025]. Recruitment-facing tools should be documented with enough transparency for review and replication, and AI-enabled protocols and reports can be structured using emerging extensions such as SPIRIT-AI, CONSORT-AI, and TRIPOD+AI, depending on whether the system is a trial intervention, a reporting artifact, or an operational prediction model [@spirit_ai_2020; @consort_ai_2020; @tripod_ai_2024].
+
+## Barriers to Recruitment
+
+Lack of awareness remains a primary obstacle: many eligible patients never learn that a trial for their condition exists, or how to reach one. Those who do learn are often excluded by restrictive eligibility criteria, disqualified by a common comorbidity or a routine medication. Those who qualify may still find the logistics impossible, since intensive testing schedules and dietary constraints can be incompatible with daily work and family life. An informed consent process misaligned with a patient's culture or language can also feel intimidating or exclusionary.
+
+### Geographic Access and Rural Populations
+
+Between 2008 and 2022, only 42.4% of U.S. counties hosted at least one Phase 1-3 cancer clinical trial, and rural counties were significantly less likely to have a trial site [@gu2024geographic]. In 2022, 86% of nonmetropolitan counties had no active cancer treatment trials, compared to 44% of metropolitan counties [@unger_rural_access_2025]. Research sites concentrate in urban academic medical centers, systematically excluding rural populations.
+
+Nearly 17% of the U.S. population over age 35 lives more than 100 miles from an NCI-funded trial site, and that burden falls disproportionately on low-income individuals [@shriver2025access]. Travel distance, time away from work, and unreliable transportation reinforce one another, and for many rural patients the combination rules out participation entirely.
+
+Rural populations experience higher cancer mortality rates and different disease patterns, yet remain systematically underrepresented in the trials that generate treatment evidence. Outcomes data suggest that the treatment disparity may be largely attributable to access rather than biology: an analysis of 36,995 patients in 44 SWOG trials found that rural and urban patients achieved similar survival outcomes when given uniform access to care through clinical trial participation [@unger_rural_survival_2018].
+
+Community-based trial networks can narrow that gap. The NCI Community Oncology Research Program (NCORP) is one, and in the SWOG network-group trials described above, which enrolled patients from 1986 to 2012, 19.4% of participants came from rural areas, the same as the rural share of the U.S. population with cancer [@unger_rural_survival_2018; @unger_rural_access_2025].
+
+Decentralized elements attack the travel itself. Telemedicine, remote monitoring, home visits by nurses, remote consent, virtual study visits, and direct-to-patient drug shipment reduce travel burden and can maintain data quality while expanding access; a small pilot comparing decentralized and conventional site models reported that 89% of patients in the decentralized arm completed the study versus 60% in the conventional arm [@sommer2018decentralized], though such comparisons may reflect selection effects, since the sites and patients willing to adopt decentralized elements may differ systematically. Mobile clinics go one step further, taking trial and screening activities directly into rural communities while maintaining protocol compliance: the Ohio State University Comprehensive Cancer Center coordinates a mobile mammography program that brings breast cancer screening to women in rural areas of Appalachia [@unger_rural_access_2025].
+
+Operationally, geographic barriers are a site-selection problem: they call for the same deliberate reach beyond high-volume academic centers, and the same investment in building site capability where it is thin, that @sec-site-selection describes.
+
+## The Importance of Retention
+
+Enrollment is the first half of the problem. High dropout rates can severely reduce a trial's statistical power and introduce bias, particularly if the attrition is related to treatment response or side effects. Retention is won in the details of participant experience: flexible scheduling, timely compensation, and clear, empathetic communication from study staff. Central to all of it is the relationship between the investigator and the participant, since patients who feel personally connected to the research team are more likely to continue through to the study's conclusion.
+
+### Physician Participation and the "One and Done" Phenomenon
+
+The same attrition runs on the investigator side, and it deepens the recruitment crisis. The base of active U.S. investigators has shrunk sharply, and most physicians who serve on a trial never do so again, the "one and done" phenomenon documented in @sec-site-selection. Among the reasons they leave are the complexity of modern protocols, the mounting technology burden, and financial structures that fail to account for the heavy time investment required relative to routine clinical care. Each departure costs the industry expertise it must then replace by onboarding new, less-experienced sites, which slows development further.
+
+The attrition extends to the research staff as well. High turnover among clinical research coordinators (CRCs) and nurses disrupts continuity and increases the risk of documentation errors, and while turnover rates have stabilized somewhat in 2024, a significant portion of the industry still faces high churn, complicating the long-term viability of sites (see [@fig-wcg-turnover]).
+
+``` {r}
+#| label: fig-wcg-turnover
+#| fig-cap: "Yearly staff turnover rates at clinical research sites (2024). Data from @wcg_site_challenges_2024."
+#| echo: false
+
+# Reproduced from WCG (2024) Clinical Research Site Challenges Report, Section 6
+library(ggplot2)
+
+data <- data.frame(
+  rate = factor(c("<5%", "6-10%", "11-15%", "16-20%", "21-25%", ">26%", "Not sure"),
+                levels = c("<5%", "6-10%", "11-15%", "16-20%", "21-25%", ">26%", "Not sure")),
+  percentage = c(35, 16, 10, 7, 5, 7, 20)
+)
+
+ggplot(data, aes(x = rate, y = percentage)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  geom_text(aes(label = paste0(percentage, "%")), vjust = -0.5, fontface = "bold") +
+  labs(title = "Yearly Staff Turnover at Research Sites (2024)",
+       x = "Turnover Rate Range",
+       y = "Percentage of Sites (%)") +
+  theme_minimal() +
+  theme(plot.background = element_rect(fill = "white", color = NA)) +
+  expand_limits(y = 45)
+```
+
+
+### Strategic Enrollment and Generalizability {#sec-representative-enrollment}
+
+An accrual target can be met with the wrong patients. Enrollment has to reflect the populations that will ultimately use the treatment, and the reason is scientific before it is regulatory: drug metabolism, disease expression, and treatment response vary systematically across age, sex, genetic factors, and comorbidities.
+
+Pharmacokinetics differ substantially by age, driven by changes in renal and hepatic function, body composition, and drug-drug interactions from polypharmacy. Sex affects drug distribution through body fat percentage, metabolism through CYP enzyme activity, and disease pathways through hormonal influence. Genetic polymorphisms in drug-metabolizing enzymes such as CYP2D6 and CYP2C19 vary in frequency across populations and can alter therapeutic response and toxicity profiles. The disease phenotype itself may differ: hypertension, diabetes, and cardiovascular disease show distinct clinical presentations and progression patterns across demographic groups.
+
+If trial enrollment systematically excludes the elderly, women, or specific genetic backgrounds, the resulting efficacy and safety data may not generalize to real-world use: a treatment optimized for a narrow trial population may be suboptimal, or even unsafe, when prescribed more broadly. Pediatric dosing cannot be reliably extrapolated from adult trials, and elderly patients with multiple comorbidities may experience different benefit-risk profiles than younger, healthier trial participants.
+
+Representative enrollment requires intentional design: site selection that reaches diverse geographies and care settings, eligibility criteria that do not unnecessarily exclude common comorbidities, and recruitment strategies that address logistical barriers (transportation, language, visit burden). Regulatory guidance increasingly expects sponsors to justify enrollment targets based on the intended-use population and to monitor accrual across relevant subgroups during the trial [@fda_diversity_action_plans_2024]. That guidance and its recent turbulence, including the withdrawn-then-restored 2024 Diversity Action Plans draft and the December 2025 final *Enhancing Participation in Clinical Trials* guidance that dropped the explicit "diversity" framing, are detailed in @sec-site-selection [@fda_dap_status_2025; @fda_eligibility_2025]. The statutory basis for representative enrollment and its scientific rationale are unchanged.
+
+### Digital retention toolkit: engagement beyond enrollment
+
+Traditional retention frameworks addressed dropout and loss to follow-up through clinic visits, phone calls, and mailed reminders [@meinert_cth_2013]. In the DCT era, retention increasingly depends on digital engagement: app-based reminders, SMS check-ins, telehealth visits, and patient portals that reduce the friction of continued participation [@fda_dct_guidance_2024].
+
+Digital engagement requires infrastructure and continuing attention. Executed poorly, it can feel intrusive or impersonal and may increase dropout rather than reduce it.
+
+::: {.callout-tip title="Checklist: Digital Retention Toolkit"}
+
+- *Platform selection*: validated ePRO/eCOA and patient communication platforms with accessibility features (screen reader compatibility, multilingual support, offline functionality where relevant).
+- *Message cadence and content*: prespecified reminder schedules; personalized content where feasible; clear escalation paths for non-response.
+- *Telehealth integration*: defined workflows for remote visits (scheduling, consent for recording if applicable, documentation, safety escalation).
+- *Help desk support*: accessible support for technical issues, with defined response times and escalation to site coordinators for clinical questions.
+- *Retention monitoring*: dashboards tracking visit completion, ePRO compliance, and engagement metrics; predefined thresholds for coordinator outreach.
+- *Participant feedback loop*: mechanism for participants to report burden concerns or technical issues, with documented response and protocol amendment pathways if patterns emerge.
+
+:::
+
+## Metrics and Monitoring
+
+Enrollment problems show up in the metrics before they show up in the timeline (@tbl-recruitment-metrics).
+
+| Metric | Definition | Target | Action if Off Target |
+|--------|-----------|--------|------------------------|
+| *Screening Rate* | Patients screened per site per week | Protocol-specific | Increase outreach; Boost advertising |
+| *Screen Failure Rate* | % screened who are ineligible | <50% | Review eligibility criteria; Improve pre-screening |
+| *Enrollment Rate* | Patients enrolled per site per month | 2-4 typically | Additional training; Site support; Consider closing site |
+| *Retention Rate* | % enrolled completing study | >85% | Reduce protocol burden; Improve patient engagement |
+| *Time to First Patient* | Days from site activation to first enrollment | <30 days | Expedite startup; Ensure materials available |
+
+: Key Recruitment and Retention Metrics. Targets shown are typical planning values, not industry benchmarks; achievable rates vary substantially by indication, phase, and protocol burden. {#tbl-recruitment-metrics tbl-colwidths="[18,30,18,34]"}
+
+Low screening rates often indicate a need for broader outreach or increased advertising, while high screen-failure rates may suggest that eligibility criteria are overly restrictive or that pre-screening processes need refinement. Poor enrollment and retention rates should prompt a review of the protocol's practical burden on patients and an investigation into site-level training or engagement strategies. Tracked against projections, these numbers catch an emerging shortfall while it is still correctable. AI agent applications across the full development lifecycle, including site identification, feasibility prediction, and decentralized trial infrastructure, are covered in @sec-ai-agents.
+

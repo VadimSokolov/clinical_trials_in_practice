@@ -1,0 +1,36 @@
+## Clinical Trials in Practice: From Foundations to AI Agents
+
+- [Clinical Trials in Practice: From Foundations to AI Agents](https://vsokolov.org/books/clinical_trials_in_practice/index.html.md): by Alexandra Sokolova and Vadim Sokolov (2026). A practical guide to clinical trials as science and as regulated operations: the phases, statistics and design, the daily work of a Phase III study, regulatory submission, and where AI agents belong in clinical development.
+- [The book as a PDF](https://github.com/VadimSokolov/clinical_trials_in_practice/releases/download/v1.0.0/clinical_trials_in_practice.pdf): 387 pages, CC BY 4.0
+- [Source on GitHub](https://github.com/VadimSokolov/clinical_trials_in_practice/tree/v1.0.0): the Quarto source, code and bibliography
+- [The book as a website](https://vsokolov.org/clinical_trials_in_practice/): every chapter as a page, with search
+- [Chapter 1. Historical Context and Evolution](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/01_historical_context_and_evolution.md): summary of the chapter and its results
+- [Chapter 2. Lifecycle of a Clinical Trial](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/02_lifecycle_of_a_clinical_trial.md): summary of the chapter and its results
+- [Chapter 3. Regulatory Framework](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/03_regulatory_framework.md): summary of the chapter and its results
+- [Chapter 4. Ethical Principles](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/04_ethical_principles.md): summary of the chapter and its results
+- [Chapter 5. Overview of Drug Development](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/05_overview_of_drug_development.md): summary of the chapter and its results
+- [Chapter 6. Economics of a Trial](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/06_economics_of_a_trial.md): summary of the chapter and its results
+- [Chapter 7. Phase I: Human Pharmacology](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/07_phase_i_human_pharmacology.md): summary of the chapter and its results
+- [Chapter 8. Phase II: Exploratory](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/08_phase_ii_exploratory.md): summary of the chapter and its results
+- [Chapter 9. Phase III: Confirmatory](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/09_phase_iii_confirmatory.md): summary of the chapter and its results
+- [Chapter 10. Phase IV: Post-Marketing Studies and Surveillance](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/10_phase_iv_post_marketing_studies_and_surveillance.md): summary of the chapter and its results
+- [Chapter 11. Statistical Methods for Clinical Trials](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/11_statistical_methods_for_clinical_trials.md): summary of the chapter and its results
+- [Chapter 12. Adaptive and Bayesian Trial Design](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/12_adaptive_and_bayesian_trial_design.md): summary of the chapter and its results
+- [Chapter 13. Study Design](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/13_study_design.md): summary of the chapter and its results
+- [Chapter 14. Real-World Evidence and Evidence Integration](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/14_real_world_evidence_and_evidence_integration.md): summary of the chapter and its results
+- [Chapter 15. Protocol Design Benchmarks](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/15_protocol_design_benchmarks.md): summary of the chapter and its results
+- [Chapter 16. Randomization and Blinding](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/16_randomization_and_blinding.md): summary of the chapter and its results
+- [Chapter 17. Endpoints and Outcomes](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/17_endpoints_and_outcomes.md): summary of the chapter and its results
+- [Chapter 18. Site Selection and Feasibility](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/18_site_selection_and_feasibility.md): summary of the chapter and its results
+- [Chapter 19. Patient Recruitment and Retention](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/19_patient_recruitment_and_retention.md): summary of the chapter and its results
+- [Chapter 20. Logistics and Project Management](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/20_logistics_and_project_management.md): summary of the chapter and its results
+- [Chapter 21. Data Management](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/21_data_management.md): summary of the chapter and its results
+- [Chapter 22. Clinical Monitoring](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/22_clinical_monitoring.md): summary of the chapter and its results
+- [Chapter 23. Safety Monitoring and Reporting](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/23_safety_monitoring_and_reporting.md): summary of the chapter and its results
+- [Chapter 24. Essential Documents and the Trial Master File](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/24_essential_documents_and_the_trial_master_file.md): summary of the chapter and its results
+- [Chapter 25. Clinical Trial IT Infrastructure](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/25_clinical_trial_it_infrastructure.md): summary of the chapter and its results
+- [Chapter 26. AI Agents in Clinical Development](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/26_ai_agents_in_clinical_development.md): summary of the chapter and its results
+- [Chapter 27. Trial Closeout and Analysis](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/27_trial_closeout_and_analysis.md): summary of the chapter and its results
+- [Chapter 28. The Clinical Study Report](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/28_the_clinical_study_report.md): summary of the chapter and its results
+- [Chapter 29. Regulatory Submission](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/29_regulatory_submission.md): summary of the chapter and its results
+- [Chapter 30. Glossary and Abbreviations](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/v1.0.0/summaries/30_glossary_and_abbreviations.md): summary of the chapter and its results

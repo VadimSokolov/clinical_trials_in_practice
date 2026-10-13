@@ -1,0 +1,196 @@
+# Clinical Trial IT Infrastructure {#sec-clinical-it}
+
+A decade ago, sponsors managed clinical data through a patchwork of vendor systems that rarely communicated: EDC databases that could not talk to randomization systems, trial master files stored in SharePoint folders with manual indexing, and clinical trial management systems that required spreadsheet reconciliation to produce accurate enrollment counts. Data flowed through exports, imports, and emails, and every handoff added latency, transcription errors, and audit risk.
+
+What replaced it is the subject of this chapter: the four systems that now form the transactional backbone of a trial, Electronic Data Capture (EDC), Clinical Trial Management Systems (CTMS), electronic Trial Master Files (eTMF), and Randomization and Trial Supply Management (RTSM), plus the platform market shaping them and the regulatory framework (21 CFR Part 11, EMA's guideline on computerized systems in clinical trials, GMP Annex 11, and ICH E6) that governs computerized systems in clinical research.
+
+These platforms determine what data a trial can capture and integrate, and whether their records hang together decides whether it is inspection-ready. They are also the substrate for the AI and automation tools discussed in @sec-ai-agents: without validated, well-integrated core systems, advanced analytics and agentic automation have nothing reliable to operate on. Technology can reduce friction and surface risks earlier. What makes it defensible in an inspection is validation, governance, and oversight.
+
+## The Modern Clinical Trial Ecosystem
+
+Today's leading platforms aspire to unified architectures where patient data, operational metrics, essential documents, and supply chain signals flow through shared data models. In the best-integrated environments, particularly single-vendor platforms like Veeva Vault, a single site action can cascade through the whole stack: randomize a patient and enrollment counts update in CTMS dashboards, treatment-specific CRF pages unlock in the EDC, drug shipment requests trigger in the supply management system, and expected document checklists populate in the eTMF. Many sponsors do not work in that environment. They still run heterogeneous stacks with systems from multiple vendors, connected through middleware and custom integrations that require configuration, maintenance, and periodic reconciliation. How far the integration goes varies widely from one organization to the next, but the direction of travel is the same: fewer manual handoffs, and the shared data infrastructure on which analytics and automation depend.
+
+
+### The Technology Ecosystem
+
+The four platforms each serve a distinct but complementary function, and @fig-clinical-it-ecosystem shows how they interconnect [@everest_edc_2024].
+
+```{mermaid}
+%%| eval: true
+%%| label: fig-clinical-it-ecosystem
+%%| fig-cap: "The Modern Clinical Trial Technology Stack"
+%%{init: {'flowchart': {'nodeSpacing': 15, 'rankSpacing': 45, 'padding': 8, 'diagramPadding': 30, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    subgraph Sites["Clinical Sites"]
+        EHR["Electronic<br/>Health Records"]
+        Wearables["Wearables<br/>& Sensors"]
+        Patient["Patient<br/>Portal"]
+    end
+
+    subgraph Core["Core Data Platforms"]
+        EDC["EDC<br/>Electronic<br/>Data Capture"]
+        CTMS["CTMS<br/>Clinical Trial<br/>Management"]
+        eTMF["eTMF<br/>Trial Master<br/>File"]
+        RTSM["RTSM<br/>Randomization<br/>& Supply"]
+    end
+
+    subgraph AI["AI Layer"]
+        Design["Protocol<br/>Design AI"]
+        Recruit["Patient<br/>Matching AI"]
+        QC["Data<br/>Quality AI"]
+        Predict["Predictive<br/>Analytics"]
+    end
+
+    subgraph Outputs["Regulatory & Insights"]
+        Submit["Regulatory<br/>Submissions"]
+        Reports["Real-time<br/>Dashboards"]
+        Risk["Risk<br/>Signals"]
+    end
+
+    EHR -->|Patient Data| EDC
+    Wearables -->|Biometrics| EDC
+    Patient -->|ePRO/eCOA| EDC
+    Patient -->|eConsent| eTMF
+
+    EDC <--> CTMS
+    CTMS <--> eTMF
+    CTMS <--> RTSM
+    RTSM <--> EDC
+
+    EDC --> QC
+    CTMS --> Predict
+    eTMF --> QC
+
+    Design --> EDC
+    Recruit --> CTMS
+
+    QC --> Reports
+    Predict --> Risk
+    eTMF --> Submit
+    EDC --> Submit
+```
+
+*Electronic Data Capture (EDC)* replaces paper case report forms with validated electronic forms that capture patient data at the point of care. When a coordinator records a blood pressure reading, administers a questionnaire, or documents an adverse event, that data flows into the EDC. Built-in edit checks flag impossible values (a heart rate of 500?) or logical inconsistencies (an adverse event dated before the patient enrolled) in real-time, catching errors before they propagate. Every efficacy and safety analysis in the submission traces back to data captured here [@cfr21_11].
+
+*Clinical Trial Management System (CTMS)* is the operational command center. Where EDC holds patient data, CTMS holds the state of the trial: which sites are open, how many patients each has enrolled, when the next milestone or monitoring visit falls due, what the budget burn rate looks like. It manages contracts and payments, and it generates the operational metrics sponsors use to assess trial health [@grandview_clinical_software_2025]. It is what keeps a 50-site, 14-country trial from descending into chaos.
+
+*Electronic Trial Master File (eTMF)* is the regulatory archive. A single trial generates thousands of documents: the protocol and its amendments, informed consent forms, IRB approvals, investigator CVs, monitoring reports, safety letters, correspondence. Regulators require sponsors to maintain a complete Trial Master File as evidence that the trial was conducted properly, and eTMF systems organize it according to the TMF Reference Model (originally convened under DIA, now stewarded by CDISC), tracking document completeness and inspection readiness [@dia_reference_model]. When an FDA inspector arrives, the eTMF is the first artifact they examine.
+
+*Randomization and Trial Supply Management (RTSM)*, sometimes called Interactive Response Technology (IRT), handles treatment assignment and drug supply. When a patient is eligible for randomization, the RTSM system assigns them to a treatment arm according to the randomization scheme, maintaining the blind while ensuring balanced allocation. At the same time it tracks investigational product inventory at each site and triggers resupply shipments. For trials with temperature-sensitive biologics or personalized therapies, RTSM is mission-critical [@rtsm_best_practices].
+
+The four exchange data continuously. Complete a monitoring visit and the report is filed in eTMF while the visit status updates in CTMS. That constant traffic is why unified platforms like Veeva Vault, which house all four systems in a single architecture, have gained so much traction [@veeva_vault_overview].
+
+## The Foundational "Backbone": Platform Wars
+
+A handful of enterprise players dominate the clinical trial platform market; @tbl-platform-comparison compares four of them [@everest_edc_2024].
+
+| Vendor | Primary Strengths | Market Position | Cloud Model | AI Capabilities |
+|--------|-------------------|-----------------|-------------|-----------------|
+| *Medidata (Dassault)* | Industry-standard EDC (Rave), 25-year track record, 38,000+ studies | Market leader in EDC | Cloud/SaaS | AI-powered signal detection, synthetic control arms |
+| *Veeva Systems* | Unified Vault platform (eTMF, CTMS, EDC), life sciences focus | Fast-growing challenger | Cloud-native | TMF Intake Agent, Quality Check Agent |
+| *Oracle* | Enterprise scale, Siebel CTMS and Oracle Clinical One, regulatory expertise | Established incumbent | Cloud/On-prem | ML-based safety analytics |
+| *IQVIA* | Real-world data integration, global CRO services | CRO-integrated platform | Cloud/SaaS | Intelligent eTMF, predictive enrollment |
+
+: Comparison of Major Clinical Trial Platforms {#tbl-platform-comparison tbl-colwidths="[18,25,20,15,22]"}
+
+::: {.callout-tip title="Cloud Delivery"}
+All four platforms in @tbl-platform-comparison are delivered as cloud services, and Oracle is the only one of the four that also offers on-premise installation. Grand View Research lists data privacy and security concerns, especially with cloud-based and decentralized platforms, among the restraints on the clinical trial software market [@grandview_clinical_software_2025].
+:::
+
+### Major Platform Vendors
+
+*Medidata* (acquired by Dassault Systemes in 2019) remains the dominant EDC platform. The 2025 ISR Benchmarking Report ranked its *Rave EDC* the top-preferred EDC system in independent sponsor evaluations [@isr_edc_2025]. Medidata's scale is substantial: over 700,000 certified site users, 1.8 million EDC users, and more than 38,000 studies managed across all phases and therapeutic areas [@medidata_rave_2024].
+
+Medidata's AI offerings include *Acorn AI*, which provides synthetic control arms using historical patient data to reduce or eliminate placebo groups in certain trial designs [@medidata_sca]. Their *Sensor Cloud* integrates wearable device data directly into the EDC, enabling continuous physiological monitoring without manual data entry [@medidata_sensor_cloud].
+
+*Veeva* has gained market share fast with a unified *Vault* platform that puts eTMF, CTMS, and EDC in one system, against Medidata's historically modular approach. Veeva serves only life sciences, unlike Oracle or Salesforce, which operate across multiple industries, and that concentration shows in a platform built around clinical and regulatory workflows. It is also deploying specialized *AI Agents* aimed at the most tedious parts of clinical operations; @fig-veeva-ai-agents follows a site document through two of them.
+
+```{mermaid}
+%%| eval: true
+%%| label: fig-veeva-ai-agents
+%%| fig-cap: "How Veeva's AI Agents Process TMF Documents"
+%%{init: {'sequence': {'actorMargin': 20, 'width': 120, 'wrap': true, 'diagramMarginX': 10, 'messageMargin': 30, 'boxMargin': 6}}}%%
+sequenceDiagram
+    participant Site as Site Upload
+    participant Intake as TMF Intake Agent
+    participant QC as Quality Check Agent
+    participant TMF as eTMF Vault
+    participant User as Document Manager
+
+    Site->>Intake: Upload document (PDF/scan)
+    Intake->>Intake: Extract metadata<br/>(investigator, date, type)
+    Intake->>Intake: Classify to TMF record type
+    Intake->>QC: Route for quality check
+    QC->>QC: Check for signatures
+    QC->>QC: Validate completeness
+    alt Document Complete
+        QC->>TMF: File to correct binder
+        TMF->>User: Notification: "Document filed"
+    else Issues Found
+        QC->>User: Alert: "Missing signature"
+        User->>Site: Request correction
+    end
+```
+
+The *TMF Intake Agent* automatically classifies documents uploaded by sites, extracting metadata such as investigator name and document date to route files to the correct TMF binder. The *Quality Check Agent* then reviews documents for errors (missing signatures, wrong versions, incomplete forms) before a human ever sees them [@veeva_tmf_agent]. Separately, Veeva reports a decrease of more than 80% in TMF migration preparation time for its eTMF product, a product-level claim rather than a measured effect of either agent [@veeva_etmf].
+
+The eTMF market alone is worth *\$1.4 billion* and growing at 12.8% annually [@marketsandmarkets_etmf_2024]. @tbl-etmf-comparison compares three of the leading eTMF platforms:
+
+| Feature | Veeva eTMF | IQVIA eTMF | Phlexglobal eTMF |
+|---------|------------|------------|------------------|
+| *Auto-Classification* | AI-powered TMF mapping | ML-based indexing | Intelligent auto-filing |
+| *Completeness Prediction* | Expected document lists | Milestone-based gaps | Risk-based prioritization |
+| *Inspection Readiness* | Real-time dashboards | Inspection-ready reports | Audit trail analytics |
+| *Site Integration* | SiteVault connected | Site-facing portal | Sponsor-site bridge |
+| *Unique Strength* | Unified Vault ecosystem | RWD integration | eTMF-specialist focus |
+
+: eTMF Platform Feature Comparison {#tbl-etmf-comparison tbl-colwidths="[22,26,26,26]"}
+
+All three apply AI in the same two places. *Auto-indexing* uses machine learning models to classify unorganized scans into the TMF Reference Model structure. *Completeness prediction* algorithms identify missing documents based on study milestones, flagging that "Site 101 has initialized but is missing a financial disclosure form" [@iqvia_etmf; @phlexglobal_etmf].
+
+*Medable* took a different path, building for the decentralized clinical trial (DCT) from the outset; as hybrid and virtual trials became mainstream, its modular platform let patients participate from home (see @tbl-medable-capabilities) [@medable_tmf_agent]:
+
+| Capability | What It Does | Impact |
+|------------|--------------|--------|
+| *TeleVisit* | Video conferencing for remote assessments | Reduced travel for suitable protocols (implementation-dependent) |
+| *eConsent* | Multimedia-rich digital consent | Improved comprehension and workflow consistency (context-dependent) |
+| *Medable AI* | Generates digital eCOA from paper protocols | Faster digitization and reuse of instruments (vendor-reported) |
+| *TMF Automation* | Processes DCT-generated document flood | Helps manage higher document volume (protocol-dependent) |
+
+: Medable DCT Capabilities (impacts are implementation- and protocol-dependent) [@medable_ai] {#tbl-medable-capabilities tbl-colwidths="[20,40,40]"}
+
+## Regulatory Framework for Computerized Systems {#sec-clinical-it-regulatory}
+
+Every computerized system in a trial, from a validated EDC platform to an AI-enabled document classifier, operates inside a regulatory framework that dictates how it must be validated, documented, and overseen. What an inspector expects to see as evidence depends on which tier of that framework a requirement sits in.
+
+### Enforceable Standards vs. Recommendations
+
+Failure to comply with an enforceable requirement can result in warning letters, clinical holds, or rejection of a submission. Guidance documents represent FDA or EMA "current thinking" and are generally recommendations, not mandates, though departing from them without justification invites scrutiny. An exception is FDA guidance issued under section 745A(a) of the Federal Food, Drug, and Cosmetic Act, such as the standardized study data guidance, which binds sponsors to the electronic submission formats it specifies [@fda_study_data_standards_2021]. @tbl-regulatory-hierarchy sorts the main obligations into those tiers.
+
+| Category | Examples | Consequence of Non-Compliance |
+|----------|----------|-------------------------------|
+| *Enforceable Law/Regulation* | 21 CFR Part 11 (electronic records), 21 CFR Part 312 (INDs), EU Clinical Trials Regulation (which makes GCP compliance legally binding in the EU) | Warning letters, clinical holds, application rejection, criminal liability |
+| *GxP Standards (legal force varies by jurisdiction)* | ICH E6(R3) computerized systems provisions (nonbinding FDA guidance; the EU Clinical Trials Regulation requires appropriate account of ICH GCP), EMA computerized-systems guideline (EU trials), Annex 11 (EU GMP), data integrity requirements | Inspection findings, Form 483 observations, regulatory action |
+| *Regulatory Guidance* | FDA draft guidance on AI for regulatory decisions (Jan 2025), EMA reflection paper on AI (Sept 2024) | Increased scrutiny, requests for additional information, delays |
+
+: Regulatory Hierarchy for AI in Clinical Trials {#tbl-regulatory-hierarchy tbl-colwidths="[25,40,35]"}
+
+### Validation and Documentation Requirements
+
+AI systems and computerized systems used in clinical trials must meet the same validation requirements as any other regulated software. Which standards apply depends on the regulatory jurisdiction and the system's role: 21 CFR Part 11 in the United States; in the EU, EMA's 2023 guideline on computerized systems and electronic data in clinical trials, with GMP Annex 11 governing systems used in manufacturing (see @tbl-validation-requirements). Both jurisdictions require that computerized systems generating, modifying, or storing electronic records that FDA or EU regulations require sponsors to maintain or submit meet validation and control standards [@cfr21_11; @fda_electronic_systems_2024; @ema_computerised_systems_2023; @eu_annex11_2011]. In practice that means documented evidence that the software performs as intended, AI model verification included; computer-generated, time-stamped audit trails recording every system action that creates, modifies, or deletes an electronic record; unique user identification, authentication, and role-based permissions; controls that keep data attributable, legible, contemporaneous, original, and accurate (ALCOA); and documented procedures for system use, maintenance, and change control.
+
+ICH E6(R3), adopted in January 2025, adds computerized systems requirements that bear directly on AI [@ich_e6r3_2025]. A system must be validated as fit for the specific use it is put to in the trial, and the validation effort is expected to be proportional to the system's impact on patient safety and data reliability. A dedicated data governance section requires documented data and records management, and the guideline recognizes data from wearables, sensors, and automated systems as primary source data.
+
+| Requirement | 21 CFR Part 11 | EU (EMA 2023; Annex 11) | ICH E6(R3) |
+|-------------|----------------|----------|------------|
+| System validation | Required | Required | Required (risk-based) |
+| Audit trails | Required | Required | Required |
+| Access controls | Required | Required | Required |
+| Change control | Required | Required | Required |
+| Data backup/recovery | Required | Required | Required |
+| Training documentation | Required | Required | Required |
+| Supplier qualification | N/A | Required | Required |
+
+: Computerized Systems Validation Requirements for AI {#tbl-validation-requirements tbl-colwidths="[30,23,23,24]"}
+
+The requirements are deliberately technology-neutral. The same expectations for validation, audit trails, access control, and data integrity apply whether a record is created by a coordinator typing into an EDC field or by a model classifying a document, which is what lets AI and automation enter the workflow without a separate rulebook, provided they are held to the same standard of evidence. @sec-ai-agents turns to those tools, and to what it takes to keep them defensible in an inspection once they are layered onto this infrastructure.

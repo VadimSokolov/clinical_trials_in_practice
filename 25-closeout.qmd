@@ -1,0 +1,127 @@
+# Trial Closeout and Analysis {#sec-closeout}
+
+A brilliantly designed and flawlessly executed trial can still fail if the closeout is mishandled or the analysis is flawed. Closeout converges on one moment, *database lock*: the formal point at which the trial database is frozen and, barring a documented and exceptional unlock, no further changes are made. Before it, the data can still be corrected. After it, the trial is whatever the locked database says it is.
+
+```{mermaid}
+%%| label: fig-closeout-process
+%%| fig-cap: "Clinical trial closeout process from last patient visit through archiving"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 30, 'padding': 8, 'diagramPadding': 30, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    LPLV(["LPLV"])
+
+    subgraph Data["Data"]
+        direction LR
+        B["Queries"] --> C["Review"] --> D["SAP"] --> E["DB Lock"]
+    end
+
+    subgraph Analysis["Analysis"]
+        direction LR
+        F["Unblind"] --> G["Stats"] --> H["CSR"]
+    end
+
+    subgraph Reg["Regulatory"]
+        direction LR
+        M["NDA/BLA filing<br/>(pivotal trials)"] --> N["Submit"]
+    end
+
+    subgraph Site["Site"]
+        direction TB
+        I["IP Accounting"] --> J["Doc Recon"] --> K["Closeout"] --> L["Archive"]
+    end
+
+    LPLV --> Data
+    LPLV --> Site
+    Data --> Analysis
+    Analysis --> Reg
+```
+    
+Four streams run at once, as @fig-closeout-process shows. Data finalization runs from the Last Patient Last Visit (LPLV) through query resolution and data review to database lock; unblinding then triggers the statistical analysis and the Clinical Study Report (CSR). Sites reconcile drug supplies and archive records in parallel, and on a pivotal program the regulatory team prepares the NDA or BLA submission.
+
+Getting to a clean database takes a final push. Outstanding queries are resolved, sites are contacted for missing data or clarification of discrepancies, medical coding of adverse events is completed and reviewed, and protocol deviations are adjudicated. Anything feeding the primary analysis is scrutinized for accuracy.
+
+Before lock, the *statistical analysis plan (SAP)* must be finalized. Usually developed early and refined as specifics become clearer, it specifies exactly how the data will be analyzed: the analysis populations, the statistical methods, the handling of missing data, and the sensitivity analyses. The sequencing is essential to the integrity of the analysis. If analysts could try different approaches until they found one that produced favorable results, the statistical properties of the tests would be meaningless, so the SAP is closed before anyone sees unblinded data.
+
+## Unblinding
+
+With the database locked and the SAP finalized, the trial *unblinds*, though rarely to everyone at once. A small group, often just the biostatistician running the analysis and a designated medical officer, sees the treatment assignments first, and results flow outward in a controlled manner so that nothing leaks before the analysis is complete and the findings are properly interpreted.
+
+The analysis then proceeds according to the SAP. Programs already tested on blinded or simulated data are run on the real thing: primary endpoints first, then secondary endpoints, subgroup analyses, and safety summaries. The analysis feeds the *clinical study report (CSR)*, which documents the design, conduct, and results and stands as both the definitive record of the trial and a primary component of the regulatory submission. @sec-csr covers its structure.
+
+## Interpreting the Results
+
+The analysis produces numbers: p-values, confidence intervals, hazard ratios, differences in means. Numbers are not interpretations, and understanding what the trial found means integrating statistical results with clinical judgment. A trial that meets its primary endpoint is typically counted a success, but how large is the effect? Is it clinically meaningful, or merely statistically detectable? Is it consistent across subgroups, and do the secondary endpoints support the primary finding?
+
+A miss poses different questions. An ineffective drug, or an inadequately powered trial? A control group that performed unexpectedly well, or a treatment group that performed unexpectedly poorly? Any suggestion of benefit in subpopulations that might justify further study?
+
+### Results as Probability, Not Binary Verdict
+
+A study showing $p = 0.049$ and a study showing $p = 0.051$ contain nearly identical information about the treatment's effect, yet under a binary decision rule the first is "positive" and the second is "negative." Evidence is continuous; the verdict is not. "The trial succeeded" and "the trial failed" are useful shorthand and a misleading model of what a trial actually produces.
+
+A more accurate framing is probabilistic: after the trial, what is our probability that the drug produces a meaningful benefit, given everything we know, including the trial result, prior evidence, and biological plausibility? A "positive" trial at $p = 0.04$ in a field with roughly two decades of consecutive disease-modifying failures (as was the case in Alzheimer's disease by the mid-2010s) carries much less certainty than a "positive" trial at $p = 0.001$ in a well-characterized mechanism where Phase II was convincingly positive. The p-value is a property of the data; the interpretation is a property of the evidence base.
+
+For closeout teams this lands on the write-up. A negative result should specify the effect size observed (not just the p-value), the confidence interval, and where that result falls relative to the minimum clinically important difference. A trial pre-specified to detect a 30% improvement but observing 15% with $p = 0.07$ is not "no evidence of benefit"; it is modest evidence of a smaller-than-assumed benefit, and that distinction bears on how the result combines with other evidence and on whether there is a next study at all.
+
+The COVID anticoagulation multi-platform RCT makes the cost of a binary verdict concrete. Therapeutic-dose anticoagulation helped one severity group but not the other: in non-critically-ill (moderate) patients it improved organ-support-free days (adjusted odds ratio 1.27, 95% credible interval 1.03 to 1.58, with a 98.6% posterior probability of benefit), whereas in critically-ill patients it did not, with a point estimate favoring harm (adjusted odds ratio 0.83) [@lawler2021anticoag; @goligher2021anticoag]. Pooled across the whole population, those opposing effects could have averaged toward a null and been reported as "no effect of therapeutic anticoagulation," a verdict that would have been wrong for moderately ill patients because the aggregation was at the wrong level of analysis. The hierarchical model that accounted for the differential severity effect preserved the reversal, and the conclusions reshaped clinical practice.
+
+### Case Study: Aducanumab and the Limits of Binary Verdict
+
+Aducanumab (Biogen/Eisai) is an anti-amyloid antibody targeting the amyloid plaques that characterize Alzheimer's disease, and its program is a widely cited example of what a binary success/failure framework does to discordant evidence. Two large Phase III trials (EMERGE and ENGAGE) enrolled patients with early Alzheimer's disease and were halted at an interim analysis in March 2019 when a futility analysis suggested they were unlikely to succeed. With more data from patients already enrolled, Biogen reanalyzed: EMERGE appeared positive at the high dose (a statistically significant 22% reduction in decline on the primary global clinical composite, the Clinical Dementia Rating-Sum of Boxes), while ENGAGE did not show the same benefit [@buddhaeberlein2022aducanumab].
+
+On 6 November 2020, FDA's Peripheral and Central Nervous System Drugs Advisory Committee voted ten "no," zero "yes," and one "uncertain," largely on the grounds that EMERGE alone, with ENGAGE non-confirmatory, did not constitute reliable evidence of clinical benefit. FDA nonetheless granted accelerated approval in June 2021, based on the drug's effect on amyloid plaque reduction as a surrogate endpoint reasonably likely to predict clinical benefit.
+
+Two trials with opposite results resist a binary verdict: one "win" and one "loss" is genuinely ambiguous evidence. Nor was the surrogate secure, since the adequacy of amyloid plaque reduction as a stand-in for cognitive benefit had been contested for years, because earlier failed anti-amyloid antibodies had reduced amyloid without improving cognition. The discordance might also reflect dosing rather than drug failure: the two trials were identical in design, but EMERGE started later, so more of its patients enrolled after the protocol amendments that let more high-dose patients reach 10 mg/kg (29% of patients in EMERGE and 22% in ENGAGE received all 14 possible 10 mg/kg doses) [@buddhaeberlein2022aducanumab].
+
+Subsequent programs in the same mechanism produced clearer evidence. Lecanemab received full FDA approval in 2023 based on a pre-specified Phase III trial showing a 27% slowing of clinical decline on the primary global cognitive and functional composite (CDR-Sum of Boxes) [@vandyck2023lecanemab], suggesting that the amyloid hypothesis was correct but that the evidence from aducanumab alone was not sufficient to support it.
+
+For closeout and reporting teams the lesson is to report what was observed (effect sizes, confidence intervals, consistency across doses and subgroups) and let the verdict wait. In a field with high prior uncertainty, a discordant two-trial result may be exactly the correct outcome of an experiment, carrying the information needed to interpret what happened once the subsequent program is in view.
+
+## Site Closeout
+
+At the *site closeout visit*, the question a regulatory authority will eventually ask is simple: can every dose be accounted for? Investigational product is returned to the sponsor, destroyed at the site with documentation, or otherwise reconciled against dispensing records. Queries are resolved or documented as unresolvable so that the database reflects the final state of the data, and the site's trial file is reviewed for completeness: all required documents, properly organized and ready for retention.
+
+The investigator's obligations do not end with the visit. Trial records must be retained for the period that regional regulation and the protocol require (@sec-essential-docs gives the periods; for a trial with EU sites the trial master file is kept for at least 25 years), the sponsor must be notified before any record destruction, and the investigator must remain available for future regulatory inspections. Participants may have questions of their own: their individual treatment assignment (particularly after a long blind), and what to do if they experience late adverse effects.
+
+### Closeout checklist for computerized systems and external data streams
+
+Closeout now reaches past site binders and investigational product into a network of computerized systems and external data flows. Because trial conclusions depend on traceability from source through submission, teams should close out systems with the same discipline applied to physical records: controlled access, retention, and retrievability for inspection [@cfr21_11; @fda_electronic_systems_2024; @ich_e6r3_2025].
+
+- *Finalize data transfers*: confirm the last scheduled transfers have occurred (central labs, imaging, ePRO, device streams, vendor databases) and reconcile expected against received counts and timestamps [@fda_dht_guidance_2023].
+- *Preserve audit trails*: ensure audit trails remain available and reviewable after database lock, and document any post-lock administrative correction as a controlled deviation with rationale [@fda_electronic_systems_2024].
+- *Access changes*: deprovision non-essential access after closeout, while preserving the sponsor and regulatory access needed for inspection and reconstruction [@cfr21_11].
+- *Retention plan*: document where raw data extracts, transfer logs, validation evidence, and final locked datasets are retained, and how they can be retrieved within inspection timelines [@ich_e6r3_2025; @cfr21_312].
+- *Vendor/system handover*: for vendor-managed systems, document responsibilities for long-term hosting, export formats, and contract clauses supporting retrieval during inspection windows [@fda_electronic_systems_2024].
+
+## What Happens to the Data
+
+Some of what happens next is not optional. Under FDAAA 801 and its Final Rule, applicable trials must post summary results to ClinicalTrials.gov no later than one year after the primary completion date, and noncompliance carries civil monetary penalties [@fdaaa801]. Data sharing is voluntary by contrast, and modern initiatives increasingly make anonymized datasets available to the external scientific community for transparency and independent scrutiny. Researchers conduct post hoc analyses to explore new hypotheses suggested by the findings, and pooled analyses across trials supply the statistical power to detect rare safety events that single studies might miss. Long-term retention of trial records (the period is set by regional rules and is at least 25 years for the trial master file of a trial with EU sites; see @sec-essential-docs) keeps the study accessible for future regulatory inspections or scientific inquiries.
+
+*Regulatory pathways.* A successful Phase III program ends in a regulatory submission: an NDA or BLA in the United States, or an MAA in Europe. @sec-regulatory-submission covers how these applications are built, submitted, and reviewed.
+
+## When Trials Fail
+
+Trials fail in three broad ways. Efficacy failures occur when a treatment produces no meaningful clinical benefit, sending researchers back to the underlying mechanism or the trial's design. Safety failures are more consequential, occurring when unacceptable toxicity emerges either immediately or through the accumulation of data. Operational failures can derail a program through poor enrollment or through data quality that undermines the scientific validity of the findings. Even then, the data informs future decisions and prevents other researchers from repeating unsuccessful approaches.
+
+### Common failure modes (and why they show up late)
+
+Many "failed" trials are a chain of small mismatches between the scientific question, the protocol, and real-world execution, and some links in the chain become obvious only near closeout, when the sponsor tries to lock the database, assemble the Trial Master File (TMF), and write a defensible clinical study report.
+
+Some failures reflect underpowered or mis-specified effects: the true effect is smaller than expected, variability is larger than assumed, the endpoint is noisier than planned, or intercurrent events (treatment discontinuation, treatment switching, rescue medication) complicate interpretation. The result can be an apparently negative trial that is not decision-grade for regulators or clinicians. Others arise from endpoints and assessment processes poorly aligned with mechanism, subject to measurement drift across sites, or sensitive to missing data and visit windows; here adjudication delays or inconsistent rater training may only become obvious when datasets are reconciled late.
+
+Inclusion and exclusion criteria can yield a cohort that is too heterogeneous, diluting signal, or too narrow, slowing enrollment, or simply not representative of intended use. When protocol deviations accumulate on top of that, the realized population may drift from the intended estimand, leaving the sponsor with an analytically clean plan and a pragmatically messy dataset.
+
+Protocol complexity often expresses itself as amendment churn. Each amendment disrupts sites, triggers retraining, and creates opportunities for version confusion; near closeout, teams sometimes discover that determining *which version applied to which participant* is itself a data-quality problem. Enrollment shortfalls build the same way: poor feasibility assumptions, competing studies, strict criteria, and screening bottlenecks can slow accrual, and slow accrual is a scientific risk as well as a timeline delay, because standard of care may change mid-study, introducing interpretability challenges.
+
+Site performance variation amplifies all of it, since a subset of sites can drive a disproportionate share of protocol deviations, missing data, and query burden, and the damage may stay latent until the sponsor confronts the reconciliation backlog that prevents database lock. The blockers that surface then are familiar: reconciliation debt from late or incomplete entry, coding backlogs for medical history and adverse events, and inconsistencies across EDC, ePRO, central labs and safety databases; vendor and supply-chain problems (drug supply interruptions, temperature excursions, device failures, shipping problems) that create missingness that is not random; and regulatory-readiness gaps such as incomplete documentation, missing signatures, unclear audit trails, inconsistent versions or gaps in training records, which surface when someone starts preparing for inspection or submission.
+
+### The cost of failure and delay
+
+Closeout is where the cost of failure becomes concrete. The direct costs are visible in the monthly burn: site payments, CRO and vendor fees, monitoring, data management, safety operations, and internal labor, and a delayed database lock or clinical study report extends every one of them past last patient last visit. The opportunity cost is substantial too. Time on a stalled program is time not spent on the next study, the next indication, or the next molecule, and delay can compress the effective patent-protected commercial window, reducing expected return even when a drug ultimately succeeds.
+
+The scientific cost surfaces here as well. When data are incomplete or inconsistently collected, the outcome may be *inconclusive* rather than negative, forcing additional studies or post hoc salvage analyses that are difficult to interpret and harder to defend. There is a human cost as well. Participants, investigators, and coordinators invest effort and accept risk; when a program fails late, what is lost is more than money, and the loss deepens when results are not disseminated clearly or cannot be translated into actionable knowledge.
+
+### How AI can reduce delays and failure risk
+
+In most programs the useful contribution of AI is operational rather than predictive: it reduces coordination overhead and reconciliation debt (see @sec-ai-agents for the underlying tools and governance model). Analytics can track real-time screen-failure reasons and accrual drift, flagging problems before timelines slip irreversibly. Automation can shorten the long tail of closeout by triaging queries, reconciling data across disparate systems, checking Trial Master File readiness through signature and version checks, flagging outlier raters, and speeding safety case processing, all without adding administrative burden on site staff and with final sign-off still resting with trained professionals.
+
+Trial "failure," then, is often the visible outcome of earlier, correctable operational and design problems, and AI can improve timelines and reduce failure rates by making those problems legible sooner and by shrinking the manual burden of reconciliation and documentation at closeout. That holds only under rigorous governance and traceability: every AI-assisted output that influences a trial must be attributable to a specific dataset, instruction, and accountable reviewer, and the system must be designed for auditability, oversight, and continuous monitoring rather than autonomous decision-making.
+

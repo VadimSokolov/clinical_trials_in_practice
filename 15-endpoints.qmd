@@ -1,0 +1,133 @@
+# Endpoints and Outcomes {#sec-endpoints}
+
+In 1987, the FDA approved zidovudine (AZT) for HIV based on a trial stopped early for improved survival after 8 to 24 weeks of follow-up [@fischl_azt_1987]. In 2011, the FDA revoked accelerated approval for bevacizumab in breast cancer after confirmatory trials found a much smaller effect on progression-free survival, the endpoint behind the approval, and no significant gain in overall survival to offset serious toxicity. In 2021, the approval of aducanumab for Alzheimer's disease sparked controversy because the drug reduced amyloid plaques (the surrogate) but did not clearly improve cognition (the clinical outcome).
+
+All three turn on one question: what should a trial measure to show that a drug works? The answer drives the design, the sample size, and the regulatory strategy, and in the end decides whether patients gain access at all.
+
+An *endpoint* is the defined outcome a trial is designed to measure, the variable that answers the central question: did the treatment work? Some are assessed at a fixed time, such as the end of treatment or follow-up; others, such as the time to a first event, are captured as they occur.
+
+Endpoints must be specified before the trial begins. The *primary endpoint* is the one the trial will be judged on: a Phase III trial with survival as its primary endpoint succeeds if the treatment group lives significantly longer than the control group, and fails if it does not. Secondary endpoints add information but do not determine the trial's overall success.
+
+Choosing the right endpoint means balancing what matters clinically (does the patient feel better? live longer?) against what is practical (can we measure it reliably, in a reasonable timeframe, with an affordable sample size?). That tension runs through everything that follows.
+
+## The Endpoint Hierarchy
+
+| Level | Definition | Examples | Regulatory Acceptance | Trial Implications |
+|-------|------------|----------|----------------------|--------------------|
+| *Clinical Endpoints* | Direct patient outcomes | Survival, symptomatic improvement, functional status | Gold standard for approval | Large trials, long follow-up |
+| *Surrogate Endpoints* | Predict clinical outcomes | Blood pressure -> CV events; HbA1c -> diabetes complications | Validated or reasonably likely | Smaller trials, faster readout |
+| *Biomarkers* | Biological process indicators | Drug concentration, receptor occupancy, gene expression | Generally not for approval | Early development, dose selection |
+
+: Clinical Trial Endpoint Hierarchy {#tbl-endpoint-hierarchy tbl-colwidths="[15,20,25,20,20]"}
+
+At the apex of the hierarchy (@tbl-endpoint-hierarchy) sits what we ultimately care about: whether patients live longer, feel better, or function more effectively. These *clinical endpoints* (sometimes called *hard endpoints*) measure patient outcomes directly. Survival is the paradigm: either the patient is alive or they are not. There is no ambiguity, no measurement error, no room for interpretation.
+
+Below them sit *surrogate endpoints*: measurements that are not themselves clinical outcomes but are reasonably expected to predict them. Blood pressure stands in for stroke and heart attack, viral load for AIDS progression, tumor shrinkage for cancer survival.
+
+Further down are *biomarkers*: measurable characteristics that indicate biological processes, disease states, or responses to intervention. A biomarker can be a surrogate, but one that reliably reflects drug activity may still fail to predict clinical benefit.
+
+## Clinical Endpoints
+
+In oncology, *overall survival* (OS) is the gold standard: the most reliable way to determine whether a cancer treatment extends life. In heart failure, the composite of *cardiovascular death and heart failure hospitalization* captures both mortality and major morbidity.
+
+*Progression-free survival* (PFS), the time from randomization to objective tumor progression or death, is often used as a primary oncology endpoint when waiting for OS would make a trial impractically long. FDA accepts PFS as a basis for approval in many settings, but treats it as a judgment call, not an automatic substitute for clinical benefit: the magnitude of the delay, whether tumor-related symptoms improve, and the drug's toxicity all matter, because a longer time to progression does not by itself establish that patients live longer or feel better [@fda_cancer_endpoints_2018].
+
+That reliability comes at a price in trial size and duration. Events can be relatively rare and outcomes slow to develop, so a survival endpoint in a slowly progressing cancer can mean thousands of patients followed for years, with everything that implies for cost, time to approval, and patient access to therapy.
+
+*Patient-reported outcomes (PROs)* ask the patient directly. How do you feel? What is your quality of life? Can you perform daily activities? Standardized questionnaires capture a perspective that may differ from what objective measurements suggest.
+
+Regulators and payers increasingly want that perspective on record: a drug that moves a biomarker without making patients feel better is worth less than one that relieves symptoms. But responses can be influenced by expectations, mood, and cultural factors, so the instrument itself has to be shown to work.
+
+Unlike a blood test, a questionnaire cannot be calibrated against a physical standard, so PROs are validated psychometrically instead, to prove they measure what they claim to. Content validity, usually established through qualitative interviews with patients, shows that the instrument covers the relevant symptoms; reliability makes the measure stable and reproducible; construct validity checks the score against other known measures of the disease; and sensitivity to change confirms the instrument can detect meaningful improvements. Regulators require this evidence before approving a labeling claim based on a PRO [@fda_pfdd_coa_2023].
+
+Smartphones and wearables have produced a newer category: endpoints derived from Digital Health Technologies (DHTs), which promise to replace the snapshot of a brief clinical assessment with continuous real-world monitoring. Digital biomarkers such as subtle changes in gait or voice may predict disease progression.
+
+Validation is the hurdle. Regulators must be convinced that the device measures the concept accurately, that the measurement correlates with clinical status, and that the data is secure and attributable [@fda_dht_guidance_2023]. The FDA's Digital Health Center of Excellence exists to guide these tools into regulatory decision-making.
+
+## Surrogate Endpoints
+
+A surrogate can be measured sooner and in fewer patients, which can accelerate development and cut cost. The reasoning is clean: if intervention A lowers blood pressure more than intervention B, and lower blood pressure reduces cardiovascular events, then A should reduce cardiovascular events more than B.
+
+But the logic can fail. The relationship between surrogate and outcome may not hold under all circumstances: an intervention might move the surrogate through a pathway that does not influence clinical outcomes, or affect clinical outcomes through pathways the surrogate never captures.
+
+The CAST trial of the late 1980s tested antiarrhythmic drugs in post-heart attack patients. The drugs effectively suppressed the abnormal heart rhythms they were designed to treat, and the surrogate looked excellent. The trial was stopped early because treated patients were *more* likely to die than those on placebo. The trial report called the mechanism of the excess deaths unknown [@echt_cast_1991]: the rhythm abnormalities may have been a marker of underlying heart damage rather than a cause of death, and the drugs that suppressed them may have added cardiac risks of their own.
+
+Hormone replacement therapy improved lipid profiles and was widely prescribed for cardiovascular prevention on the strength of surrogate reasoning and observational data. Then the Women's Health Initiative randomized trial showed that, despite the favorable lipid effects, hormone therapy increased cardiovascular events [@rossouw2002whi]. The surrogate had predicted the wrong outcome.
+
+The FDA distinguishes between *validated surrogates* (where the relationship to clinical outcome is well established) and *reasonably likely surrogates* (where the relationship is plausible but not fully established). The latter can support *accelerated approval* for serious conditions, but sponsors must then confirm the clinical benefit in post-marketing studies.
+
+Molecular surrogates are moving through exactly this pathway now. In blood cancers, *minimal residual disease (MRD)*, the small population of cancer cells that highly sensitive assays can detect after treatment, has emerged as a candidate surrogate for long-term survival. In April 2024, the FDA's Oncologic Drugs Advisory Committee voted unanimously (12-0) that MRD is an appropriate endpoint to support accelerated approval in multiple myeloma, where confirming a progression-free or overall survival benefit can take many years [@landgren2024mrd]. In solid tumors, *circulating tumor DNA (ctDNA)* clearance is being studied as an analogous early signal in adjuvant trials. These molecular markers promise dramatically smaller and faster trials, but they carry the same obligation as every surrogate before them: the effect on the marker must ultimately be confirmed to predict the effect on how patients live and feel.
+
+## Primary and Secondary Endpoints
+
+| Category | Role | Statistical Handling | Interpretive Rules |
+|----------|------|---------------------|--------------------|
+| *Primary* | Main outcome for trial success/failure | Fully powered; Controls Type I error | Trial succeeds or fails on this |
+| *Key Secondary* | Pre-specified important outcomes | Part of testing hierarchy; Multiplicity-adjusted | Interpret only if primary positive |
+| *Secondary* | Additional efficacy/safety info | May be multiplicity-adjusted | Supportive; Interpret with caution |
+| *Exploratory* | Hypothesis-generating | No multiplicity adjustment | Signals for future studies only |
+
+: Endpoint Categories and Their Roles {#tbl-endpoint-roles tbl-colwidths="[15,25,30,30]"}
+
+The *primary endpoint* is the outcome the trial is designed and powered to assess, the basis for the primary analysis and usually the endpoint regulatory decisions rest upon. *Secondary endpoints* fill in around it: other aspects of efficacy, safety, or tolerability, outcomes in subpopulations, the durability of effects over time. @tbl-endpoint-roles sets out how each category is analyzed and interpreted.
+
+What a secondary endpoint is worth depends on the primary. If the primary is negative (no statistically significant difference between treatment groups), positive secondaries are difficult to interpret: they may represent chance findings from multiple comparisons. If the primary is positive, they confirm and characterize the result.
+
+The problem behind those chance findings is *multiplicity*. With a conventional significance threshold of 0.05, one in twenty tests will be "positive" by chance alone, so the more endpoints a trial tests, the higher its overall probability of a false positive finding. *Multiplicity adjustment* (such as hierarchical testing, gatekeeping procedures, or graphical approaches) controls the inflation.
+
+## Composite Endpoints
+
+A *composite endpoint* combines multiple outcomes into a single measure. A participant might be counted as having an event if they experience any one of: death, heart attack, stroke, or hospitalization for unstable angina. In the standard time-to-first-event analysis, each participant contributes only their first component event, and all components carry equal weight regardless of clinical severity (a hospitalization counts the same as a death). Because death precludes any later event, it acts as a competing risk for the non-fatal components.
+
+Composites offer statistical efficiency: events are more common, since many participants will have at least one component, so smaller sample sizes may suffice. They also give a fuller picture of disease burden, capturing multiple manifestations of benefit or harm.
+
+The cost is interpretive. If the composite is positive overall, which components drove it? Is a treatment that reduces hospitalizations but has no effect on death meaningfully beneficial, and should a drug that moves only the minor events be approved?
+
+Components should be clinically related and of roughly similar importance; death and mild headache are not.
+
+## Time-to-Event Endpoints
+
+A *time-to-event* endpoint records how long until a participant experiences the outcome, which, given long enough follow-up, lets the analysis separate a treatment that reduces eventual event rates from one that only delays them.
+
+*Survival analysis* methods (Kaplan-Meier curves, log-rank tests, Cox proportional hazards models) are designed for this kind of data. They accommodate participants who have not yet experienced an event (*censored* at the time of analysis) and those who drop out before one occurs.
+
+Many of these analyses assume *proportional hazards*: the hazard ratio is constant over time. If a treatment lowers the hazard (the event rate among patients still event-free) by 30% at month 6, it should also lower it by 30% at month 12; the relative reduction in cumulative risk is smaller than 30% and shrinks as events accumulate. When this assumption is violated (as when a treatment takes time to work, or when its effects wane over time) alternative methods may be needed.
+
+## Ordinal Endpoints
+
+Many outcomes that appear binary are actually ordered. A patient with heart failure may die, be hospitalized, remain symptomatic but outpatient, or be nearly asymptomatic; collapsing that spectrum into "event" or "no event" discards clinically meaningful information.
+
+*Ordinal endpoints* keep the ordering, treating the outcome as a ranked scale. The *modified Rankin Scale (mRS)* in stroke trials is the canonical example: it runs from 0 (no symptoms) through 6 (death), with each step representing a clinically distinct level of functional disability [@saver2007mrs]. The WHO Clinical Progression Scale used in COVID-19 trials similarly ranked patients from "uninfected" (score 0) to "dead" (score 10), with intermediate steps for degrees of oxygen support and hospitalization [@who_covid_ordinal_2020].
+
+The standard analysis for ordinal outcomes is the *proportional-odds (PO) model*, a generalization of logistic regression [@agresti2010analysis]. It assumes the treatment odds ratio is the same at every cut-point of the ordinal scale (on treatment, the odds of being in a better category than the reference are $OR$ times higher, regardless of where the cut-point is placed). When that assumption holds, the model uses all the information in the ordinal scale instead of dichotomizing at an arbitrary threshold. The PO assumption can be checked with a score test and, if it is violated, the model replaced by a proportional-hazards model on discrete time or by non-parametric rank tests.
+
+For sponsors the benefit is power: at a given sample size, an ordinal analysis is typically more powerful than a binary analysis of the same data, because the ordinal outcome carries more information. For regulators the benefit is interpretability, since an effect that shifts the entire distribution toward better categories says more about clinical benefit than a count of patients crossing one threshold.
+
+## The Win Ratio and DOOR
+
+A composite of "death or hospitalization" counts a 2-day readmission the same as death, which misrepresents clinical priority. Two related methods restore the ranking a composite flattens.
+
+The *win ratio* adjudicates every possible pair of patients (one from the treatment arm, one from the control) against a hierarchy of outcomes: check the most severe outcome first, death, and if one patient wins on it, that patient's arm wins the pair; if the pair is tied on death, check the next outcome, hospitalization, and so on [@pocock2012winratio]. The statistic is the number of pairs the treatment patient wins divided by the number the control patient wins, with tied pairs excluded. Investigators set the hierarchy before the trial, which makes the clinical value judgment explicit. Win ratio analyses have been used in heart failure, oncology, and COVID-19 trials.
+
+*Desirability of Outcome Ranking (DOOR)* extends the same idea to continuous outcomes and patient-reported data [@evans2015door]. Every patient receives a score (their DOOR) from a pre-specified combination of clinical outcomes, adverse events, and, optionally, patient preferences. Patients are ranked from worst to best, and the summary statistic is the probability that a randomly selected treatment patient has a better DOOR than a randomly selected control patient, with ties counted as half ($P[T > C] + 0.5\,P[T = C]$); no difference between arms gives 0.5, and a value above 0.5 means a treated patient is more likely to do better than worse, across the entire outcome spectrum [@evans_follmann_door_2016]. DOOR is most valuable when benefit and harm have to be summarized together, as in antibiotic trials where one measure should capture cure, adverse events, and resistance emergence.
+
+## Estimands and Death as an Intercurrent Event
+
+The ICH E9(R1) estimands framework [@ich_e9_r1] formalized a question that had long been implicit in trial design: what treatment effect, precisely, is the trial trying to estimate? An *estimand* is the complete specification of the treatment comparison: the population, the treatment and control, the endpoint variable, how intercurrent events are handled, and the population-level summary measure.
+
+*Intercurrent events* are events that occur after treatment initiation and affect either the interpretation or the observability of the endpoint. Treatment discontinuation, rescue medication use, and crossover to the other arm are common examples. Death is the hardest case.
+
+When the primary endpoint is a non-fatal outcome (symptom score, functional status, quality of life), death is an intercurrent event that makes the outcome unobservable: a dead patient has no quality-of-life score. ICH E9(R1) defines five strategies for handling intercurrent events, and the choice among them for death fundamentally changes the estimand:
+
+- **Composite (variable) strategy:** treat death as a component of the endpoint itself, typically by assigning it the worst possible score. This estimates the effect on the composite of survival and the non-fatal outcome.
+- **Hypothetical strategy:** estimate what the outcome would have been if the patient had survived. This is a counterfactual that requires modeling assumptions.
+- **Principal stratum strategy:** restrict the estimate to the subpopulation of patients who would survive under either treatment assignment (the survivor average causal effect).
+- **While on treatment strategy:** use the outcome only up to the intercurrent event; for death, E9(R1) calls this *while alive*, and the estimand concerns symptoms or function while the patient is alive. Treatment discontinuation, a different intercurrent event, needs its own strategy.
+- **Treatment policy strategy:** use the endpoint value regardless of whether the patient discontinued treatment or took rescue medication. Unlike the strategies above, it offers no way to handle death, because a non-fatal outcome such as quality of life simply does not exist once the patient has died.
+
+The practical consequence for trial teams is that an endpoint cannot be chosen without specifying its estimand at the same time: a quality-of-life endpoint and a symptom-improvement endpoint can be the same measurement and still be different estimands, depending on how death is handled. Pre-specifying it prevents post hoc ambiguity about what the trial demonstrated and keeps the analysis aligned with the clinical question that motivated the trial.
+
+## Endpoint Selection in Practice
+
+Regulators generally favor well-validated clinical outcomes, but sponsors must also confirm that the endpoint captures benefit patients and payers will recognize. Operationally, the endpoint has to be measurable with enough precision to maintain statistical power, and timed to avoid unnecessary delay while still providing a reliable prediction of long-term benefit. For patient-reported outcomes, established and validated instruments are the most direct route to findings that are reproducible and credible to external stakeholders. AI-based endpoint assessment, including automated image scoring, wearable-derived digital biomarkers, and NLP extraction of outcomes from clinical notes, is covered in @sec-ai-agents.
+

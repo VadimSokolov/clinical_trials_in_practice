@@ -1,0 +1,218 @@
+# Regulatory Framework {#sec-regulatory}
+
+An investigational drug does not reach its first human subject in the United States until a sponsor has filed an *Investigational New Drug (IND)* application and either 30 days have passed since FDA received it without a clinical hold or FDA has told the sponsor the study may begin sooner. For most INDs, silence is permission. Much of the framework works that way: obligations fixed in advance, verified afterwards by inspection, with consequences that reach as far as debarment. The focus here is the United States, with the international requirements a multinational program must also satisfy.
+
+The Food and Drug Administration (FDA) regulates drugs, biologics, and medical devices [@fda_enabling]. It sits in the Department of Health and Human Services as part of the Public Health Service, alongside the National Institutes of Health (NIH) and Centers for Disease Control and Prevention (CDC), with a mission to protect public health by ensuring that regulated products are safe, effective, and not adulterated or misbranded.
+
+Which scientific center holds jurisdiction over a product is a developer's first question, because the center sets the requirements (@tbl-fda-centers):
+
+| Center | Products Regulated | Key Responsibilities |
+|--------|-------------------|---------------------|
+| **CDER** (Center for Drug Evaluation & Research) | Prescription drugs, OTC drugs, generics; many therapeutic biologics (e.g., most monoclonal antibodies and therapeutic proteins) | INDs; NDAs and ANDAs; BLAs for CDER-regulated biologics; biosimilars; post-market drug safety |
+| **CBER** (Center for Biologics Evaluation & Research) | Vaccines, blood and blood products, plasma derivatives, allergenic products, gene therapies, cellular therapies | INDs and BLAs for CBER-regulated biologics; lot-by-lot release for certain products |
+| **CDRH** (Center for Devices & Radiological Health) | Medical devices (Class I-III), radiation-emitting products | 510(k) clearances, De Novo, Premarket Approvals (PMA), device safety |
+| **HFP** (Human Foods Program) | Foods and dietary supplements (absorbs former CFSAN food functions, effective October 2024; cosmetics moved to the Office of the Chief Scientist) | Food safety standards, nutrition labeling |
+| **CVM** (Center for Veterinary Medicine) | Animal drugs, animal food | Veterinary product approval |
+
+: FDA Scientific Centers {#tbl-fda-centers tbl-colwidths="[25,35,40]"}
+
+The agency also works with numerous interagency partners, including the Office for Human Research Protections (OHRP) on clinical trial matters, NIH on scientific investigation, CDC on epidemiological matters, and the Department of Homeland Security on bioterrorism and food safety.
+
+## The Code of Federal Regulations
+
+Clinical research rules are codified in *Title 21 of the Code of Federal Regulations* (21 CFR). It runs to thousands of pages; a few parts carry nearly all the weight for a trial.
+
+Part 50 establishes what informed consent must include and how it must be documented [@cfr21_50]. Potential participants must be told the purpose of the research, the procedures involved, the foreseeable risks and potential benefits, the available alternatives, and how their privacy will be protected. They must also be told that participation is entirely voluntary and that they can withdraw at any time without penalty.
+
+That list is easy to satisfy on paper. Explaining a novel gene therapy to a patient with limited scientific background is not, and neither is obtaining meaningful consent from someone who is seriously ill and may see the trial as their best hope. The framework is in the regulation; the judgment is not.
+
+No FDA-regulated clinical investigation begins until an *Institutional Review Board (IRB)* has reviewed and approved it, apart from narrow exceptions such as the emergency use of a test article, which need only be reported to the IRB within five working days [@cfr21_56]. The IRB is an independent ethics committee of at least five members with diverse backgrounds, including scientific expertise and community representation. Its fundamental question is whether the research balances potential benefits against risks to participants appropriately; it also examines the equity of subject selection, the adequacy of the consent process, and the safeguards in place. Its authority is broad: it can require design modifications or additional protections, and it can refuse approval entirely.
+
+### The Clinical Trial Stakeholder Framework
+
+@fig-stakeholder-framework shows how responsibility runs among the parties to a trial.
+
+```{mermaid}
+%%| label: fig-stakeholder-framework
+%%| fig-cap: "Clinical Trial Stakeholder Relationships"
+%%{init: {'flowchart': {'nodeSpacing': 15, 'rankSpacing': 45, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    RA[("Regulatory Authority<br/>(FDA, national<br/>authorities, etc.)")]
+
+    subgraph Trial["Clinical Trial"]
+        Sponsor["Sponsor"]
+        CRO["CRO<br/>(optional delegate)"]
+        PI["Principal Investigator<br/>(Sub-Investigators)"]
+        Subject["Research Subject"]
+        IRB["IRB / Ethics<br/>Committee"]
+    end
+
+    Sponsor -->|"Submits /<br/>holds IND"| RA
+    RA -->|"Oversees;<br/>may inspect"| Sponsor
+    RA -->|"May<br/>inspect"| CRO
+    RA -->|"May<br/>inspect"| PI
+    RA -->|"May<br/>inspect"| IRB
+    Sponsor -->|"May transfer<br/>obligations"| CRO
+    Sponsor -->|"Selects,<br/>monitors"| PI
+    CRO -.->|"Acts for<br/>sponsor"| PI
+    IRB -->|"Approves protocol<br/>/ consent"| Sponsor
+    IRB -->|"Approves site<br/>conduct"| PI
+    IRB -->|Protects| Subject
+    PI -->|"Obtains consent;<br/>trial-related care"| Subject
+```
+
+The sponsor bears ultimate responsibility for the trial's conduct and for regulatory compliance. Tasks can move to a CRO by written transfer; accountability for oversight does not move with them. The principal investigator runs the research at the site, obtaining informed consent and protecting participant safety, under the IRB's independent ethical oversight. Over all of them, the regulatory authority may inspect sponsors, CROs, investigators, and IRBs, and can halt research that fails to protect participants adequately.
+
+### The IND Application (21 CFR Part 312)
+
+Part 312 governs the IND, and arguably no part of the title matters more to a development program [@cfr21_312]. Without an IND in effect, there is no first dose.
+
+Three sections carry the application. *Chemistry, manufacturing, and controls* describes what the drug is and how it is made, information critical to ensuring that every batch is consistent and safe. *Pharmacology and toxicology* summarizes the nonclinical studies (typically in animals) that support the safety of proceeding to human trials. The *clinical protocol* details exactly how the proposed study will be conducted.
+
+Thirty days is the review window; absent a clinical hold, the sponsor proceeds. The arrangement trades a measure of regulatory control for the urgency of bringing new therapies to patients. Planned emergency research conducted without prospective informed consent under 21 CFR 50.24 is an exception: it needs a separate IND and may not start without FDA's prior written authorization [@cfr21_312; @cfr21_50].
+
+### Electronic Records and Signatures (21 CFR Part 11)
+
+Part 11 sets the requirements for electronic records and signatures, with one goal: an electronic record should be as trustworthy as a paper one [@cfr21_11]. That means validated computer systems, secure audit trails that track every change to the data, controlled access, and electronic signatures that reliably identify the signer.
+
+::: {.callout-note}
+## Part 11 in Practice
+Part 11 dates from 1997, but the FDA's current approach focuses on the controls most directly related to data integrity. Not every electronic system requires the same level of validation; a risk-based approach guides compliance decisions.
+:::
+
+## AI and Automation in a Regulated Trial
+
+The logic behind Part 11 (data integrity, traceability, accountability) now shapes how sponsors deploy AI and automation in clinical development. Most of that activity does not involve a model making an approval decision; it automates *processes* while keeping the evidence chain auditable.
+
+Many high-volume regulatory deliverables are already partly automated through workflow systems: eTMF filing against the TMF Reference Model, query management, and risk-based quality management (RBQM) signals that support targeted monitoring. These can be rules engines plus machine-learning classifiers (e.g., document type classification, completeness checks) that cut manual effort while producing an inspectable audit trail [@dia_reference_model; @acro_rbqm_2025]. This matters because inspection findings are frequently about process, not statistical methods: missing essential documents, inconsistent data corrections, inadequate oversight. Automation can reduce *variance* in execution, but only when it is controlled, validated, and monitored like any other regulated computerized system [@cfr21_11].
+
+Generative AI increasingly drafts narratives, summarizes deviations, and prepares sections of reports and submission documents. The regulatory risk is fluency itself: text that reads well can obscure uncertainty or introduce untraceable statements that do not faithfully reflect the source record [@messeri_crockett_2024]. Empirical work in clinical research document generation has highlighted compliance and factuality issues requiring governance, source linking, and review workflows [@wang2025llm_compliance_factuality].
+
+Governance for AI-enabled workflows mirrors general risk management frameworks: define intended use, identify hazards (hallucinated facts, biased triage, missed signals), implement controls (retrieval with provenance, checklists, dual-review, monitoring), and document residual risk and responsibilities [@nist_ai_rmf_2023]. For AI/ML built into *products* such as medical devices, regulators and partner agencies have articulated Good Machine Learning Practice (GMLP) principles emphasizing lifecycle management and transparency, which translate well to internal clinical operations tooling [@gmlp_fda_hc_mhra_2021].
+
+Regulators do not require sponsors to avoid AI; they require sponsors to manage risk. The posture is less "ban or bless" than "show your work": keep the decision trace, keep the data lineage, and make it clear where humans remain accountable.
+
+## The IND Process in Practice
+
+The filing is often not the first contact: a Pre-IND meeting commonly precedes it, where sponsors align development plans with FDA expectations (@fig-ind-process).
+
+```{mermaid}
+%%| label: fig-ind-process
+%%| fig-cap: "The IND Application Process"
+%%{init: {'flowchart': {'nodeSpacing': 30, 'rankSpacing': 35, 'padding': 8, 'diagramPadding': 30, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    subgraph Submit["Submission"]
+        direction LR
+        A["Pre-IND meeting<br/>(optional)"] -.-> B["IND<br/>Submission"] --> C{"30-day<br/>FDA review"}
+    end
+
+    subgraph Hold["If Clinical Hold"]
+        direction LR
+        E["Address<br/>concerns"] --> F["Response to<br/>clinical hold"] --> G{"FDA reply<br/>(≤30 days)"}
+        G -->|Hold maintained| E
+    end
+
+    D["IND in effect;<br/>trial may proceed"]
+
+    Submit -->|Hold| Hold
+    Submit -->|No hold / may proceed| D
+    Hold -->|Hold lifted| D
+```
+
+Not every IND has the same purpose. A Commercial IND supports research aimed at marketing approval; a Research IND typically comes from an academic institution for non-commercial study. An Emergency IND permits use of an investigational drug when time is of the essence, and a Treatment IND gives broad pre-approval access to promising therapies for patients with serious conditions and no alternative options.
+
+The Food and Drug Omnibus Reform Act (FDORA), enacted in 2022, directs the FDA to require Diversity Action Plans for pivotal and Phase III studies that begin enrolling more than 180 days after its final implementing guidance is published [@fdora2022]; the FDA's draft implementing guidance called on sponsors to set enrollment goals for underrepresented populations (defined by race, ethnicity, sex, and age) and to describe how those goals would be met. That implementing guidance remains unsettled: the June 2024 Diversity Action Plans draft was withdrawn after a January 2025 executive order, restored by court order weeks later, and was still a draft when its statutory deadline for finalization, June 26, 2025, passed [@fda_dap_status_2025; @fda_diversity_action_plans_2024]. A separate FDA guidance, the December 2025 final *Enhancing Participation in Clinical Trials* (a revision of the agency's earlier eligibility-criteria guidance, issued under a different statutory mandate), retains recommendations for representative enrollment while dropping the earlier "diversity" framing [@fda_eligibility_2025]. The statutory mandate for Diversity Action Plans stands, though it takes effect only once that guidance is final, and the specifics of compliance, particularly sex- and gender-based enrollment goals, became genuinely contested in 2025, leaving diverse recruitment somewhere between an ethical best practice and a firm regulatory requirement.
+
+The 21st Century Cures Act (2016) directed the FDA to establish a framework for using real-world evidence (RWE) [@fda_rwe_framework_2018]; subsequent guidance has expanded the role of data from electronic health records, registries, and wearables in supporting new indications and post-marketing safety studies, and, in some rare-disease programs, external or synthetic control arms.
+
+## International Considerations
+
+The *International Council for Harmonisation (ICH)* brings together regulatory authorities and pharmaceutical industries from the United States, European Union, Japan, and beyond to develop harmonized guidelines. Those guidelines are not law and bind nobody by themselves. Member countries adopt them, and that adoption has made them the de facto international standards for an enterprise that now runs trials across many countries and files submissions with agencies around the world.
+
+Key guidelines (@tbl-ich-guidelines) include E6 on Good Clinical Practice, E8 on general considerations for clinical studies, E9 on statistical principles, and M4 on the Common Technical Document format for regulatory submissions.
+
+| Guideline | Topic |
+|-----------|-------|
+| E6 | Good Clinical Practice (R3 updates focus on Quality by Design & Data Governance) |
+| E8 | General Considerations for Clinical Studies (R1 introduces Quality by Design & Critical to Quality factors) |
+| E9 | Statistical Principles (R1 adds "Estimands" framework) |
+| E2A | Clinical Safety Data Management |
+| E3 | Structure and Content of Clinical Study Reports |
+| M4 | Common Technical Document (CTD) Format for Regulatory Submissions |
+
+: Key ICH Guidelines for Clinical Trials {#tbl-ich-guidelines tbl-colwidths="[15,85]"}
+
+### Regional Regulatory Frameworks
+
+In the European Union, clinical trials are governed by the *EU Clinical Trials Regulation 536/2014*, applicable since January 2022. It introduced a single submission portal (the *Clinical Trials Information System*, or CTIS), harmonized assessment timelines across member states, and opened trial information to public access. For multinational sponsors, that replaced a fragmented process requiring a separate submission to each country.
+
+Beyond the EU, major authorities include Japan's Pharmaceuticals and Medical Devices Agency (PMDA), China's National Medical Products Administration (NMPA), Health Canada, and Australia's Therapeutic Goods Administration (TGA). Requirements differ, reflecting different healthcare systems, patient populations, and regulatory traditions, but the ICH guidelines give global programs a common foundation and let one body of clinical data support submissions in several jurisdictions.
+
+## Good Clinical Practice
+
+ICH E6 GCP is the international ethical and scientific quality standard for clinical trials [@ich_e6r3_2025]. The 2025 revision (R3) builds on the risk-based quality management that E6(R2) introduced in 2016 [@ich_e6r2_2016] with an explicit *Quality by Design* (QbD) approach, in which quality is built into the trial design from the outset through systematic identification of critical factors, risk assessment, and implementation of appropriate controls.
+
+E6(R3) also adds requirements for *data governance*, since a modern trial draws data from electronic health records, wearables, patient-reported outcomes, and central laboratories, all needing appropriate controls throughout the data lifecycle. It presses for risk-proportionate oversight, letting sponsors match oversight intensity to each trial's complexity and risk, and it addresses technology-enabled designs explicitly: decentralized trials, electronic consent, digital health technologies.
+
+E6 assigns duties to three parties. The *IRB or Independent Ethics Committee* reviews and approves trial documents before research begins, then conducts continuing review and receives reports of safety events and protocol deviations. The *investigator*, typically a physician, conducts the trial according to GCP and the approved protocol, obtains informed consent from each participant, reports adverse events, and maintains accurate records. The *sponsor*, whether a pharmaceutical company, academic institution, or government agency, is responsible for the overall design and conduct of the trial: selecting qualified investigators, providing the investigational product, ensuring proper monitoring, and reporting safety information to regulatory authorities.
+
+Investigators and sponsors must maintain essential documents throughout: the records that demonstrate GCP compliance and let an outsider verify the data independently. They accumulate chronologically: the protocol and investigator's brochure at startup, consent forms and monitoring reports during conduct, final study reports and treatment allocation records at completion.
+
+::: {.callout-tip}
+## The Trial Master File
+All essential documents should be organized in a *Trial Master File (TMF)*. The sponsor maintains a central file, while each investigator site maintains a site file. These records must be retained for years after the trial concludes. While historically ICH E6(R2) specified a minimum of two years following marketing approval or program discontinuation, the updated ICH E6(R3) (2025) framework defers to applicable regional regulatory requirements for the sponsor's records and asks investigators to keep theirs for the regional period or until the sponsor says they are no longer needed, whichever is longer; in the United States, FDA 21 CFR 312.57(c) requires sponsors to retain records for a minimum of two years. That two-year minimum does not begin at study close: the clock runs from a trigger event (two years after the marketing application is approved, or after investigational shipments cease and FDA is notified), and other regions impose far longer periods: the EU Clinical Trials Regulation requires the trial master file to be archived for at least 25 years after the trial ends [@eu_ctr_536_2014], so a trial with EU sites keeps its records for decades (see @sec-essential-docs).
+:::
+
+## Adaptive and Bayesian Trial Design: Regulatory Guidance
+
+Adaptive and Bayesian designs were once negotiated one product at a time. Over the past decade that case-by-case practice hardened into published guidance defining what a sponsor must provide to use these approaches.
+
+### FDA Adaptive Design Guidance (2019)
+
+FDA's 2019 guidance on adaptive designs for drugs and biologics sorts adaptive modifications by how much they threaten the Type I error rate [@fda2019adaptive]. Non-comparative adaptations use pooled data without reference to treatment assignment, as in blinded sample-size re-estimation based on nuisance parameters like the overall variance or event rate; they carry little risk of inflating the false-positive rate and are generally acceptable when pre-specified. Comparative adaptations use interim results broken down by treatment group (even if the groups are labeled only A and B), including dropping doses or treatment arms and response-adaptive randomization, and they directly risk inflating Type I error and biasing the estimated treatment effect, so they demand rigorous, typically simulation-based justification and regulatory agreement in advance. (The "well-understood versus less well-understood" labels sometimes attached to adaptive designs come from the FDA's superseded 2010 draft, not the 2019 guidance.)
+
+Four principles run through the guidance:
+
+1. **Pre-specification.** Adaptation rules must be written into the protocol and statistical analysis plan before enrollment begins. Unplanned changes prompted by comparative interim results make Type I error hard to control and the trial hard to interpret, however beneficial they look, so FDA strongly discourages making them without first meeting with the agency, unless patient safety requires immediate action.
+
+2. **Type I error control.** The overall probability of a false-positive result across all adaptation points must be maintained at the pre-specified level, typically 5% (two-sided) or 2.5% (one-sided). Sponsors must demonstrate that control analytically or through simulation.
+
+3. **Operational integrity.** Comparative interim results must be kept from the people managing and conducting the trial, through firewalled statistical teams and procedures that keep adaptive information away from anyone who can influence trial conduct. FDA generally recommends that no sponsor representative see them, although limited access for a few sponsor staff who take no other part in conducting or managing the trial can be justified, as for a dose-selection decision.
+
+4. **Reliable effect estimation.** Controlling false positives is not enough; the design must also yield treatment-effect estimates and confidence intervals that the adaptation has not systematically biased. Adaptive selection and early stopping distort naive estimates, so the guidance expects sponsors to anticipate that and apply bias-adjusted estimation where needed.
+
+### FDA Bayesian Guidance
+
+A Bayesian design raises a question of its own: how much of the evidence may come from outside the current trial. For medical devices, a 2010 guidance applies [@fda_bayesian_devices_2010]. For drugs and biologics, FDA issued a draft guidance in January 2026 [@fda_bayesian_2026]; before it, the adaptive design guidance and Complex Innovative Design meeting interactions had established the operating norms [@fda2019adaptive]. The draft distinguishes Bayesian approaches used *with* Type I error control (calibrating the trial to a pre-specified frequentist error rate, with Bayesian machinery used for computational convenience) from those used *without* it (where an informative prior from prior studies or related evidence reduces the required evidence from the current trial, and the combined posterior probability is the decision criterion).
+
+For the "without control" category, the draft frames the central question as whether the borrowed prior information is *valid, reliable, and interpretable* [@fda_bayesian_2026]. Several factors bear on that judgment: the quality and reliability of the contributing data, whether the prior is pre-specified, the relevance of the prior evidence to the current population and question, the rigor of the design of the studies that produced it, and the availability of patient-level data. An informative prior can reduce the evidence the current trial must supply on its own, but the draft is explicit that a design may skip calibration to a fixed Type I error rate only where the sponsor and FDA have agreed to that approach in advance. Even then, it cautions, the Type I error rate alone will not provide a complete assessment of the prior's influence, which makes sensitivity analyses showing that the trial's conclusions are not driven entirely by the prior essential.
+
+The draft also addresses *discounting*: information borrowed from historical or prior studies should be discounted for the possibility that the historical and current populations differ [@fda_bayesian_2026]. Dynamic discounting, which automatically reduces borrowing when the current trial data diverge from the prior, is often chosen over static discounting (a fixed fraction) because it has better operating characteristics, such as less bias, when the populations do differ; the price is more parameters to specify, and the draft leaves the choice of method to case-by-case discussion with FDA.
+
+### ICH E20: International Harmonization
+
+ICH E20, the first international harmonized guideline specifically addressing adaptive clinical trials, was released as a Step 2 draft in June 2025, and EMA's public consultation on it closed in November 2025 [@ich_e20]. It proposes common principles for judging adaptive designs across FDA, EMA, and the other ICH regions: pre-specified decision rules, simulation to characterize operating characteristics, appropriate error control. For a global program, E20 alignment should reduce the risk of region-specific redesign, but until the guideline is final the draft does not confirm regulatory acceptance of its contents, current regional guidance remains valid, and its section on Bayesian methods is not fully harmonized.
+
+::: {.callout-important title="Regulatory Engagement for Adaptive Designs"}
+Engage regulators before the protocol for any novel adaptive design is final. For FDA that typically means a Type C meeting or similar interaction, at which the agency reviews the proposed adaptation rules, the simulation package, and the decision thresholds. Where the design uses Bayesian methods with informative priors or borrowing, agreement on the prior and discounting scheme should be reached before enrollment. Negotiating adaptive design choices after enrollment has begun is far harder.
+:::
+
+### Simulation as Regulatory Evidence
+
+Both the FDA adaptive design guidance and ICH E20 treat simulation as the primary tool for demonstrating that a proposed adaptive design has acceptable operating characteristics, and FDA reviewers read a simulation package as they would statistical analysis code: for correctness, completeness, reproducibility. It should characterize four things:
+
+- *Type I error rate*: the probability of a false positive across a range of null scenarios, including those where the adaptation rule might inflate error
+- *Power*: the probability of correctly concluding efficacy across a range of true effect sizes and interim trajectories
+- *Sample size distribution*: expected and worst-case sample sizes under null and alternative scenarios, including those where adaptation causes substantial expansion
+- *Bias*: whether adaptive allocation or early stopping produces estimated effect sizes that systematically differ from the true treatment effect
+
+Sponsors should plan to submit simulation code and seed values that allow FDA to reproduce results independently.
+
+## Inspections and Enforcement
+
+The regulatory framework has teeth. FDA inspections of clinical trial sites verify compliance and data integrity: routine inspections as part of a marketing application review and *for-cause* (also called *directed*) inspections triggered by specific concerns, such as a complaint or a problem identified during application review.
+
+Following an inspection, the FDA classifies findings as *NAI* (no action indicated) when no objectionable conditions or practices are found, *VAI* (voluntary action indicated) when objectionable conditions are found but FDA leaves their correction to the site and recommends no action, or *OAI* (official action indicated) when FDA recommends regulatory or administrative action.
+
+Serious violations can mean rejection of trial data from regulatory submissions, clinical holds on ongoing trials, and disqualification of investigators, which bars them from receiving investigational products and from conducting clinical investigations that support applications to FDA. In extreme cases involving fraud or egregious misconduct, criminal penalties are possible, and a conviction can lead to debarment, which bars the individual from providing services in any capacity to anyone with an approved or pending drug application.
+

@@ -1,0 +1,137 @@
+# Randomization and Blinding {#sec-randomization}
+
+For decades, hormone replacement therapy was thought to prevent heart disease, on the strength of observational studies showing that women who took hormones had lower rates of heart attacks. When randomized trials were finally conducted, they showed the opposite: combined hormone therapy increased the risk of coronary heart disease by roughly 29% and stroke by roughly 41% [@rossouw2002whi]. The observational studies had been confounded. Women who chose to take hormones were healthier to begin with.
+
+The same confounding arises at the bedside. A physician enthusiastic about a new treatment prescribes it to patients who seem likely to benefit and withholds it from those who seem too sick to respond. The treated patients do better. Nothing in the data can say whether that is the treatment or the selection.
+
+The methodological history of medicine is full of treatments that looked effective in uncontrolled studies and proved worthless, or even harmful, when properly tested. Randomization and blinding are what stand between a trial and that history. @sec-study-design treated both as design-level choices; what follows is the mechanics.
+
+Randomization eliminates the confounding [@cox2009randomization]. A coin flip (or its statistical equivalent) decides who receives treatment and who receives control, so the groups are comparable at baseline and differences that emerge afterwards can be attributed to the treatment itself. Cox identifies three broad purposes for randomization: to avoid selection and other biases in a publicly convincing way, to provide a unified approach to estimating error in standard designs, and to provide a basis for exact tests of significance. Of these, bias avoidance is the most compelling in clinical trials, since failure to randomize appropriately may fatally compromise an investigation, and it is also what convinces those not directly involved in the trial that the comparison is fair.
+
+## Types of Randomization
+
+The methods in @tbl-randomization-methods differ in how tightly they control group sizes and in how easily the next assignment can be guessed, and tighter control usually costs some unpredictability.
+
+| Method | Information needed at randomization | Balance guarantee | Risk of prediction | Best suited for |
+|--------|-------------------------------------|-------------------|--------------------|-----------------|
+| **Simple** | None | None (probabilistic only) | Low | Large trials (n > 200); unpredictability valued |
+| **Block** | Block size | Balance after each complete block | Moderate (last slot in block predictable) | Most confirmatory trials; standard practice |
+| **Stratified block** | Key prognostic strata for each patient | Balance within each stratum after each block | Moderate (same as block, within stratum) | Trials with 1-3 strong prognostic factors; multi-site |
+| **Minimization** | Current enrollment totals by covariate level | Near-perfect balance on all included covariates | Low-moderate (deterministic rule creates some predictability) | Multi-center trials with many prognostic covariates; moderate sample sizes |
+| **Response-adaptive (RAR)** | Accruing outcome data from enrolled patients | None; allocation shifts dynamically toward better arm | Low to moderate (single assignments stay probabilistic, but a shifting allocation ratio can leak interim performance) | Multi-arm early-phase or platform trials; rarely appropriate for two-arm Phase III |
+| **Cluster** | Group (site, clinic, community) membership | None inherent; set by how clusters are allocated (simple, matched, or stratified), and few clusters make chance imbalance likely | Low | Community or system-level interventions; implementation science |
+
+: Randomization method comparison {#tbl-randomization-methods tbl-colwidths="[16,24,18,20,22]"}
+
+*Simple randomization* is a coin flip for each participant. In a large trial that works well enough; in a trial randomizing 20 patients, chance can produce 13 in one group and 7 in the other. Bradley Efron addressed the problem in 1971 with the *biased coin design*, which increases the probability of assigning to the underrepresented group when imbalance develops [@efron1971biased_coin].
+
+### Block Randomization
+
+*Block randomization* attacks the same imbalance by randomizing within blocks of fixed size (@fig-block-randomization).
+
+```{mermaid}
+%%| label: fig-block-randomization
+%%| fig-cap: "Block randomization ensures equal group sizes after each complete block. This example shows a block size of 4."
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 30, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    subgraph Block2["Block 2"]
+        direction LR
+        P5["Patient 5"] --> B3["Treatment B"]
+        P6["Patient 6"] --> A3["Treatment A"]
+        P7["Patient 7"] --> B4["Treatment B"]
+        P8["Patient 8"] --> A4["Treatment A"]
+    end
+
+    subgraph Block1["Block 1"]
+        direction LR
+        P1["Patient 1"] --> A1["Treatment A"]
+        P2["Patient 2"] --> B1["Treatment B"]
+        P3["Patient 3"] --> A2["Treatment A"]
+        P4["Patient 4"] --> B2["Treatment B"]
+    end
+
+    Block1 --> R1["After Block 1:<br/>A=2, B=2"]
+    Block2 --> R2["After Block 2:<br/>A=4, B=4"]
+```
+
+With blocks of 4, a block might run ABAB, ABBA, BABA, or any of the six arrangements with two A's and two B's. After every complete block, the groups are guaranteed to be equal in size.
+
+*Stratified randomization* goes further, running a separate randomization sequence inside each subgroup defined by an important prognostic factor. If disease severity predicts outcome, patients might be stratified as mild, moderate, or severe and randomized independently within each stratum, so the groups stay balanced on severity even when overall enrollment skews toward one level.
+
+*Minimization* (or *dynamic allocation*) gives up randomizing each patient independently [@taves1974minimization; @pocock1975sequential]. The algorithm reads the current imbalance among enrolled patients and assigns each new one to reduce it: if the treatment group has more older patients, the next older patient may be somewhat more likely to go to control. Balance can hold on several factors at once, and simulation studies show that minimization gives better-balanced groups than restricted or unrestricted randomization [@scott2002minimization_review]. A 2023 tutorial found minimization particularly beneficial when numerous major prognostic factors are known, when many centers of varying sizes recruit patients, or when the sample size is moderate [@coart2023minimization].
+
+## Maintaining Randomization Integrity
+
+Investigators have held sealed envelopes up to the light to read the assignment inside [@schulz1995subverting]. That gesture is the whole problem: if the next allocation can be predicted or influenced, randomization has already stopped protecting against bias.
+
+*Allocation concealment* is the mechanism that prevents it, and numbered envelopes were its old, sometimes inadequate form. Modern trials use *Interactive Response Technology (IRT)*: computer or telephone systems that release the assignment only after the investigator has committed to enrolling a specific patient.
+
+Once randomization occurs, the assignment should be followed. *Treatment crossover*, where patients switch from their assigned group to another, can blur the distinction between groups and complicate analysis. Sometimes it is unavoidable, as when patients on placebo deteriorate and ethical obligations require access to active treatment, and the analysis then has to account for it.
+
+The 2025 revision of ICH's Good Clinical Practice guideline, E6(R3), frames randomization and blinding as factors critical to trial quality and builds them into its quality-by-design expectations [@ich_e6r3_2025]. A dedicated provision, *Safeguard Blinding in Data Governance*, directs sponsors to control access to unblinded data and to document any unblinding, planned or unplanned. They must also guard against inadvertent unblinding by the vendors and service providers who handle trial data.
+
+## The Power of Blinding
+
+If randomization protects against bias in allocation, blinding protects against bias in everything that follows.
+
+Suppose the investigators know which patients are receiving the experimental drug. Consciously or not, they might monitor those patients more closely, interpret a symptom more charitably, or encourage them to continue despite side effects. Patients who know they are receiving active treatment might report more improvement due to expectations. Where the outcome is subjective (pain, mood, quality of life), these biases can be substantial. Even a supposedly objective outcome is exposed: a radiologist who knows a patient is on active treatment might interpret a borderline scan as showing improvement. Blinding addresses these concerns by keeping treatment assignment unknown to those who might be influenced by it.
+
+## Levels of Blinding
+
+Open-label trials make no attempt at blinding. They are common when the interventions are too different to disguise, surgery versus medication for instance, and they are susceptible to observer bias. Single-blind trials conceal the assignment from patients, which reduces participant expectations. Double-blind trials, the industry standard, conceal it from investigators as well. Triple-blind designs, the most rigorous, withhold it from those performing the statistical analysis too, until the study is formally concluded.
+
+## Technical Aspects of Blinding
+
+Treatment and placebo must be *indistinguishable* in appearance (color, size, shape), taste, smell, and texture. A capsule and a tablet may both need over-encapsulation to match.
+
+*Unblinding procedures* must be in place for emergencies. When a participant has a medical crisis and the treating physician needs the treatment assignment, the blind has to break for that one individual and hold for everyone else.
+
+*Side effects* can compromise blinding on their own. A distinctive adverse effect (dry mouth, dizziness, skin discoloration) can let participants and investigators guess the assignment, which is why trials sometimes include *perception of assignment* assessments to evaluate whether blinding was maintained. When true blinding is not possible at all, *blinded assessment* salvages part of it: an assessor whose only contact with patients is the evaluation itself may remain blind when other study staff cannot, and imaging can be read by radiologists with no knowledge of assignment.
+
+## The Challenge of Device and Behavioral Trials
+
+How do you blind a patient to whether they received surgery? How do you blind a therapist to whether they are delivering cognitive behavioral therapy or a control intervention? Devices, surgical procedures, and behavioral interventions are where blinding is hardest.
+
+*Sham procedures* are one answer. Control patients in a surgical trial may receive anesthesia and incisions but not the actual procedure. This is ethically controversial, since exposing patients to surgical risk without potential for direct benefit strikes some as unacceptable, and it may still be the only way to separate the effects of the procedure from placebo effects and expectation.
+
+*Active comparator designs* sidestep the question. Both groups receive an intervention, and the trial asks which one is better.
+
+Decisions about randomization and blinding shape the rest of the trial architecture. Each additional treatment arm complicates stratification and balance. The planned duration of blinding has to cover cross-over periods and long-term follow-up. Sponsors must also decide how to handle treatment discontinuations: a patient who stops the study medication still needs follow-up and data collection, or the randomized comparison loses its integrity.
+
+## Advanced Topics
+
+Two randomization approaches extend beyond the fixed-probability designs above: response-adaptive randomization, which updates allocation probabilities as outcome data accumulate, and covariate-adaptive randomization, which conditions allocation on patient characteristics measured at enrollment.
+
+### Response-Adaptive Randomization {#sec-ch14-rar}
+
+*Response-adaptive randomization (RAR)* shifts allocation probabilities during the trial in response to accruing outcome data, sending more patients to whichever arm is performing better. The ethical motivation is direct: if one treatment is proving superior, fewer patients should be assigned to the inferior arm during the trial itself.
+
+The *randomized play-the-winner* rule of Wei and Durham [@wei1978randomized_ptw] is among the most transparent RAR designs. A success on one arm adds a ball of that treatment's color to an urn; a failure adds a ball of the other treatment's color. Each new patient draws from the urn, so the accumulating success rates steer allocation toward the better arm. Later Bayesian formulations implement the same intuition via Thompson sampling: at each allocation, compute the posterior probability that each arm is best and assign the next patient with that probability (see @sec-rar for the statistical mechanics).
+
+The most influential and contested application of play-the-winner ended with one patient in the control arm. Bartlett and colleagues were evaluating extracorporeal membrane oxygenation for newborns with severe respiratory failure, a condition with near-certain mortality untreated [@bartlett1985ecmo]. In the 1985 trial that one infant died, and the eleven assigned to ECMO all survived. The ethical appeal was obvious: very few infants were exposed to the inferior arm. The evidentiary problem was equally clear. A trial with one control patient cannot estimate the control-arm survival rate with any precision, and the result was vigorously contested. A subsequent UK collaborative ECMO trial using conventional equal randomization confirmed the benefit [@uk_ecmo_1996].
+
+ECMO remains the reference case for the central tension in RAR. Full treatment of the statistical debate, including temporal-trend bias, the Proschan objection, and the conditions under which RAR is and is not appropriate, is at @sec-rar.
+
+::: {.callout-note title="When RAR is useful and when it is not"}
+RAR is most defensible in multi-arm settings (three or more arms) where the goal is to efficiently identify the best arm, particularly in early-phase or platform trials. In two-arm Phase III confirmatory trials, the power loss and potential for bias under RAR are rarely worth the patient-protection benefit, and conventional equal randomization is generally preferred [@korn2011rar; @proschan2020rar]. Where RAR is used, two mitigations are practical: a burn-in period (equal allocation for the first N patients before adaptation begins) and a protect-control safeguard (never reducing the control arm below a minimum proportion).
+:::
+
+### Covariate-Adaptive Randomization
+
+*Covariate-adaptive randomization* extends minimization, folding patient characteristics into allocation in more sophisticated ways [@atkinson2002covariate; @lin2015pursuit_balance]. Randomizing one patient at a time creates its own exposure: whoever knows the previous allocations may be able to predict the next assignment, which could enable selection bias. Atkinson carefully compared procedures that trade covariate balance against unpredictability [@cox2009randomization]. FDA's 2023 guidance on covariate adjustment recommends that sponsors specify the covariate-adjusted analysis prospectively, before unblinding, and include any stratification factors in that analysis model; complex covariate-adaptive randomization designs should be discussed with the review division in advance [@fda_covariate_2023].
+
+For the mathematical foundations of randomization theory and practice, see Rosenberger and Lachin [@rosenberger2016randomization]; for response-adaptive methods specifically, Hu and Rosenberger [@hu2006response_adaptive].
+
+::: {.callout-note title="Discussion Questions"}
+1. Minimization is sometimes described as "not truly random" because the allocation of each patient is at least partly deterministic given the current enrollment counts. Some regulatory agencies have expressed concern about this. What is the substantive statistical concern (selection bias, inference validity, or both), how serious is it in practice, and what design modifications (e.g., a probabilistic minimization rule with a biased coin) address the concern?
+
+2. A Phase III sponsor using response-adaptive randomization in a two-arm cardiovascular outcomes trial argues the design is justified because the trial will run for four years and it would be unethical to continue assigning patients to a placebo if the drug is clearly superior at year two. A statistician objects that temporal confounding could bias the estimate in a multi-year trial. Construct the statistician's argument precisely, and propose the minimum safeguards that would make RAR defensible in this specific setting.
+
+3. A trial investigator states: "We have allocation concealment, so blinding is not necessary for our open-label surgical trial." Explain why allocation concealment and blinding protect against different sources of bias, using a concrete example from a surgical or device trial context to illustrate each.
+
+4. A sponsor planning a 120-patient Phase II trial proposes to stratify by six prognostic factors (each binary), generating 64 possible strata. Most strata will have 0-2 patients. What specific statistical and operational problems arise from over-stratification at this sample size, and what would you recommend instead?
+
+5. A placebo-controlled antipsychotic trial achieves double-blind status for capsule appearance and taste, but 68% of patients correctly guess their treatment assignment at the end-of-study perception survey, predominantly due to sedation and weight gain in the active arm. The primary endpoint is a subjective symptom rating scale. What are the implications for interpreting the primary efficacy result, what additional analyses could help bound the bias, and how should this be reported in the publication?
+:::
+
+

@@ -1,0 +1,142 @@
+# Phase II: Exploratory {#sec-phase2}
+
+Approximately 70% of drugs that enter Phase II never advance to Phase III [@bio_success_2021]. Phase I established that the drug can be given to humans with acceptable safety; Phase II must establish that giving it to humans accomplishes something worthwhile. That is the first controlled exploration of whether an investigational drug produces the therapeutic effects that preclinical research suggested it might, and the question shifts from "is this drug safe?" to the more consequential "does this drug actually work?"
+
+The exploration occurs in two stages (see @tbl-phase2-comparison). Early Phase II studies (sometimes called *Phase IIa*) seek *proof of concept*: evidence that the drug produces some measurable therapeutic effect in patients with the target condition. Later Phase II studies (*Phase IIb*) take that signal and turn it into a dose [@ich_e8_r1]:
+
+| Aspect | Phase IIa (Proof of Concept) | Phase IIb (Dose Finding) |
+|--------|------------------------------|---------------------------|
+| **Primary Objective** | Detect therapeutic signal; establish proof of concept | Characterize dose-response; select Phase III dose |
+| **Sample Size** | Often 20-100 patients | Often 100-300 patients |
+| **Design** | May be open-label or informally controlled | Randomized, controlled, often with multiple dose arms |
+| **Duration** | Shorter (weeks to months) | Longer (months) |
+| **Endpoints** | Exploratory; biomarkers and early efficacy signals | Primary efficacy endpoints; expanded safety data |
+| **Key Question** | "Does this drug do anything beneficial?" | "What dose balances efficacy and safety?" |
+| **Go/No-Go Decision** | Proceed to dose-finding or terminate | Proceed to Phase III or terminate |
+
+: Comparison of Phase IIa and Phase IIb Studies {#tbl-phase2-comparison tbl-colwidths="[20,40,40]"}
+
+## The Dose-Response Relationship
+
+Understanding how response changes with dose is one of the most critical (and challenging) objectives of Phase II [@ich_e8_r1]. The relationship is rarely simple.
+
+At very low doses, there may be no detectable effect; the drug is present but at concentrations too low to produce meaningful target engagement. As doses increase, response emerges and grows. Eventually, a plateau is reached where higher doses produce little additional benefit. At still higher doses, toxicity may begin to outweigh efficacy.
+
+Dose-finding studies have to characterize that curve well enough to select the optimal dose for Phase III: high enough to produce meaningful efficacy and low enough to minimize toxicity, and sitting where small dose differences do not produce large response differences. Common dose-finding approaches are summarized in @tbl-dose-finding.
+
+| Approach | Description | Advantages | Disadvantages |
+|----------|-------------|------------|---------------|
+| **Parallel Dose Groups** | Fixed doses compared in separate arms | Straightforward analysis; clear comparisons | Requires larger sample sizes; less efficient |
+| **Dose Escalation Within Subjects** | Individuals receive increasing doses sequentially | More efficient use of subjects | Effects may reflect cumulative exposure; carryover effects |
+| **Adaptive Designs** | Allocation modified based on interim data | Concentrates patients in informative dose ranges | More complex; requires careful pre-specification |
+| **MCP-Mod** | Multiple comparison procedure with modeling | Extracts maximum information about dose-response curve | Requires sophisticated statistical expertise |
+| **Bayesian Adaptive** | Uses Bayesian updating to allocate to optimal doses | Efficient; incorporates prior knowledge | Complex implementation; regulatory acceptance varies |
+
+: Dose-Finding Approaches in Phase II {#tbl-dose-finding tbl-colwidths="[18,32,25,25]"}
+
+Whatever the approach, a few principles hold [@fda_dose_response_1994]. The doses studied should bracket the expected optimal dose, above the target as well as below. Placebo should be included wherever it is ethical, both to quantify the drug's effect over background and to account for the often-substantial placebo response in many indications; without a placebo group, a positive dose-response slope still shows that the drug has an effect, but not how large that effect is. And because exposure-response relationships are often more interpretable than simple dose-response relationships, the analysis should incorporate pharmacokinetic data.
+
+### The Emax Model
+
+The most widely used mathematical description of dose-response is the *Emax model*, borrowed directly from pharmacology [@macdougall2006emax]:
+
+$$E(d) = E_0 + \frac{E_{\max} \cdot d^{\gamma}}{ED_{50}^{\gamma} + d^{\gamma}}$$
+
+where $E_0$ is the baseline (placebo-level) response, $E_{\max}$ is the maximum drug effect above baseline, $ED_{50}$ is the dose producing half the maximum effect, and $\gamma$ (the Hill coefficient) controls the steepness of the curve. When $\gamma = 1$ the model reduces to the simple three-parameter Emax model ($E_0$, $E_{\max}$, $ED_{50}$); letting $\gamma$ be a free fourth parameter gives the sigmoid (S-shaped) Emax, or Hill, model, with $\gamma > 1$ producing progressively steeper curves.
+
+For practitioners, the model's value is that it compresses that whole shape into a few interpretable parameters and names the region where Phase III dosing belongs: the plateau, high enough for reliable efficacy but not so high that the incremental toxicity of further dose increases outweighs any additional benefit.
+
+When preclinical or Phase IIa data suggest a plausible range for $ED_{50}$ and $E_{\max}$, those values can serve as Bayesian priors in Phase IIb dose-finding, so the dose-response estimate updates as the trial accumulates data.
+
+### MCP-Mod: Combining Significance Testing with Dose-Response Modeling
+
+A purely comparative analysis of dose-response data (testing each dose against placebo with separate t-tests) is statistically inefficient: it cannot interpolate between doses to find the optimal one, and applying multiple comparisons corrections loses power. *MCP-Mod* (Multiple Comparison Procedures combined with Modeling) was developed as a principled solution [@bretz2005mcpmod], and it runs in two sequential steps:
+
+1. **Multiple comparison step.** The analyst pre-specifies a family of candidate dose-response models (e.g., Emax, linear, quadratic, logistic, exponential) and, for each one, an optimally weighted contrast test comparing the dose groups against placebo, with the weights chosen to maximize power if that model is correct. The largest of these contrast statistics is compared with a multiplicity-adjusted critical value, so the proof-of-concept test controls Type I error across all candidate models.
+
+2. **Modeling step.** If the test is significant, each candidate model is fitted to the data and the best-fitting model is selected (by the largest contrast test statistic, by an information criterion such as AIC, or by averaging across the candidate models). That model then estimates the dose-response curve and identifies the target dose: the dose estimated to produce a pre-specified target effect (e.g., 80% of $E_{\max}$, or a clinically meaningful threshold).
+
+For sponsors and CROs, the payoff is a dose recommendation backed by a fitted dose-response curve and a statistically defensible selection procedure, so the Phase III team carries forward a model-based rationale instead of "dose 3 looked best numerically." Both FDA and EMA have recognized MCP-Mod as an acceptable dose-response analysis method: EMA issued a formal qualification opinion in 2014 [@ema_mcpmod_2014] and FDA designated it fit-for-purpose for dose finding in May 2016 [@fda_fit_for_purpose_2025].
+
+## Endpoint Selection
+
+The ideal endpoint would be the clinical outcome we ultimately care about: survival, resolution of disease, or clinically meaningful symptom improvement. But these outcomes often require large samples or long follow-up to observe.
+
+Phase II studies therefore often use *surrogate endpoints*: measurements that are expected to predict clinical outcome but can be observed more quickly and in smaller populations (see examples in @tbl-surrogate-endpoints) [@ich_e9]. The ICH E9(R1) estimands framework gives a structured way to define precisely what treatment effect is being estimated [@ich_e9_r1], including how intercurrent events such as treatment discontinuation, use of rescue medication, or switching to alternative therapy will be handled in the analysis. For example, a Phase II diabetes study using HbA1c as a surrogate must define whether the estimand reflects treatment effect while patients remain on therapy (a "while on treatment" strategy) or the effect regardless of treatment adherence (a "treatment policy" strategy).
+
+FDA's Patient-Focused Drug Development guidance series presses sponsors to build patient perspectives into endpoint selection, particularly through clinical outcome assessments (COAs) that capture treatment benefit as the patient experiences it [@fda_pfdd_coa_2023]. The biomarker most convenient to measure is not always the outcome that matters to the patient.
+
+| Therapeutic Area | Surrogate Endpoint | Clinical Outcome | Validation Status |
+|------------------|-------------------|------------------|-------------------|
+| **Cardiovascular** | Blood pressure reduction | Myocardial infarction, stroke, cardiovascular death | Well-validated |
+| **Oncology** | Tumor shrinkage (objective response rate) | Overall survival | Partially validated; varies by cancer type |
+| **HIV/AIDS** | Viral load (HIV RNA) | AIDS progression, death | Well-validated |
+| **Diabetes** | HbA1c reduction | Diabetic complications (retinopathy, nephropathy) | Well-validated |
+| **Alzheimer's** | Amyloid plaque reduction (PET imaging) | Cognitive decline | Controversial; under evaluation |
+| **Osteoporosis** | Bone mineral density | Fracture risk | Validated: FDA qualified total hip BMD (24-month change) in December 2025 [@fda_bmd_qualification_2025] |
+
+: Examples of Surrogate Endpoints by Therapeutic Area {#tbl-surrogate-endpoints tbl-colwidths="[22,30,28,20]"}
+
+Surrogates buy speed at a price. Not every change in a surrogate translates to clinical benefit: Drug A might lower blood pressure more than Drug B yet produce no better cardiovascular outcomes. Using surrogates in Phase II is generally accepted, since the goal there is to detect signals and select doses, but the relationship between surrogate and clinical benefit must be established if the surrogate is to support full regulatory approval; a surrogate only *reasonably likely* to predict clinical benefit can support accelerated approval for a serious condition, with confirmation deferred to post-marketing trials.
+
+## Adaptive Designs
+
+Beyond the traditional approach to Phase II (design a study, run it to completion, analyze the results), *adaptive designs* modify the trial as data accumulate. Sample size can be re-estimated to maintain statistical power in the face of unexpected variability, ineffective doses dropped and new ones added to better characterize the dose-response relationship, and randomization shifted toward the better-performing arms (see @sec-rar). At the far end, a seamless Phase II/III design transitions directly into the confirmatory stage on interim evidence (see @sec-seamless).
+
+::: {.callout-note}
+## FDA Support for Adaptive Designs
+The FDA has issued guidance supporting the use of adaptive designs when appropriately planned [@fda2019adaptive]: pre-specify the adaptation rules, control Type I error across the adaptation, and maintain the integrity of the trial despite the modifications. For Phase II, advanced Bayesian frameworks are increasingly used to handle these adaptations (including stopping for futility, dropping arms, or response-adaptive randomization), supported by rigorous simulation workflows to maintain statistical integrity [@granholm_2025].
+:::
+
+## Stopping for Futility: Predictive Probability of Success
+
+Whether to stop early when interim data are discouraging is one of the hardest calls in a running Phase II trial. Continuing a trial that is unlikely to succeed wastes resources and delays alternative programs; stopping prematurely risks abandoning a drug that would have succeeded with more time.
+
+The classical approach to futility is *conditional power*: given the observed interim data and an assumed true treatment effect (often the interim estimate, sometimes the effect assumed at the design stage), what is the probability of achieving a significant result at the final analysis? A conditional power below 20% is a common (though arbitrary) threshold for stopping.
+
+A more principled alternative is the *predictive probability of success (PPoS)*, described in detail at @sec-predictive-prob. PPoS integrates over the entire posterior distribution of the treatment effect instead of conditioning on a point estimate: it asks "given everything we've seen, what is the probability that this trial will succeed if we complete it?" That accounts for the statistical uncertainty in the interim estimate, which is often substantial in Phase II when sample sizes are small. A trial that has seen a modest positive trend with wide uncertainty has a meaningfully different PPoS than one where the interim estimate is close to zero with tight confidence.
+
+::: {.callout-tip title="Futility stopping in practice"}
+A sponsor or DSMB using PPoS for futility monitoring should pre-specify both the stopping threshold (for example, PPoS $< 0.05$ to $0.20$, depending on the indication and the sponsor's willingness to continue for potential upside) and the interim time points at which the analysis is run. Triggering a futility stop mid-trial without pre-specification creates regulatory and operational risk. Simulations across a range of plausible treatment effects should also verify the rule's operating characteristics: that it does not stop trials with genuine efficacy too frequently.
+:::
+
+The transition from Phase II to Phase III is the *Phase II decision* (see @fig-phase2-decision). By this point, a sponsor has typically invested tens to hundreds of millions of dollars and several years of development time [@tufts_cost_2016]. Proceeding to Phase III will require several hundred million dollars more. And the probability of success in Phase III, even with positive Phase II data, is far from certain.
+
+```{mermaid}
+%%| label: fig-phase2-decision
+%%| fig-cap: "Phase II Go/No-Go Decision Framework"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 25, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart LR
+    Start["Phase II<br/>Results"] --> Q1{"Efficacy?"}
+    Q1 -->|No| Stop1["Stop"]
+    Q1 -->|Yes| Q2{"Safety?"}
+    Q2 -->|No| Stop2["Stop/<br/>Redesign"]
+    Q2 -->|Yes| Q3{"Dose<br/>identified?"}
+    Q3 -->|No| More["More<br/>dose-finding"]
+    Q3 -->|Yes| Q4{"Commercial<br/>viable?"}
+    Q4 -->|No| Reassess["Reassess"]
+    Q4 -->|Yes| Go["Phase III"]
+    
+    classDef stopNode fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef goNode fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef decisionNode fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    classDef actionNode fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    
+    class Stop1,Stop2 stopNode
+    class Go goNode
+    class Q1,Q2,Q3,Q4 decisionNode
+    class More,Reassess actionNode
+```
+
+That decision weighs the strength of the efficacy evidence, the acceptability of the safety profile relative to the disease burden, whether an optimal dose for Phase III has been identified, and the drug's commercial viability and competitive position.
+
+Attrition is not uniform. In some therapeutic areas, central nervous system disorders for example, the failure rate runs above the 70% overall rate. Yet the failures serve a clear purpose. A rigorous Phase II program that kills an ineffective drug prevents a far costlier failure in Phase III by learning that the drug does not work before hundreds of millions of additional dollars are spent.
+
+## Biomarkers
+
+Throughout Phase II, *biomarkers* provide mechanistic insight that complements clinical endpoints. The most direct question is target engagement: is the drug hitting its intended target? Others track pathway modulation, whether the biological pathway is being affected as expected, and early disease response, the first signs that a therapeutic effect is appearing.
+
+Biomarkers earn their place when clinical endpoints take time to manifest. Cognitive decline in Alzheimer's disease occurs slowly; biomarkers of amyloid plaque or tau pathology may provide earlier signals that a drug is having biological effect, even if clinical improvement is not yet evident.
+
+Biomarker changes do not always translate to clinical benefit. A drug might successfully engage its target without producing meaningful therapeutic improvement. The ultimate test remains clinical outcomes, but biomarkers help illuminate the path.
+

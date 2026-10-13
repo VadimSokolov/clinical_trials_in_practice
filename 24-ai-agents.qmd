@@ -1,0 +1,692 @@
+# AI Agents in Clinical Development {#sec-ai-agents}
+
+Agents can draft text. Whether one runs inside a trial turns on something else: can it operate within a regulated environment at all, preserving data integrity, producing audit-ready traces, and remaining under accountable human oversight? The *2024 EMA reflection paper* on AI and risk-based approaches for AI use in drug development formalizes that expectation [@unlearn_whitepaper_2025; @ema_ai_reflection_2024; @nist_ai_rmf_2023; @amershi_hai_guidelines_2019].
+
+Clinical trials run on a layered digital infrastructure: the core transactional systems the previous chapter described (EDC, CTMS, eTMF, RTSM), integration middleware, and the analytics and automation services that continuously convert operational events into risk signals and decisions. Cloud adoption and regulatory acceptance of technology-enabled trial conduct, including decentralized elements and digital health technologies for remote data acquisition, have accelerated the shift toward that model [@fda_dct_guidance_2024; @fda_dht_remote_2023]. This chapter takes up that top layer, along with the methodological approaches changing how trials are designed and how evidence is generated.
+
+The transition is conceptual as much as technological: from *automation as a feature* (dashboards, rules engines, isolated machine-learning models) to *automation as an operating model*, in which software agents can plan, execute, and verify multi-step workflows across the clinical operations stack. This shifts the trial from a linear "pipeline" towards a dynamic, electronic map of activities, where information infrastructure identifies bottlenecks and navigates the "diverse web of failure-prone iterative learning loops" that characterize modern drug development [@wagner_4dm_2018]. "Agentic AI" here is a design pattern: "compound" systems that combine models with retrieval, tools, and control logic, grounded in computer science work on "generative agents" that simulate human-like behavior and goal-directed action [@park_agents_2023; @compound_ai_systems_2024]. Preliminary findings from 2024-2025 benchmarks suggest agentic systems can improve clinical task performance by up to 60 percentage points over base language models in specific tasks such as evidence retrieval and task planning, though most improvements are more modest and results vary considerably by task and study design [@agentic_ai_review_2026]. The same shift converges with *Digital Twin "Moonshots"*, which aim to integrate personalized digital twins directly into medical records to optimize both clinical care and trial participation [@vitm24_moonshot].
+
+The money has moved accordingly. The clinical trial software market was estimated at about USD 11 billion in 2024 and is projected to grow at a compound annual rate of about 11% through 2033 [@grandview_clinical_software_2025], with AI applications growing rapidly within it [@fortune_ai_clinical_2024]. None of that is evidence of clinical benefit on its own, but it explains why sponsors, CROs, and platform vendors are reorganizing workflows around automation and AI-mediated operations.
+
+## Agentic AI in Clinical Workflows
+
+Pull the *right* protocol amendment from an eTMF. Verify whether a site has an updated IRB approval. Check that a safety narrative is consistent with the underlying case data. Each of these is a retrieval and verification problem under audit constraints, not a "creative writing" task, and none of them is settled by calling a model once.
+
+### Building Blocks and System Architecture
+
+The recent resurgence of "agents" is a systems shift. Agentic systems orchestrate multiple calls, state, and tools to complete a task, decomposing goals, retrieving context, taking actions, and iterating on feedback [@cheng_llm_agents_2024; @wang_llm_agent_survey_2024]. On the Berkeley AI Research account of "compound AI systems," reliability gains often come from engineered compositions (retrievers, checkers, constrained tool calls, repeated sampling) rather than from a single monolithic model invocation [@compound_ai_systems_2024].
+
+Three technical ideas recur. Structured intermediate reasoning, such as chain-of-thought prompting, can improve performance on complex tasks, though it does not guarantee correctness in the presence of missing or stale information [@wei_cot_2022]. Retrieval-augmented generation (RAG) externalizes "memory" into a maintained knowledge base and, when paired with citations to retrieved sources, can supply provenance [@lewis_rag_2020; @faiss_library_2024]. Coupling reasoning with tool use, where a model decides when to query, calculate, or fetch, also yields more controllable trajectories than purely generative text [@yao_react_2023].
+
+Agents also need consistent interfaces to external systems, and tool calling standards such as the Model Context Protocol (MCP) aim to standardize how AI applications connect to data sources and actions, turning "integration" into a first-class design surface [@mcp_intro_2025]. In regulated contexts the payoff is not novelty; it is enforceable access controls, a log of every tool invocation, and agent actions a reviewer can follow.
+
+Clinical workflows are naturally multi-role (data management, monitoring, safety, regulatory, sites), and multi-agent frameworks formalize that by allocating roles and coordinating conversations among specialized agents [@autogen_2023]. Empirical analyses, however, show that such systems fail in predictable ways: specification gaps, coordination failures, and weak verification loops [@cemri_mast_2025]. "Agent quality" therefore has to be measured on cost, robustness, and reproducibility alongside task accuracy [@kapoor_agents_that_matter_2024], which is where evaluation is heading: benchmarks now emphasize realistic multi-step work with tool use and resource constraints, and propose clearer reporting of cost and reproducibility [@chan_mle_bench_2024; @cappello_eaira_2025]. Human-in-the-loop debugging and steering tools are emerging so that multi-step traces can be inspected and edited [@agdebugger_2025].
+
+Run agents concurrently across several workflows and the operational concerns become first-order: context windows turn into a managed resource, tools must be scheduled and access-controlled, and traces must be stored in an auditable way. Emerging "agent runtime" proposals make this explicit by separating agent applications from shared services such as scheduling, context management, and access control [@mei_aios_2024]. Pipeline frameworks that treat agent workflows as composable graphs add systematic optimization and regression testing across versions, which matters in any environment where changes must be validated rather than "shipped and hoped" [@khattab_dspy_2023].
+
+One risk remains whatever the architecture. Agentic systems can create an illusion of competence, in which fluent outputs are mistaken for validated decisions: a known socio-technical risk in scientific work, where productivity gains may coexist with a decline in genuine understanding and critical scrutiny [@messeri_crockett_2024]. Human-AI interaction guidelines answer it by making uncertainty visible, supporting oversight and correction, and ensuring users understand system limitations, principles that map directly to quality management and inspection readiness [@amershi_hai_guidelines_2019].
+
+## Regulatory Framework for AI in Clinical Trials
+
+Most of what FDA and EMA have said about AI in drug development is guidance: influential, expected of sponsors, and not legally binding. One AI-specific instrument in this section is law, and it is not a medicines regulation at all. The validation and documentation requirements for computerized systems (21 CFR Part 11, EMA's computerized-systems guideline, Annex 11, ICH E6) are covered in @sec-clinical-it.
+
+### The 10 Guiding Principles for Good AI Practice
+
+In January 2026, FDA (CDER and CBER) and EMA jointly published *Guiding Principles of Good AI Practice in Drug Development*, the first joint regulatory statement establishing foundational expectations for AI across the drug product lifecycle [@fda_ema_ai_principles_2026]. The ten principles represent international consensus on what "good practice" means here.
+
+::: {.callout-note}
+### Joint FDA-EMA Guiding Principles (January 2026)
+
+The following is quoted verbatim from the joint FDA-EMA document:
+
+1. **Human-centric by design**
+The development and use of AI technologies align with ethical and human-centric values.
+2. **Risk-based approach**
+The development and use of AI technologies follow a risk-based approach with proportionate validation, risk mitigation, and oversight based on the context of use and determined model risk.
+3. **Adherence to standards**
+AI technologies adhere to relevant legal, ethical, technical, scientific, cybersecurity, and regulatory standards, including Good Practices (GxP).
+4. **Clear context of use**
+AI technologies have a well-defined context of use (role and scope for why it is being used).
+5. **Multidisciplinary expertise**
+Multidisciplinary expertise covering both the AI technology and its context of use are integrated throughout the technology's life cycle.
+6. **Data governance and documentation**
+Data source provenance, processing steps, and analytical decisions are documented in a detailed, traceable, and verifiable manner, in line with GxP requirements. Appropriate governance, including privacy and protection for sensitive data, is maintained throughout the technology's life cycle.
+7. **Model design and development practices**
+The development of AI technologies follows best practices in model and system design and software engineering and leverages data that is fit-for-use, considering interpretability, explainability, and predictive performance. Good model and system development promotes transparency, reliability, generalizability, and robustness for AI technologies contributing to patient safety.
+8. **Risk-based performance assessment**
+Risk-based performance assessments evaluate the complete system including human-AI interactions, using fit-for-use data and metrics appropriate for the intended context of use, supported by validation of predictive performance through appropriately designed testing and evaluation methods.
+9. **Life cycle management**
+Risk-based quality management systems are implemented throughout the AI technologies' life cycles, including to support capturing, assessing, and addressing issues. The AI technologies undergo scheduled monitoring and periodic re-evaluation to ensure adequate performance (e.g., to address data drift).
+10. **Clear, essential information**
+Plain language is used to present clear, accessible, and contextually relevant information to the intended audience, including users and patients, regarding the AI technology's context of use, performance, limitations, underlying data, updates, and interpretability or explainability.
+:::
+
+All ten operationalize one expectation: AI in drug development must be validated, documented, and maintained with the same rigor as any other regulated activity, plus extra attention to what makes AI different, its data-dependency, its potential opacity, and its tendency to drift over time.
+
+### The FDA Risk-Based Credibility Framework
+
+FDA's January 2025 draft guidance *"Considerations for the Use of Artificial Intelligence to Support Regulatory Decision-Making for Drug and Biological Products"* [@fda_ai_credibility_2025] sets out a seven-step risk-based framework and, though still a draft, represents FDA's expected approach for evaluating AI-generated evidence.
+
+::: {.callout-important}
+### Scope of FDA AI Guidance
+The FDA guidance applies when AI is used to *produce information or data intended to support regulatory decision-making* regarding safety, effectiveness, or quality. It does *not* apply to AI used in drug discovery (the in-scope drug product life cycle begins at nonclinical development, so not all pre-IND work is excluded), nor to AI used purely for operational efficiencies such as internal workflows and resource allocation that do not impact patient safety, drug quality, or study reliability.
+:::
+
+*The Seven-Step Credibility Assessment Process:*
+
+1. *Define the Question of Interest*: What specific question, decision, or concern is the AI model addressing?
+2. *Define the Context of Use (COU)*: What is the specific role and scope of the AI model? Will other evidence be used alongside it?
+3. *Assess Model Risk*: Combine *model influence* (contribution of AI evidence relative to other evidence) with *decision consequence* (significance of adverse outcomes from incorrect decisions). See @fig-fda-ai-risk-matrix for how common AI applications map onto this two-dimensional risk space.
+4. *Develop a Credibility Assessment Plan*: Document model architecture, training data, evaluation methods, and performance metrics, with rigor proportional to model risk.
+5. *Execute the Plan*: Implement the credibility assessment activities.
+6. *Document Results*: Prepare a credibility assessment report with any deviations from the plan.
+7. *Determine Adequacy*: Evaluate whether model credibility is sufficient for the COU.
+
+```{mermaid}
+%%| eval: true
+%%| label: fig-fda-ai-risk-matrix
+%%| fig-cap: "FDA AI Model Risk Matrix: Risk Increases with Model Influence and Decision Consequence"
+quadrantChart
+    title AI Model Risk Assessment
+    x-axis Low Model Influence --> High Model Influence
+    y-axis Low Decision Consequence --> High Decision Consequence
+    quadrant-1 High Risk
+    quadrant-2 Medium Risk
+    quadrant-3 Low Risk
+    quadrant-4 Medium Risk
+    "Patient stratification": [0.60, 0.85]
+    "Dosing recommendations": [0.58, 0.66]
+    "Eligibility screening": [0.30, 0.40]
+    "Data quality triage": [0.46, 0.27]
+    "Protocol complexity": [0.22, 0.16]
+    "Document classification": [0.12, 0.32]
+```
+
+### What You CAN and CANNOT Do with AI in Clinical Trials
+
+@tbl-ai-dos-donts synthesizes the enforceable requirements and regulatory expectations from FDA guidance, EMA reflection papers, and ICH E6(R3), ordered from the applications a sponsor can deploy today to the one it cannot deploy at all.
+
+| AI Application | Regulatory Status | Requirements | Limitations |
+|----------------|-------------------|--------------|-------------|
+| *Document classification and TMF filing* | Permitted with oversight | Validate classification accuracy; maintain human review for inspection-critical documents | Cannot replace human accountability for TMF completeness |
+| *Data quality screening and query generation* | Permitted with oversight | Document AI logic; validate query generation; apply risk-based human review of generated queries | No sponsor changes to investigator- or participant-entered data without the investigator's advance agreement; automated query closure needs a validated, documented process |
+| *Patient matching/eligibility pre-screening* | Permitted as decision support | Validate against eligibility criteria; investigator makes final determination | Cannot make final eligibility decisions; investigator responsibility under GCP |
+| *Protocol complexity scoring* | Permitted | Document methodology; validate predictions against historical data | Operational tool only; no regulatory submission required |
+| *Site selection and feasibility* | Permitted | Document data sources and model logic | Operational tool; sponsor retains responsibility for site qualification |
+| *Adverse event case processing* | Permitted with lifecycle monitoring | Monitor model performance; human review of serious/unexpected cases | Cannot replace pharmacovigilance qualified person oversight |
+| *Statistical analysis endpoints* | Permitted with pre-specification | Pre-specify in SAP; in pivotal trials, freeze model before database lock; prospective validation required for high-impact uses | Non-prespecified model changes after unblinding make the analysis post hoc, not confirmatory |
+| *Primary endpoint assessment* | Conditional: high regulatory scrutiny | EMA: prospective testing with newly acquired data required; FDA: credibility assessment proportional to risk | Model must be frozen and fully documented in SAP |
+| *Dosing/treatment assignment decisions* | Conditional: requires early FDA/EMA engagement | Full credibility assessment; human-in-the-loop required; extensive safety monitoring | Cannot be sole determinant without validated safety controls |
+| *Replacing clinical judgment* | Not permitted | N/A | AI supports decisions; investigators and physicians retain accountability under GCP |
+
+: AI Applications in Clinical Trials: Regulatory Status and Requirements {#tbl-ai-dos-donts tbl-colwidths="[22,18,35,25]"}
+
+::: {.callout-warning title="Critical Principle: Human Accountability Cannot Be Delegated to AI"}
+Under ICH E6 GCP and FDA regulations, the investigator is responsible for medical decisions affecting trial participants, and the sponsor is responsible for trial conduct and data integrity. AI can support these decisions but cannot replace the accountable human. An investigator cannot defend a protocol deviation by stating "the AI said it was acceptable."
+:::
+
+### AI Model Lifecycle Maintenance
+
+Unlike static software, AI models may degrade or drift over time as input data distributions change. Both FDA and EMA guidance therefore expect *lifecycle maintenance* for models deployed over extended periods: in manufacturing (quality control, process optimization), in pharmacovigilance (case classification, signal detection), and in any AI system whose performance may change as new data arrives. Five activities make it up.
+
+1. *Performance monitoring*: Define metrics and thresholds; monitor on risk-based frequency.
+2. *Drift detection*: Identify when input data diverges from training data distribution.
+3. *Revalidation triggers*: Pre-define conditions requiring model retesting or retraining.
+4. *Change management*: Evaluate model changes through the applicable change-control process (for manufacturing models, the pharmaceutical quality system).
+5. *Regulatory notification*: Report changes impacting model performance per applicable requirements (e.g., 21 CFR 314.70 for manufacturing changes under an approved NDA).
+
+::: {.callout-tip title="EMA on Incremental Learning"}
+For pharmacovigilance applications, EMA permits a "more flexible approach" where incremental learning can continuously enhance models. However, the MAH retains responsibility to validate, monitor, and document model performance as part of the pharmacovigilance system.
+:::
+
+### When to Engage Regulators
+
+Early engagement with FDA or EMA is strongly recommended for AI applications with *high regulatory impact* or *high patient risk*; @tbl-regulatory-engagement summarizes the pathways.
+
+| AI Use Case | Recommended Engagement | FDA Contact | EMA Contact |
+|-------------|------------------------|-------------|-------------|
+| Novel clinical trial design using AI | CDER C3TI or CID Meeting Program | CDERclinicaltrialinnovation@fda.hhs.gov | Innovation Task Force (ITF) |
+| AI for endpoint evaluation | Drug Development Tools (DDT) or ISTAND | CDER-BiomarkerQualificationProgram@fda.hhs.gov (biomarkers; clinical outcome assessments and ISTAND have their own contacts) | SAWP qualification |
+| AI-enabled digital health technology | DHT Program | DHTsforDrugDevelopment@fda.hhs.gov | N/A |
+| AI in pharmacovigilance | Emerging Drug Safety Technology Program | AIMLforDrugDevelopment@fda.hhs.gov | PRAC interaction |
+| AI in manufacturing | Emerging Technology Program (CDER ETP) | CDER-ETT@fda.hhs.gov | N/A |
+| Model-informed drug development | MIDD Paired Meeting Program | MIDD@fda.hhs.gov | SAWP scientific advice |
+
+: Regulatory Engagement Pathways for AI in Clinical Trials {#tbl-regulatory-engagement tbl-colwidths="[22,23,33,22]"}
+
+### EMA-Specific Considerations
+
+The EMA reflection paper (September 2024) introduces terminology that differs somewhat from FDA's. It sorts applications by *high patient risk*, meaning AI uses affecting patient safety such as dosing or treatment assignment, and by *high regulatory impact*, meaning AI uses substantially affecting regulatory decisions such as primary endpoint analysis. The rigor of the credibility assessment should be proportional to both. Five positions follow from that framing.
+
+1. *Transparent models preferred*: "The use of transparent models is preferred" to strengthen accountability. Black box models may be acceptable if transparent models show unsatisfactory performance, with additional documentation and monitoring requirements.
+
+2. *Frozen models for pivotal trials*: "Prior to the database lock and subsequent unblinding...the data pre-processing pipeline and all models should be frozen and documented in a traceable manner in the statistical analysis plan."
+
+3. *Prospective validation for high-impact uses*: "Prior to model deployment in high regulatory impact settings, such as in relation to the primary endpoint, performance should be tested with prospectively generated data (future calendar time) that is acquired in a setting or population representative of the intended context of use."
+
+4. *No incremental learning in pivotal trials*: "Incremental learning approaches are not accepted, and any modification of the model during the trial requires a regulatory interaction."
+
+5. *Human-in-the-loop for precision medicine*: AI-driven indication or posology recommendations are "high patient risk as well as high regulatory impact" and require "fall-back treatment strategies in cases of technical failure."
+
+### The EU AI Act
+
+This is the instrument that is law. The European Union's *AI Act* (Regulation (EU) 2024/1689) [@eu_ai_act_2024] is the first comprehensive, binding AI statute, and it applies horizontally across sectors rather than being specific to medicines. Having entered into force in August 2024, it applies in phases: prohibitions on a narrow set of unacceptable-risk practices from February 2025, obligations for general-purpose AI models from August 2025, and the core obligations for high-risk systems originally due from August 2026, with a further tranche tied to regulated products (via the Medical Device Regulation and In Vitro Diagnostic Regulation) from August 2027. The Digital Omnibus on AI, provisionally agreed in May 2026 and in force from 27 July 2026, deferred both high-risk tranches: standalone (Annex III) systems now apply from 2 December 2027 and product-embedded (Annex I) systems from 2 August 2028. The Article 50 transparency obligations kept their 2 August 2026 start, except that providers of generative AI systems already on the market before that date have until 2 December 2026 to mark their outputs, in machine-readable form, as artificially generated [@eu_ai_omnibus_2026].
+
+Most AI used in trial operations (document filing, query triage, feasibility scoring) is not "high-risk" under the Act's definitions, so its obligations are light: providers and deployers must take measures to support their staff's AI literacy, and Article 50's transparency duties apply only to particular functions, such as systems that interact directly with people or generate synthetic content [@eu_ai_act_2024; @eu_ai_omnibus_2026]. AI that functions as, or is a safety component of, a regulated medical device can fall into the high-risk tier, inheriting obligations layered on top of the device regulations. The Act sits alongside, not in place of, the EMA reflection paper and the Clinical Trials Regulation, so sponsors running EU trials should assess where each AI application falls under its classification: a system treated as "decision support" under GCP may still trigger binding obligations under the Act.
+
+### Practical Implications: A Decision Framework
+
+@fig-ai-decision-tree turns all of this into a path a sponsor can walk before committing to a deployment.
+
+```{mermaid}
+%%| eval: true
+%%| label: fig-ai-decision-tree
+%%| fig-cap: "Decision Framework for AI Deployment in Clinical Trials"
+%%{init: {'flowchart': {'nodeSpacing': 15, 'rankSpacing': 30, 'padding': 8, 'diagramPadding': 40, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TD
+    A[Proposed AI<br/>Application] --> B{Does AI produce<br/>data/information for<br/>regulatory decisions?}
+    B -->|"No -<br/>Operational only"| C[Lower regulatory burden<br/>Document for<br/>inspection readiness]
+    B -->|Yes| D{What is the decision<br/>consequence if AI<br/>output is incorrect?}
+    D -->|Low| F1{What is the AI<br/>model influence?}
+    D -->|Medium/High| F2{What is the AI<br/>model influence?}
+    F1 -->|"Low - other<br/>evidence also used"| E[Low-risk application<br/>Standard validation<br/>Document methodology]
+    F1 -->|"High - AI is primary<br/>or sole evidence"| G[Medium-risk application<br/>Proportional credibility<br/>assessment<br/>Human oversight of outputs]
+    F2 -->|"Low - other<br/>evidence also used"| G
+    F2 -->|"High - AI is primary<br/>or sole evidence"| H[High-risk application<br/>Full credibility assessment<br/>Early regulatory engagement<br/>Prospective validation<br/>Pre-specified in SAP]
+
+    C --> I[Proceed with GxP-compliant<br/>documentation and oversight]
+    E --> I
+    G --> J[Develop credibility<br/>assessment plan<br/>Consider regulatory<br/>feedback]
+    H --> K[Engage FDA/EMA<br/>before deployment<br/>Full 7-step<br/>credibility process]
+```
+
+### Summary: The Regulatory Bottom Line
+
+Five things hold throughout. Human accountability for medical decisions and regulatory compliance cannot be delegated to AI; investigators, sponsors, and MAHs retain responsibility. Rigor of validation, documentation, and oversight should scale with model risk, which combines decision consequence and model influence. In pivotal trials, EMA expects the data pipeline and every model used for confirmatory analysis to be frozen and documented in the statistical analysis plan before database lock and unblinding; non-prespecified changes made after the data are opened make the results post hoc, unsuitable as confirmatory evidence [@ema_ai_reflection_2024]. Models that keep operating over time, in manufacturing and pharmacovigilance, need performance monitoring, drift detection, and change management. For high-risk applications, early consultation with FDA or EMA aligns expectations before a late-stage objection becomes expensive.
+
+## AI across the Development Lifecycle
+
+AI now touches every phase of clinical development. What follows marks where automation delivers measurable value and where human oversight remains essential.
+
+### AI in Protocol Design
+
+Benchmarking studies suggest that most clinical trials fail to meet planned enrollment timelines, often because of design choices baked in before the first patient is screened [@lamberti_enrollment_2024]. The tools in @tbl-protocol-design-tools attack the problem where it originates, at the design stage, following the workflow in @fig-protocol-design-ai.
+
+```{mermaid}
+%%| eval: true
+%%| label: fig-protocol-design-ai
+%%| fig-cap: "AI-Driven Protocol Design Workflow"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 30, 'padding': 8, 'diagramPadding': 30, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    subgraph Input["Inputs"]
+        RWD[Real-World Data<br/>large cohorts]
+        Hist[Historical Trials<br/>Protocol library]
+        Reg[Regulatory<br/>Requirements]
+    end
+
+    subgraph AI["AI Analysis"]
+        Sim[Patient<br/>Simulation]
+        Burden[Burden<br/>Scoring]
+        Feasibility[Site<br/>Feasibility]
+    end
+
+    subgraph Output["Outputs"]
+        Protocol[Optimized<br/>Protocol]
+        SoA[Schedule of<br/>Activities]
+        Sites[Recommended<br/>Sites]
+    end
+
+    RWD --> Sim
+    Hist --> Burden
+    Reg --> Protocol
+
+    Sim --> Feasibility
+    Sim --> Protocol
+    Burden --> Protocol
+    Feasibility --> Sites
+    Feasibility ~~~ Protocol
+
+    Protocol --> SoA
+```
+
+| Tool | Data Source | Primary Use Case | Key Metric |
+|------|-------------|------------------|------------|
+| *Faro Health* | Protocol library + RWD | Operational burden prediction | Complexity score |
+| *Phesi* | 100M+ patient profiles | Enrollment simulation | Patient availability |
+| *Medidata AI* | Historical trial data | Protocol optimization | Predicted enrollment rate |
+| *Formation Bio* (formerly TrialSpark) | Site network data | Site selection | Per-site enrollment probability |
+
+: Protocol Design AI Tools Comparison {#tbl-protocol-design-tools tbl-colwidths="[18,30,30,22]"}
+
+*Faro Health* exemplifies the approach. Instead of writing a static Word document, study teams design the trial in a structured cloud platform. The AI scores the complexity of the schedule of assessments against real-world data to predict operational burden, shows the team which visits pile too many procedures onto one patient, and then generates the protocol document and Schedule of Activities from the structured design [@faro_health].
+
+*Phesi* takes simulation further, drawing on data from over 100 million patients to model trial outcomes before the protocol is finalized. Their *Digital Patient Profile* reduces the likelihood of the "zero-enrollment site" problem mentioned in @sec-site-selection [@phesi_design].
+
+### AI in Recruitment and Site Selection
+
+Finding the right patients remains the perennial bottleneck. Benchmarking studies suggest that recruitment and retention often take substantially longer and cost more than planned, and that each day of delay can be economically material for sponsors in some therapeutic areas [@lamberti_enrollment_2024; @deloitte_rd_return_2025]. AI tools now scan electronic health records for "needle in the haystack" candidates and, when integrated into workflow, can reduce the manual effort of identifying potentially eligible participants. @fig-patient-matching shows the typical pipeline; @tbl-recruitment-ai profiles the leading vendors.
+
+```{mermaid}
+%%| eval: true
+%%| label: fig-patient-matching
+%%| fig-cap: "AI-Powered Patient Matching Pipeline"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 40, 'padding': 8, 'diagramPadding': 30, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+    subgraph Sources["Patient Data Sources"]
+        EHR["EHR<br/>Systems"]
+        Claims["Claims<br/>Data"]
+        Labs["Lab<br/>Results"]
+        Genomics["Genomic<br/>Profiles"]
+    end
+
+    subgraph NLP["NLP Processing"]
+        Extract["Entity<br/>Extraction"]
+        Normalize["Terminology<br/>Normalization"]
+        Temporal["Temporal<br/>Reasoning"]
+    end
+
+    subgraph Match["Matching Engine"]
+        Criteria["I/E Criteria<br/>Parser"]
+        Score["Eligibility<br/>Scoring"]
+        Rank["Patient<br/>Ranking"]
+    end
+
+    subgraph Output["Results"]
+        Patients["Matched<br/>Patients"]
+        Sites["Optimized<br/>Sites"]
+        Alerts["Provider<br/>Alerts"]
+    end
+
+    Protocol["Protocol<br/>I/E Criteria"] --> Match
+
+    EHR --> Extract
+    Claims --> Extract
+    Labs --> Normalize
+    Genomics --> Normalize
+
+    Extract --> Normalize
+    Normalize --> Temporal
+
+    Temporal --> Score
+    Criteria --> Score
+    Score --> Rank
+
+    Rank --> Output
+    Patients --> Sites
+    Patients --> Alerts
+```
+
+| Vendor | Technology | Data Assets | Best For |
+|--------|------------|-------------|----------|
+| *NextTrial.ai* | NLP + ML matching | EHR integration | Complex I/E criteria |
+| *H1* | KOL mapping, investigator analytics | Publications, claims, trials | Site selection, investigator finding |
+| *Deep 6 AI* | Real-time EHR search | Health system partnerships | Oncology, rare disease |
+| *TriNetX* | Federated network | 300M+ patients (2026) | Global feasibility |
+| *Komodo Health* | Healthcare map | Claims + RWD | Patient path analysis |
+
+: Patient Recruitment AI Vendors {#tbl-recruitment-ai tbl-colwidths="[15,25,30,30]"}
+
+*NextTrial.ai* uses natural language processing to bridge the gap between protocol criteria and patient records. The platform ingests unstructured data (clinician notes, pathology reports, and genetic profiles), flags the patients who meet complex inclusion/exclusion criteria, and predicts which investigator sites hold the highest density of them [@nexttrial_ai].
+
+*H1* maps the global network of Key Opinion Leaders and investigators instead. Analyzing large volumes of data from publications, claims records, and clinical trial databases, it helps sponsors find investigators who actively treat the target patient population, not only those who are academically prominent [@h1_platform].
+
+### AI in Clinical Operations and Data Quality
+
+Once data starts flowing, it must be cleaned, and wearables generate 1,000+ data points per patient per day. At that volume manual query resolution stops being sustainable. The emerging approach layers several AI techniques across the data pipeline, each suited to a different kind of quality problem; @tbl-data-quality-tools profiles the leading tools.
+
+*Rule-based checks* remain the foundation: programmed validations that flag impossible values (negative ages, dates in the future) or logical inconsistencies (randomization before consent). They are deterministic, fast, auditable, and well-understood.
+
+*Machine learning anomaly detection* adds statistical pattern recognition. Models trained on historical trial data can identify unusual distributions, digit preferences suggestive of fabrication, or sites whose data patterns diverge from comparators, which means they surface problems nobody anticipated during study design.
+
+*Large language models (LLMs)* parse the free-text fields, adverse event narratives, medical history, concomitant medication entries, for inconsistencies invisible to structured checks: a narrative describing "chest pain radiating to left arm" against a coded adverse event of "headache."
+
+*Cross-domain validation* checks EDC entries against central lab results, device uploads against visit schedules, and ePRO responses against clinical observations; discrepancies across domains often indicate transcription errors or protocol deviations.
+
+The output is a set of *automated actions*: auto-generated queries with draft text for site response, risk flags that prioritize monitoring attention, trend alerts that surface site-level quality patterns, and quality reports for oversight review (@fig-data-quality-ai). The goal is not to displace data management staff but to move their time off low-value triage and onto judgment-intensive resolution.
+
+```{mermaid}
+%%| eval: true
+%%| label: fig-data-quality-ai
+%%| fig-cap: "AI-Powered Data Quality Management"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 30, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart LR
+    subgraph Ingest["Data Ingestion"]
+        EDC[EDC Data]
+        Devices[Device Data]
+        Labs[Central Labs]
+        ePRO[ePRO Responses]
+    end
+
+    subgraph AI["AI Processing"]
+        Rules[Rule-Based Checks]
+        ML[ML Anomaly Detection]
+        LLM[LLM Discrepancy Analysis]
+        Cross[Cross-Domain Validation]
+    end
+
+    subgraph Actions["Automated Actions"]
+        AutoQuery[Auto-Generated Queries]
+        Flag[Risk Flags]
+        Trend[Trend Alerts]
+        Report[Quality Reports]
+    end
+
+    EDC --> Rules
+    EDC --> ML
+    EDC --> LLM
+    EDC --> Cross
+    Devices --> Rules
+    Devices --> ML
+    Labs --> Rules
+    Labs --> Cross
+    ePRO --> Rules
+    ePRO --> LLM
+
+    Rules --> AutoQuery
+    ML --> Flag
+    LLM --> AutoQuery
+    Cross --> Trend
+
+    AutoQuery --> Report
+    Flag --> Report
+    Trend --> Report
+```
+
+| Tool | Primary Approach | Best Feature | Integration Depth |
+|------|------------------|--------------|-------------------|
+| *Saama* | Clinical Command Center | Unified EDC/CTMS/eTMF view | Deep multi-system |
+| *Octozi* | LLM-based discrepancy detection | Natural language queries | EDC-focused |
+| *Veeva CDB* | Vault-native data management | Single-platform simplicity | Veeva ecosystem |
+| *Medidata Detect* | Signal detection algorithms | Safety signal identification | Rave ecosystem |
+
+: Data Quality AI Tools {#tbl-data-quality-tools tbl-colwidths="[18,25,32,25]"}
+
+*Saama* provides an AI-driven Clinical Command Center, unifying data from EDC, CTMS, and eTMF into an integrated view of trial health. Its models, trained on large proprietary datasets from clinical trial operations, predict *site non-compliance* and *enrollment delays*, enabling intervention before problems escalate [@saama_platform].
+
+*Octozi* applies Large Language Models to data review, scanning for inconsistencies such as "male patient listed as pregnant" or "adverse event date before informed consent." By surfacing these issues immediately, Octozi narrows the line-by-line manual review that traditionally consumed data management resources, leaving reviewers to adjudicate the flagged records rather than scan every listing [@octozi_ai].
+
+## Emerging Methodologies and Operational Solutions
+
+Innovation in clinical trials is not limited to software; it includes new methodological frameworks that use real-world data, federated learning, and digital simulations to rethink the evidence-generation process.
+
+### Solving Logistical Challenges with IT
+
+Modern trials face significant logistical friction (see @sec-logistics-ai-automation). The challenges are structural: supply chains that must deliver temperature-sensitive products to thousands of endpoints, sites overwhelmed by redundant data entry across disconnected systems, protocols too complex for manual compliance tracking, and global operations fragmented across time zones and organizations. These are coordination problems, and coordination problems respond to better information infrastructure, as @tbl-logistics-it illustrates.
+
+*Supply chain complexity* has intensified with decentralized trials and direct-to-patient distribution. Traditional approaches relied on spreadsheets and email to track inventory and shipments; delays were discovered after the fact. Modern systems integrate IoT sensors that monitor temperature, location, and chain of custody in real time. AI-based demand forecasting uses enrollment trajectories and visit schedules to predict resupply needs before stockouts occur. The result is reduced waste (fewer expired products) and fewer patient visits disrupted by supply failures.
+
+*Site burden* accumulates when coordinators must enter the same data into multiple systems: pulling information from the electronic health record, transcribing it to the EDC, and reconciling discrepancies later. EHR-to-EDC integration automates the flow of structured data (lab values, vital signs, demographics) from the source system to the trial database, reducing transcription errors and freeing coordinator time for patient-facing work. This integration requires careful validation and mapping, but when implemented well, it addresses one of the most persistent complaints from clinical sites.
+
+*Protocol deviations* often result from complexity: too many visits, too many procedures, too many eligibility criteria for staff to track manually. Real-time nudge systems monitor visit windows and upcoming assessments, alerting coordinators before a deviation occurs rather than flagging it retrospectively. Detection systems analyze patterns across sites to identify systematic compliance failures that may indicate training gaps or protocol design problems.
+
+*Global operations* compound all of these challenges. When a trial spans 25 countries, 80 sites, and multiple CRO partners, fragmented regional teams operating from different data sources create reconciliation overhead and conflicting reports. Unified command centers aggregate operational data into a single platform, providing consistent metrics, standardized escalation pathways, and a shared view of trial status across all stakeholders.
+
+| Challenge | Traditional Approach | Modern IT Solution | Reported Impact |
+|-----------|----------------------|--------------------|-----------------|
+| *Supply Chain* | Spreadsheets, email | IoT sensors, AI forecasting | Reduced waste, fewer stockouts |
+| *Site Burden* | Redundant data entry | EHR-to-EDC integration | Less transcription time |
+| *Protocol Deviations* | Retrospective monitoring | Real-time nudge engines | Fewer major deviations |
+| *Global Operations* | Fragmented regional teams | Unified command centers | Single source of truth |
+
+: IT Solutions for Logistical Challenges (reported impacts vary by implementation) {#tbl-logistics-it tbl-colwidths="[20,25,30,25]"}
+
+### Novel Methodological Approaches
+
+This section covers a set of approaches that challenge traditional assumptions about how evidence is generated and compared: using observational data to support decisions (RWE), using historical or synthetic comparators to reduce concurrent control enrollment, and using models to predict counterfactual outcomes. All remain subjects of active regulatory and scientific debate.
+
+Clinical research data are fragmented across institutions, each with privacy regulations, competitive interests, and technical barriers to sharing. *Federated learning* addresses this by training models collaboratively without centralizing data: algorithms travel to data sources, train locally, and share only model updates (gradients or weights) rather than patient records. Owkin has applied federated learning to construct external control arms from real-world data distributed across hospital networks. Their 2025 publication in *Nature Communications* described the method, FedECA, and deployed it across cancer centers in France, Spain, and the United States without pooling patient data; the authors note that the shared updates could in theory still be exploited to recover patient information, and they tested differential privacy as a safeguard [@owkin_fl]. The practical value is clearest in rare diseases and oncology, where recruiting concurrent controls may be infeasible or ethically questionable. However, the approach requires sophisticated infrastructure, standardized data formats across institutions, and careful attention to the comparability of patient populations.
+
+*Digital twin* is borrowed from engineering, where virtual models of physical systems enable simulation and optimization [@laubenbacher_digital_twins_2021]. In clinical research the term means a computational model that predicts an individual patient's disease trajectory under control conditions, based on baseline characteristics and historical data from similar patients [@npj_vvuq_2025; @unlearn_mmrm_2024].
+
+Unlearn.AI's *PROCOVA* methodology is the worked example. Models trained on historical patient data generate, for each enrolled patient, a prognostic score forecasting that patient's likely outcome on the control arm; the score then enters the primary analysis as a baseline covariate, reducing residual variance and allowing smaller control groups while preserving unbiased treatment effect estimates and Type I error control [@ema_procova_2022; @unlearn_mmrm_2024]. The European Medicines Agency issued a favorable qualification opinion in September 2022 [@ema_procova_2022]. FDA has not qualified the method; Unlearn reports that the agency's Center for Drug Evaluation and Research, responding to its submission, found the approach already covered by FDA's guidance on covariate adjustment in randomized trials [@unlearn_fda_comments_2024].
+
+What EMA qualified was not "twin replaces a randomized patient." It qualified PROCOVA as a *covariate adjustment method*, analogous to using baseline HbA1c or age as a covariate in an ANCOVA, except that the covariate is itself the forecast of a deep neural network trained on historical data. The randomized control arm is still required; what the method saves is sample size, not concurrent randomized controls.
+
+A team evaluating PROCOVA therefore has one question to answer. Standard covariate adjustment using well-chosen baseline predictors (baseline disease score, amyloid level, MMSE) can achieve much of the same variance reduction without a machine learning model, so the value of PROCOVA turns on whether the deep neural network predicts the 18-month outcome better than those covariates do. Indication by indication, that is not settled.
+
+::: {.callout-important title="AI in regulated trials: proprietary models require transparency"}
+If the prognostic score driving the analysis comes from a proprietary black-box model, FDA and EMA cannot independently verify the model's behavior, and sponsors cannot audit whether the prediction is stable across the training data and population. Any AI or machine learning model used as part of a primary statistical analysis in a regulated trial should be written down in enough detail that a third party can reprogram it from the specification and improve it as new data emerge. A score delivered without the model behind it is a governance risk even when regulators have accepted the method class, because acceptance of a method class is not acceptance of any specific model implementation.
+:::
+
+### Real-World Evidence and Regulatory Considerations
+
+The randomized controlled trial remains the gold standard for establishing causal treatment effects, but *real-world evidence* (RWE) is playing an expanding role in drug development and regulatory decision-making. *Real-world data* (RWD) is data on patient health and health care delivery collected routinely rather than for a traditional trial: electronic health records, claims databases, disease registries, wearable devices, and patient-generated data. Analyzed appropriately, in observational studies or within randomized designs such as pragmatic trials, it yields evidence about drug safety, effectiveness, and utilization patterns, and the distinction matters: RWD is the raw data, RWE the clinical evidence derived from it through rigorous analysis [@fda_rwe_framework_2018].
+
+For *safety*, RWE has long been used in post-marketing surveillance, detecting rare adverse events that trials were not powered to identify. For *effectiveness*, FDA acceptance is more cautious but expanding: the 21st Century Cures Act directed the agency to evaluate RWE for approving new indications for existing drugs and for satisfying post-marketing study requirements, and FDA's 2023 final guidance on RWE for regulatory decisions emphasized that data relevance, reliability, and analytic rigor determine acceptability, not the mere existence of a large dataset [@fda_rwe_considerations_2023].
+
+*Single-arm trials with external controls* compare treated patients against matched historical or concurrent observational cohorts; they are most defensible in diseases with well-characterized natural history and no effective standard of care. *Hybrid designs* randomize a reduced control arm and borrow information from external data to increase statistical precision. *Post-marketing effectiveness studies* use RWD to ask whether efficacy demonstrated under controlled conditions survives contact with real-world populations carrying the comorbidities and concomitant medications that pivotal trials excluded.
+
+The core challenge is confounding: in observational data, treatment selection is not random. Patients who receive a therapy may differ systematically from those who do not, and these differences, rather than the treatment itself, may explain observed outcomes. Propensity score methods, instrumental variables, and target trial emulation frameworks attempt to address confounding, but none can fully substitute for randomization. Unmeasured confounders remain a fundamental limitation.
+
+Nonrandomized RWE is most credible when the outcome is objective and reliably captured in routine care, the comparison is against natural history rather than an active comparator, the patient population in the RWD source is demonstrably similar to the trial population, and sensitivity analyses show robustness to plausible unmeasured confounding. Even then, regulators typically treat such evidence as supportive rather than dispositive for efficacy claims: it strengthens a submission that already contains randomized evidence.
+
+FDA's 2023 draft guidance on externally controlled trials sets out how to build an external control arm from patient-level data from other clinical trials or from real-world data, addressing data quality, comparability, and bias mitigation [@fda_external_controls_2023]. It emphasizes that external controls are most appropriate when concurrent randomization is infeasible or unethical, and when the disease has a well-characterized natural history with reliable outcome measurement in routine care.
+
+In 2020, FDA accepted a hybrid *synthetic control arm* (SCA) design for Medicenna Therapeutics' planned Phase III trial in recurrent glioblastoma, a precedent-setting acceptance of a hybrid external control in a registrational trial for an indication that had previously relied on conventional randomized controls. In that design, matched external controls make up two-thirds of the pooled control arm, cutting prospective control enrollment by approximately two-thirds relative to conventional 1:1 randomization [@medicenna_mdna55_2020; @medidata_medicenna_2020].
+
+An SCA constructs the external comparator from patient-level data in historical trials rather than recruiting new control patients. Medidata's platform draws on a database spanning over 38,000 trials and 12 million patients to statistically match historical controls to current trial populations. The approach is most applicable in rare or life-threatening diseases with inadequate standard-of-care, where historical control data are plentiful and disease progression is well-characterized; hybrid designs, which add historical controls to a smaller concurrent control arm, are one way to extend it to later-stage trials.
+
+Legitimate skepticism attaches to all of this, and it is specific. *Verification, validation, and uncertainty quantification (VVUQ)* remain incompletely standardized. A 2025 review in *npj Digital Medicine* called VVUQ frameworks essential for bringing digital twins into clinical practice, argued that VVUQ processes should be standardized as far as possible for quality assurance and risk management, and noted that continually updated digital twins pose a regulatory challenge that FDA's existing medical-device framework does not fully address [@npj_vvuq_2025]. Uncertainty is the piece most often underemphasized: the same review observes that uncertainty quantification is often lacking in modeling work, even though it is what attaches confidence bounds to a model's predictions [@npj_vvuq_2025]. A single predicted outcome per patient is therefore inadequate; a digital twin used as a counterfactual should report a distribution of plausible outcomes, not a point estimate.
+
+*Model opacity* carries a cost that is easy to overlook. PROCOVA is a special case of classical ANCOVA: the adjustment covariate is a prognostic score from a model trained on independent historical data, in Unlearn's implementation a proprietary machine-learning model [@unlearn_mmrm_2024; @ema_procova_2022]. EMA qualified the adjustment procedure but not any procedure for building that model, which leaves each sponsor to develop and validate the prognostic model for its own trial, and it expects sponsors to justify the advantage PROCOVA can attain over ANCOVA adjusting for individual covariates [@ema_procova_2022]. When model details are withheld, sponsors and regulators cannot interrogate, replicate, or improve the methodology, and EMA's reflection paper on artificial intelligence in the medicinal product lifecycle expects models that influence regulatory decision-making to be fully documented, traceable, and open to independent assessment [@ema_ai_reflection_2024].
+
+*Data quality and completeness* constrain all approaches. In oncology, the data needed to model tumor dynamics are often noisy, incomplete, and subject to collection burden [@bmj_oncology_twins], and statistical models layer their own uncertainty on top, particularly when predictions must generalize across populations and disease subtypes.
+
+*Comparability assumptions* underpin every external control approach. If the historical population differs systematically from the current trial population (because standard of care, patient selection, or measurement practices have changed), treatment effect estimates may be biased regardless of the sophistication of the matching algorithm.
+
+In a *JAMA* Special Communication published online in October 2024 (January 2025 issue), then-FDA Commissioner Robert Califf and senior FDA officials listed digital twins that generate simulated clinical records to predict placebo-group response among the current and potential uses of AI in clinical research, alongside matching individuals to trials and harmonizing data cleaning, and called for flexible, risk-based regulatory schemes [@fda_jama_ai_2025]. FDA's January 2025 draft guidance on AI in drug development makes that risk basis concrete: the oversight and credibility evidence expected for a model scale with its influence on a regulatory decision and the consequence of an incorrect decision, and operational uses that do not affect patient safety, drug quality, or the reliability of study results fall outside its scope [@fda_ai_credibility_2025].
+
+Opaque, proprietary methods may therefore face higher evidentiary bars than interpretable, well-documented ones, with sponsors expected to show statistical validity, model transparency, reproducibility, and appropriate characterization of uncertainty. @tbl-future-tech summarizes where each approach currently stands.
+
+| Approach | How It Works | Regulatory Status | Key Limitation |
+|----------|--------------|-------------------|----------------|
+| *Federated Learning* | Models train locally; only updates shared | FDA/EMA engagement; no formal qualification | Infrastructure complexity |
+| *Digital Twins (PROCOVA)* | Prognostic scores as covariates | EMA qualified (2022) [@ema_procova_2022]; FDA: covered by existing guidance, per Unlearn (2024) [@unlearn_fda_comments_2024] | Model opacity; uncertainty |
+| *Synthetic Control Arms* | Historical data matched to trial | FDA accepted hybrid Phase III design (2020) | Comparability assumptions |
+
+: Emerging Clinical Trial Technologies: Status and Limitations {#tbl-future-tech tbl-colwidths="[24,32,26,18]"}
+
+## Future Impact and Economics
+
+The technologies in this chapter bear on the cost drivers of clinical development: shorter cycle times, smaller samples, and less coordination labor, set against new operational complexity.
+
+### AI Impact on Trial Operations
+
+Recall the economics from @sec-economics: *\$2.7 billion* to bring a drug to market (Deloitte's 2025 cohort), *\$40,000 per day* to operate a Phase II/III trial, and, on average, roughly *\$800,000 per day* in opportunity cost from delays, rising to \$1.3-1.4 million per day in the most affected therapeutic areas [@getz_delay_day_2024; @getz_delay_white_2024; @deloitte_rd_return_2026]. AI-enabled tools are being applied to each of these cost drivers (see @tbl-economics-transformation), though the realized impact depends on implementation quality, governance, and the specific operational context.
+
+| Current Cost Structure | AI Interventions | Impact Estimates |
+| :--- | :--- | :--- |
+| $\approx$ \$2-3B to market (est.) | Protocol Optimization AI | Reduced Development Cost |
+| High attrition ($\approx$ 90%) | Digital Twins & Synthetic Arms | Smaller Trials, Similar Power |
+| High daily burn ($\approx$ \$40K/day) | Autonomous Agents | Lower coordination overhead |
+| CRO gross margins ($\approx$ 18-33% of revenue) | Direct Automation | Margin Pressure |
+| Time to first patient ($\approx$ 166d avg) | Parallel Processing AI | Faster Timelines |
+
+: Potential AI Impact on Clinical Trial Cost Structure (industry projections; actual results vary) {#tbl-economics-transformation}
+
+Cost to market decomposes into a small set of dominant drivers: late-stage attrition, enrollment delays, protocol amendments, monitoring intensity, and the long tail of data cleaning. Automation cannot eliminate scientific uncertainty; the question is whether it can shift those operational drivers enough to change the capitalized cost of development in a meaningful way. @tbl-ai-cost-impact sets the main levers discussed in this chapter against the drivers they target.
+
+| Cost Driver | Current State | AI Approach | Potential Impact |
+|-------------|---------------|-------------|------------------|
+| *Failed Programs* | ~90% of drugs do not reach market | Protocol simulation, patient selection AI | Earlier go/no-go decisions; potentially fewer late-stage failures |
+| *Enrollment Delays* | Most trials miss enrollment targets | NLP-based patient matching, predictive site selection | Faster enrollment (magnitude varies by indication) |
+| *Data Cleaning* | Manual query resolution at \$50-100/query | ML-assisted triage and draft resolutions | Reduced query burden |
+| *Monitoring Costs* | Site monitoring $\approx$ 9-14% of itemized per-study costs | Risk-based + AI-detected anomalies | Reduced on-site visit frequency |
+| *Protocol Amendments* | \$141K (Phase II) to \$535K (Phase III) median direct cost per substantial amendment | Design simulation before finalization | Potentially fewer amendments |
+
+: Potential AI Impact on Major Trial Cost Drivers (estimates based on industry reports; actual results depend on implementation) [@lamberti_enrollment_2024; @getz_protocol_amendments_2016; @mckinsey_ai_clinical_2024; @sertkaya_cost_drivers_2016] {#tbl-ai-cost-impact tbl-colwidths="[18,25,27,30]"}
+
+The largest listed CROs reported fiscal 2025 gross margins of roughly 18-33% of revenue (revenue running about 23-50% above direct costs) and operating margins ranging from a loss to about 21% (see @sec-economics). AI-enabled tools are increasingly capable of performing tasks that have traditionally justified those margins: document processing, query management, routine monitoring, and medical coding. As sponsors develop their own AI capabilities, they may demand either lower CRO fees or differentiated services that require domain expertise AI cannot replicate. The speed and extent of this shift remain uncertain.
+
+The "daily burn" of operating a trial is largely a labor-and-coordination cost: monitors reviewing data, coordinators entering and reconciling information, medical writers preparing narrative sections, and project managers coordinating activities across teams and vendors. Some of that work is amenable to partial automation, such as drafting or triage; the rest is inherently judgment- and accountability-driven. @tbl-role-automation decomposes the spend by role and task category.
+
+| Role | Current Cost Contribution | AI Automation Potential | Timeline |
+|------|---------------------------|-------------------------|----------|
+| *Data Manager* | Query generation, cleaning | 80% automatable | Now - 2027 |
+| *Clinical Monitor* | Source verification, oversight | 50% automatable (remote SDV) | 2025 - 2028 |
+| *Medical Writer* | Narratives, CSR sections | 60% draft automation | Now - 2026 |
+| *Project Manager* | Status tracking, reporting | 40% automatable | 2026 - 2029 |
+| *Regulatory Affairs* | Submission compilation | 70% automatable | 2025 - 2027 |
+
+: Clinical Operations Roles and Illustrative AI Automation Potential (the percentages and timelines are the authors' illustrative judgments, not measured benchmarks) {#tbl-role-automation tbl-colwidths="[18,30,32,20]"}
+
+Where automation reduces repetitive coordination work and shortens the reconciliation tail, the operating cost per day could decline, by a margin that depends on protocol complexity, data sources, and the quality of implementation and oversight.
+
+Delays rarely arise from a single missing document or a single late shipment. They arise from cascades: a contract delay postpones site activation, which shifts the enrollment curve, which changes the drug demand forecast, which raises the risk of stockouts or wastage. That is what makes the logistics challenges described in @sec-logistics (multi-country execution, dozens of sites, long startup timelines, and tightly constrained supply chains) coordination problems in a precise sense: progress depends on many interdependent tasks distributed across organizations, time zones, and systems of record. Oversight imposes its own constraints, since actions must be traceable, exceptions must be reviewable, and accountability cannot be delegated to an opaque process.
+
+In that environment, "agentic" automation is most defensible when it behaves like structured orchestration rather than free-form autonomy (@fig-agent-orchestration). Its practical contributions are to maintain state across workflows, to triage and route exceptions, to generate standardized artifacts (draft correspondence, document metadata), and to propose next actions that a responsible owner can approve. Used this way, orchestration turns scattered operational signals into a prioritized work queue with clear provenance, while high-stakes decisions (changes that affect participant safety, protocol interpretation, or regulatory commitments) stay under explicit human control.
+
+```{mermaid}
+%%| eval: true
+%%| label: fig-agent-orchestration
+%%| fig-cap: "Structured Agent Orchestration in Clinical Trials (Human-in-the-Loop)"
+%%{init: {'flowchart': {'nodeSpacing': 25, 'rankSpacing': 30, 'padding': 8, 'diagramPadding': 30, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart LR
+    subgraph Orchestrator["Trial<br/>Orchestration<br/>Agent"]
+        Master["Master<br/>Coordinator"]
+    end
+
+    subgraph Functional["Functional Agents"]
+        Site["Site Activation<br/>Agent"]
+        Enroll["Enrollment<br/>Agent"]
+        Supply["Supply Chain<br/>Agent"]
+        Data["Data Quality<br/>Agent"]
+        Safety["Safety Monitoring<br/>Agent"]
+        Doc["Document<br/>Agent"]
+    end
+
+    subgraph Actions["Proposed Actions"]
+        A1["Draft site<br/>contracts"]
+        A2["Pre-screen<br/>patient matches"]
+        A3["Predict<br/>inventory needs"]
+        A4["Draft query<br/>responses"]
+        A5["Draft safety<br/>narratives"]
+        A6["Classify & tag<br/>TMF docs"]
+    end
+
+    Master --> Site
+    Master --> Enroll
+    Master --> Supply
+    Master --> Data
+    Master --> Safety
+    Master --> Doc
+
+    Site --> A1
+    Enroll --> A2
+    Supply --> A3
+    Data --> A4
+    Safety --> A5
+    Doc --> A6
+
+    A1 --> HITL
+    A2 --> HITL
+    A3 --> HITL
+    A4 --> HITL
+    A5 --> HITL
+    A6 --> HITL
+    HITL{{"Human review<br/>& approval"}} --> Exec["Execute after<br/>sign-off"]
+```
+
+Study start-up (from final protocol to first patient first visit) averaged 166 days for Phase III protocols in the Tufts CSDD benchmark [@getz_protocol_benchmarks_2023]. The delay is distributed across feasibility assessment, contract negotiation, IRB/EC submission, site training, and investigational product shipment. Each step has its own bottleneck, and the steps are typically processed one after another.
+
+AI-enabled tools attack each bottleneck. Predictive site scoring trained on historical enrollment data can replace the manual feasibility questionnaire, contract generation from standardized templates can shorten legal negotiation cycles, and auto-populated submission packages can accelerate IRB preparation. Adaptive e-learning modules can replace in-person training for routine content, and predictive supply chain systems can coordinate IP shipment with site readiness.
+
+The bigger shift is from sequential to parallel processing. Software can execute *some* activation workstreams simultaneously (assembling submission-ready document sets, preparing templated contract packets) while review, signature, and site-specific customization still run in series. Parallelization can compress elapsed time, but the magnitude depends on integration quality, local ethics processes, contracting norms, and the extent to which sites and sponsors adopt common platforms.
+
+Decentralized trials (DCTs) create a logistics challenge of much greater scale (see @tbl-dct-ai): instead of shipping investigational product to a limited number of sites, sponsors may ship to *thousands of patient homes* and coordinate services across a wider set of vendors and geographies [@fda_dct_guidance_2024]. Routine coordination and exception handling at that volume can overwhelm operational teams, which is what pushes organizations toward greater automation and analytics, with the same division of labor: standardized, traceable workflows for the routine components, accountable human review for anything safety- or compliance-critical.
+
+| DCT Challenge | Traditional Approach | AI-Enabled Approach |
+|---------------|---------------------|---------------------|
+| *Cold-Chain Monitoring* | Periodic temperature logs | Real-time IoT + predictive intervention |
+| *Home Nursing Coordination* | Manual scheduling | AI-assisted routing and scheduling |
+| *Patient Adherence* | Site calls, diaries | Wearable + app AI detecting non-adherence patterns |
+| *Document Collection* | Email reminders, faxes | TMF agents that chase, collect, and file automatically |
+| *Regulatory Compliance* | Per-country manual review | Multi-jurisdiction compliance AI |
+
+: AI Solutions for Decentralized Trial Logistics {#tbl-dct-ai tbl-colwidths="[22,39,39]"}
+
+### Economics and Business Models
+
+Sponsors face a strategic choice: build AI capabilities internally, buy them from vendors, or partner with AI-native CROs. @tbl-ai-adoption sets out what each path costs, what it risks, and which sponsors it suits.
+
+| Strategy | Upfront Investment | Ongoing Cost | Risk | Best For |
+|----------|-------------------|--------------|------|----------|
+| *Build Internal AI* | \$10-50M+ | High (talent, compute) | Technology obsolescence | Top 20 pharma |
+| *Buy Platform AI* | \$1-5M licensing | Medium (per-trial fees) | Vendor lock-in | Mid-size sponsors |
+| *Partner with AI-Native CRO* | Minimal | Higher per-trial cost | Dependency on partner | Biotech, small sponsors |
+| *Hybrid Model* | \$5-20M | Medium | Complexity | Most large sponsors |
+
+: AI Adoption Strategies and Economic Trade-offs (illustrative author estimates; actual budgets vary widely by sponsor size and scope) {#tbl-ai-adoption tbl-colwidths="[20,20,18,22,20]"}
+
+### The 2030 Trial: A Vision
+
+By 2030, a Phase III trial *could* look different in organizations that successfully integrate automation into validated workflows. Decision-making does not become "fully autonomous." What changes is that a larger fraction of routine coordination work becomes standardized, traceable, and partially automated: documents assembled from structured sources instead of rewritten, operational signals reconciled across systems of record rather than re-keyed into decks, exceptions surfaced with clear provenance instead of discovered late through periodic reconciliation.
+
+That operating model needs three things at once: data capture and integration mature enough that key events (screen failures, visit-window risk, temperature excursions, missing essential documents) arrive as machine-readable signals; validation, access controls, and audit trails good enough that automated steps stay inspectable and accountable under GCP and 21 CFR Part 11 expectations; and sites and vendors that actually adopt the workflow, so that automation reduces burden instead of shifting it into more portals and alerts. The scenario in @fig-2030-trial and the metrics in @tbl-2030-metrics are aspirational on purpose: they show where cycle time and coordination cost might fall, not a single inevitable trajectory.
+
+```{mermaid}
+%%| eval: true
+%%| label: fig-2030-trial
+%%| fig-cap: "The AI-Native Clinical Trial of 2030"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 30, 'padding': 8, 'diagramPadding': 30, 'wrappingWidth': 400}}}%%
+flowchart TB
+    subgraph r1[" "]
+        direction LR
+        S1["<b>Design (weeks)</b><br/><i>Protocol AI</i><br/>• Simulates large<br/>virtual cohorts<br/>• Optimizes I/E criteria<br/>automatically<br/>• Generates protocol<br/>document"] --> S2["<b>Activation (weeks)</b><br/><i>Site AI</i><br/>• Identifies<br/>high-performing sites<br/>• Generates contracts,<br/>submits to IRBs in parallel<br/>• Ships IP with<br/>predictive inventory"] --> S3["<b>Enrollment (months)</b><br/><i>Matching AI</i><br/>• Scans large EHR cohorts<br/>• Alerts physicians of<br/>eligible patients<br/>• Patients consent via<br/>eConsent platform"]
+    end
+
+    subgraph r2[" "]
+        direction LR
+        S4["<b>Conduct (months)</b><br/><i>Operations AI</i><br/>• Monitors data<br/>in real-time<br/>• Generates and resolves<br/>queries automatically<br/>• Predicts and prevents<br/>protocol deviations"] --> S5["<b>Close (weeks)</b><br/><i>Reporting AI</i><br/>• Locks database with<br/>automated reconciliation<br/>• Generates statistical<br/>outputs<br/>• Drafts Clinical Study<br/>Report"]
+    end
+
+    r1 ~~~ r2
+    style r1 fill:none,stroke:none
+    style r2 fill:none,stroke:none
+```
+
+| Metric | 2025 Benchmark | 2030 Projection | Change |
+|--------|----------------|-----------------|--------|
+| *Time to First Patient* | 166 days | 60 days | -64% |
+| *Enrollment Duration* | 500+ days | 200 days | -60% |
+| *Daily Operational Cost* | \$40,000 | \$18,000 | -55% |
+| *Total Phase III Cost* | \$100M | \$45M | -55% |
+| *Human FTEs per Trial* | 50-100 | 15-30 | -70% |
+| *Data Quality Issues* | 15-20% query rate | 3-5% query rate | -75% |
+
+: Scenario trial metrics in an AI-native operating model (illustrative; not a forecast) {#tbl-2030-metrics tbl-colwidths="[30,25,25,20]"}
+
+### Industry and Workforce Implications
+
+The same efficiency gain is a saving for one party and a revenue loss for another. Costs, responsibilities, and bargaining power are unevenly distributed across the clinical trial enterprise: organizations bearing the largest absolute operational costs capture most of the direct savings, while organizations earning revenue from the labor-intensive activities that automation targets find the same improvement economically disruptive. Regulatory exposure cuts the same way: actors responsible for compliance, inspection readiness, and patient protection face higher requirements for validation, audit trails, and accountability, which can slow adoption and increase the fixed costs of implementation.
+
+Where automation is deployed matters too (site workflows, sponsor oversight, CRO service delivery, or platform infrastructure), as does whether a new tool reduces burden or simply shifts it across an organizational boundary. @tbl-stakeholder-impact summarizes the resulting incentives.
+
+| Stakeholder | Likely Position | Rationale |
+|-------------|-----------------|-----------|
+| *Large Sponsors* | Positioned to benefit | Can afford AI investment; may capture efficiency gains if governance is effective |
+| *Biotech* | Mixed | May benefit from lower trial costs, but less capital to invest in AI infrastructure |
+| *Traditional CROs* | Facing pressure | Core services may be commoditized; business models may need to evolve |
+| *AI-Native CROs* | Potentially advantaged | Built for automation; lower cost structure if quality can be demonstrated |
+| *Clinical Sites* | Mixed | Less manual work, but also potentially less revenue per patient |
+| *Patients* | Potentially benefit | May see faster access to trials, less burden, more decentralized options |
+| *Regulators* | Adapting | Must develop AI validation frameworks while maintaining safety standards |
+
+: Potential AI Transition Impact by Stakeholder (author assessment) {#tbl-stakeholder-impact tbl-colwidths="[20,20,60]"}
+
+The clinical research workforce (coordinators, monitors, data managers) faces significant disruption. Automation may reduce some routine tasks while work shifts toward system implementation, validation, and oversight; preserving domain expertise through that transition will take deliberate reskilling and role redesign.
+
+The clinical trial technology ecosystem is moving in two directions at once. Core systems are consolidating around a small number of platforms that can support regulated, end-to-end execution across EDC, CTMS, eTMF, and supply, while sponsors experiment with a growing set of analytics and automation capabilities that sit "on top" of those systems and reshape day-to-day work in feasibility, monitoring, data cleaning, and documentation. That is a gradual reallocation of investment rather than a single wave of disruption: stability in the transactional backbone, faster iteration at the analytics and workflow layer (@tbl-market-projections) [@tufts_ctms_2024; @fortune_ai_clinical_2024]:
+
+| Segment | 2025 Market Size | 2030 Projection | CAGR | Key Trend |
+|---------|------------------|-----------------|------|-----------|
+| *CTMS Platforms* | \$2.4B | \$4.9B | 15% | Cloud consolidation |
+| *eTMF Systems* | \$1.4B | \$2.5B | 13% | AI-powered automation |
+| *AI in Clinical Trials* | \$3.8B | \$20B | 39% | Rapid adoption |
+| *EDC Systems* | \$1.2B | \$2.1B | 12% | EHR integration |
+
+: Clinical Trial Technology Market Projections (analyst estimates; subject to revision; the AI 2030 value is interpolated from the source's 2034 forecast at its stated CAGR) [@tufts_ctms_2024; @fortune_ai_clinical_2024; @marketsandmarkets_etmf_2024] {#tbl-market-projections tbl-colwidths="[22,20,20,12,26]"}
+
+The IT stack has evolved from a passive repository to an active intelligence layer. Sponsors who integrate design, recruitment, and operations data in near real time can often detect operational risks earlier, and they may be able to run trials faster and at lower operational cost than fragmented legacy workflows allow, by a margin set by disease area, protocol complexity, and the quality of implementation and governance.
+
+Three questions cut through most of what gets called "innovation" in this space. *What decision does it change*, and what evidence shows that the change improves patient safety, data integrity, or development efficiency in the target context? *What are the failure modes*, and how are they detected, documented, and corrected under GCP and inspection expectations? *How does it integrate into real workflows*, including incentives across sponsors, CROs, and sites, so that it reduces burden instead of shifting it? Tools that answer those questions well are more likely to be adopted, defended, and sustained in regulated clinical research.

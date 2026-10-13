@@ -1,0 +1,185 @@
+# Study Design {#sec-study-design}
+
+A trial can fail for reasons that have nothing to do with the drug's biology. Define eligibility too broadly, pair it with an endpoint that is noisy or poorly aligned with the mechanism, and the study enrolls a heterogeneous population in which any true benefit is diluted; what comes out is an underpowered "negative" trial that will not persuade a regulator even if a meaningful effect exists in the intended subgroup.
+
+Design is what stands between a clinical question and decision-grade evidence. Every trial begins with the question. Sometimes it is simple: does this drug reduce blood pressure more than placebo? More often it is nuanced: does this drug reduce cardiovascular events more than existing therapy in patients with moderate-to-severe hypertension and high cardiovascular risk who are not adequately controlled on their current regimen? The choices that follow (population, endpoints, control, randomization, blinding, follow-up, and analysis plan) determine whether an observed effect can be credibly attributed to the intervention and interpreted for the intended regulatory and clinical use.
+
+## Randomization
+
+The cornerstone of the modern clinical trial is *randomization*: the random allocation of participants to treatment groups, arguably the most important innovation in the history of clinical research. Age, sex, disease severity, and genetic factors can all influence outcomes, and those can be measured. The case for randomization rests on the rest: the likely hundreds of factors we do not know about or cannot measure. Allocation by chance, performed correctly, balances the groups on known and unknown factors alike. Not in every individual case, but on average across studies.
+
+That balance is what lets us credit an observed difference to the treatment rather than to the groups: if patients receiving the new drug do better than patients receiving placebo, and the groups were comparable at baseline, the most likely explanation is that the drug works.
+
+*Simple randomization* flips a coin for each patient, which can leave the groups unequal in size. *Block randomization* fixes that by forcing equality after every block of patients (say, 4 or 8). *Stratified randomization* goes further, randomizing separately within subgroups defined by important prognostic factors so that those factors stay balanced.
+
+## Blinding
+
+If randomization protects against bias in how patients are assigned to groups, *blinding* (also called masking) protects against bias in how they are treated and assessed. @tbl-blinding-levels summarizes the levels and their applications.
+
+| Blinding Level | Who Is Blinded | Protection Against | Limitations |
+|----------------|----------------|--------------------|-------------|
+| *Open-label* | No one | None | Risk of assessment and performance bias |
+| *Single-blind* | Participants only | Participant expectation effects | Investigator may influence care/assessment |
+| *Double-blind* | Participants + Investigators | Expectation + Assessment bias | May still be unblinded by side effects |
+| *Triple-blind* | + Data analysts | All above + Analytic bias | Maximum protection |
+| *Blinded assessment* | Outcome assessors only | Assessment bias when other blinding impossible | Limited to specific outcomes |
+
+: Levels of Blinding in Clinical Trials {#tbl-blinding-levels tbl-colwidths="[18,20,25,37]"}
+
+Double-blind is the gold standard for most clinical trials. Triple-blind extends the blind to the statisticians, who learn which group is which only when the analysis plan is executed, so that the analysis itself cannot be manipulated, consciously or otherwise.
+
+Maintaining the blind is not always straightforward. Some drugs have distinctive side effects (certain cancer treatments cause hair loss; some psychiatric medications cause weight gain). Placebo formulations must be indistinguishable from active treatment in appearance, taste, smell, and texture. When blinding is not possible (as in surgical trials or many device studies), alternative designs and analyses must account for the limitations.
+
+## Control Groups
+
+Every trial is a comparison, and the comparator decides what the result can prove and sometimes whether the trial can ethically be run at all.
+
+*Placebo controls* set the experimental treatment against an inert substance indistinguishable from it. They provide the clearest evidence of efficacy, because any difference between groups can be attributed to the pharmacological effect of the drug rather than to expectations, attention from healthcare providers, or natural fluctuations in disease. But when effective treatments exist, withholding them to demonstrate that a new drug is better than nothing may be unacceptable. The Declaration of Helsinki requires that new treatments be tested against the best proven intervention, not placebo, except in the circumstances it specifies [@helsinki_2025]; @sec-ethics describes them.
+
+*Active controls* compare the experimental treatment to an established therapy. That is an ethically appropriate choice when withholding treatment would be harmful, and it comes at a statistical price. Showing *superiority* to an active control requires a larger sample size than showing the drug is better than placebo. Showing *non-inferiority* (not meaningfully worse) requires careful definition of how much difference would be acceptable and raises concerns about trial quality that could mask real differences.
+
+*Historical and external controls* compare study participants to patients treated in the past or in separate real-world environments. Long viewed with skepticism for pivotal trials, they are increasingly being given regulatory structure in rare diseases and high unmet need areas. In 2025, the MHRA released a draft guideline on the use of external control arms derived from real-world data [@mhra_external_controls_2025], and EMA published a concept paper outlining plans for a future reflection paper on the same topic [@ema_external_controls_2025], both emphasizing transparent, pre-specified protocols and the fitness for purpose of the external data.
+
+*Digital twins* push the technique further: prognostic scores generated from high-dimensional baseline data allow for "TwinRCTs" where each patient's outcome is adjusted by their own AI-generated digital counterpart, increasing statistical power in longitudinal studies [@unlearn_digital_twins; @unlearn_mmrm_2024]. *Bayesian borrowing* instead lets sponsors "borrow" information from historical trials or RWD, discounted for differences between the sources by a fixed weight or dynamically when the data disagree. Discounting does not remove those differences: in a first-line non-small cell lung cancer (NSCLC) case study, a matched real-world external control augmented from a historical trial with a fixed-weight power prior still did not reproduce the survival result of the randomized trial whose control arm it replaced [@nsclc_borrowing_2024].
+
+## Trial Design Types
+
+@tbl-trial-designs compares the major trial design types and the clinical questions each one suits.
+
+| Design | Description | Advantages | Disadvantages | Best Used When |
+|--------|-------------|------------|---------------|----------------|
+| *Parallel* | Patients randomized to one treatment for study duration | Simple; No carryover concerns; Works for progressive diseases | Larger sample needed; Between-patient variability | Most confirmatory trials; Progressive conditions |
+| *Crossover* | Each patient receives all treatments in sequence | Smaller sample; Patients serve as own controls | Carryover effects; Requires stable disease | Stable chronic conditions; PK studies |
+| *Factorial* | Multiple interventions tested simultaneously | Tests interactions; Efficient for 2+ questions | Complex analysis; Interpretation challenges | Testing combinations; Multiple hypotheses |
+| *Cluster* | Groups (sites, clinics) randomized, not individuals | Practical for system-level interventions | Reduced power; Complex analysis | Community interventions; Educational programs |
+| *Adaptive* | Design modified based on interim data | Efficient; Smaller samples possible | Complex planning; Implementation challenges | Dose-finding; Rare diseases |
+
+: Comparison of Clinical Trial Design Types {#tbl-trial-designs tbl-colwidths="[12,22,22,22,22]"}
+
+The *parallel design*, the default for confirmatory trials, keeps each participant in the group they were randomized to for the duration of the study. A *crossover design* instead gives each participant several treatments in sequence, so that each serves as their own control and the noisier between-patient comparison gives way to a within-patient one, which means smaller sample sizes may suffice. The price is complexity and two requirements: the condition must be stable (the disease should not progress during the study) and treatments must have no lasting effects that carry over from one period to the next.
+
+A *factorial design* tests two or more interventions in the same trial by randomizing each participant to one of the possible combinations (for example, drug A or placebo crossed with drug B or placebo). When the treatments act independently, a single trial delivers the main effect of each intervention, answering two questions for roughly the cost of one; the design can also estimate whether the treatments interact, though detecting an interaction reliably requires a much larger sample than estimating either main effect alone. This same logic reappears later in the chapter in the *multifactorial* platform trials: REMAP-CAP randomizes a single patient within several treatment domains at once, and SNAP layers multiple treatment domains over one shared infrastructure.
+
+In a *cluster-randomized design*, the unit of randomization is a group (a clinic, hospital, or community) rather than an individual. It is the natural choice when the intervention operates at the level of a system (a screening program, or a change in how a ward is staffed) or when treating individuals differently within the same site risks contamination between arms. The cost is statistical: outcomes for patients in the same cluster are correlated, so a cluster trial carries less information than an individually randomized trial of the same size, and the sample size must be inflated by a design effect that grows with the intracluster correlation and the number of patients per cluster. A *stepped-wedge* variant rolls the intervention out to clusters in a randomized sequence until all have crossed over, which suits an intervention expected to do more good than harm, where withholding it from some clusters for the whole trial would be hard to justify.
+
+## Sample Size
+
+How many patients should be enrolled in a trial? Four quantities set the answer: the size of the effect we expect (or the minimum effect we consider clinically meaningful), the variability of the outcome measure, the Type I error rate we are willing to accept (the probability of declaring the drug works when it does not), and the power we require (the probability of detecting a real effect if it exists, commonly 80% or 90%). Smaller effects, noisier outcomes, stricter error rates, and higher power all cost patients.
+
+The calculation is made before the trial begins, from assumptions about effect size and variability drawn from prior studies. If those assumptions prove incorrect (for example, if the drug produces a smaller effect than expected, or if outcomes are more variable), the trial may be underpowered to detect a real effect. Adaptive designs that allow sample size re-estimation based on interim data address this concern.
+
+## Master Protocols and Platform Trials {#sec-master-protocols}
+
+Traditional trials test one treatment in one disease, then shut down and start from scratch for the next question. It is like building a stadium for a single game and then demolishing it: every element (enrollment infrastructure, site contracts, database, regulatory submissions, DSMB) is built and then torn down. *Master protocols* reuse the arena: multiple therapies, or multiple diseases, share a single infrastructure, regulatory submission, database, and operational team [@fda_master_protocols_2022].
+
+Three designs operate under the master-protocol umbrella, and they differ in what is held fixed. A **basket trial** fixes the drug and varies the patient types, testing one agent across multiple diseases or subgroups that share a common molecular feature (a BRAF V600E mutation, for example). The design underpinned the first tissue-agnostic FDA approvals, such as pembrolizumab for mismatch-repair-deficient tumors and larotrectinib for NTRK-fusion cancers. Large exploratory baskets such as NCI-MATCH, by contrast, were primarily signal-finding: across dozens of arms only a few showed meaningful activity.
+
+An **umbrella trial** turns that around. The disease is fixed, the multiple is the treatments, and patients are assigned to arms on their biomarker profile. A **platform trial** fixes the disease and the arena and lets the therapies vary over time, in a perpetual or long-running infrastructure where arms enter and exit as data accumulate: arms read out and close while new ones enter, and the shared control arm continues throughout.
+
+:::{layout-ncol=2}
+```{mermaid}
+%%| fig-cap: "Umbrella trial design"
+flowchart TB
+    Pop((Cancer))
+    Arm1[Drug A]
+    Arm2[Drug B]
+    Arm3[Std of Care]
+    Pop --> Arm1
+    Pop --> Arm2
+    Pop --> Arm3
+```
+
+```{mermaid}
+%%| fig-cap: "Basket trial design"
+flowchart TB
+    DrugA(("Drug A    "))
+    Dis1[Melanoma]
+    Dis2[Lung]
+    Dis3[Thyroid]
+    DrugA --> Dis1
+    DrugA --> Dis2
+    DrugA --> Dis3
+```
+:::
+
+### Platform Trial Mechanics
+
+Run five separate Phase III trials, each randomizing 80 patients to active and 80 to control, and 400 of the 800 total patients (50%) are on placebo, each serving as the comparator for only one of the five experimental drugs. Put the same five arms in one platform sharing a single control and the arithmetic changes: about 80 patients on active per arm plus 80 shared placebo is 480 total, a 40% reduction in total enrollment, while each active-versus-control comparison retains essentially the same power [@saville2016platform]. That is the *shared control arm*, the key efficiency of the design, and the Healey ALS Platform Trial has demonstrated it at scale, running multiple concurrent active arms against one common placebo group.
+
+A *master protocol* is the governing document that specifies the patient experience, eligibility criteria, endpoints, and the rules by which arms behave [@woodcock2017master]. It contains nothing specific to any treatment; treatment-specific information enters through modular appendices called substudies or protocol appendices. When a treatment arm closes, the master protocol is unchanged, and a new treatment joins through an amendment that adds its appendix, without rebuilding the rest of the trial. Like other significant amendments (see @sec-protocol-amendments), that amendment needs ethics approval, and whatever regulatory submission or authorization the jurisdiction requires, before the new arm opens [@cfr21_312; @fda_master_protocols_2022]. In I-SPY 2 (the breast cancer neoadjuvant platform), new agents can be added at any time as agents under test graduate or are dropped, so each enters a standing platform rather than a trial built for it [@wang2019ispy2].
+
+Response-adaptive randomization within platforms concentrates patients toward better-performing arms, reducing exposure to inferior treatments during the trial itself; its statistical mechanics and the conditions under which it is most beneficial are described at @sec-rar. The operational safeguard is a burn-in period of equal allocation followed by adaptive weighting governed by the platform's independent statistical center, with the sponsor blinded to comparative results across arms.
+
+Governance follows from that need for separation. Typically a single DSMB oversees all arms simultaneously, an independent statistical center runs the unblinded interim analyses, and a committee approves applications for new arms; the arrangement exists so that no sponsor has visibility into how competitor arms are performing.
+
+### Case Studies
+
+**REMAP-CAP** (Randomized, Embedded, Multifactorial Adaptive Platform trial for Community-Acquired Pneumonia) is the canonical pandemic-preparedness platform [@angus2020remapcap]. Conceived after the 2009 H1N1 influenza pandemic and seeded in 2014 by the EU PREPARE (FP7) network, it enrolled its first non-pandemic CAP patient in April 2018 at a single center (UMC Utrecht) before expanding into a multi-country network, all while carrying a dormant pandemic stratum that could activate when a respiratory pathogen emerged. In February 2020, the pandemic stratum activated for COVID-19. Over its life it investigated multiple therapies across several treatment domains: corticosteroids, anticoagulation, antivirals, immune modulators, and others. Its primary endpoint for the pandemic stratum was organ-support-free days over 21 days, an ordinal scale with in-hospital death as the worst outcome [@gordon2021remapcap]. The trial demonstrated that a standing infrastructure built before a crisis can begin randomizing patients within weeks of that crisis.
+
+**The COVID anticoagulation multi-platform RCT** took platform collaboration one step further [@lawler2021anticoag; @goligher2021anticoag]. Three independently funded Bayesian platform trials (REMAP-CAP, ATTACC in Canada, and ACTIV-4a at the NIH) asked the same question: therapeutic-dose versus prophylactic-dose anticoagulation in COVID-19. Conflicting results and a post hoc meta-analysis were the obvious risk, so early in the pandemic the three teams harmonized their protocols and statistical analysis plans and combined raw patient data in a single Bayesian hierarchical model with dynamic borrowing across severity strata. The analysis found benefit from therapeutic-dose anticoagulation in moderately ill patients and no benefit in critically ill patients, where the point estimate favored harm, a conclusion that a naive pooled analysis across severity groups could have missed [@goligher2021anticoag; @lawler2021anticoag]. The severity strata were specified in advance, so the finding did not rest on a post hoc subgroup analysis.
+
+**SNAP** (Staphylococcus aureus Network Adaptive Platform) addresses a bacterium that causes hundreds of thousands of bloodstream-infection deaths per year worldwide, with bacteremia mortality that has remained high, around 20 to 30 percent, for decades [@tong2022snap]. Enrolling across multiple hospitals and countries, SNAP uses three mutually exclusive patient silos by antibiotic susceptibility (penicillin-susceptible S. aureus, penicillin-resistant MSSA, and MRSA) crossed with multiple treatment domains (backbone antibiotic, adjunctive therapy, early oral switch). A single patient can contribute to multiple domains simultaneously, and domains can close, reopen for subpopulations, or add new questions from the network's investigators, including bacteriophage therapy, antiplatelet/anticoagulation, and diagnostic strategies. Each domain reaches its own conclusion inside the shared infrastructure, so SNAP can settle questions such as the preferred first-line agent for MSSA or the value of adjunctive clindamycin, then retire or modify that domain, without launching a standalone trial for each question. The MSSA backbone question illustrates the rationale: by 2018, several large observational cohorts had found cefazolin to give outcomes at least equivalent to flucloxacillin for MSSA, yet, as the authors of the largest stressed, only a randomized trial could convincingly settle the comparison [@davis2018cefazolin].
+
+**PANTHER** (the Precision medicine Adaptive Network platform Trial in Hypoxaemic acutE Respiratory failure) illustrates precision-medicine enrichment: patients are pre-classified by inflammatory subphenotype (hyper- versus hypo-inflammatory) before randomization, addressing the long-standing problem that ARDS encompasses heterogeneous biology with potentially different treatment-response profiles. Funded by the UK's NIHR as a Bayesian adaptive platform, it began with arms testing simvastatin and baricitinib against usual care, the enrichment intended to concentrate each treatment where it is most likely to work [@panther_trial].
+
+**The Healey ALS Platform Trial** at Massachusetts General Hospital uses two-level nested randomization: patients are randomized to one arm (not blinded across arms) but are blinded to active versus placebo within their assigned arm [@quintana2023healey]. All patients eligible for multiple arms who receive placebo contribute their data to every eligible arm's primary analysis. The first arms were seeded by fundraising from the ALS community, illustrating a first-arm effect in platform economics: once enrollment and data collection are shown to work, later arms reuse that infrastructure instead of building their own, which lowers the cost and risk of joining for the sponsors behind them.
+
+**EPAD** (European Prevention of Alzheimer's Dementia) is the canonical platform failure [@ritchie2016epad]. A 64-million-euro, 5-year IMI-funded project, EPAD built a 2,000-participant readiness cohort with deep pre-characterization (amyloid status, cognitive baselines, longitudinal follow-up) specifically to reduce the very high screen-failure rates that plague Alzheimer's prevention trials. Yet EPAD never enrolled a single treatment arm. By the project's own post-mortem [@saunders2022epad], two obstacles proved decisive: intervention owners were ultimately reluctant to hand sponsorship of a critical asset to a university-run platform, and the stakeholders could never agree on a common legal framework usable and acceptable to all parties. When the project's fixed five-year term ended in 2020, the treatment platform had never opened, and the COVID-19 pandemic seriously hampered efforts to secure ongoing funding. The rest of the investment outlived the project: the cohort's data and biobank are freely available to researchers, with follow-on funding from the Alzheimer's Association to maintain access, and the unused platform infrastructure could be reopened or replicated [@saunders2022epad]. The contrast with Healey ALS is precise: Healey could fund the first arms from philanthropic donations; EPAD could not. The lesson: a platform's first arm must be fundable independently of the commercial pipeline it is meant to serve.
+
+@tbl-design-taxonomy sets the designs in this chapter side by side, with the trade-off each one accepts in exchange for what it buys.
+
+| Design type | Randomization | Key strength | Key limitation | Regulatory precedent |
+|-------------|---------------|--------------|----------------|----------------------|
+| **Standard RCT** | Concurrent, 1:1 or other fixed ratio | Eliminates confounding; gold standard for causation | Enrollment cost; narrow eligibility limits generalizability | Established across all therapeutic areas |
+| **Platform trial** | Concurrent; adaptive across arms over time | Shared control arm efficiency; arms enter and exit; perpetual infrastructure | Governance complexity; requires pre-funded first arm; statistical modeling of concurrent arms | REMAP-CAP, Healey ALS, RECOVERY; FDA master protocols guidance 2022 |
+| **Externally controlled trial** | None (single arm vs. historical or registry control) | Feasible when concurrent control is unethical or impossible; all patients receive investigational drug | Confounding; population drift; regulatory scrutiny; requires rigorous fit-for-purpose data | FDA 2023 draft ECA guidance; rare pediatric oncology |
+| **Hybrid Bayesian (augmented control)** | Reduced concurrent control; Bayesian borrowing from external data | Smaller control arm; preserves causal inference of randomization | Prior sensitivity; dynamic borrowing assumptions require pre-specification; inflation risk if historical data mismatch | Pediatric programs (MAP prior); FDA Complex Innovative Trial Design program |
+| **Registry-based RCT** | Concurrent; executed within registry infrastructure | Broad population; low operational cost; representative outcomes | Outcome ascertainment quality varies; registry must collect primary endpoint reliably | TASTE (NEJM 2013); VALIDATE-SWEDEHEART; Scandinavian cardiac registries |
+
+: Clinical trial design taxonomy: key trade-offs {#tbl-design-taxonomy}
+
+## The Statistical Analysis Plan
+
+Before data from a clinical trial are unblinded, the *statistical analysis plan (SAP)* should be finalized. Modern SAPs must align with the **ICH E9(R1) Estimands Framework** [@ich_e9_r1], which requires precise definition of the treatment effect of interest *before* data is collected.
+
+The estimand has five attributes: the treatment condition being compared, the population being analyzed, the specific endpoint variable, the strategies for handling intercurrent events (disruptions such as treatment discontinuation, death, or the use of rescue medication), and the population-level summary used to compare the treatments. ICH E9(R1) defines five intercurrent-event strategies. The three most commonly invoked are the treatment policy strategy, which follows the intent-to-treat principle by using the outcome regardless of intercurrent events such as nonadherence; the hypothetical strategy, which estimates the outcome in a specified scenario in which the intercurrent event would not occur (for example, if rescue medication were not available); and the composite strategy, which folds the intercurrent event into the endpoint definition itself. The remaining two are the principal stratum strategy, which restricts the estimate to a causally defined subpopulation, and the while-on-treatment strategy, which uses the outcome only up to the intercurrent event (*while alive* when the event is death).
+
+A *p*-value of 0.05 counts as confirmatory evidence only if the test was specified in advance and the Type I error is controlled across the trial's confirmatory tests; an unplanned test can suggest a hypothesis but not confirm one [@ich_e9].
+
+## The Protocol
+
+Every design decision lands in the *protocol*, the document that governs how the trial is conducted. A well-written one leaves little room for interpretation: exactly who can participate, what treatments will be given and how, what assessments will be performed and when, and how data will be collected and analyzed.
+
+Writing the protocol is a project in its own right. Development usually starts from a synopsis of the key design choices, detailed enough to seek investigators' views and to request bids from CROs (see @sec-logistics), and grows into a full draft through rounds of review by the functions that will have to run the trial. ICH E6(R3) asks for a protocol that is "clear, concise and operationally feasible", designed to minimize unnecessary complexity and developed with input from relevant interested parties [@ich_e6r3_2025]. Two public standards shape the document itself. SPIRIT 2025 is a checklist of 34 minimum items that the protocol of a randomized trial should address, accompanied by a diagram of the schedule of enrollment, interventions, and assessments; one of its new items asks how patients and the public will be involved in the trial's design, conduct, and reporting [@spirit_2025]. ICH M11, adopted in November 2025, provides a harmonized protocol template and a technical specification, so that protocols present the same information in the same place and can be exchanged electronically in a format acceptable to regulators [@ich_m11_2025]. Sign-off by the sponsor's authorized signatories makes it final [@ich_e6r3_2025].
+
+The protocol is read well outside the sponsor. IRBs review it to assess participant protection, regulatory authorities to assess scientific adequacy, and investigators to understand what they are responsible for. Once approved, deviations from it are tracked and reported.
+
+AI tools for protocol authoring, feasibility screening, and design optimization are covered in @sec-ai-agents.
+
+### Protocol Amendments {#sec-protocol-amendments}
+
+Once the protocol has been approved, it changes only by *protocol amendment*, which ICH E6(R3) defines as "a documented description of a change(s) to a protocol". Throughout the guideline, "protocol" means the protocol together with its amendments, and each amendment carries its own number and date. New safety information can force an amendment at any point: after an immediate hazard, the sponsor is expected to consider whether the protocol needs amending [@ich_e6r3_2025]. Sponsors most often cite regulatory agency requests and changes to study strategy as their reasons [@getz_protocol_amendments_2024].
+
+Regulation decides which changes need the formal route. For a trial under an IND, FDA requires an amendment for any change to a Phase I protocol that significantly affects participant safety, and for any change to a Phase II or III protocol that significantly affects safety, the scope of the investigation, or the scientific quality of the study. Its examples include raising the dose or the duration of exposure beyond the current protocol, significantly increasing the number of participants, adding or dropping a control group, and adding or dropping a test that monitors safety [@cfr21_312]. The EU sets its threshold at a *substantial modification*, a change "likely to have a substantial impact on the safety or rights of the subjects or on the reliability and robustness of the data generated in the clinical trial" [@eu_ctr_536_2014].
+
+Any change to approved research needs IRB approval before it is implemented, apart from the exceptions below, although minor changes can go through expedited review by the IRB chair or an experienced member the chair designates (21 CFR 56.110) [@cfr21_56; @ich_e6r3_2025]. The regulator's role differs by jurisdiction. Under an IND, FDA approval is not a precondition: the sponsor may make the change once it has been submitted to FDA and approved by the IRB, in either order, and a new investigator can be added without waiting for FDA, which must be notified within 30 days [@cfr21_312]. In the EU, a substantial modification may be implemented only after it has been approved, and the Regulation spells out that this includes adding a trial site or changing a site's principal investigator [@eu_ctr_536_2014].
+
+Two kinds of change may go ahead first. A change needed to eliminate an immediate hazard to participants is made at once: the investigator informs the sponsor promptly and reports the hazard, the change, and any proposed amendment to the IRB and, where applicable, to regulators [@ich_e6r3_2025], and under an IND the sponsor then notifies FDA by protocol amendment [@cfr21_312]. A change that involves only logistical or administrative aspects of the trial, such as a new monitor or telephone number, needs no prior IRB approval where the applicable regulations allow it [@ich_e6r2_2016; @ich_e6r3_2025].
+
+Approval starts the rollout, and neither step is quick. Each site moves to the new version only when its own approvals are in place, and E6(R3) holds trial systems to the same rule: updates resulting from an amendment are released to a site only after that site has all the approvals it needs. Participants already enrolled should be told promptly of new information that may bear on their willingness to continue, and where re-consent is needed, the revised consent materials go to the IRB for approval before use [@ich_e6r3_2025; @cfr21_50]. Site staff need training on the new version before they apply it, and trial-specific plans are revised where the change touches them (see @sec-protocol-sops); the signed amendment and its approvals go into the essential records (see @sec-essential-docs). In Tufts CSDD's 2022 benchmark, the time from identifying the need to amend to the last oversight approval averaged 260 days, and sites worked under different versions of the protocol for a mean of 215 days [@getz_protocol_amendments_2024]. @sec-logistics follows the operational chain through randomization systems, data capture, and drug supply.
+
+Amendments have also become more frequent. In a Tufts CSDD study published in 2016, 57% of protocols had at least one substantial amendment, 45% of those amendments were judged avoidable, and the median direct cost of implementing one was \$141,000 for a Phase II protocol and \$535,000 for a Phase III protocol [@getz_protocol_amendments_2016]. The 2022 follow-up found at least one amendment in 76% of Phase I-IV protocols and a mean of 3.3 amendments per protocol, up from 2.1, while a much larger share of amendments, 77%, was deemed unavoidable [@getz_protocol_amendments_2024]. Some flexibility can be designed in. E6(R3) suggests acceptable ranges for specific protocol provisions, which can reduce deviations and sometimes remove the need for an amendment, provided the flexibility does not compromise participant safety or scientific validity [@ich_e6r3_2025]. Frequent changes also raise questions about the scientific basis of the trial. @sec-economics takes up the costs, and @sec-protocol-benchmarks the protocol complexity behind many of them.
+
+::: {.callout-note title="Discussion Questions"}
+1. A sponsor is developing a gene therapy for a rare pediatric muscle disease affecting approximately 300 patients in the United States annually. No approved therapy exists, and the natural history is well-characterized in a prospective registry spanning 12 years. The FDA has suggested a single-arm trial using the registry as the external control. What properties of the registry data must be evaluated before accepting this design, and what analytic safeguards would you pre-specify to protect against population drift between the historical registry cohort and the current trial population?
+
+2. Platform trials offer substantial efficiency gains but can fail for reasons unrelated to the science. Drawing on the EPAD experience and the contrast with Healey ALS, identify three structural preconditions that must be in place before a platform trial is feasible, and describe one additional failure mode not illustrated by EPAD.
+
+3. Suppose it is 2025 and a consortium is designing an Alzheimer's prevention platform targeting cognitively normal adults with elevated amyloid by PET. Applying the lessons from EPAD's collapse, what funding model, governance structure, and first-arm strategy would you recommend, and how would you handle screen failure rates given that amyloid PET capacity may be limited outside academic centers?
+
+4. A cardiovascular outcomes trial designed around a time-to-first-event endpoint (composite of MI, stroke, and cardiovascular death) reaches a planned interim analysis at 60% of target events. Observed event rate is 30% lower than assumed in the power calculation. The DSMB must decide whether to recommend continuing to the original event count, revising the target upward, or stopping for futility. What information is needed to make this decision, and what are the statistical and operational consequences of each path?
+
+5. A late-stage diabetic kidney disease trial finds that 45% of participants have stopped randomized treatment by 36 months, substantially higher than the 25% assumed at design, and some of them have also stopped attending study visits. The primary analysis uses a treatment policy estimand (outcomes measured regardless of treatment discontinuation). The sponsor proposes to also report a while-on-treatment analysis as a key secondary. What are the interpretive differences between these two estimands in this setting, and what sensitivity analysis would you require to evaluate the robustness of the primary result?
+:::
+
+

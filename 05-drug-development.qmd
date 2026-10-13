@@ -1,0 +1,115 @@
+# Overview of Drug Development {#sec-drug-development}
+
+Most compounds that reach human testing never make it to a pharmacy shelf. The ones that do have typically taken 10 to 15 years from laboratory discovery and billions of dollars to get there, and they can transform (and in many cases save) millions of lives.
+
+The constraints accumulate. Biology is uncertain: a mechanism that looks compelling in cell culture may fail in animals, and a signal seen in Phase I or II may disappear in larger, more heterogeneous Phase III populations. Safety is non-negotiable, and rare adverse events can emerge only after thousands of exposures, forcing sponsors to design studies large enough to detect clinically meaningful risks. Manufacturing and quality systems must scale from milligrams in a lab to reproducible commercial production, with tight control of impurities, stability, and batch-to-batch consistency. And every step must be documented in a form that regulators can inspect and independently verify.
+
+So the process is best thought of as a sequence of risk-reduction decisions. Early work asks "*does it plausibly work and is it safe enough to test?*" Later stages ask "*does it work better than existing options, in the patients who will actually use it, with an acceptable benefit-risk profile?*"
+
+
+## Development Path from Molecule to Medicine
+
+Development proceeds in stages (see @fig-drug-pipeline), each designed to answer a specific question and retire some of the uncertainty of working with a novel therapy.
+
+```{mermaid}
+%%| label: fig-drug-pipeline
+%%| fig-cap: "The Drug Development Pipeline from Discovery to Market (typical ranges; varies by modality and indication)"
+%%{init: {'flowchart': {'nodeSpacing': 20, 'rankSpacing': 35, 'padding': 8, 'diagramPadding': 20, 'subGraphTitleMargin': {'top': 6, 'bottom': 14}}}}%%
+flowchart TB
+subgraph X[ ]
+    direction LR
+    A[Discovery<br/>~2-4 years] --> B[Preclinical<br/>~1-3 years] --> IND["IND<br/>(30-day review)"] --> C[Phase I<br/>~1-2 years]
+end
+subgraph Y[ ]
+    direction LR
+    D[Phase II<br/>~1-3 years] --> E[Phase III<br/>~2-4 years] --> F[Regulatory Review<br/>~0.5-1+ years] --> AP[Approval] --> G[Phase IV<br/>Ongoing]
+end
+X --> Y
+
+style A fill:#e1f5fe
+style B fill:#e1f5fe
+style C fill:#fff3e0
+style D fill:#fff3e0
+style E fill:#fff3e0
+style F fill:#e8f5e9
+style G fill:#e8f5e9
+style IND fill:#f3e5f5,stroke:#7b1fa2
+style AP fill:#e8f5e9,stroke:#1b5e20
+```
+
+*Discovery* comes first: researchers identify a biological target (a protein, receptor, or pathway involved in disease) and search for molecules that can interact with it. The search may mean screening thousands of compounds, designing molecules from structural knowledge, or modifying natural products with known activity.
+
+*Preclinical research* then evaluates a promising compound in laboratory and animal studies. Three questions have to be answered before anyone is dosed: does the compound hit its target and produce the desired biological effect, what are its toxic effects in animals, and how is it absorbed, distributed, metabolized, and eliminated?
+
+In the United States, the gate between preclinical and clinical development is the *Investigational New Drug (IND)* application to the FDA (see @sec-regulatory for the full regulatory framework). The IND contains chemistry, manufacturing, and controls data; preclinical pharmacology and toxicology results; and the clinical protocol. FDA has 30 days to review the IND; if no clinical hold is placed, the sponsor may begin clinical trials [@cfr21_312].
+
+## Understanding the Clinical Phases
+
+Clinical development is traditionally divided into four phases, numbered I through IV. The designations are useful and a little misleading: the boundaries between phases are not sharp, and different types of studies may occur at various points in development.
+
+The ICH E8(R1) guideline offers a complementary classification based on study objectives rather than timing, and the 2021 revision renamed three of the four categories that the original 1997 guideline had called "therapeutic exploratory," "therapeutic confirmatory," and "therapeutic use" (see @fig-phase-objectives and @tbl-ich-objectives) [@ich_e8_r1]. *Human pharmacology* studies assess tolerance, pharmacokinetics, and pharmacodynamics, and increasingly cover immunogenicity, tolerance in patients with renal or hepatic impairment, and cardiac toxicity. *Exploratory* studies explore efficacy, estimate doses, and evaluate biomarkers, patient-reported outcome measures, and adaptive designs. *Confirmatory* studies provide the definitive evidence of efficacy and safety for regulatory approval, and *post-approval* studies refine our understanding of the drug in clinical practice after marketing.
+
+```{mermaid}
+%%| label: fig-phase-objectives
+%%| fig-cap: "Relationship Between Phases and Study Objectives"
+%%{init: {'flowchart': {'nodeSpacing': 90, 'rankSpacing': 45, 'padding': 12, 'diagramPadding': 30}}}%%
+flowchart TB
+    HP["<b>Phase I</b><br/>Human Pharmacology"]
+    TE["<b>Phase II</b><br/>Exploratory"]
+    TC["<b>Phase III</b><br/>Confirmatory"]
+    TU["<b>Phase IV</b><br/>Post-Approval"]
+
+    HP -->|"Some studies continue"| TE
+    TE -->|"Some studies may span"| TC
+    TC --> TU
+
+    HP -.->|"May occur throughout"| TC
+    HP -.->|"May occur throughout"| TU
+```
+
+Human pharmacology does not stop at the end of Phase I: it continues throughout development as new formulations are tested, drug interactions are characterized, and effects in special populations are evaluated.
+
+ICH E8(R1) also brings *Quality by Design* into clinical studies through *Critical to Quality (CtQ) factors*: those attributes of a study whose integrity is fundamental to protecting participants, to the reliability and interpretability of the results, and to the decisions made on the basis of those results [@ich_e8_r1]. Which attributes those are depends on the study objective. For a Phase I first-in-human study, CtQ factors might include dose escalation safety rules and pharmacokinetic sampling accuracy; for a Phase III confirmatory trial, they typically include endpoint ascertainment, treatment adherence, and minimization of missing data. The guideline also encourages sponsors to build patient input into development planning, endpoint selection, and trial design, so that studies address outcomes meaningful to patients and the burden of participating is justified by the scientific objectives.
+
+| Study Type | Typical Phase | Primary Objectives |
+|------------|---------------|-------------------|
+| *Human Pharmacology* | Phase I | Assess tolerance, PK/PD, immunogenicity, tolerance in renal or hepatic impairment, and cardiac toxicity; define metabolism and drug interactions |
+| *Exploratory* | Phase II | Explore use for targeted indication, estimate dosing, evaluate biomarkers and patient-reported outcome measures, provide basis for confirmatory design |
+| *Confirmatory* | Phase III | Demonstrate/confirm efficacy, establish safety profile, provide adequate basis for marketing approval |
+| *Post-Approval* | Phase IV | Refine understanding of benefit/risk in general population, identify less common adverse reactions, optimize dosing |
+
+: Classification of Clinical Studies by Objective (ICH E8(R1)) {#tbl-ich-objectives tbl-colwidths="[22,20,58]"}
+
+## Regulatory Pathways
+
+The standard path runs Phase I, II, and III trials, then a *New Drug Application (NDA)* or *Biologics License Application (BLA)* for FDA review. The agency targets 10 months for a standard review. Not every drug takes that path.
+
+For drugs addressing serious conditions, the FDA offers *expedited programs* that can significantly reduce development time and regulatory burden. Fast Track designation provides more frequent FDA interaction and supports the rolling review of application sections for drugs aimed at an unmet medical need. Breakthrough Therapy status offers more intensive guidance for drugs showing substantial improvement over existing treatments, while Accelerated Approval allows marketing based on surrogate endpoints reasonably likely to predict clinical benefit. Priority Review compresses the final agency review timeline from ten months to six for drugs representing significant advances in care.
+
+These programs can be combined. Breakthrough Therapy designation already carries all of the Fast Track features, and most drugs holding either designation also receive priority review, significantly accelerating the path to patients.
+
+## The Target Product Profile
+
+The *Target Product Profile (TPP)* is the label a sponsor intends to earn, written down before the data exist: the indication it will treat, the patient population that will use it, the dosing regimen, the claims that can be made about efficacy and safety, and how it will be positioned against competitors. It is not fixed in stone; it evolves as data accumulates and the commercial environment changes. What it buys is alignment. A development team that has agreed on the intended label can check every planned study against the data that label will require.
+
+## The Economics of Attrition
+
+Drug development is an exercise in managing failure. Historic data indicated that only about 10% of drugs entering Phase I reached the market. More recent analysis from 2023-2024 shows overall success rates remaining at 6-7% as a composite probability across all phases, held up by higher stability in Phase I and Phase III and dragged down by Phase II, a formidable "valley of death" where nearly three-quarters of all programs fail (@tbl-attrition-rates).
+
+| Stage | Success Rate (2020-2024) | Key Attrition Drivers |
+|-------|---------------------|----------------------|
+| *Phase I -> Phase II* | ~48% | Safety signals, toxicity, strategic portfolio pruning |
+| *Phase II -> Phase III* | ~28% | Primary bottleneck: Lack of efficacy, dose-response uncertainty |
+| *Phase III -> Submission* | ~54% | Failure to hit endpoints, safety signals in large populations |
+| *Submission -> Approval* | ~94% | Regulatory questions, manufacturing (CMC) issues |
+| *Overall: Clinic -> Market* | ~7% | Cumulative probability from Phase I start (composite success rate) |
+
+: Clinical Development Success Rates, 2020-2024 Averages [@iqvia_rd_trends_2025] {#tbl-attrition-rates tbl-colwidths="[30,15,55]"}
+
+A Phase III failure is the expensive kind. By the time the program fails, the sponsor has typically invested several hundred million dollars and 5 to 7 years of clinical development [@tufts_cost_2016], and those losses are ultimately borne by successful products and by investors. @sec-economics takes up R&D costs and the economics of attrition in detail.
+
+Attrition also falls unevenly across the industry. *Emerging Biopharma (EBP)* companies originate over half of all new drugs, and they face a significantly more difficult path to approval than their larger counterparts: they receive *Complete Response Letters (CRLs)* from the FDA more frequently [@iqvia_rd_trends_2025]. In 2024, 70% of CRLs were issued for non-clinical reasons such as manufacturing quality, product quality, or chemistry data, but the EBP pattern is distinctive: since 2020, 41% of CRLs for EBP sponsors included clinical reasons, while the share of clinical CRLs for non-EBP companies has declined by 81% [@iqvia_rd_trends_2025]. This suggests that EBPs, strong as they are at scientific innovation, often face challenges with both clinical evidence packages and the industrial-scale regulatory and quality infrastructure required to cross the final approval threshold.
+
+Programs most often fail because the drug does not meet its primary outcomes, or because an unacceptable safety signal emerges during larger-scale testing. Failure can also be commercial, when market shifts leave a scientifically successful drug unable to compete with existing or emerging standards of care.
+
+
