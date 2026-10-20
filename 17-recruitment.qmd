@@ -146,7 +146,7 @@ Community-based trial networks can narrow that gap. The NCI Community Oncology R
 
 Decentralized elements attack the travel itself. Telemedicine, remote monitoring, home visits by nurses, remote consent, virtual study visits, and direct-to-patient drug shipment reduce travel burden and can maintain data quality while expanding access; a small pilot comparing decentralized and conventional site models reported that 89% of patients in the decentralized arm completed the study versus 60% in the conventional arm [@sommer2018decentralized], though such comparisons may reflect selection effects, since the sites and patients willing to adopt decentralized elements may differ systematically. Mobile clinics go one step further, taking trial and screening activities directly into rural communities while maintaining protocol compliance: the Ohio State University Comprehensive Cancer Center coordinates a mobile mammography program that brings breast cancer screening to women in rural areas of Appalachia [@unger_rural_access_2025].
 
-Operationally, geographic barriers are a site-selection problem: they call for the same deliberate reach beyond high-volume academic centers, and the same investment in building site capability where it is thin, that @sec-site-selection describes.
+Operationally, geographic barriers are a site-selection problem: they call for the same deliberate reach beyond high-volume academic centers, and the same investment in building site capability where it is thin, that @sec-naive-sites describes.
 
 ## The Importance of Retention
 

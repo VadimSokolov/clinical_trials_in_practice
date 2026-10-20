@@ -125,6 +125,72 @@ The Food and Drug Omnibus Reform Act (FDORA), enacted in 2022, directs the FDA t
 
 The 21st Century Cures Act (2016) directed the FDA to establish a framework for using real-world evidence (RWE) [@fda_rwe_framework_2018]; subsequent guidance has expanded the role of data from electronic health records, registries, and wearables in supporting new indications and post-marketing safety studies, and, in some rare-disease programs, external or synthetic control arms.
 
+## Investigator-Initiated Trials and the Sponsor-Investigator {#sec-iit}
+
+Most of this book describes trials that a company designs, pays for and sponsors, with hospitals and clinics working as contracted sites. A large share of clinical research runs the other way. A physician at a university or hospital has a question, writes the protocol, finds the money and runs the study. These are *investigator-initiated trials* (IITs), also called investigator-sponsored or academic trials. They test new uses of approved drugs, compare standard treatments, and run the early pediatric and rare-disease studies that companies seldom start.
+
+"Investigator-initiated" describes who had the idea and who controls the design. It is not a regulatory category. FDA regulations know three roles. A *sponsor* "means a person who takes responsibility for and initiates a clinical investigation". An *investigator* "means an individual who actually conducts a clinical investigation". A *sponsor-investigator* "means an individual who both initiates and conducts an investigation", and it is limited to an individual [@cfr21_312]. The device regulation has the same three roles: a device sponsor initiates but does not conduct the investigation, and a sponsor-investigator initiates and "actually conducts, alone or with others" [@cfr21_812]. An IIT run under the physician's own IND makes that physician a sponsor-investigator. An IIT that needs no IND still has to name the person or institution that carries the sponsor's responsibilities under GCP.
+
+No registry field marks an investigator-initiated trial, so the share can be bounded but not counted. We queried ClinicalTrials.gov on 20 October 2026 for interventional studies with a US site that started from 2015 through 2024 (79,375 studies) [@ctgov_api_2026]. Industry was the lead sponsor of 31.8% of them. The other 68.2% had a lead sponsor outside industry, the broadest reading of academic research, and it includes NCI network and other government trials and studies that need no IND, such as behavioral and device studies. A narrower reading keeps studies whose lead sponsor is a university, hospital or individual, with no industry collaborator, testing a drug or biologic: 16.8% of all studies. The narrowest reading keeps studies whose registrant names the sponsor-investigator as the responsible party: 4.9%. None of the three is the share of trials run under a sponsor-investigator IND, because the registry does not record INDs, and registrants fill in the responsible-party field inconsistently. We started in 2015 because registration was less complete in earlier years.
+
+| Studies started 2015 to 2024, US site | Studies | Industry lead | Non-industry lead | Academic drug or biologic, no industry collaborator | Sponsor-investigator |
+|---|---|---|---|---|---|
+| All interventional | 79,375 | 31.8% | 68.2% | 16.8% | 4.9% |
+| Phase 1 and phase 1/2 | 14,326 | 57.3% | 42.7% | 24.1% | 6.1% |
+| Phase 1 cancer studies that enroll children | 545 | 29.4% | 70.6% | 39.4% | 8.4% |
+
+: Three Bounds on the Share of Investigator-Initiated Trials in ClinicalTrials.gov {#tbl-ctgov-iit-share tbl-colwidths="[28,10,12,14,22,14]"}
+
+The share depends on the kind of trial. Companies led most phase 1 studies, but in phase 1 cancer studies that enroll children they led under a third, and the middle reading reaches 39.4% (215 of 545 studies). The pediatric row counts any study that includes children, so it includes studies of both children and adults, and the condition search matches the registry's own cancer synonyms. Early pediatric oncology is one of the fields where academic sponsors carry much of the work that companies seldom start.
+
+### Does the Study Need an IND?
+
+The first regulatory question for an IIT with a marketed drug is whether an IND is needed at all. Under 21 CFR 312.2(b)(1), a clinical investigation of a lawfully marketed drug is exempt only if all five conditions hold [@cfr21_312]:
+
+1. It is not intended to be reported to FDA as a well-controlled study in support of a new indication or any other significant change in labeling.
+2. It is not intended to support a significant change in the advertising of a prescription drug.
+3. It does not involve a route of administration, dosage level, use in a patient population or other factor that significantly increases the risks, or decreases the acceptability of the risks, associated with the drug.
+4. It complies with the IRB requirements of part 56 and the informed consent requirements of part 50.
+5. It complies with 21 CFR 312.7, which bars promotion and commercialization of investigational drugs.
+
+The third condition decides most cases. A study that gives an approved oncology drug to children when it is labeled for adults, or at a higher dose than labeled, can fail it, and then the investigator needs an IND. FDA will not accept an IND for a study that meets all five conditions [@cfr21_312], so the investigator, the IRB and the institution's regulatory office have to make the call together and document it.
+
+Device studies follow a different path. A *nonsignificant risk* device study is treated as having an approved IDE unless FDA says otherwise, and it runs under abbreviated requirements: labeling, IRB approval with the IRB's agreement that the device is nonsignificant risk, informed consent, monitoring, specified records and reports, and the prohibitions of 21 CFR 812.7. A *significant risk* device study needs FDA approval of an IDE application. Some studies are exempt from part 812 altogether, among them certain noninvasive diagnostic devices, consumer preference testing and custom devices [@cfr21_812].
+
+### What the Sponsor-Investigator Takes On
+
+A sponsor-investigator holds both sets of obligations at once. As sponsor, the physician must select qualified investigators, give them the information they need, ensure proper monitoring, keep the IND in effect, and promptly inform FDA and all investigators of significant new adverse effects or risks (21 CFR 312.50). Before each investigator begins, the sponsor collects a signed Form FDA 1572, a statement of qualifications, and financial information for disclosure under part 54 (21 CFR 312.53) [@cfr21_312]. As investigator, the same physician also signs a Form 1572 for his or her own site [@fda_sponsor_investigator_2015].
+
+FDA wrote a guidance for this role, *Investigational New Drug Applications Prepared and Submitted by Sponsor-Investigators*, issued in May 2015 as a draft. It walks through the IND forms (Form FDA 1571 and Form FDA 3674) and the content of each section. It also makes two practical points. IRB approval is not needed before the IND is submitted, because the 1572 signature is itself a commitment to obtain IRB approval before the study starts. And the guidance reminds the sponsor-investigator of the annual report, which the regulation itself requires within 60 days of the anniversary of the date the IND went into effect [@cfr21_312_33]. FDA had not issued a final version as of October 2026, so the document describes FDA's current thinking and binds no one. FDA has also proposed changing the content of IND annual reports (December 2022), and that rule was not final either [@fda_ind_annual_proposed_2022].
+
+Safety reporting is where the double role is easiest to get wrong. An investigator must report any serious adverse event to the sponsor immediately (21 CFR 312.64(b)), and the sponsor must send a written IND safety report to FDA and all participating investigators within 15 calendar days of determining that a suspected adverse reaction is serious and unexpected, or within 7 calendar days for one that is fatal or life-threatening (21 CFR 312.32) [@cfr21_312_32]. @sec-safety describes the reporting chain. In an IIT the sponsor is the physician at the lead site, so the sponsor's clock can start the moment that physician hears of the event, and a multi-site IIT has to have its own system for receiving, assessing and distributing reports, which an industry trial would buy from a pharmacovigilance group.
+
+@tbl-iit-duties lists the main sponsor duties under part 312 and who usually carries them in each model. The right-hand column is the gap an academic sponsor has to fill with its own staff, a coordinating center or purchased services.
+
+| Duty | Source | Industry-sponsored trial | Sponsor-investigator trial |
+|------|--------|--------------------------|----------------------------|
+| *Write the protocol and the IND* | 21 CFR part 312; FDA 2015 draft guidance | Company clinical, regulatory and medical writing staff | The investigator, with institutional regulatory support if it exists |
+| *Select and qualify investigators; collect Form 1572, CVs, financial disclosure* | 21 CFR 312.53 | Company or CRO site start-up team | Lead-site study team or coordinating center |
+| *Monitor the investigation* | 21 CFR 312.50 | Company or CRO monitors | Coordinating center, institutional monitoring unit, or a contracted monitor |
+| *Report serious and unexpected suspected adverse reactions to FDA and investigators* | 21 CFR 312.32 | Company pharmacovigilance group | The sponsor-investigator, with a safety process written for the trial |
+| *Keep drug disposition records* | 21 CFR 312.62(a) | Site pharmacy under company supply systems | Site pharmacy; the lead site tracks supply across sites |
+| *Submit annual reports and keep the IND in effect* | 21 CFR 312.33 | Company regulatory affairs | The sponsor-investigator |
+
+: Sponsor Duties under 21 CFR Part 312 and Who Usually Carries Them [@cfr21_312; @cfr21_312_32; @cfr21_312_33; @fda_sponsor_investigator_2015] {#tbl-iit-duties tbl-colwidths="[28,18,27,27]"}
+
+::: {.callout-tip title="Checklist: Before a Sponsor-Investigator Files an IND"}
+
+- Document the IND decision against all five conditions of 21 CFR 312.2(b)(1), with the institution's regulatory office.
+- Name who will monitor each site and how, in a written monitoring plan.
+- Write the safety reporting procedure: who receives SAE reports, who judges whether a reaction is serious and unexpected, who files the IND safety report, and who sends it to every site.
+- Put the annual report date (60 days after the IND anniversary) and the protocol amendment process on the trial calendar.
+- Confirm that the drug supplier's agreement covers supply for every site and the full planned duration.
+- Collect a Form 1572 for the sponsor-investigator's own site as well as for every other site.
+
+:::
+
+The operations of a multi-site academic trial (contracts, single IRB review, coordinating centers, cost and accrual) are covered in @sec-academic-multisite.
+
 ## International Considerations
 
 The *International Council for Harmonisation (ICH)* brings together regulatory authorities and pharmaceutical industries from the United States, European Union, Japan, and beyond to develop harmonized guidelines. Those guidelines are not law and bind nobody by themselves. Member countries adopt them, and that adoption has made them the de facto international standards for an enterprise that now runs trials across many countries and files submissions with agencies around the world.

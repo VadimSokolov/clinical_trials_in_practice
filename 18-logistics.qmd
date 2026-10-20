@@ -204,6 +204,99 @@ Oncology and rare disease trials are often dispersed further while enrolling rel
 
 Vendor counts have grown too, to an average of 4 to 6 specialized providers per trial [@getz_protocol_benchmarks_2023]: central labs, imaging core labs, EDC providers, and logistics firms, each requiring disciplined coordination so that data flow correctly and samples are processed within required windows.
 
+## Academic and Investigator-Initiated Multi-Site Trials {#sec-academic-multisite}
+
+The site start-up figures above come from industry trials, where a company or CRO runs start-up for every site at once and pays for it. When an academic investigator sponsors a multi-site trial (@sec-iit), the lead institution does that work with a grant budget, and each participating institution runs its own contract office, IRB process and pharmacy. The steps are the same as in an industry trial. What differs is who does them, how much money there is to do them, and how many separate institutions must agree.
+
+### Where the Time Goes
+
+The most detailed counts come from cancer research. Dilts and colleagues mapped the development of NCI cooperative group phase III trials and found at least 769 processing steps and up to 36 groups or individuals who had to approve a trial before it opened. The median time from formal concept submission to the first enrolled patient was about 920 days, with a range of 456 to 2,440 days, and at one cancer center the time to open an already approved group trial ranged from 21 to 836 days [@dilts2010chutes]. An earlier study at one cancer center counted more than 110 steps to open a trial when the process was mapped in fine detail, and judged about half of them to add no value [@dilts2006barriers].
+
+Those steps can be shortened. At MD Anderson, a department that reorganized itself as a dedicated clinical trials unit took a median of 4.3 months (interquartile range 3.0 to 6.0) from submission to activation. For institution-sponsored trials matched against other departments, the unit took 2.9 months rather than 5.1 from IRB approval to activation, and 0.5 months rather than 1.2 from activation to the first patient [@tang2017ctu].
+
+Contracts and IRB review are the two longest single items for the participating sites. When 29 sites of the NIH Clinical and Translational Science Award (CTSA) program were activated for one multi-site study, final contract negotiation took a median of 39 calendar days, full contract execution 91 days, and IRB approval 53 days. Contract work ran alone for a mean of 33 days and IRB review alone for 48 days, and the two overlapped for only 22 days, so most sites handled them one after the other rather than in parallel [@kiriakis2013contracts]. @tbl-academic-startup collects these measured intervals.
+
+| Interval | Measured value | Setting | Source |
+|----------|----------------|---------|--------|
+| Concept submission to first patient, phase III group trial | Median about 920 days (range 456 to 2,440) | NCI cooperative groups | @dilts2010chutes |
+| Time to open an approved group trial at one cancer center | 21 to 836 days | One NCI cancer center | @dilts2010chutes |
+| Submission to activation, dedicated trials unit | Median 4.3 months (IQR 3.0 to 6.0) | MD Anderson | @tang2017ctu |
+| Final contract negotiation | Median 39 days | 29 CTSA sites, one study | @kiriakis2013contracts |
+| Full contract execution | Median 91 days | 29 CTSA sites, one study | @kiriakis2013contracts |
+| IRB approval | Median 53 days | 29 CTSA sites, one study | @kiriakis2013contracts |
+| Contract negotiation, ad hoc terms versus master agreement | Mean 55 versus 22 days | One academic medical center, 2010 baseline | @lawrence2023templates |
+
+: Measured Start-Up Intervals for Academic Multi-Site Trials {#tbl-academic-startup tbl-colwidths="[32,26,22,20]"}
+
+The table has gaps. We found no public benchmark that splits an academic multi-site trial's start-up into protocol finalization, budget negotiation, contract, IRB, regulatory submission and database build. No source reports how long budget negotiation takes, and no public figure exists for the time or cost of building an EDC database for an academic trial. The best sources are also old: the CTSA contract data date from 2013 and the cooperative group mapping from 2010.
+
+### Standard Agreements and Single IRB Review
+
+Two reforms target the two longest items. The first is the standard contract template. Two are in wide academic use: the Accelerated Clinical Trial Agreement (ACTA) and the FDP-CTSA subaward template used by the NIH Trial Innovation Network. At one academic medical center, negotiation of a clinical trial agreement took a mean of 55 days in a 2010 baseline and 22 days with a master agreement. Across surveys, ACTA saved an average of 48 days and the FDP-CTSA template 57 days. These counts cover contract negotiation only; they exclude IRB review and budget negotiation [@lawrence2023templates].
+
+The second is single IRB review. NIH policy requires a single IRB of record for non-exempt human subjects research carried out at more than one U.S. site under the same protocol, for competing grant applications due on or after January 25, 2018. Exceptions are rare, the cost of the single IRB is not accepted as a reason for one, applicants must put single IRB costs in the budget, and the single IRB is named at the Just-in-Time stage before award [@nih_sirb_policy]. The revised Common Rule added the same requirement for federally funded cooperative research approved on or after January 20, 2020 [@nih_sirb_policy; @cfr45_46]. FDA regulations allow but do not require a single IRB for FDA-regulated multi-site research. FDA proposed a requirement in September 2022 [@fda_sirb_proposed_2022]; as of October 2026 no final rule had been published.
+
+Single review moves the work rather than removing it. Each participating institution still has to sign a reliance agreement and complete its own local checks before its site can open. In the first year of the INVESTED trial at 15 PCORnet sites, which used the SMART IRB master reliance agreement, the mean time from receipt of the protocol to IRB approval was 81 days at the 13 sites that ceded review, against 121 days at the one site that kept its own review; time to site activation was 116 days against 142 [@vardeny2019sirb]. The comparison group was a single site, so the result shows feasibility more than size of effect.
+
+### Cost, Funding and Failure to Accrue
+
+The only detailed cost study of investigator-sponsored trials is European. Griessbach and colleagues reconstructed the resource use of 93 randomized trials sponsored by investigators in Switzerland, Germany and the United Kingdom. The median total cost was \$645,824 (interquartile range \$269,846 to \$1,577,924). Planning took a median 27.5% of the cost, conduct 57.3% and finalization 12.7%; protocol writing (7.2%) and data management (5.0%) were the largest single items. Of the 66 trials with an original budget, 46 (69.7%) overran it by more than 50%. Using routinely collected data for the primary outcome was associated with lower cost [@griessbach2024costs]. No equivalent distribution has been published for U.S. investigator-initiated trials.
+
+Industry support for an IIT can take the form of money, of drug or device supplied without money, or both. We found no federal rule that governs these agreements; their terms are negotiated with each institution's contract office. When a funder changes during a trial, every agreement written for the original funder (the clinical trial agreement, subawards, reliance agreements) has to be reviewed against the new funder's terms. We found no published guidance or study on how often that happens or how long it takes.
+
+Accrual is the most common way academic trials fail. Among 1,017 randomized trials whose protocols were approved by six research ethics committees in 2000 to 2003, 24.9% were discontinued and poor recruitment was the most frequent reason. Discontinuation for poor recruitment was 26.5% for investigator-sponsored trials against 8.4% for industry-sponsored ones [@kasenda2014discontinued]. In the ClinicalTrials.gov results database, insufficient accrual was the leading reason for terminating trials that stopped for reasons other than their data (57%) [@williams2015terminated]. Among 787 adult phase II and III trials launched by the NCI cooperative groups from 2000 to 2011, 18% closed with low accrual or were still below half their target three or more years after opening [@bennette2016accrual]. These studies count trials that opened. We found no study with a denominator of academic trials that were approved but never opened.
+
+### Coordinating Centers and Consortia
+
+Networks that run many academic trials concentrate the sponsor's work in a central office. @tbl-academic-networks compares several U.S. networks whose public pages describe how they are funded and organized.
+
+| Network | Scope | Funding | Central office | Sites (as stated on its pages) |
+|---------|-------|---------|----------------|--------------------------------|
+| *NCI Pediatric Early Phase Clinical Trials Network (PEP-CTN)* | Pediatric cancer phase 1 and pilot trials, established 2019 | NCI cooperative agreement | Operations and statistics center inside the Children's Oncology Group's; central monitoring for all trials | 21 core U.S. sites in all trials; 21 non-core sites in selected trials |
+| *Pediatric Brain Tumor Consortium (PBTC)* | Phase 1 and 2 trials in childhood CNS tumors, formed by NCI in 1999 | NCI; no further five-year award beyond March 2026 | Not described on the pages read | 15 to 16 U.S. and Canadian centers |
+| *Pediatric Trials Network (PTN)* | Pediatric drug studies under the Best Pharmaceuticals for Children Act, first awarded 2010 | NICHD contract, renewed March 2026 | Duke Clinical Research Institute as clinical coordinating center | More than 100 sites; 54 studies; 26 FDA pediatric label changes |
+| *ECHO IDeA States Pediatric Clinical Trials Network (ISPCTN)* | Pediatric trials in IDeA states | NIH ECHO program | Data coordinating and operations center at the University of Arkansas for Medical Sciences | 18 sites in 18 states |
+| *Rare Diseases Clinical Research Network (RDCRN)* | More than 280 rare diseases | NCATS and ten other NIH entities | One data management and coordinating center for all consortia | Hundreds of sites |
+| *POETIC* | Pediatric cancer phase 1 and 2 trials, founded 2003 | Member institutions, philanthropy and trial-specific funders | Research Development and Management Center | 14 academic member institutions; non-members may join trials |
+
+: Coordinating Structures of Selected Academic Trial Networks [@nci_pediatric_networks; @pbtc_site; @dcri_ptn_2026; @echo_ispctn; @ncats_rdcrn; @poetic_about; @poetic_members] {#tbl-academic-networks tbl-colwidths="[20,22,18,20,20]"}
+
+The NCI page stated in 2026 that PBTC trials will be completed where feasible, through close-out support or transfer to PEP-CTN, and the PBTC's own page listed no trials enrolling [@nci_pediatric_networks; @pbtc_site]. Networks end, and their trials need somewhere to go when they do. For NCI trials, standard common data elements and template case report forms held in the caDSR registry are used across trials (see @sec-data-management) [@nci_cadsr].
+
+Small numbers per site are normal in these trials. In arm E of the NCI-COG Pediatric MATCH trial, which tested selumetinib in children with tumors carrying MAPK pathway alterations, 58 matched patients came from 42 sites, and 20 patients started treatment [@eckstein2022selumetinib]. On average each site contributed fewer than two matched patients to this arm. Numbers like these are the economic case for a coordinating center: the fixed cost of opening a site is paid once by the network rather than again for every trial.
+
+### Worked Example: An Early-Phase Pediatric Oncology Consortium
+
+The Pediatric Oncology Experimental Therapeutics Investigators' Consortium (POETIC) shows how a network without a standing federal award runs small early-phase trials. Its public pages, trial registrations and one archived protocol describe the mechanics; the account below uses only those sources, as read in October 2026.
+
+*Origin.* Investigators at Memorial Sloan-Kettering Cancer Center and the University of Colorado founded POETIC in February 2003 to widen access to new therapies for children whose cancer had recurred [@poetic_about]. Its first trial, of the NCI-supplied agent 17-AAG in children with recurrent cancers, opened on September 20, 2004 at nine founding centers [@ufhealth_poetic_2004].
+
+*Coordinating center.* The Research Development and Management Center ran from Memorial Sloan-Kettering for 16 years and moved to Stanford University in 2020. Its stated functions are program management and quality, trial design and management, oversight of all regulatory activities, data tools, analysis and publication support, contract negotiation, consortium finances, and mentoring of junior investigators [@poetic_about; @poetic_rdmc].
+
+*Members and money.* The members page lists 14 member institutions, all academic cancer centers or children's hospitals, including one in Canada and one in Israel, and the consortium can include non-member institutions in its studies. Members contribute staff, money and time; philanthropy and trial-specific funders (companies, foundations and, for one trial, the Department of Defense) pay for individual studies, and the drug has come from NCI or the manufacturer [@poetic_members; @poetic_about; @poetic_trials].
+
+*Sponsorship.* On ClinicalTrials.gov the lead sponsor of each trial is an institution or an investigator, with the consortium as collaborator or coordinating network [@poetic_trials]. Each trial is therefore an investigator-initiated trial in the sense of @sec-iit, with the coordinating center doing much of the sponsor's work.
+
+*Scale.* In March 2026 the home page reported 3 active trials, 16 completed, and 429 children enrolled since the start, mostly in phase 1 and phase 1/2 trials [@poetic_home]. Among the registered trials we reviewed, enrollment ranges from 14 patients (a neratinib trial) to 70 (the first 17-AAG trial), and the largest active trial plans 90 [@poetic_trials].
+
+*How a trial runs.* A 2014 protocol amendment from the Memorial Sloan-Kettering era sets out the mechanics. A site could not receive investigational drug until all site and study regulatory documents had reached the consortium's data and coordinating center, which then notified the site of activation and cleared it to order drug. The center assigned a research study assistant to each study, and sites sent case report forms and source documents weekly or one week after each treatment cycle. Each project's steering committee met weekly by conference call, the center and the study chair spoke every two weeks, and the center issued queries and audited sites, either from source documents sent to it or on site. The lead institution's data and safety monitoring committee oversaw the trial [@poetic_poe1002_protocol]. The consortium also meets in person twice a year [@poetic_meetings].
+
+*What is not public.* No public page or paper reports the consortium's activation times, accrual per site, use of a single IRB, or contract templates, and we found no peer-reviewed paper on its operating model. The example shows the structure; it does not show how well the structure performs.
+
+In this example the coordinating center holds activation as a gate, keeps regulatory files and data review central, and holds the study team to a fixed meeting schedule, while the sites keep consent, treatment and source records. That division is close to the one @tbl-naive-site-roles in @sec-site-selection proposes for sites new to research.
+
+::: {.callout-tip title="Checklist: Start-Up for an Academic Multi-Site Trial"}
+
+- Send the contract and the IRB reliance packet to each site on the same day, so that the two run in parallel.
+- Offer a standard template (ACTA or the FDP-CTSA subaward) and record which sites accept it unchanged.
+- For NIH-funded work, name the single IRB at Just-in-Time and put its fees in the budget.
+- Build the case report forms from existing common data elements before writing new ones.
+- Put a central safety reporting process and a monitoring plan in place before the first site opens (@tbl-iit-duties).
+- Write an accrual plan with a date and a threshold at which the steering committee decides whether to add sites, amend eligibility or close.
+- Keep a list of every agreement tied to each funder, so that a change of funder can be handled agreement by agreement.
+
+:::
+
 ## Project Management and Execution Flow
 
 The project management of a clinical trial focuses on the transition from planning to execution, ensuring that sites are activated, staff are trained, and data flows reliably from the clinic to the sponsor.

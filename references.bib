@@ -3873,3 +3873,550 @@
   year    = {2020},
   doi     = {10.1177/1740774520928426}
 }
+
+% ===== Added 2026-10-20: investigator-initiated trials, academic multi-site trials, sites new to research, structured protocols =====
+
+% --- U.S. REGULATIONS AND GUIDANCE ---
+
+% verified: https://www.ecfr.gov/current/title-21/section-812.3 and section-812.2 (eCFR snapshot 2026-10-01), per research/01-iit-landscape.md
+@misc{cfr21_812,
+  title  = {21 CFR Part 812: Investigational Device Exemptions},
+  author = {{U.S. Food and Drug Administration}},
+  year   = {2026},
+  url    = {https://www.ecfr.gov/current/title-21/chapter-I/subchapter-H/part-812},
+  note   = {Definitions of sponsor and sponsor-investigator (812.3(n), (o)); scope, nonsignificant risk abbreviated requirements and exemptions (812.2).}
+}
+
+% verified: PDF text read, per research/01-iit-landscape.md (lines 196 to 204 and 777 of the PDF text)
+@misc{fda_sponsor_investigator_2015,
+  title  = {Investigational New Drug Applications Prepared and Submitted by Sponsor-Investigators: Guidance for Industry (Draft)},
+  author = {{U.S. Food and Drug Administration}},
+  year   = {2015},
+  month  = {May},
+  url    = {https://www.fda.gov/files/drugs/published/Investigational-New-Drug-Applications-Prepared-and-Submitted-by-Sponsor-Investigators.pdf},
+  note   = {Draft guidance. States that a sponsor-investigator also signs Form FDA 1572, that IRB approval is not needed before IND submission, and that annual reports are due within 60 days of the IND anniversary. No final version found in the Federal Register as of 2026-10-20 (only the May 15, 2015 draft notice).}
+}
+
+% verified: queries run 2026-10-20, script and counts in misc/new-material/ctgov-iit-share/ (analysis.py, shares.csv, queries.jsonl)
+@misc{ctgov_api_2026,
+  title  = {ClinicalTrials.gov API Version 2: Study Counts by Lead Sponsor Class and Responsible Party},
+  author = {{U.S. National Library of Medicine}},
+  year   = {2026},
+  url    = {https://clinicaltrials.gov/data-api/api},
+  note   = {Counts of interventional studies with a US location started 2015 to 2024, queried 2026-10-20. The registry has no IND field.}
+}
+
+% verified: https://www.ecfr.gov/api/versioner/v1/full/2026-10-16/title-21.xml?part=312&section=312.33, text read 2026-10-20
+@misc{cfr21_312_33,
+  title  = {21 CFR 312.33: Annual Reports},
+  author = {{U.S. Food and Drug Administration}},
+  year   = {2026},
+  url    = {https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.33},
+  note   = {The sponsor submits a progress report within 60 days of the anniversary date the IND went into effect. Read on eCFR as current through 2026-10-16; a terminology amendment (91 FR 60003) takes effect 2027-02-04.}
+}
+
+% verified: https://grants.nih.gov/policy/humansubjects/single-irb-policy-multi-site-research.htm and NOT-OD-18-003, per research/02-iit-startup-ops.md
+@misc{nih_sirb_policy,
+  title  = {Single IRB Policy for Multi-site Research},
+  author = {{National Institutes of Health}},
+  year   = {2018},
+  url    = {https://grants.nih.gov/policy/humansubjects/single-irb-policy-multi-site-research.htm},
+  note   = {Applies to competing applications due on or after January 25, 2018. Notices NOT-OD-18-003 and NOT-OD-23-097. The page also states the revised Common Rule cooperative research requirement (45 CFR 46.114), compliance date January 20, 2020.}
+}
+
+% verified: https://www.govinfo.gov/content/pkg/FR-2022-09-28/html/2022-21089.htm, per research/02-iit-startup-ops.md (final-rule status not verified)
+@misc{fda_sirb_proposed_2022,
+  title  = {Institutional Review Boards; Cooperative Research (Proposed Rule)},
+  author = {{U.S. Food and Drug Administration}},
+  year   = {2022},
+  month  = sep,
+  howpublished = {Federal Register 87 FR 58752},
+  url    = {https://www.govinfo.gov/content/pkg/FR-2022-09-28/html/2022-21089.htm},
+  note   = {Published September 28, 2022. Would require single IRB review for the U.S. portion of FDA-regulated cooperative research. No final rule in the Federal Register as of 2026-10-20 (RIN 0910-AI08; only the proposal and a November 2022 comment extension).}
+}
+
+% --- NCI AND CDISC PAGES ---
+
+% verified: https://dctd.cancer.gov/research/networks/pediatric (read 2026-10-20), per research/01-iit-landscape.md
+@misc{nci_pediatric_networks,
+  title  = {Pediatric Networks},
+  author = {{National Cancer Institute, Division of Cancer Treatment and Diagnosis}},
+  year   = {2026},
+  url    = {https://dctd.cancer.gov/research/networks/pediatric},
+  note   = {PEP-CTN (established 2019; 21 core and 21 non-core sites; cooperative agreement UM1-CA228823) and PBTC (15 centers; no further award beyond March 2026). PBTC status rechecked in research/07-similar-consortia.md on 2026-10-20.}
+}
+
+% verified: https://www.cancer.gov/about-nci/organization/cbiit/vocabulary/data-elements-for-cancer-research, per research/04-small-trial-designs-data.md
+@misc{nci_cadsr,
+  title  = {Data Elements for Cancer Research},
+  author = {{National Cancer Institute, Center for Biomedical Informatics and Information Technology}},
+  year   = {2026},
+  url    = {https://www.cancer.gov/about-nci/organization/cbiit/vocabulary/data-elements-for-cancer-research},
+  note   = {caDSR hosts common data elements, case report forms and templates; NCI states standard CDEs and template forms are used across NCI clinical trials.}
+}
+
+% verified: https://www.cdisc.org/ddf, per research/02-iit-startup-ops.md
+@misc{cdisc_usdm,
+  title  = {Digital Data Flow and the Unified Study Definitions Model ({USDM})},
+  author = {{CDISC}},
+  year   = {2025},
+  url    = {https://www.cdisc.org/ddf},
+  note   = {USDM v4.0 released June 3, 2025 (v3.0 April 16, 2024). Developed with TransCelerate. Aligned with ICH M11; reuses CDASH; the project will not create standard CRFs.}
+}
+
+% --- JOURNAL ARTICLES ---
+
+% verified: https://pmc.ncbi.nlm.nih.gov/articles/PMC3058405, per research/02-iit-startup-ops.md
+@article{dilts2010chutes,
+  title   = {Phase {III} Clinical Trial Development: A Process of Chutes and Ladders},
+  author  = {Dilts, David M. and Cheng, Steven K. and Crites, Joshua S. and Sandler, Alan B. and Doroshow, James H.},
+  journal = {Clinical Cancer Research},
+  year    = {2010},
+  volume  = {16},
+  number  = {22},
+  pages   = {5381--5389},
+  doi     = {10.1158/1078-0432.CCR-10-1273},
+  url     = {https://pmc.ncbi.nlm.nih.gov/articles/PMC3058405}
+}
+
+% verified: https://pubmed.ncbi.nlm.nih.gov/17008693/, per research/01-iit-landscape.md
+@article{dilts2006barriers,
+  title   = {Invisible Barriers to Clinical Trials: The Impact of Structural, Infrastructural, and Procedural Barriers to Opening Oncology Clinical Trials},
+  author  = {Dilts, David M. and Sandler, Alan B.},
+  journal = {Journal of Clinical Oncology},
+  year    = {2006},
+  volume  = {24},
+  number  = {28},
+  pages   = {4545--4552},
+  doi     = {10.1200/JCO.2005.05.0104},
+  url     = {https://pubmed.ncbi.nlm.nih.gov/17008693/}
+}
+
+% verified: https://pmc.ncbi.nlm.nih.gov/articles/PMC5872813/, per research/01-iit-landscape.md
+@article{tang2017ctu,
+  title   = {Modifying the Clinical Research Infrastructure at a Dedicated Clinical Trials Unit: Assessment of Trial Development, Activation, and Participant Accrual},
+  author  = {Tang, Chad and Hess, Kenneth R. and Sanders, Dwana and Davis, Suzanne E. and Buzdar, Aman U. and Kurzrock, Razelle and Lee, J. Jack and Meric-Bernstam, Funda and others},
+  journal = {Clinical Cancer Research},
+  year    = {2017},
+  volume  = {23},
+  number  = {6},
+  pages   = {1407--1413},
+  doi     = {10.1158/1078-0432.CCR-16-1936},
+  url     = {https://pmc.ncbi.nlm.nih.gov/articles/PMC5872813/}
+}
+
+% verified: https://pmc.ncbi.nlm.nih.gov/articles/PMC3740442, per research/02-iit-startup-ops.md
+@article{kiriakis2013contracts,
+  title   = {Observational Study of Contracts Processing at 29 {CTSA} Sites},
+  author  = {Kiriakis, James and Gaich, Nicholas and Johnston, S. Claiborne and Kitterman, Darlene and Rosenblum, Daniel and Salberg, Libby and Rifkind, Adam},
+  journal = {Clinical and Translational Science},
+  year    = {2013},
+  volume  = {6},
+  number  = {4},
+  pages   = {279--285},
+  doi     = {10.1111/cts.12073},
+  url     = {https://pmc.ncbi.nlm.nih.gov/articles/PMC3740442}
+}
+
+% verified: https://pmc.ncbi.nlm.nih.gov/articles/PMC10565190/, per research/02-iit-startup-ops.md
+@article{lawrence2023templates,
+  title   = {Quantitative Assessment of the Impact of Standard Agreement Templates on Multisite Clinical Trial Start Up Time},
+  author  = {Lawrence, Colleen E. and Bruce, Virginia M. and Salberg, Libby D. and Edwards, Terri and Morales, Casi and Palm, Marisha and Bernard, Gordon R.},
+  journal = {Journal of Clinical and Translational Science},
+  year    = {2023},
+  volume  = {7},
+  number  = {1},
+  pages   = {e204},
+  doi     = {10.1017/cts.2023.622},
+  url     = {https://pmc.ncbi.nlm.nih.gov/articles/PMC10565190/}
+}
+
+% verified: https://pmc.ncbi.nlm.nih.gov/articles/PMC7924135, per research/02-iit-startup-ops.md
+@article{vardeny2019sirb,
+  title   = {Transitioning to the National Institutes of Health Single Institutional Review Board Model: Piloting the Use of the Streamlined, Multi-site, Accelerated Resources for Trials {IRB} Reliance},
+  author  = {Vardeny, Orly and Hernandez, Adrian F. and Cohen, Lauren W. and Franklin, Amy and Baqai, Mina and Palmer, Sarah and Bierer, Barbara E. and Cobb, Nichelle},
+  journal = {Clinical Trials},
+  year    = {2019},
+  volume  = {16},
+  number  = {3},
+  pages   = {290--296},
+  doi     = {10.1177/1740774519832911},
+  url     = {https://pmc.ncbi.nlm.nih.gov/articles/PMC7924135}
+}
+
+% verified: https://pubmed.ncbi.nlm.nih.gov/39307405/, per research/01-iit-landscape.md
+@article{griessbach2024costs,
+  title   = {Resource Use and Costs of Investigator-Sponsored Randomized Clinical Trials in Switzerland, Germany, and the United Kingdom: A Metaresearch Study},
+  author  = {Griessbach, Alexandra and Speich, Benjamin and Amstutz, Alain and others},
+  journal = {Journal of Clinical Epidemiology},
+  year    = {2024},
+  volume  = {176},
+  pages   = {111536},
+  doi     = {10.1016/j.jclinepi.2024.111536},
+  url     = {https://pubmed.ncbi.nlm.nih.gov/39307405/},
+  note    = {MARTA Group. 93 RCTs; median total cost \$645,824.}
+}
+
+% verified: https://pubmed.ncbi.nlm.nih.gov/24618966/, per research/01-iit-landscape.md
+@article{kasenda2014discontinued,
+  title   = {Prevalence, Characteristics, and Publication of Discontinued Randomized Trials},
+  author  = {Kasenda, Benjamin and von Elm, Erik and You, John and Bl{\"u}mle, Anette and Tomonaga, Yuki and Saccilotto, Ramon and Amstutz, Alain and others},
+  journal = {JAMA},
+  year    = {2014},
+  volume  = {311},
+  number  = {10},
+  pages   = {1045--1051},
+  doi     = {10.1001/jama.2014.1361},
+  url     = {https://pubmed.ncbi.nlm.nih.gov/24618966/}
+}
+
+% verified: https://pubmed.ncbi.nlm.nih.gov/26011295/, per research/01-iit-landscape.md
+@article{williams2015terminated,
+  title   = {Terminated Trials in the {ClinicalTrials.gov} Results Database: Evaluation of Availability of Primary Outcome Data and Reasons for Termination},
+  author  = {Williams, Rebecca J. and Tse, Tony and DiPiazza, Katelyn and Zarin, Deborah A.},
+  journal = {PLOS ONE},
+  year    = {2015},
+  volume  = {10},
+  number  = {5},
+  pages   = {e0127242},
+  doi     = {10.1371/journal.pone.0127242},
+  url     = {https://pubmed.ncbi.nlm.nih.gov/26011295/}
+}
+
+% verified: https://pubmed.ncbi.nlm.nih.gov/26714555/, per research/01-iit-landscape.md
+@article{bennette2016accrual,
+  title   = {Predicting Low Accrual in the {National Cancer Institute}'s Cooperative Group Clinical Trials},
+  author  = {Bennette, Caroline S. and Ramsey, Scott D. and McDermott, Cara L. and Carlson, Josh J. and Basu, Anirban and Veenstra, David L.},
+  journal = {Journal of the National Cancer Institute},
+  year    = {2016},
+  volume  = {108},
+  number  = {2},
+  pages   = {djv324},
+  doi     = {10.1093/jnci/djv324},
+  url     = {https://pubmed.ncbi.nlm.nih.gov/26714555/}
+}
+
+% verified: https://pmc.ncbi.nlm.nih.gov/articles/PMC9273373/, per research/04-small-trial-designs-data.md
+@article{eckstein2022selumetinib,
+  title   = {Phase {II} Study of Selumetinib in Children and Young Adults With Tumors Harboring Activating Mitogen-Activated Protein Kinase Pathway Genetic Alterations: Arm {E} of the {NCI-COG} {Pediatric MATCH} Trial},
+  author  = {Eckstein, Olive S. and Allen, Carl E. and Williams, P. Mickey and Roy-Chowdhuri, Sinchita and Patton, David R. and Coffey, Brent and Reid, Joel M. and Piao, Jin and others},
+  journal = {Journal of Clinical Oncology},
+  year    = {2022},
+  volume  = {40},
+  number  = {20},
+  pages   = {2235--2245},
+  doi     = {10.1200/JCO.21.02840},
+  url     = {https://pmc.ncbi.nlm.nih.gov/articles/PMC9273373/}
+}
+
+% verified: full text read at https://ascopubs.org/doi/10.1200/JCO.23.01030 on 2026-10-20 (7.1%, 21.9%, 21.6%, 5.4%, 5.7%, 4.1%, 96.4%, data years 2013 to 2017)
+@article{unger2024participation,
+  title   = {National Estimates of the Participation of Patients With Cancer in Clinical Research Studies Based on {Commission on Cancer} Accreditation Data},
+  author  = {Unger, Joseph M. and Shulman, Lawrence N. and Facktor, Matthew A. and Nelson, Heidi and Fleury, Mark E.},
+  journal = {Journal of Clinical Oncology},
+  year    = {2024},
+  volume  = {42},
+  number  = {18},
+  pages   = {2139--2148},
+  doi     = {10.1200/JCO.23.01030},
+  url     = {https://doi.org/10.1200/JCO.23.01030}
+}
+
+% verified: https://www.frontiersin.org/articles/10.3389/fped.2021.679516/full, per research/03-rural-naive-sites.md
+@article{annett2021ispctn,
+  title   = {Capacity Building for a New Multicenter Network Within the {ECHO IDeA} States Pediatric Clinical Trials Network},
+  author  = {Annett, Robert D. and Bickel, Scott and Carlson, John C. and Cowan, Kelly and Cox, Sara and Fisher, Mark J. and Jarvis, J. Dean and Kong, Alberta S. and others},
+  journal = {Frontiers in Pediatrics},
+  year    = {2021},
+  volume  = {9},
+  pages   = {679516},
+  doi     = {10.3389/fped.2021.679516},
+  url     = {https://www.frontiersin.org/articles/10.3389/fped.2021.679516/full}
+}
+
+% verified: https://pmc.ncbi.nlm.nih.gov/articles/PMC9010274, per research/03-rural-naive-sites.md
+@article{watson2022rural,
+  title   = {Facilitators and Barriers to Pediatric Clinical Trial Recruitment and Retention in Rural and Community Settings: A Scoping Review of the Literature},
+  author  = {Watson, Sara E. and Smith, Paul and Snowden, Jessica and Vaughn, Vida and Cottrell, Lesley and Madden, Christi A. and Kong, Alberta S. and McCulloh, Russell and others},
+  journal = {Clinical and Translational Science},
+  year    = {2022},
+  volume  = {15},
+  number  = {4},
+  pages   = {838--853},
+  doi     = {10.1111/cts.13220},
+  url     = {https://pmc.ncbi.nlm.nih.gov/articles/PMC9010274}
+}
+
+% verified: https://arxiv.org/abs/2602.00052 (abstract page, v2), per research/02 and research/04; journal DOI, volume, article number and full author names confirmed on Crossref 2026-10-20
+@article{babaeipour2026protocol,
+  title   = {{AI}-Assisted Protocol Information Extraction for Improved Accuracy and Efficiency in Clinical Trial Workflows},
+  author  = {Babaeipour, Ramtin and Charest, Fran{\c{c}}ois and Wright, Madison},
+  journal = {Journal of Biomedical Informatics},
+  year    = {2026},
+  volume  = {179},
+  pages   = {105036},
+  doi     = {10.1016/j.jbi.2026.105036},
+  url     = {https://doi.org/10.1016/j.jbi.2026.105036},
+  note    = {Accepted manuscript at arXiv:2602.00052.}
+}
+
+% --- ADDED IN THE SECOND REVISION (research/05, 07, 08) ---
+
+% verified: Federal Register listing, https://www.federalregister.gov/documents/2022/12/09/2022-26731/investigational-new-drug-application-annual-reporting (no final rule found 2026-10-20)
+@misc{fda_ind_annual_proposed_2022,
+  title  = {Investigational New Drug Application Annual Reporting (Proposed Rule)},
+  author = {{U.S. Food and Drug Administration}},
+  year   = {2022},
+  month  = dec,
+  url    = {https://www.federalregister.gov/documents/2022/12/09/2022-26731/investigational-new-drug-application-annual-reporting},
+  note   = {Published December 9, 2022.}
+}
+
+% verified: https://www.pbtc.org/, per research/07-similar-consortia.md
+@misc{pbtc_site,
+  title  = {Pediatric Brain Tumor Consortium},
+  author = {{Pediatric Brain Tumor Consortium}},
+  year   = {2026},
+  url    = {https://www.pbtc.org/},
+  note   = {Formed by NCI in 1999; 16 participating sites; 47 completed therapeutic studies; 0 currently enrolling (read October 2026).}
+}
+
+% verified: https://dcri.org/news/dcri-secures-third-award-pediatric-trials-network, per research/07-similar-consortia.md
+@misc{dcri_ptn_2026,
+  title  = {{DCRI} Secures Third Award for Pediatric Trials Network},
+  author = {{Duke Clinical Research Institute}},
+  year   = {2026},
+  month  = mar,
+  url    = {https://dcri.org/news/dcri-secures-third-award-pediatric-trials-network},
+  note   = {NICHD contract under BPCA, first awarded 2010, renewed 2018 and March 2026; more than 100 sites, 54 studies, 26 FDA pediatric label changes.}
+}
+
+% verified: https://echochildren.org/idea-states-pediatric-clinical-trials-network/, per research/07-similar-consortia.md
+@misc{echo_ispctn,
+  title  = {{IDeA} States Pediatric Clinical Trials Network},
+  author = {{NIH Environmental influences on Child Health Outcomes (ECHO) Program}},
+  year   = {2026},
+  url    = {https://echochildren.org/idea-states-pediatric-clinical-trials-network/},
+  note   = {18 sites in 18 states; Data Coordinating and Operations Center at UAMS; to be renamed ECHO Trials on January 1, 2027.}
+}
+
+% verified: https://ncats.nih.gov/research/research-activities/rdcrn, per research/07-similar-consortia.md
+@misc{ncats_rdcrn,
+  title  = {Rare Diseases Clinical Research Network ({RDCRN})},
+  author = {{National Center for Advancing Translational Sciences}},
+  year   = {2026},
+  url    = {https://ncats.nih.gov/research/research-activities/rdcrn}
+}
+
+% verified: https://poeticphase1.org/about/, per research/05-poetic.md
+@misc{poetic_about,
+  title  = {About {POETIC}},
+  author = {{Pediatric Oncology Experimental Therapeutics Investigators' Consortium}},
+  year   = {2026},
+  url    = {https://poeticphase1.org/about/},
+  note   = {Founded February 2003; coordinating center (RDMC) at MSKCC for 16 years, transferred to Stanford effective 2020; non-member institutions may join studies.}
+}
+
+% verified: https://poeticphase1.org/members/, per research/05-poetic.md
+@misc{poetic_members,
+  title  = {{POETIC} Member Institutions},
+  author = {{Pediatric Oncology Experimental Therapeutics Investigators' Consortium}},
+  year   = {2026},
+  url    = {https://poeticphase1.org/members/},
+  note   = {14 member institutions listed (read October 2026); other pages give 10 to 12.}
+}
+
+% verified: https://poeticphase1.org/rdmc/, per research/05-poetic.md
+@misc{poetic_rdmc,
+  title  = {Research Development and Management Center ({RDMC})},
+  author = {{Pediatric Oncology Experimental Therapeutics Investigators' Consortium}},
+  year   = {2026},
+  url    = {https://poeticphase1.org/rdmc/}
+}
+
+% verified: https://poeticphase1.org/programs/clinical-trials/ and ClinicalTrials.gov records NCT05848687, NCT05101551, NCT02932280, NCT01294670, NCT00093821, per research/05-poetic.md
+@misc{poetic_trials,
+  title  = {{POETIC} Clinical Trials},
+  author = {{Pediatric Oncology Experimental Therapeutics Investigators' Consortium}},
+  year   = {2026},
+  url    = {https://poeticphase1.org/programs/clinical-trials/},
+  note   = {3 active and 16 completed studies; sponsors and enrollment from the linked ClinicalTrials.gov records.}
+}
+
+% verified: https://poeticphase1.org/, per research/05-poetic.md
+@misc{poetic_home,
+  title  = {{POETIC} Home Page},
+  author = {{Pediatric Oncology Experimental Therapeutics Investigators' Consortium}},
+  year   = {2026},
+  url    = {https://poeticphase1.org/},
+  note   = {March 2026 update: 3 trials ongoing, 16 completed, 429 children enrolled.}
+}
+
+% verified: https://poeticphase1.org/bi-annual-meeting/, per research/05-poetic.md
+@misc{poetic_meetings,
+  title  = {{POETIC} Bi-Annual Meeting},
+  author = {{Pediatric Oncology Experimental Therapeutics Investigators' Consortium}},
+  year   = {2026},
+  url    = {https://poeticphase1.org/bi-annual-meeting/}
+}
+
+% verified: https://cdn.clinicaltrials.gov/large-docs/70/NCT01294670/Prot_SAP_000.pdf, per research/05-poetic.md
+@misc{poetic_poe1002_protocol,
+  title  = {Protocol {POE10-02}: Vorinostat with Etoposide in Pediatric Patients (amended March 25, 2014)},
+  author = {{Pediatric Oncology Experimental Therapeutics Investigators' Consortium}},
+  year   = {2014},
+  howpublished = {Protocol posted on ClinicalTrials.gov, NCT01294670},
+  url    = {https://cdn.clinicaltrials.gov/large-docs/70/NCT01294670/Prot_SAP_000.pdf}
+}
+
+% verified: https://ufhealth.org/news/2004/group-forms-test-new-cancer-drugs-children, per research/05-poetic.md
+@misc{ufhealth_poetic_2004,
+  title  = {Group Forms to Test New Cancer Drugs in Children},
+  author = {{UF Health}},
+  year   = {2004},
+  month  = sep,
+  url    = {https://ufhealth.org/news/2004/group-forms-test-new-cancer-drugs-children},
+  note   = {News release dated September 21, 2004: first trial opened September 20, 2004; nine founding centers.}
+}
+
+% verified: https://pmc.ncbi.nlm.nih.gov/articles/PMC9047255, per research/08-rural-initiatives.md; metadata from Crossref
+@article{knight2021capacity,
+  title   = {Capacity Building in a New Clinical Trials Network through Inter-Network Collaboration},
+  author  = {Knight, Lisa and Pahud, Barbara A. and Scheffler, Margaret and Euteneuer, Joshua C. and others},
+  journal = {The Journal of Pediatrics},
+  year    = {2022},
+  volume  = {240},
+  pages   = {5--8},
+  doi     = {10.1016/j.jpeds.2021.04.062},
+  url     = {https://pmc.ncbi.nlm.nih.gov/articles/PMC9047255},
+  note    = {Published online 2021.}
+}
+
+% verified: https://www.cancer.gov/research/infrastructure/clinical-trials/ncorp (page last updated August 20, 2019), per research/08-rural-initiatives.md
+@misc{nci_ncorp_page,
+  title  = {{NCI} Community Oncology Research Program ({NCORP})},
+  author = {{National Cancer Institute}},
+  year   = {2019},
+  url    = {https://www.cancer.gov/research/infrastructure/clinical-trials/ncorp}
+}
+
+% verified: text extracted from the PDF, https://sctweb.org/presentations/2022/Curtis_Meinert_2022.pdf, per research/08-rural-initiatives.md
+@misc{mccaskill_stevens_2022,
+  title  = {Lessons Learned from the {National Cancer Institute}'s Community-Based Clinical Trials},
+  author = {McCaskill-Stevens, Worta},
+  year   = {2022},
+  month  = may,
+  howpublished = {Curtis Meinert lecture, Society for Clinical Trials annual meeting, May 16, 2022},
+  url    = {https://sctweb.org/presentations/2022/Curtis_Meinert_2022.pdf},
+  note   = {NCORP accrual August 1, 2014 to April 30, 2022: 71,184.}
+}
+
+% verified (abstract): https://doi.org/10.1017/cts.2021.813, per research/08-rural-initiatives.md
+@article{bharucha2021rural,
+  title   = {Participation of Rural Patients in Clinical Trials at a Multisite Academic Medical Center},
+  author  = {Bharucha, Adil E. and Wi, Chung Il and Srinivasan, Sushmitha Grama and Choi, Hyuckjae and others},
+  journal = {Journal of Clinical and Translational Science},
+  year    = {2021},
+  volume  = {5},
+  number  = {1},
+  pages   = {e190},
+  doi     = {10.1017/cts.2021.813},
+  url     = {https://doi.org/10.1017/cts.2021.813}
+}
+
+% verified (abstract): https://doi.org/10.1001/jamanetworkopen.2026.17204, per research/08-rural-initiatives.md
+@article{mayo_dct_2026,
+  title   = {A Multiregional Decentralized Clinical Trial Program to Improve Access},
+  author  = {Haddad, Tufia C. and Mercado, Lydia A. and Le-Rademacher, Jennifer G. and Enarson, David A. and others},
+  journal = {JAMA Network Open},
+  year    = {2026},
+  volume  = {9},
+  number  = {6},
+  pages   = {e2617204},
+  doi     = {10.1001/jamanetworkopen.2026.17204},
+  url     = {https://doi.org/10.1001/jamanetworkopen.2026.17204}
+}
+
+% verified (abstract): https://doi.org/10.3390/curroncol31110534, per research/08-rural-initiatives.md
+@article{curroncol2024mtb,
+  title   = {Expansion of an Academic Molecular Tumor Board to Enhance Access to Biomarker-Driven Trials and Therapies in the Rural Southeastern {United States}},
+  author  = {Kumar, Anivarya and Owen, Jennifer R. and Sloat, Nicholette T. and Maynard, Elizabeth and others},
+  journal = {Current Oncology},
+  year    = {2024},
+  volume  = {31},
+  number  = {11},
+  pages   = {7244--7257},
+  doi     = {10.3390/curroncol31110534},
+  url     = {https://doi.org/10.3390/curroncol31110534}
+}
+
+% verified (abstract): https://doi.org/10.1200/op.22.00560, per research/08-rural-initiatives.md
+@article{asco_accc_selfassessment_2023,
+  title   = {Increasing Racial and Ethnic Equity, Diversity, and Inclusion in Cancer Treatment Trials: Evaluation of an {ASCO}-{Association of Community Cancer Centers} Site Self-Assessment},
+  author  = {Guerra, Carmen and Pressman, Alice and Hurley, Patricia and Garrett-Mayer, Elizabeth and others},
+  journal = {JCO Oncology Practice},
+  year    = {2023},
+  volume  = {19},
+  number  = {4},
+  pages   = {e581--e588},
+  doi     = {10.1200/OP.22.00560},
+  url     = {https://doi.org/10.1200/OP.22.00560}
+}
+
+% verified (abstract): https://doi.org/10.1001/archpedi.1997.02170470042008, per research/08-rural-initiatives.md
+@article{kisker1997shared,
+  title   = {Shared Management of Children With Cancer},
+  author  = {Kisker, C. Thomas and others},
+  journal = {Archives of Pediatrics \& Adolescent Medicine},
+  year    = {1997},
+  volume  = {151},
+  number  = {10},
+  pages   = {1008--1013},
+  doi     = {10.1001/archpedi.1997.02170470042008},
+  url     = {https://doi.org/10.1001/archpedi.1997.02170470042008}
+}
+
+% verified: text extracted from the PDF, https://www.cancer.gov/about-nci/advisory-boards/ncab/subcommittees/ncab-clinical-investigations-subcom-summary-june-2024.pdf, per research/08-rural-initiatives.md
+@misc{ncab_june2024,
+  title  = {Clinical Investigations Subcommittee Meeting Summary, June 2024},
+  author = {{National Cancer Advisory Board}},
+  year   = {2024},
+  month  = jun,
+  url    = {https://www.cancer.gov/about-nci/advisory-boards/ncab/subcommittees/ncab-clinical-investigations-subcom-summary-june-2024.pdf},
+  note   = {Pragmatica-Lung (SWOG S2302): about 20 percent of accrued patients considered rural.}
+}
+
+% verified: https://chronicdisease.org/success-story/using-project-echo-cancer-clinical-trials-increase-participation-and-access-to-cancer-clinical-trials-in-pennsylvania-2/ (posted February 2026), per research/08-rural-initiatives.md
+@misc{pa_echo_trials_2026,
+  title  = {Using Project {ECHO} Cancer Clinical Trials to Increase Participation and Access to Cancer Clinical Trials in {Pennsylvania}},
+  author = {{National Association of Chronic Disease Directors}},
+  year   = {2026},
+  month  = feb,
+  url    = {https://chronicdisease.org/success-story/using-project-echo-cancer-clinical-trials-increase-participation-and-access-to-cancer-clinical-trials-in-pennsylvania-2/}
+}
+
+% verified (abstract): https://doi.org/10.1093/jnci/djad173, per research/08-rural-initiatives.md
+@article{cdrp_retrospective_2023,
+  title   = {The {National Cancer Institute}'s {Cancer Disparities Research Partnership Program}: A Unique Funding Model 20 Years Later},
+  author  = {Coleman, C. Norman and Wong, Rosemary and Petereit, Daniel G. and Maguire, Patrick D. and others},
+  journal = {Journal of the National Cancer Institute},
+  year    = {2023},
+  volume  = {115},
+  number  = {12},
+  pages   = {1465--1474},
+  doi     = {10.1093/jnci/djad173},
+  url     = {https://doi.org/10.1093/jnci/djad173}
+}
+
+% verified: PubMed record PMID 32421165 (corrected abstract, range 2% to 53%) and PMC7235911 (uncorrected text, range 2% to 59%), read 2026-10-20; the erratum text itself (PMID 40455482) was not read
+@article{turner2020subspecialists,
+  title   = {Comparison of Number and Geographic Distribution of Pediatric Subspecialists and Patient Proximity to Specialized Care in the {US} Between 2003 and 2019},
+  author  = {Turner, Ann and Ricketts, Thomas and Leslie, Laurel K.},
+  journal = {JAMA Pediatrics},
+  year    = {2020},
+  volume  = {174},
+  number  = {9},
+  pages   = {852--860},
+  doi     = {10.1001/jamapediatrics.2020.1124},
+  note    = {Corrected by an erratum, JAMA Pediatrics 2025;179(8):929-930, doi:10.1001/jamapediatrics.2025.1382.}
+}

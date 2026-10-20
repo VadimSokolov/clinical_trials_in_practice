@@ -262,6 +262,29 @@ flowchart TB
 
 *Phesi* takes simulation further, drawing on data from over 100 million patients to model trial outcomes before the protocol is finalized. Their *Digital Patient Profile* reduces the likelihood of the "zero-enrollment site" problem mentioned in @sec-site-selection [@phesi_design].
 
+### From Structured Protocol to Data Collection
+
+The schedule of activities in a protocol is usually rebuilt by hand: a data manager reads it and builds the case report forms, visit structure and edit checks in the EDC system (@sec-data-management). Where sites or vendors read the same schedule differently, the differences surface later as data that are hard to pool. Two developments aim at the step between protocol and database, one a data standard and one a set of AI methods, and they are at very different stages.
+
+The standard side is further along. ICH M11 gives the protocol a harmonized structure and an electronic exchange format (@sec-study-design). CDISC's *Unified Study Definitions Model* (USDM), developed with TransCelerate under the Digital Data Flow initiative, describes the content of a study definition (objectives, design, arms, visits, activities) as data. Version 4.0 was released on June 3, 2025, with a logical model, an API specification, controlled terminology, an implementation guide and conformance rules, and CDISC describes it as aligned as closely as possible with M11. USDM reuses CDASH, the collection standard, rather than replacing it. CDISC names EDC systems as downstream users of study definitions, but it states that the project will not create standard case report forms, and that how study definitions will interact with each company's own eCRFs is still under discussion [@cdisc_usdm]. A structured protocol can therefore supply the visits and activities an EDC build needs, but the forms themselves are still designed by people.
+
+The AI side has less evidence than the attention it gets suggests. The strongest published study found is on extraction, not generation. Babaeipour and colleagues built a retrieval-augmented system that extracted information, including schedule-of-events content, from trial protocols. It reached 89.0% accuracy against expert-supported reference answers, compared with 62.6% for standalone language models with tuned prompts, and coordinators doing simulated tasks with the system finished them 40% faster [@babaeipour2026protocol]. The workflows were simulated, not live trials. We found no peer-reviewed study that measures how accurately a language model detects inconsistencies within a protocol, or that builds case report forms or edit checks from a protocol and measures the result. Claims that AI can turn a protocol into a database build should be read with that in mind.
+
+For a multi-site trial, the practical gain from either route is the same: one definition of each data item, used at every site. The common data elements in @sec-data-management already deliver much of that without any AI. If a tool is used to draft forms or a schedule from the protocol, its output is a draft for the data manager and needs the same checks as a hand-built database.
+
+::: {.callout-tip title="Checklist: Reviewing a Database Build Drafted from a Protocol"}
+
+- Compare every visit and every activity in the draft against the protocol's schedule of activities, cell by cell.
+- Check that each primary and key secondary endpoint has the fields needed to derive it.
+- Check that each eligibility criterion can be confirmed from a field or a documented source.
+- Check visit windows and edit check limits against the protocol text, not against the tool's summary of it.
+- Map each field to a CDASH variable or a named common data element, or record why it is custom.
+- Keep the tool's output, the reviewer's changes and the approved version, so the build can be reconstructed at inspection.
+
+:::
+
+Whether such a tool falls under FDA's draft credibility framework turns on whether its output affects participant safety, drug quality or study reliability (see "Scope of FDA AI Guidance" earlier in this chapter). Either way, the database it helps build is a computerized system that must be validated like any other (@sec-clinical-it-regulatory).
+
 ### AI in Recruitment and Site Selection
 
 Finding the right patients remains the perennial bottleneck. Benchmarking studies suggest that recruitment and retention often take substantially longer and cost more than planned, and that each day of delay can be economically material for sponsors in some therapeutic areas [@lamberti_enrollment_2024; @deloitte_rd_return_2025]. AI tools now scan electronic health records for "needle in the haystack" candidates and, when integrated into workflow, can reduce the manual effort of identifying potentially eligible participants. @fig-patient-matching shows the typical pipeline; @tbl-recruitment-ai profiles the leading vendors.

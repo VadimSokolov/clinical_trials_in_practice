@@ -202,4 +202,85 @@ A global network needs training delivered consistently across languages and time
 
 Global trials add complications of their own. Regulatory requirements differ by country, and language barriers affect training and documentation. Cultural factors influence patient willingness to participate in research, expectations about investigator relationships, and approaches to adverse event reporting. Standard of care may differ across regions, affecting choice of comparator and interpretation of results, while patient populations may differ in disease characteristics, comorbidities, and concomitant medications. Some regions may have limited research infrastructure requiring more intensive support, while others may have mature research environments but intense competition for investigators and patients. All of it feeds back into trial design and analysis.
 
+## Sites New to Research {#sec-naive-sites}
 
+@tbl-site-evaluation lists "no research experience" as a red flag, and for a sponsor that needs fast enrollment it is one. For the trial population it is often the opposite. Patients who live far from academic centers can join a trial only if a site near them takes part, and many such sites have never run one. This section covers what it takes to bring a hospital or clinic with no trial experience into a study: what it lacks, who supplies it, and how a sponsor oversees it.
+
+The literature has no standard term or definition. Industry writing uses "research-naive" or "trial-naive" loosely for community hospitals and clinics with little or no trial history. "Rural" is no better defined: a scoping review of pediatric trials in rural and community settings found no common definition of rurality, and about a third of the articles described their setting too briefly to tell [@watson2022rural].
+
+### Where the Gap Is
+
+In cancer, the size of the gap is known. Using Commission on Cancer accreditation data for 2013 to 2017, Unger and colleagues estimated that 7.1% of adult cancer patients took part in a treatment trial and at least 21.9% in some kind of research study. Treatment trial participation was 21.6% at NCI-designated comprehensive cancer centers, 5.4% at academic programs without NCI designation, 5.7% at integrated network programs and 4.1% at community programs. The programs outside NCI designation made up 96.4% of the accredited sites, and the authors point to the infrastructure and staff support that NCI centers receive and other programs lack [@unger2024participation].
+
+The facilities to close the gap already exist. @sec-recruitment cites the estimate that nearly 17% of U.S. residents aged 35 and older live more than 100 miles from an NCI-funded trial site. The same study found that counting the Commission on Cancer accredited programs as well cuts that share to 1.6%; for people below the poverty line, the figures are 20.2% and 1.9%. Over 97% of NCI cancer center and NCORP facilities lie in urban core areas, against 85% of accredited programs, and only three NCI-funded sites lie outside urban cores, against 179 accredited programs [@shriver2025access]. Most of the hospitals that could bring trials to rural patients treat cancer already. What they lack is trial capacity.
+
+For children, the gap shows up as distance to a subspecialist. In 2019, depending on the subspecialty, between 2% and 53% of US children lived 80 or more miles in a straight line from a pediatric subspecialist, measured from the subspecialist's address to the child's zip code [@turner2020subspecialists]. A 2025 erratum corrected the paper's sampling and coding errors, and the corrected range is the one quoted here.
+
+### What a First-Time Site Lacks
+
+Direct evidence on first-time sites is thin. The most detailed assessment comes from a network that was building capacity on purpose. When the ECHO IDeA States Pediatric Clinical Trials Network assessed its 17 sites and 7 affiliates while the network was being built, every principal investigator reported prior trial experience, but only 38% to 42% of study coordinators reported experience in the relevant domains. Most sites had an on-site pharmacy (93%) and a research pharmacy for investigational agents (79%), and 92% to 96% could store and ship biosamples, yet about 17% did not use an electronic medical record. The barriers the sites named were knowledge gaps among the regional affiliates about local study conduct and follow-up, little protected research time, grant budgeting and contracting, and the need for trusted community champions [@annett2021ispctn]. These were sites of an organized network with academic leads, so a hospital starting alone is likely to lack more.
+
+The pediatric scoping review found the same leading barrier from the other side. Across 27 articles covering 31 U.S. studies, insufficient staff and resources was the barrier cited most often, followed by family distrust, lack of family time, burdensome or frightening procedures, and transportation. Only six of the studies were predominantly or exclusively rural, only two examined rural retention, and none compared strategies head to head or measured their cost-effectiveness [@watson2022rural].
+
+One study measured what first-time sites had to build. In 2017 the same network joined a pharmacokinetic study run by the Pediatric Trials Network. Of its 18 sites, 4 had been active before the network existed and 14 were activated between April 2018 and May 2019, and together they recruited 382 participants by the study's close in September 2019. Of the 20 principal investigators, 7 (35%) were early-stage investigators and 7 (35%) were new to pharmacokinetic research, as were 8 of the 18 coordinators. To take part, 10 sites (56%) added study staff, 7 (39%) added equipment or space, 12 (67%) built new specimen-processing workflows, 5 (28%) wrote new SOPs, and 16 (89%) built new EHR queries to find eligible patients. Sites rated the effect on their research team's confidence at 8.1 on a 0 to 10 scale [@knight2021capacity]. The paper reports activation dates and enrollment, not comparisons with experienced sites, and does not report how many participants were rural.
+
+From these sources and from the start-up steps described earlier in this chapter, a site's first trial typically lacks five things: a coordinator who knows GCP and the sponsor's systems; a regulatory file and the habit of keeping it; a contract and budget office that has negotiated a clinical trial agreement before; a billing process that can separate research costs from routine care under a coverage analysis; and a pharmacy that can receive, store and account for investigational product. Each of these can be supplied from outside the site, but someone has to be named to supply it.
+
+### Who Does What
+
+@tbl-naive-site-roles sets out a division of labor that puts the specialized work on the party that already has the expertise, and leaves the site the tasks only it can do. It is a planning template, not a description of measured practice.
+
+| Task | Sponsor, CRO or coordinating center | Site investigator and coordinator | Host institution |
+|------|-------------------------------------|-----------------------------------|------------------|
+| *Readiness assessment* | Visits or calls the site; checks staff, space, pharmacy, records, internet access | Answers honestly, including what is missing | Confirms support from administration |
+| *Regulatory file* | Supplies a pre-built file structure and templates (delegation log, training log, Form 1572) | Keeps the file current from the first day | Provides secure storage |
+| *Training* | GCP, protocol, EDC and safety reporting training before activation; repeated after amendments | Completes training and documents it | Protects research time for staff |
+| *IRB* | Arranges reliance on a single IRB where the trial allows it | Completes local paperwork | Signs the reliance agreement |
+| *Contract and budget* | Offers a standard template and a budget that covers start-up and coordinator time | Reviews feasibility of the budget | Signs; sets up the research account |
+| *Coverage analysis and billing* | Provides or funds the coverage analysis | Flags research-only procedures at each visit | Bills routine care and research correctly |
+| *Investigational product* | Ships, sets up accountability logs, trains on storage | Dispenses and records | Pharmacy receives and stores |
+| *First enrolled patient* | Reviews the first consent and first visits promptly, remotely or on site | Calls the monitor before and after the first visit | |
+| *Ongoing oversight* | Central review of data and deviations; visits targeted to the site's risks | Answers queries quickly | |
+
+: Division of Labor for a Site New to Research {#tbl-naive-site-roles tbl-colwidths="[16,34,26,24]"}
+
+### Oversight in Proportion to Risk
+
+ICH E6(R3) asks sponsors to scale oversight to the risks that matter for participant safety and the reliability of results [@ich_e6r3_2025], and site inexperience is a risk factor in its own right. In practice that argues for more attention early (review of the first consents, the first eligibility decisions and the first safety reports) and less once the site has shown it can do the work. Central monitoring of the kind described in @sec-monitoring can follow a small site between visits, because the data reach the sponsor whether or not a monitor travels.
+
+Decentralized elements can let a small site take part without carrying every procedure. FDA's 2024 guidance on decentralized elements describes trial visits conducted by telehealth, in participants' homes, or with local health care providers [@fda_dct_guidance_2024], so a rural clinic can handle routine visits close to home while the specialized procedures stay at a larger center. @sec-recruitment describes what those elements do for patients' travel.
+
+### What Capacity Programs Have Measured
+
+Several programs have tried to bring trials to community and rural settings. @tbl-capacity-evidence lists those with published figures, and what each figure does and does not show.
+
+| Program or study | What was measured | What it does not show |
+|------------------|-------------------|-----------------------|
+| *NCI Community Oncology Research Program (NCORP)* | Launched 2014; in 2019, 7 research bases, 32 community sites, 14 minority/underserved sites (at least 30% minority or rural patients) and more than 1,000 affiliates [@nci_ncorp_page]. NCI's NCORP director reported 71,184 accruals from August 2014 to April 2022 [@mccaskill_stevens_2022] | Accrual per newly added affiliate; rural share of accrual |
+| *Mayo Clinic, three campuses, 2016 to 2017* | 731 of 2,313 trial participants (32%) were rural, against 19% of the population of the nine states served; rural participants traveled 103 miles on average, urban 68 [@bharucha2021rural] | Whether regional sites, rather than referral to campuses, drove rural enrollment |
+| *Mayo Clinic decentralized trial program, 2024 to 2025* | Across 765 trials and 7,469 participants, the rural share rose from 16.6% to 24.9% between the first quarters of 2024 and 2025 [@mayo_dct_2026] | Cause: a descriptive study, and the authors do not attribute the change to the program |
+| *Academic molecular tumor board for rural community cancer centers* | Of 151 patients reviewed, 27 were matched to a trial and 1 enrolled; distance to the trial center was the barrier cited most (70%) [@curroncol2024mtb] | Expertise without a local trial did not produce enrollment |
+| *ASCO and ACCC site self-assessment pilot* | 62 sites; 82% identified opportunities for improvement [@asco_accc_selfassessment_2023] | Any change in enrollment after the assessment |
+| *Iowa shared care of children with cancer, about 15 years* | 137 community primary care physicians shared management of 226 children on oncology protocols; survival did not differ from 240 children treated by pediatric oncologists alone [@kisker1997shared] | Retrospective comparison, decades old |
+| *SWOG Pragmatica-Lung, 2024 update* | About 20% of accrued patients lived in a rural location, with accrual spread across NCORP sites, academic sites and other rostered sites [@ncab_june2024] | Rural definitions varied; a single trial |
+
+: Published Measures from Community and Rural Trial Capacity Programs {#tbl-capacity-evidence tbl-colwidths="[24,46,30]"}
+
+Two kinds of program have no outcome data at all. We found no peer-reviewed report of Project ECHO tele-mentoring producing trial activations or enrollment at community sites; the one curriculum aimed at trial access that we found reported preliminary survey results only [@pa_echo_trials_2026]. We also found no citable trial-access outcomes for networks serving American Indian and Alaska Native communities. Evidence can also be lost: a 2023 retrospective of an NCI program that placed radiation oncology trials in six institutions serving underserved patients could not collect patient data so long after the program ended, and relied on a survey of its principal investigators [@cdrp_retrospective_2023].
+
+### What the Evidence Still Does Not Show
+
+No study we found compares the activation time, accrual or protocol deviation rates of first-time sites with those of experienced sites, and none compares ways of supporting them. The ISPCTN pharmacokinetic study reports what new sites built and when they opened, not how they performed against others. Figures for NCORP's share of national accrual and its minority accrual by site type appear in secondary sources that we could not check against the original evaluation. The advice above rests on the regulatory requirements, the barriers sites report, and the start-up steps every site must complete. A sponsor that brings new sites into a trial should record their start-up times, deviations and enrollment, because at present that is the only way anyone will know what works.
+
+::: {.callout-tip title="Checklist: Activating a Site with No Trial Experience"}
+
+- Name one person at the sponsor, CRO or coordinating center as the site's contact for the whole start-up.
+- Assess readiness in person or by video, including pharmacy, records access and internet connection.
+- Provide a pre-built regulatory file and walk the coordinator through it.
+- Train on GCP, the protocol, EDC and safety reporting before the initiation visit, and record the training.
+- Fund the coordinator's time and the coverage analysis in the budget.
+- Use a single IRB and a standard contract where the trial allows.
+- Review the first consent, eligibility decision and safety report within days, not at the next routine visit.
+- Track start-up time, deviations and enrollment for the site, and compare them with the trial's experienced sites.
+
+:::

@@ -2,8 +2,8 @@
 # book-doi is empty until zenodo.py reserve. Quarto shows a when-meta div only for a true boolean, so the
 # DOI line goes in ::: {.content-visible when-meta="book-has-doi"}. There is no ISBN: the KDP ISBN belongs to the
 # print edition only, and kdp.py interior renders that edition with -M book-has-isbn:true -M book-isbn:<isbn>.
-book-version: 1.0.0
+book-version: 1.1.0
 book-edition: '1'
 book-year: '2026'
-book-doi: 10.5281/zenodo.23330460
+book-doi: 10.5281/zenodo.23509692
 book-has-doi: true
