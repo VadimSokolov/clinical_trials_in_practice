@@ -9,9 +9,9 @@ authors:
 - family-names: Sokolov
   given-names: Vadim
   affiliation: George Mason University
-version: 1.1.0
-doi: 10.5281/zenodo.23509692
-date-released: '2026-10-20'
+version: 1.1.1
+doi: 10.5281/zenodo.23537080
+date-released: '2026-10-21'
 license: CC-BY-4.0
 repository-code: https://github.com/VadimSokolov/clinical_trials_in_practice
 url: https://vsokolov.org/books/clinical_trials_in_practice/
@@ -28,7 +28,7 @@ keywords:
 - drug development
 - real world evidence
 - AI agents in clinical research
-abstract: 'On an open highway you can pass every other car and go as fast as the engine allows. A clinical trial is downtown driving. The pace is set by the traffic around you: regulators, sites, patients, and the protocol itself. Speed that ignores that traffic does not get you there sooner.
+abstract: 'On an open highway you can pass every other car and go fast. A clinical trial is like downtown driving. The pace is set by the traffic around you: regulators, sites, patients, and the protocol itself.
 
 
   This book explains how that traffic moves and how to work with it. It follows a trial from the first idea to the regulatory submission and gives Phase III the most room, because that is where approval is won or lost. Statistics, operations and technology are taught side by side, because a design choice in the protocol becomes a task at the site, a field in the database and a document an inspector will ask to see.
@@ -55,7 +55,7 @@ preferred-citation:
     given-names: Vadim
     affiliation: George Mason University
   year: 2026
-  doi: 10.5281/zenodo.23509692
+  doi: 10.5281/zenodo.23537080
   url: https://vsokolov.org/books/clinical_trials_in_practice/
   publisher:
     name: Independently published

@@ -125,9 +125,7 @@ The metrics that indicate site and trial quality are, in risk-based terms, the K
 
 Query rates point at data entry problems: a site generating many more queries than its comparators may have inadequate training or inadequate attention to data quality. Adverse event reporting patterns can identify sites over- or under-reporting relative to others, and both directions warrant investigation. Time to issue resolution indicates site responsiveness. A site that leaves queries unresolved or corrective action items unaddressed may need more intensive oversight.
 
-### Standard Operating Procedures (SOPs)
-
-SOPs are written instructions intended to achieve uniformity in the performance of specific functions. One common way to organize the ones a full clinical research operation needs is in two families. Administrative and general SOPs govern the operational framework: the "SOP on SOPs" that defines how procedures are written and approved, along with training documentation, records management (including archiving and destruction), and crisis management plans. Regulatory SOPs cover the ground where a lapse becomes a compliance failure: obtaining informed consent, communicating with the IRB, handling safety reports, managing investigational product from receipt to destruction, and screening and enrolling subjects to ensure eligibility. @sec-protocol-sops sets these procedures beside the protocol and follows an SOP from drafting to retirement.
+**Standard operating procedures (SOPs).** SOPs are written instructions intended to achieve uniformity in the performance of specific functions. One common way to organize the ones a full clinical research operation needs is in two families. Administrative and general SOPs govern the operational framework: the "SOP on SOPs" that defines how procedures are written and approved, along with training documentation, records management (including archiving and destruction), and crisis management plans. Regulatory SOPs cover the ground where a lapse becomes a compliance failure: obtaining informed consent, communicating with the IRB, handling safety reports, managing investigational product from receipt to destruction, and screening and enrolling subjects to ensure eligibility. @sec-protocol-sops sets these procedures beside the protocol and follows an SOP from drafting to retirement.
 
 ## Audits and Inspections
 
@@ -154,9 +152,7 @@ Inspection readiness now extends to the computerized systems used for trial cond
 
 :::
 
-### During the Inspection
-
-The sponsor typically designates a *back room* team to support document retrieval and a *front room* presence to escort inspectors and manage interactions. Daily close-out meetings between inspectors and the sponsor allow clarification of findings before they become formal observations.
+**During the inspection.** The sponsor typically designates a *back room* team to support document retrieval and a *front room* presence to escort inspectors and manage interactions. Daily close-out meetings between inspectors and the sponsor allow clarification of findings before they become formal observations.
 
 Inspectors may request additional documents, interview staff, or tour facilities. Answers should be factual and concise; speculation and defensiveness rarely help. A question that cannot be answered on the spot is better met with a commitment to follow up than with a guess.
 
@@ -210,15 +206,13 @@ Adjusting for temporal trends, to account for changes in background treatment or
 
 The COVID anticoagulation multi-platform RCT, pooling REMAP-CAP, ATTACC, and ACTIV-4a, used a novel governance structure: each platform kept its own DSMB, but all three reviewed the same combined analyses, produced under a common statistical analysis plan, and coordinated their recommendations. Each platform could then satisfy its own regulatory obligations (each had its own sponsor, protocol, and regulatory and ethics approvals) while the adaptive stopping decisions were made on the full combined evidence. The coordination required detailed pre-specification of how stopping decisions would be communicated across platforms.
 
-### Endpoint Adjudication Committees
+### Endpoint Adjudication and Steering Committees
 
-Where endpoints are subject to interpretation (cardiovascular events, disease progression, cause of death), a *Clinical Events Committee* (CEC) or *Endpoint Adjudication Committee* provides independent, blinded review. Adjudication is what keeps endpoint determinations consistent across sites and investigators: a myocardial infarction diagnosed at one hospital should meet the same criteria as one diagnosed at another. The CEC reviews source documents (ECGs, troponin values, imaging) and applies protocol-defined criteria to classify events.
+**Endpoint adjudication committees.** Where endpoints are subject to interpretation (cardiovascular events, disease progression, cause of death), a *Clinical Events Committee* (CEC) or *Endpoint Adjudication Committee* provides independent, blinded review. Adjudication is what keeps endpoint determinations consistent across sites and investigators: a myocardial infarction diagnosed at one hospital should meet the same criteria as one diagnosed at another. The CEC reviews source documents (ECGs, troponin values, imaging) and applies protocol-defined criteria to classify events.
 
 Operationally, adjudication adds timeline pressure. Cases must be prepared, reviewed, and adjudicated before database lock, and large trials with thousands of potential events may require dedicated adjudication infrastructure and close coordination with data management.
 
-### Steering Committees
-
-A *Steering Committee* (SC) provides scientific oversight and guidance on protocol interpretation, drawing its membership from the principal investigators, sponsor representatives, and sometimes independent experts. Its authority is whatever the sponsor delegates to it, from advice alone to primary responsibility for the study's design and the quality of its conduct [@fda_dmc_2006]. It may recommend protocol amendments, interpret eligibility questions, and guide publication strategy. It should remain blind to outcomes by treatment arm, and the distinction between scientific guidance (SC) and safety oversight (DSMB) must be maintained to preserve the DSMB's independence.
+**Steering committees.** A *Steering Committee* (SC) provides scientific oversight and guidance on protocol interpretation, drawing its membership from the principal investigators, sponsor representatives, and sometimes independent experts. Its authority is whatever the sponsor delegates to it, from advice alone to primary responsibility for the study's design and the quality of its conduct [@fda_dmc_2006]. It may recommend protocol amendments, interpret eligibility questions, and guide publication strategy. It should remain blind to outcomes by treatment arm, and the distinction between scientific guidance (SC) and safety oversight (DSMB) must be maintained to preserve the DSMB's independence.
 
 AI tools for remote monitoring, risk-signal prioritization, and automated source data review within risk-based quality management frameworks are covered in @sec-ai-agents.
 

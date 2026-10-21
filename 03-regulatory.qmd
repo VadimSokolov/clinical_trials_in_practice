@@ -4,17 +4,19 @@ An investigational drug does not reach its first human subject in the United Sta
 
 The Food and Drug Administration (FDA) regulates drugs, biologics, and medical devices [@fda_enabling]. It sits in the Department of Health and Human Services as part of the Public Health Service, alongside the National Institutes of Health (NIH) and Centers for Disease Control and Prevention (CDC), with a mission to protect public health by ensuring that regulated products are safe, effective, and not adulterated or misbranded.
 
-Which scientific center holds jurisdiction over a product is a developer's first question, because the center sets the requirements (@tbl-fda-centers):
+Which scientific center holds jurisdiction over a product is a developer's first question, because the center sets the requirements (@tbl-fda-centers).
+
+The Center for Drug Evaluation and Research (CDER) handles prescription drugs, OTC drugs and generics, and most therapeutic biologics. The Center for Biologics Evaluation and Research (CBER) handles vaccines, blood products, gene and cellular therapies. The Center for Devices and Radiological Health (CDRH) handles medical devices and radiation-emitting products. The Human Foods Program (HFP) absorbed the food functions of the former CFSAN in October 2024, and cosmetics moved to the Office of the Chief Scientist. The Center for Veterinary Medicine (CVM) handles animal drugs and animal food.
 
 | Center | Products Regulated | Key Responsibilities |
 |--------|-------------------|---------------------|
-| **CDER** (Center for Drug Evaluation & Research) | Prescription drugs, OTC drugs, generics; many therapeutic biologics (e.g., most monoclonal antibodies and therapeutic proteins) | INDs; NDAs and ANDAs; BLAs for CDER-regulated biologics; biosimilars; post-market drug safety |
-| **CBER** (Center for Biologics Evaluation & Research) | Vaccines, blood and blood products, plasma derivatives, allergenic products, gene therapies, cellular therapies | INDs and BLAs for CBER-regulated biologics; lot-by-lot release for certain products |
-| **CDRH** (Center for Devices & Radiological Health) | Medical devices (Class I-III), radiation-emitting products | 510(k) clearances, De Novo, Premarket Approvals (PMA), device safety |
-| **HFP** (Human Foods Program) | Foods and dietary supplements (absorbs former CFSAN food functions, effective October 2024; cosmetics moved to the Office of the Chief Scientist) | Food safety standards, nutrition labeling |
-| **CVM** (Center for Veterinary Medicine) | Animal drugs, animal food | Veterinary product approval |
+| **CDER** | Prescription drugs, OTC drugs, generics; many therapeutic biologics (e.g., most monoclonal antibodies and therapeutic proteins) | INDs; NDAs and ANDAs; BLAs for CDER-regulated biologics; biosimilars; post-market drug safety |
+| **CBER** | Vaccines, blood and blood products, plasma derivatives, allergenic products, gene therapies, cellular therapies | INDs and BLAs for CBER-regulated biologics; lot-by-lot release for certain products |
+| **CDRH** | Medical devices (Class I-III), radiation-emitting products | 510(k) clearances, De Novo, Premarket Approvals (PMA), device safety |
+| **HFP** | Foods and dietary supplements (absorbs former CFSAN food functions, effective October 2024; cosmetics moved to the Office of the Chief Scientist) | Food safety standards, nutrition labeling |
+| **CVM** | Animal drugs, animal food | Veterinary product approval |
 
-: FDA Scientific Centers {#tbl-fda-centers tbl-colwidths="[25,35,40]"}
+: FDA Scientific Centers {#tbl-fda-centers tbl-colwidths="[10,50,40]"}
 
 The agency also works with numerous interagency partners, including the Office for Human Research Protections (OHRP) on clinical trial matters, NIH on scientific investigation, CDC on epidemiological matters, and the Department of Homeland Security on bioterrorism and food safety.
 
@@ -208,9 +210,7 @@ Key guidelines (@tbl-ich-guidelines) include E6 on Good Clinical Practice, E8 on
 
 : Key ICH Guidelines for Clinical Trials {#tbl-ich-guidelines tbl-colwidths="[15,85]"}
 
-### Regional Regulatory Frameworks
-
-In the European Union, clinical trials are governed by the *EU Clinical Trials Regulation 536/2014*, applicable since January 2022. It introduced a single submission portal (the *Clinical Trials Information System*, or CTIS), harmonized assessment timelines across member states, and opened trial information to public access. For multinational sponsors, that replaced a fragmented process requiring a separate submission to each country.
+**Regional regulatory frameworks.** In the European Union, clinical trials are governed by the *EU Clinical Trials Regulation 536/2014*, applicable since January 2022. It introduced a single submission portal (the *Clinical Trials Information System*, or CTIS), harmonized assessment timelines across member states, and opened trial information to public access. For multinational sponsors, that replaced a fragmented process requiring a separate submission to each country.
 
 Beyond the EU, major authorities include Japan's Pharmaceuticals and Medical Devices Agency (PMDA), China's National Medical Products Administration (NMPA), Health Canada, and Australia's Therapeutic Goods Administration (TGA). Requirements differ, reflecting different healthcare systems, patient populations, and regulatory traditions, but the ICH guidelines give global programs a common foundation and let one body of clinical data support submissions in several jurisdictions.
 

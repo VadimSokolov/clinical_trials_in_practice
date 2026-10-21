@@ -1,9 +1,9 @@
 ## Clinical Trials in Practice: From Foundations to AI Agents
 
 - [Clinical Trials in Practice: From Foundations to AI Agents](https://vsokolov.org/books/clinical_trials_in_practice/index.html.md): by Alexandra Sokolova and Vadim Sokolov (2026). Clinical trials as science and as regulated operations: design and statistics, the daily work of a Phase III study from site selection to the trial master file, regulatory submission, and what AI agents may and may not do in regulated research. Keywords: clinical trials, Phase III trials, clinical trial operations, adaptive trial design, Bayesian clinical trials, Good Clinical Practice, regulatory submission, trial master file, clinical data management, drug development, real world evidence, AI agents in clinical research.
-- [How to cite](https://doi.org/10.5281/zenodo.23509692): DOI 10.5281/zenodo.23509692 for version 1.1.0 (10.5281/zenodo.23330459 for all versions); the BibTeX entry is on the book page
-- [The book as a PDF](https://github.com/VadimSokolov/clinical_trials_in_practice/releases/download/v1.1.0/clinical_trials_in_practice.pdf): 407 pages, CC BY 4.0
-- [Source on GitHub](https://github.com/VadimSokolov/clinical_trials_in_practice/tree/v1.1.0): the Quarto source, code and bibliography
+- [How to cite](https://doi.org/10.5281/zenodo.23537080): DOI 10.5281/zenodo.23537080 for version 1.1.1 (10.5281/zenodo.23330459 for all versions); the BibTeX entry is on the book page
+- [The book as a PDF](https://github.com/VadimSokolov/clinical_trials_in_practice/releases/download/v1.1.1/clinical_trials_in_practice.pdf): 408 pages, CC BY 4.0
+- [Source on GitHub](https://github.com/VadimSokolov/clinical_trials_in_practice/tree/v1.1.1): the Quarto source, code and bibliography
 - [Report an error or ask a question](https://github.com/VadimSokolov/clinical_trials_in_practice/issues): the issues of the book's repository on GitHub
 - [The book as a website](https://vsokolov.org/clinical_trials_in_practice/): every chapter as a page, with search
 - [Chapter 1. Historical Context and Evolution](https://raw.githubusercontent.com/VadimSokolov/clinical_trials_in_practice/main/summaries/01_historical_context_and_evolution.md): summary of the chapter and its results

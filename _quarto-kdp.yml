@@ -1,6 +1,6 @@
 # The 7 x 10 in edition: the digital PDF (pdf/) and the KDP paperback are both built with this profile.
 # Render it with:  QUARTO_PROFILE=kdp quarto render --to pdf
-# The default format in _quarto.yml (the krantz2 text block on US Letter with trim marks) is unchanged.
+# The default format in _quarto.yml (the scrbook class on the default page size) is unchanged.
 # Eleven R chunks in five chapters draw figures. Their results are frozen in _freeze/ (published), so a print render
 # recomputes nothing. After editing one of those chapters, render with this profile once to refresh _freeze/.
 project:

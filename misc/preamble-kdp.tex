@@ -1,11 +1,5 @@
 % The 7 x 10 in edition (profile kdp, _quarto-kdp.yml): the digital PDF and the KDP paperback.
-% Loaded after misc/preamble.tex. The krantz2 text block (33pc x 51pc, 5.5 x 8.5 in) is kept, so lines, tables and
-% pages break as in the krantz2 build. It sits on a 7 x 10 in page with a 0.8 in inside margin (KDP asks for 0.625 in
-% at 301 to 500 pages, references/kdp.md) and 0.7 in outside, 0.75 in above and below, and no trim marks.
-\makeatletter
-\def\top@cornermarks{}
-\makeatother
-\usepackage[paperwidth=7in,paperheight=10in,textwidth=33pc,textheight=51pc,inner=0.8in,top=0.75in]{geometry}
-% krantz2 shifts the page by \hoffset=-0.1in and \voffset=-0.15in to centre the trim marks on Letter paper; geometry keeps them.
-\setlength\hoffset{0pt}
-\setlength\voffset{0pt}
+% Loaded after misc/preamble.tex. The text block is 33pc x 51pc (5.5 x 8.5 in) on a 7 x 10 in page with a 0.8 in inside margin
+% (KDP asks for 0.625 in at 301 to 500 pages, references/kdp.md) and 0.7 in outside, 0.75 in above and below, and no trim marks.
+\usepackage[paperwidth=7in,paperheight=10in,textwidth=33pc,textheight=51pc,inner=0.8in,top=0.75in,footskip=0.3in]{geometry}
+% The page number sits 0.3 in below the text block, inside KDP's 0.25 in safe zone (it was flagged outside the margins at footskip default).

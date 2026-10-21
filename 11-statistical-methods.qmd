@@ -102,7 +102,15 @@ For a binary outcome (success/failure), if a treatment produces $s$ successes an
 
 $$ \alpha_{post} = 1 + s, \quad \beta_{post} = 1 + f $$
 
-The posterior mean, representing our updated best estimate of the success rate, is given by $\frac{\alpha_{post}}{\alpha_{post} + \beta_{post}}$, and the variance, representing our uncertainty, is $\frac{\alpha_{post}\beta_{post}}{(\alpha_{post}+\beta_{post})^2 (\alpha_{post}+\beta_{post}+1)}$. This elegant conjugacy enables exact updating without numerical approximation.
+The posterior mean, representing our updated best estimate of the success rate, is given by
+
+$$ \frac{\alpha_{post}}{\alpha_{post} + \beta_{post}} $$
+
+and the variance, representing our uncertainty, is
+
+$$ \frac{\alpha_{post}\beta_{post}}{(\alpha_{post}+\beta_{post})^2 (\alpha_{post}+\beta_{post}+1)} $$
+
+This elegant conjugacy enables exact updating without numerical approximation.
 
 @fig-beta-updating illustrates this updating process for a four-patient bandit problem, showing how the probability distribution for $p_1$ evolves while $p_2$ (with no observations yet) remains uniform:
 
@@ -332,9 +340,7 @@ The label matters. An administrative analysis should *not* be called a "futility
 
 Complex adaptive designs require extensive *clinical trial simulation* before the first patient enrolls. Thousands of scenarios are run across different true effect sizes, dose-response curves, patient accrual rates, and amounts of heterogeneity, and each scenario yields a set of operating characteristics: Type I error rate (probability of false-positive conclusion), power (probability of correct positive conclusion), expected sample size, expected trial duration, probability of selecting the correct dose. The results confirm Type I error control and guide refinement of decision thresholds and sample size caps. Fixed-sample and standard group-sequential designs have those characteristics calculated analytically; more complex adaptive designs usually determine them through simulation, a shift that initially concerned regulators and is now fully accepted.
 
-### Type I Error: Frequentist Standards in Bayesian Trials
-
-Even a Bayesian trial must address Type I error to win regulatory acceptance. The typical approach: simulate the trial under the null hypothesis (no treatment effect) and verify that the probability of a false-positive conclusion is at or below the prespecified level, conventionally 2.5% one-sided for a confirmatory efficacy claim. Bayesian decision rules (e.g., "declare success if the posterior probability of benefit exceeds 97.5%") are then chosen to achieve this frequentist property. The design is Bayesian in its continuous learning and probabilistic reasoning, and it demonstrates traditional operating characteristics.
+**Type I error in Bayesian trials.** Even a Bayesian trial must address Type I error to win regulatory acceptance. The typical approach: simulate the trial under the null hypothesis (no treatment effect) and verify that the probability of a false-positive conclusion is at or below the prespecified level, conventionally 2.5% one-sided for a confirmatory efficacy claim. Bayesian decision rules (e.g., "declare success if the posterior probability of benefit exceeds 97.5%") are then chosen to achieve this frequentist property. The design is Bayesian in its continuous learning and probabilistic reasoning, and it demonstrates traditional operating characteristics.
 
 Some trialists add a disclaimer when reporting Bayesian trials in journals: "All p-values and confidence intervals in this article are descriptive and have no inferential content." The Bayesian posteriors carry the inference; the frequentist measures appear for consistency with convention.
 

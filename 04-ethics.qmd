@@ -18,7 +18,7 @@ Emanuel, Wendler, and Grady proposed seven requirements (@tbl-emanuel-requiremen
 | *6. Informed Consent* | Participants must voluntarily agree with understanding | Do participants understand and freely agree? | Consent forms must be readable; participants can withdraw at any time. |
 | *7. Respect for Participants* | Researchers have ongoing responsibilities | Are participants' interests protected throughout and after the study? | Privacy must be maintained; participants should be informed of new findings. |
 
-: Emanuel's Seven Requirements for Ethical Research {#tbl-emanuel-requirements tbl-colwidths="[18,22,25,35]"}
+: Emanuel's Seven Requirements for Ethical Research {#tbl-emanuel-requirements tbl-colwidths="[15,20,25,40]"}
 
 ## Applying Ethical Principles
 
@@ -34,21 +34,19 @@ Beneath the debate sits *clinical equipoise*, introduced by Benjamin Freedman in
 
 ### Vulnerable Populations
 
-Vulnerable populations are not protected by being excluded from research: they too deserve therapies developed and tested in relevant populations [@emanuel2000makes]. What their vulnerability requires is safeguards matched to it, and @tbl-vulnerable-populations pairs each recognized vulnerability with the protections it triggers under the Common Rule, whose subparts on pregnant women and prisoners apply to research that the Department of Health and Human Services conducts or supports [@cfr45_46]:
+Vulnerable populations are not protected by being excluded from research: they too deserve therapies developed and tested in relevant populations [@emanuel2000makes]. What their vulnerability requires is safeguards matched to it. The Common Rule supplies them, and its subparts on pregnant women and prisoners apply to research that the Department of Health and Human Services conducts or supports [@cfr45_46].
 
-| Population | Specific Vulnerability | Additional Protections Required | Ethical Consideration |
-|------------|------------------------|--------------------------------|----------------------|
-| *Children* | Cannot provide legal consent; may not understand research | Parental/guardian permission plus child assent when capable | Risks must be minimal, justified by the prospect of direct benefit, or no more than a minor increase over minimal risk in research likely to yield generalizable knowledge about the child's disorder or condition |
-| *Pregnant Women* | Risks extend to fetus | Where scientifically appropriate, preclinical and clinical data on pregnancy risks required | Research must minimize risk to fetus; consent must address fetal risks |
-| *Prisoners* | Institutional coercion may compromise voluntariness | Research limited to the categories at 45 CFR 46.306(a)(2): incarceration and criminal behavior, prisons and prisoners as subjects of study, conditions particularly affecting prisoners, and practices likely to improve the subject's own health | Payment and conditions must not be coercive |
-| *Cognitively Impaired* | Reduced capacity for informed consent | Legally authorized representative consent; subject assent when possible | Ongoing assessment of capacity; respect for objection even if representative consented |
-| *Economically Disadvantaged* | Payment may be unduly influential | Compensation must not be coercive | Payment for time/inconvenience appropriate; credit should accrue as the study progresses, with at most a small, non-coercive completion incentive |
+**Children.** Children cannot provide legal consent and may not understand the research, so the protections are parental or guardian permission plus the child's assent when the child is capable. The research must involve minimal risk, be justified by direct benefit to the child, or carry only a minor increase over minimal risk and yield knowledge about the child's disorder or condition.
 
-: Vulnerable Populations in Clinical Research {#tbl-vulnerable-populations tbl-colwidths="[15,25,30,30]"}
+**Pregnant women.** Risks extend to the fetus. Where scientifically appropriate, preclinical and clinical data on pregnancy risks are required. The research must minimize risk to the fetus, and consent must address fetal risks.
 
-### Research in Resource-Limited Settings
+**Prisoners.** Institutional coercion may compromise voluntariness, so research is limited to the categories in 45 CFR 46.306(a)(2): incarceration and crime, prisons and prisoners, conditions affecting prisoners, or practices likely to benefit the subject. Payment and conditions must not be coercive.
 
-A trial run in a resource-limited setting by a sponsor based in a wealthier country raises two questions with no universal answer. The first is what the control group gets: the best treatment available globally, or the local standard of care. The second is what happens when the trial ends, and sponsors and researchers must arrange post-trial provisions in advance for all participants who still need an intervention identified as beneficial and reasonably safe in the trial, unless a research ethics committee approves an exception [@helsinki_2025]. Both demand thoughtful engagement, and both come back to the same requirement: that the research be responsive to the health needs or priorities of the host population and create local social value, not merely exploit the community for data [@cioms_2016].
+**Cognitively impaired participants.** Capacity for informed consent is reduced, so consent comes from a legally authorized representative, with the subject's assent when possible. Capacity is assessed on an ongoing basis, and the subject's objection is respected even if the representative consented.
+
+**Economically disadvantaged participants.** Payment may be unduly influential, so compensation must not be coercive. Payment for time and inconvenience is appropriate. Credit should accrue as the study progresses, with at most a small, non-coercive completion incentive.
+
+**Research in resource-limited settings.** A trial run in a resource-limited setting by a sponsor based in a wealthier country raises two questions with no universal answer. The first is what the control group gets: the best treatment available globally, or the local standard of care. The second is what happens when the trial ends, and sponsors and researchers must arrange post-trial provisions in advance for all participants who still need an intervention identified as beneficial and reasonably safe in the trial, unless a research ethics committee approves an exception [@helsinki_2025]. Both demand thoughtful engagement, and both come back to the same requirement: that the research be responsive to the health needs or priorities of the host population and create local social value, not merely exploit the community for data [@cioms_2016].
 
 ## Modern Ethical Challenges
 

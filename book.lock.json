@@ -1,242 +1,249 @@
 {
  "edition": "1",
  "pdf": {
-  "bytes": 8014177,
+  "bytes": 7985189,
   "file": "pdf/clinical_trials_in_practice.pdf",
-  "pages": 407,
+  "pages": 408,
   "parts": [
    {
-    "first_page": "1",
+    "first_page": "i",
     "key": "",
-    "last_page": "16",
-    "pages": 16,
+    "last_page": "2",
+    "pages": 14,
     "title": "Front matter"
    },
    {
-    "first_page": "19",
+    "first_page": "5",
     "key": "1",
-    "last_page": "26",
+    "last_page": "12",
     "pages": 8,
     "title": "Chapter 1. Historical Context and Evolution"
    },
    {
-    "first_page": "27",
+    "first_page": "13",
     "key": "2",
-    "last_page": "34",
+    "last_page": "20",
     "pages": 8,
     "title": "Chapter 2. Lifecycle of a Clinical Trial"
    },
    {
-    "first_page": "35",
+    "first_page": "21",
     "key": "3",
-    "last_page": "50",
-    "pages": 16,
+    "last_page": "38",
+    "pages": 18,
     "title": "Chapter 3. Regulatory Framework"
    },
    {
-    "first_page": "51",
+    "first_page": "39",
     "key": "4",
-    "last_page": "58",
-    "pages": 8,
+    "last_page": "44",
+    "pages": 6,
     "title": "Chapter 4. Ethical Principles"
    },
    {
-    "first_page": "61",
+    "first_page": "47",
     "key": "5",
-    "last_page": "66",
+    "last_page": "52",
     "pages": 6,
     "title": "Chapter 5. Overview of Drug Development"
    },
    {
-    "first_page": "67",
+    "first_page": "53",
     "key": "6",
-    "last_page": "82",
+    "last_page": "68",
     "pages": 16,
     "title": "Chapter 6. Economics of a Trial"
    },
    {
-    "first_page": "83",
+    "first_page": "69",
     "key": "7",
-    "last_page": "94",
+    "last_page": "80",
     "pages": 12,
     "title": "Chapter 7. Phase I: Human Pharmacology"
    },
    {
-    "first_page": "95",
+    "first_page": "81",
     "key": "8",
-    "last_page": "102",
+    "last_page": "88",
     "pages": 8,
     "title": "Chapter 8. Phase II: Exploratory"
    },
    {
-    "first_page": "103",
+    "first_page": "89",
     "key": "9",
-    "last_page": "110",
+    "last_page": "96",
     "pages": 8,
     "title": "Chapter 9. Phase III: Confirmatory"
    },
    {
-    "first_page": "111",
+    "first_page": "97",
     "key": "10",
-    "last_page": "116",
+    "last_page": "102",
     "pages": 6,
     "title": "Chapter 10. Phase IV: Post-Marketing Studies and Surveillance"
    },
    {
-    "first_page": "119",
+    "first_page": "105",
     "key": "11",
-    "last_page": "132",
+    "last_page": "118",
     "pages": 14,
     "title": "Chapter 11. Statistical Methods for Clinical Trials"
    },
    {
-    "first_page": "133",
+    "first_page": "119",
     "key": "12",
-    "last_page": "154",
+    "last_page": "140",
     "pages": 22,
     "title": "Chapter 12. Adaptive and Bayesian Trial Design"
    },
    {
-    "first_page": "155",
+    "first_page": "141",
     "key": "13",
-    "last_page": "168",
+    "last_page": "154",
     "pages": 14,
     "title": "Chapter 13. Study Design"
    },
    {
-    "first_page": "169",
+    "first_page": "155",
     "key": "14",
-    "last_page": "188",
+    "last_page": "174",
     "pages": 20,
     "title": "Chapter 14. Real-World Evidence and Evidence Integration"
    },
    {
-    "first_page": "189",
+    "first_page": "175",
     "key": "15",
-    "last_page": "192",
+    "last_page": "178",
     "pages": 4,
     "title": "Chapter 15. Protocol Design Benchmarks"
    },
    {
-    "first_page": "193",
+    "first_page": "179",
     "key": "16",
-    "last_page": "200",
+    "last_page": "186",
     "pages": 8,
     "title": "Chapter 16. Randomization and Blinding"
    },
    {
-    "first_page": "201",
+    "first_page": "187",
     "key": "17",
-    "last_page": "210",
-    "pages": 10,
+    "last_page": "194",
+    "pages": 8,
     "title": "Chapter 17. Endpoints and Outcomes"
    },
    {
-    "first_page": "211",
+    "first_page": "195",
     "key": "18",
-    "last_page": "224",
+    "last_page": "208",
     "pages": 14,
     "title": "Chapter 18. Site Selection and Feasibility"
    },
    {
-    "first_page": "225",
+    "first_page": "209",
     "key": "19",
-    "last_page": "234",
+    "last_page": "218",
     "pages": 10,
     "title": "Chapter 19. Patient Recruitment and Retention"
    },
    {
-    "first_page": "235",
+    "first_page": "219",
     "key": "20",
-    "last_page": "260",
-    "pages": 26,
+    "last_page": "246",
+    "pages": 28,
     "title": "Chapter 20. Logistics and Project Management"
    },
    {
-    "first_page": "261",
+    "first_page": "247",
     "key": "21",
-    "last_page": "268",
+    "last_page": "254",
     "pages": 8,
     "title": "Chapter 21. Data Management"
    },
    {
-    "first_page": "269",
+    "first_page": "255",
     "key": "22",
-    "last_page": "280",
+    "last_page": "266",
     "pages": 12,
     "title": "Chapter 22. Clinical Monitoring"
    },
    {
-    "first_page": "281",
+    "first_page": "267",
     "key": "23",
-    "last_page": "288",
-    "pages": 8,
+    "last_page": "272",
+    "pages": 6,
     "title": "Chapter 23. Safety Monitoring and Reporting"
    },
    {
-    "first_page": "289",
+    "first_page": "273",
     "key": "24",
-    "last_page": "294",
+    "last_page": "278",
     "pages": 6,
     "title": "Chapter 24. Essential Documents and the Trial Master File"
    },
    {
-    "first_page": "295",
+    "first_page": "279",
     "key": "25",
-    "last_page": "304",
+    "last_page": "288",
     "pages": 10,
     "title": "Chapter 25. Clinical Trial IT Infrastructure"
    },
    {
-    "first_page": "305",
+    "first_page": "289",
     "key": "26",
-    "last_page": "336",
-    "pages": 32,
+    "last_page": "322",
+    "pages": 34,
     "title": "Chapter 26. AI Agents in Clinical Development"
    },
    {
-    "first_page": "339",
+    "first_page": "325",
     "key": "27",
-    "last_page": "346",
+    "last_page": "332",
     "pages": 8,
     "title": "Chapter 27. Trial Closeout and Analysis"
    },
    {
-    "first_page": "347",
+    "first_page": "333",
     "key": "28",
-    "last_page": "352",
+    "last_page": "338",
     "pages": 6,
     "title": "Chapter 28. The Clinical Study Report"
    },
    {
-    "first_page": "353",
+    "first_page": "339",
     "key": "29",
-    "last_page": "362",
+    "last_page": "348",
     "pages": 10,
     "title": "Chapter 29. Regulatory Submission"
    },
    {
-    "first_page": "365",
+    "first_page": "351",
     "key": "30",
-    "last_page": "374",
-    "pages": 10,
+    "last_page": "362",
+    "pages": 12,
     "title": "Chapter 30. Glossary and Abbreviations"
    },
    {
-    "first_page": "375",
+    "first_page": "363",
     "key": "",
-    "last_page": "407",
-    "pages": 33,
+    "last_page": "396",
+    "pages": 34,
     "title": "References"
    }
   ],
-  "sha256": "07aa2f7a10bb2cae42624b5bb791b0d3880f58a5693946976e960bbd9183b25d"
+  "sha256": "fddfa90c1377522bd382c72457e4365ee697b6411a2ae0a46d3854c96a3106db"
  },
  "results": {},
- "updated": "2026-10-20",
+ "updated": "2026-10-21",
  "zenodo": {
   "concept_doi": "10.5281/zenodo.23330459",
   "doi": "10.5281/zenodo.23509692",
+  "draft": {
+   "doi": "10.5281/zenodo.23537080",
+   "html": "https://zenodo.org/deposit/23537080",
+   "id": 23537080,
+   "reserved_on": "2026-10-21",
+   "version": "1.1.1"
+  },
   "html": "https://zenodo.org/records/23509692",
   "latest_id": 23509692,
   "tag": "v1.1.0",

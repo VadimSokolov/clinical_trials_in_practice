@@ -1,7 +1,7 @@
 -- misc/table-longtoken-wrap.lua
 -- PDF only. Long unbreakable tokens in table cells (notably e-mail addresses
 -- such as CDERBiomarkerQualificationProgram@fda.hhs.gov) have no hyphenation
--- points, so on the narrow krantz trim they overrun their column and overlap
+-- points, so on the narrow trim they overrun their column and overlap
 -- the neighbouring one. Wrap such tokens in \seqsplit{} (seqsplit package,
 -- loaded in misc/preamble.tex) so xelatex may break them at any character when
 -- a line would otherwise overflow. Only tokens containing '@' are touched, so

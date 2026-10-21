@@ -17,19 +17,19 @@ authors:
 credit_names: "Sokolova and Sokolov"                 # how a citation names the authors, e.g. "Polson and Sokolov"; empty: built from the family names
 year: 2026
 edition: "1"
-version: "1.1.0"                 # the release tag is v<version>
-date_released: "2026-10-20"     # YYYY-MM-DD, set at release
+version: "1.1.1"                 # the release tag is v<version>
+date_released: "2026-10-21"     # YYYY-MM-DD, set at release
 publisher: "Independently published"   # the imprint KDP shows for its free ISBN
 # no isbn: a free KDP ISBN may be used only on KDP, so it goes on the ISBN line of kdp.md (private) and is printed
 # only in the print edition (kdp.py interior); this file is published (references/publishing.md)
-doi: "10.5281/zenodo.23509692" # this edition's DOI; zenodo.py reserve writes it before the final build
+doi: "10.5281/zenodo.23537080" # this edition's DOI; zenodo.py reserve writes it before the final build
 license_text: CC-BY-4.0          # text, figures and PDF
 license_code: MIT
 repository: https://github.com/VadimSokolov/clinical_trials_in_practice   # the public repository; its name is the slug
 site_page: https://vsokolov.org/books/clinical_trials_in_practice/    # the book page on the website; the PDF is served next to it
 html_url: https://vsokolov.org/clinical_trials_in_practice/    # the HTML edition, served by GitHub Pages of the book's own repository (the authors, 12 Oct 2026); follows the repository name
 language: en
-print_url: ""                    # where to buy the printed book (optional)
+print_url: "https://www.amazon.com/dp/B0HNRVSW18"                    # where to buy the printed book (optional)
 cover_image: pdf/cover.jpg               # front cover image (PNG or JPEG, about 1600 px tall) in the repository, e.g. pdf/cover.png
 pdf: pdf/clinical_trials_in_practice.pdf              # the released PDF; bookrepo.py pdf copies the build here
 keywords:
@@ -47,7 +47,7 @@ keywords:
   - AI agents in clinical research
 short_description: "Clinical trials as science and as regulated operations: design and statistics, the daily work of a Phase III study from site selection to the trial master file, regulatory submission, and what AI agents may and may not do in regulated research."
 description: |
-  On an open highway you can pass every other car and go as fast as the engine allows. A clinical trial is downtown driving. The pace is set by the traffic around you: regulators, sites, patients, and the protocol itself. Speed that ignores that traffic does not get you there sooner.
+  On an open highway you can pass every other car and go fast. A clinical trial is like downtown driving. The pace is set by the traffic around you: regulators, sites, patients, and the protocol itself.
 
   This book explains how that traffic moves and how to work with it. It follows a trial from the first idea to the regulatory submission and gives Phase III the most room, because that is where approval is won or lost. Statistics, operations and technology are taught side by side, because a design choice in the protocol becomes a task at the site, a field in the database and a document an inspector will ask to see.
 

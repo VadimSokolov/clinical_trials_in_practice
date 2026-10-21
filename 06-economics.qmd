@@ -32,13 +32,9 @@ The second lever is timeline compression. Enrollment delay is the canonical case
 
 AI-enabled tools create economic value mainly by automating classification, triage, and routine drafting (document indexing, query suggestion and clustering, standardized narrative scaffolds) so that expert time is shifted from low-information coordination to higher-judgment work. The intended outcome is not the removal of expertise, but a reduction in coordination overhead and in the reconciliation debt that delays interim decisions and final reporting.
 
-### Internal Discovery vs. External Acquisition
+**Internal discovery vs. external acquisition.** Sixty-one percent of the assets in the late-stage pipelines of the top 20 biopharma companies are now **externally sourced** through mergers, acquisitions, and licensing agreements, unchanged from 2024 and up from 59% in 2023 [@deloitte_rd_return_2025; @deloitte_rd_return_2026]. The R&D model at large pharmaceutical companies has shifted decisively toward buying innovation: "bolt-on" acquisitions offset looming patent expiries, and early-stage risk is offshored to smaller, more agile biotech firms. Bought assets carry their own risk. Externally sourced assets are consistently more likely to be terminated in late-stage development than those developed in-house (14% vs 12% termination rate in 2024); Deloitte's prescription is an M&A strategy built around long-term strategic fit rather than short-term pipeline gap-filling [@deloitte_rd_return_2025].
 
-Sixty-one percent of the assets in the late-stage pipelines of the top 20 biopharma companies are now **externally sourced** through mergers, acquisitions, and licensing agreements, unchanged from 2024 and up from 59% in 2023 [@deloitte_rd_return_2025; @deloitte_rd_return_2026]. The R&D model at large pharmaceutical companies has shifted decisively toward buying innovation: "bolt-on" acquisitions offset looming patent expiries, and early-stage risk is offshored to smaller, more agile biotech firms. Bought assets carry their own risk. Externally sourced assets are consistently more likely to be terminated in late-stage development than those developed in-house (14% vs 12% termination rate in 2024); Deloitte's prescription is an M&A strategy built around long-term strategic fit rather than short-term pipeline gap-filling [@deloitte_rd_return_2025].
-
-### The Shift Toward Rare Diseases and High-Value Targets
-
-In 2025, 36% of the late-stage assets in Deloitte's top-20 biopharma cohort were focused on **rare diseases** (orphan indications), holding steady after a significant increase from 31.1% in 2023 to 37.4% in 2024 [@deloitte_rd_return_2025; @deloitte_rd_return_2026]. The pivot is toward precision medicine and high-unmet-need populations, where regulatory pathways may be faster and pricing power is greater. The consequence is extreme concentration: oncology alone accounted for 37% of the cohort's late-stage assets in 2024, which leaves sponsors in intense competition for trial sites and eligible participants [@deloitte_rd_return_2025]. These categories are not mutually exclusive, since many oncology assets also carry orphan designations.
+**The shift toward rare diseases and high-value targets.** In 2025, 36% of the late-stage assets in Deloitte's top-20 biopharma cohort were focused on **rare diseases** (orphan indications), holding steady after a significant increase from 31.1% in 2023 to 37.4% in 2024 [@deloitte_rd_return_2025; @deloitte_rd_return_2026]. The pivot is toward precision medicine and high-unmet-need populations, where regulatory pathways may be faster and pricing power is greater. The consequence is extreme concentration: oncology alone accounted for 37% of the cohort's late-stage assets in 2024, which leaves sponsors in intense competition for trial sites and eligible participants [@deloitte_rd_return_2025]. These categories are not mutually exclusive, since many oncology assets also carry orphan designations.
 
 ### Shifting the cost structure: labor vs. software and governance
 
@@ -68,7 +64,7 @@ Therapeutic area dramatically influences cost. Oncology trials are among the mos
 | **Cardiovascular** | $126B by 2028 (2-5% CAGR) | Established market with incremental innovation |
 | **Infectious Disease** | $75B by 2028 (3-6% CAGR) | Pandemic preparedness and antimicrobial resistance driving investment |
 
-: Global Pharmaceutical Spending by Therapeutic Area, 2024-2028 Projections [@iqvia_therapeutic_spending_2024]. Note: Oncology and immunology are the largest therapy areas by projected 2028 spending, with specialty medicines accounting for a growing share of total spending. {#tbl-rd-spending-area tbl-colwidths="[30,35,35]"}
+: Global Pharmaceutical Spending by Therapeutic Area, 2024-2028 Projections [@iqvia_therapeutic_spending_2024]. {#tbl-rd-spending-area tbl-colwidths="[20,30,50]"}
 
 ``` {r}
 #| label: fig-iqvia-spending
@@ -261,9 +257,7 @@ Sites feel squeezed between CRO cost pressures and the realities of delivering q
 
 ## Where the Money Actually Goes
 
-In 2023, the biopharmaceutical industry spent over $30 billion directly at clinical trial sites across the United States, generating more than $62 billion in total economic activity [@phrma_economic_impact_2024]. These expenditures support jobs (investigators, coordinators, nurses, regulatory staff, administrators) and purchase goods and services from local economies.
-
-CROs employ hundreds of thousands of people globally, and the industry supports specialized vendors, technology companies, and service providers. Academic medical centers derive substantial revenue from clinical research, which supports teaching and infrastructure beyond the trials themselves.
+In 2023, the biopharmaceutical industry spent over $30 billion directly at clinical trial sites across the United States, generating more than $62 billion in total economic activity [@phrma_economic_impact_2024]. These expenditures support jobs (investigators, coordinators, nurses, regulatory staff, administrators) and purchase goods and services from local economies. CROs employ hundreds of thousands of people globally, and the industry supports specialized vendors, technology companies, and service providers. Academic medical centers derive substantial revenue from clinical research, which supports teaching and infrastructure beyond the trials themselves.
 
 A development program that costs $1 billion may never yield an approved product, and the majority do not. The oft-cited figure of $2.6 billion to bring a new drug to market (from a Tufts University study) is an average that already includes capitalized R&D expenditures and the cost of failure, so the out-of-pocket cost of a typical successful program, taken on its own, is lower. This high cost of failure increasingly drives larger pharmaceutical companies to license assets later in the development cycle, shifting much of the early-phase risk, and the majority of trial activity, onto Emerging Biopharma (EBP) companies [@iqvia_rd_trends_2025].
 
@@ -278,8 +272,6 @@ Decentralized trial elements (home visits, remote monitoring, direct-to-patient 
 ## Funding Interims and Portfolio Management
 
 Interim analyses are usually framed as scientific tools, but they also serve a financial one: deciding whether to commit capital to the next stage of a program.
-
-### Administrative Interim Analyses
 
 A *funding interim* (also called an administrative or financial interim analysis) is a pre-specified analysis of accumulating trial data conducted specifically to trigger an investment decision, not to change trial design or stop enrollment. A scientific interim (for futility, efficacy, or dose selection) changes something about the trial. A funding interim changes nothing about the trial at all. It simply answers a binary question for an external funder: "Has the pre-specified threshold been met?"
 

@@ -116,9 +116,7 @@ flowchart LR
     class Compare decision
 ```
 
-### Analyzing Laboratory Safety Data
-
-A laboratory adverse event is often just a number moving, with no symptom to announce it. The analysis has to go looking. *Treatment-Emergent Abnormal Values (TEAVs)* pick out patients who moved from a normal baseline to an abnormal post-treatment state. *Shift tables* (typically 3x3 matrices of patient status, e.g., Low, Normal, High, before versus after treatment) show where a population moved as a whole. *Clinically significant changes* flag values past a defined threshold, such as >3x Upper Limit of Normal for liver enzymes, where the concern is organ toxicity.
+**Analyzing laboratory safety data.** A laboratory adverse event is often just a number moving, with no symptom to announce it. The analysis has to go looking. *Treatment-Emergent Abnormal Values (TEAVs)* pick out patients who moved from a normal baseline to an abnormal post-treatment state. *Shift tables* (typically 3x3 matrices of patient status, e.g., Low, Normal, High, before versus after treatment) show where a population moved as a whole. *Clinically significant changes* flag values past a defined threshold, such as >3x Upper Limit of Normal for liver enzymes, where the concern is organ toxicity.
 
 ## Signal Detection
 

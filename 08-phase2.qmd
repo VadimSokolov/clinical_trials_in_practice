@@ -75,7 +75,7 @@ FDA's Patient-Focused Drug Development guidance series presses sponsors to build
 | **Alzheimer's** | Amyloid plaque reduction (PET imaging) | Cognitive decline | Controversial; under evaluation |
 | **Osteoporosis** | Bone mineral density | Fracture risk | Validated: FDA qualified total hip BMD (24-month change) in December 2025 [@fda_bmd_qualification_2025] |
 
-: Examples of Surrogate Endpoints by Therapeutic Area {#tbl-surrogate-endpoints tbl-colwidths="[22,30,28,20]"}
+: Examples of Surrogate Endpoints by Therapeutic Area {#tbl-surrogate-endpoints tbl-colwidths="[22,20,29,29]"}
 
 Surrogates buy speed at a price. Not every change in a surrogate translates to clinical benefit: Drug A might lower blood pressure more than Drug B yet produce no better cardiovascular outcomes. Using surrogates in Phase II is generally accepted, since the goal there is to detect signals and select doses, but the relationship between surrogate and clinical benefit must be established if the surrogate is to support full regulatory approval; a surrogate only *reasonably likely* to predict clinical benefit can support accelerated approval for a serious condition, with confirmation deferred to post-marketing trials.
 

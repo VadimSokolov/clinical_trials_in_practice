@@ -88,7 +88,7 @@ In response to Tuskegee and other ethical violations, the National Commission fo
 | *Beneficence* | Do not harm; maximize possible benefits and minimize possible harms | *Risk-benefit assessment*: Research risks must be reasonable in relation to anticipated benefits. Study design must maximize benefits and minimize risks. |
 | *Justice* | Fair distribution of research burdens and benefits | *Equitable subject selection*: The selection of research subjects must be fair. Those who bear the burdens should potentially benefit. Vulnerable groups should not be exploited. |
 
-: The Three Principles of the Belmont Report {#tbl-belmont-principles tbl-colwidths="[20,40,40]"}
+: The Three Principles of the Belmont Report {#tbl-belmont-principles tbl-colwidths="[15,30,55]"}
 
 In the United States they became binding federal rules through the *Federal Policy for the Protection of Human Subjects*, the Common Rule, adopted in 1991 and codified for HHS [@cfr45_46]. It requires prior IRB review and approval, documented informed consent, and additional protections for pregnant women, prisoners, and children; at adoption it aligned those requirements across fifteen federal departments and agencies. For clinical investigations of drugs and devices, FDA imposes parallel obligations for informed consent and IRB review [@cfr21_50; @cfr21_56]. The 2018 revision, among other changes, generally requires a single IRB for U.S. multi-site research funded by Common Rule agencies and a concise "key information" section at the start of consent forms. How IRBs exercise that authority is taken up in @sec-ethics. Internationally, the Declaration of Helsinki and the CIOMS guidelines fill the corresponding ethical role.
 

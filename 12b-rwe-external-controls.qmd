@@ -29,7 +29,7 @@ FDA published its *Framework for FDA's Real-World Evidence Program* in 2018, est
 | 2024 | Non-Interventional Studies for Drug and Biological Products | Observational study design expectations (draft) |
 | 2024 | Integrating RCTs Into Routine Clinical Practice | Embedded/pragmatic trial design (draft) |
 
-: FDA Real-World Evidence Guidance Documents (selected) {#tbl-fda-rwe-guidance}
+: FDA Real-World Evidence Guidance Documents (selected) {#tbl-fda-rwe-guidance tbl-colwidths="[10,30,50]"}
 
 ### EMA and International Harmonization
 
@@ -39,9 +39,7 @@ EMA's April 2024 guide (EMA/152628/2024) describes how regulators can request RW
 
 ICH E6(R3) (2025) [@ich_e6r3_2025], the updated Good Clinical Practice guideline, addresses hybrid designs that incorporate EHR and RWD within interventional trials, extending principles of data integrity and traceability to these sources.
 
-### Fit-for-Purpose: The Governing Concept
-
-Both FDA and EMA converge on *fit for purpose* as the evaluative standard, and the weight falls on *purpose*. A registry dataset that serves as an external control for a natural history comparison in a rare pediatric disease may be unfit as the primary comparator for a Phase III efficacy claim in a common chronic condition.
+**Fit for purpose.** Both FDA and EMA converge on *fit for purpose* as the evaluative standard, and the weight falls on *purpose*. A registry dataset that serves as an external control for a natural history comparison in a rare pediatric disease may be unfit as the primary comparator for a Phase III efficacy claim in a common chronic condition.
 
 The assessment adds a third test to relevance and reliability: analytic validity, whether the proposed analysis can extract the target estimand from the available data without biases that exceed what is acceptable for the regulatory purpose. Sponsors who engage with FDA early, through pre-submission meetings under the Advancing RWE Program, are encouraged to settle the data source and analysis plan there rather than presenting RWE for the first time in a marketing application.
 
@@ -95,9 +93,7 @@ In observational CER both treatment groups are drawn from RWD and nothing is ran
 
 Observational CER is most credible when the outcome is objective and reliably captured in routine care (overall survival is better than symptom scores), the comparison is between two established alternatives rather than between treated and untreated, which concentrates confounding by indication, and the database is large enough to achieve covariate balance after matching or weighting. Beyond that, sensitivity analyses have to demonstrate that the result is robust to plausible unmeasured confounding.
 
-### Natural History and Registry Studies
-
-Natural history studies characterize disease progression, event rates, and mortality in untreated or standard-of-care populations. They do not compare treatments. In rare disease drug development a well-designed natural history study is often the indispensable prerequisite for a single-arm trial: without a reliable characterization of the untreated disease course, the single arm's outcomes cannot be interpreted against anything. FDA's 2023 guidance on registry assessment sets out the data elements, follow-up duration, and outcome adjudication a registry needs to serve as a regulatory-grade external control comparator.
+**Natural history and registry studies.** Natural history studies characterize disease progression, event rates, and mortality in untreated or standard-of-care populations. They do not compare treatments. In rare disease drug development a well-designed natural history study is often the indispensable prerequisite for a single-arm trial: without a reliable characterization of the untreated disease course, the single arm's outcomes cannot be interpreted against anything. FDA's 2023 guidance on registry assessment sets out the data elements, follow-up duration, and outcome adjudication a registry needs to serve as a regulatory-grade external control comparator.
 
 ### External Control Arms and Synthetic Control Arms
 

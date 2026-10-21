@@ -22,6 +22,7 @@ Medical directors, study managers, and others in clinical development who need d
 
 **Part IV: Trial Completion and Beyond** ends with closeout, the clinical study report, and submission: the last steps that decide whether years of clinical work become an approved medicine.
 
+::: {.content-visible when-format="html"}
 ---
 
 Copyright © {{< meta book-year >}} Alexandra Sokolova and Vadim Sokolov. First edition, {{< meta book-year >}}.
@@ -35,3 +36,4 @@ Digital Object Identifier (DOI): [{{< meta book-doi >}}](https://doi.org/{{< met
 :::
 
 License: distributed under the Creative Commons Attribution 4.0 International License (CC BY 4.0), <https://creativecommons.org/licenses/by/4.0/>: you may copy, share and adapt this book for any purpose, provided you credit the authors. The code is released under the MIT License.
+:::
